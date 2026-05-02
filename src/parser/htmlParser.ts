@@ -1,0 +1,36 @@
+import * as cheerio from "cheerio";
+import type { FetchResult } from "../types/crawl.js";
+import type { CrawledPage } from "../types/page.js";
+import { extractContentSummary } from "./contentExtractor.js";
+import { extractHeadings } from "./headingExtractor.js";
+import { extractImages } from "./imageExtractor.js";
+import { extractLinks } from "./linkExtractor.js";
+import { extractMeta } from "./metaExtractor.js";
+import { extractSchemas } from "./schemaExtractor.js";
+import { detectShopify } from "./shopifyDetector.js";
+
+export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage {
+  const $ = cheerio.load(fetchResult.html);
+  const shopify = detectShopify($, fetchResult.finalUrl);
+  const content = extractContentSummary($);
+
+  return {
+    url: fetchResult.url,
+    finalUrl: fetchResult.finalUrl,
+    status: fetchResult.status,
+    depth,
+    contentType: fetchResult.contentType,
+    fetchedAt: new Date().toISOString(),
+    loadTimeMs: fetchResult.loadTimeMs,
+    pageType: shopify.pageType,
+    meta: extractMeta($),
+    headings: extractHeadings($),
+    wordCount: content.wordCount,
+    textHash: content.textHash,
+    images: extractImages($, fetchResult.finalUrl),
+    links: extractLinks($, fetchResult.finalUrl),
+    schemas: extractSchemas($),
+    shopify,
+    issues: []
+  };
+}
