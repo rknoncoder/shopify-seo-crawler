@@ -2,7 +2,7 @@ import PQueue from "p-queue";
 import config from "../config/config.js";
 import { runAudits } from "../audits/runAudits.js";
 import { analyzeSite } from "../analyzer/seoAnalyzer.js";
-import { fetchPage, delay } from "./fetcher.js";
+import { fetchPage, sleepBetweenRequests } from "./fetcher.js";
 import { UrlManager } from "./urlManager.js";
 import { parseHtml } from "../parser/htmlParser.js";
 import type { CrawlResult } from "../types/crawl.js";
@@ -54,7 +54,7 @@ export async function startCrawler(seedUrls: string[]): Promise<CrawlResult> {
         });
       } finally {
         if (config.crawlDelayMs > 0) {
-          await delay(config.crawlDelayMs);
+          await sleepBetweenRequests(config.crawlDelayMs);
         }
       }
     });

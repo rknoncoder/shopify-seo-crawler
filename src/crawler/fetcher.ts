@@ -41,3 +41,8 @@ export async function fetchPage(url: string): Promise<FetchResult> {
 export function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+export function sleepBetweenRequests(baseDelayMs: number): Promise<void> {
+  const jitterMs = Math.floor(Math.random() * 1000);
+  return delay(baseDelayMs + jitterMs);
+}

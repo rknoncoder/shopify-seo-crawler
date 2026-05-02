@@ -7,8 +7,8 @@ const config: CrawlConfig = {
   maxDepth: 3,
   timeout: 15000,
   concurrency: 2,
-  crawlDelayMs: 300,
-  userAgent: "Shopify SEO Crawler/1.0 (+https://example.com/bot)",
+  crawlDelayMs: 1000,
+  userAgent: "ShopifySEOBot/1.0 (+https://example.com/bot)",
   retries: 2,
   retryDelayMs: 750,
   crawl: {

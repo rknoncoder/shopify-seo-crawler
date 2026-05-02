@@ -24,6 +24,14 @@ Useful flags:
 - `--max-depth` link crawl depth when falling back from sitemaps.
 - `--sitemap` repeatable manual sitemap URL.
 
+The crawler identifies itself with this user agent:
+
+```text
+ShopifySEOBot/1.0 (+https://example.com/bot)
+```
+
+By default it waits roughly 1-2 seconds between requests to reduce Shopify bot-protection blocks.
+
 Environment variables with the `SHOPIFY_CRAWLER_` prefix also work, for example:
 
 ```bash
