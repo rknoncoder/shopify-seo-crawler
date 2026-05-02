@@ -3,36 +3,22 @@
     "priority": 1,
     "severity": "critical",
     "category": "technical",
-    "task": "Page returned HTTP 429 Fix the URL, redirect, or server response.",
-    "affectedUrls": 207,
+    "task": "Page returned HTTP 503 Fix the URL, redirect, or server response.",
+    "affectedUrls": 19,
     "sampleUrls": [
-      "https://triprindia.com/products/men-printed-half-sleeve-t-shirt-maroon",
-      "https://triprindia.com/products/pack-of-2-quarter-zip-high-neck-plain-combo-sweatshirts-st162",
-      "https://triprindia.com/products/pack-of-2-full-sleeve-dual-color-printed-hooded-t-shirts-7-variants-z137",
-      "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-black-t-shirt-d213",
-      "https://triprindia.com/products/samurai-dragon-graphic-design-printed-oversized-tshirt-black-d215"
+      "https://triprindia.com/collections/all-tshirt",
+      "https://triprindia.com/collections/half-sleeve-t-shirt",
+      "https://triprindia.com/collections/bottom-wear",
+      "https://triprindia.com/collections/men-innerwear-trunks",
+      "https://triprindia.com/collections/drop-shoulder-t-shirts"
     ]
   },
   {
     "priority": 2,
     "severity": "high",
-    "category": "schema",
-    "task": "Missing expected schema type: Product Add JSON-LD schema that matches the Shopify template.",
-    "affectedUrls": 915,
-    "sampleUrls": [
-      "https://triprindia.com/products/tripr-mens-printed-vest-joker",
-      "https://triprindia.com/products/tripr-mens-printed-vest-1",
-      "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
-      "https://triprindia.com/products/tripr-mens-printed-vest-2",
-      "https://triprindia.com/products/tripr-mens-printed-vest-3"
-    ]
-  },
-  {
-    "priority": 3,
-    "severity": "high",
     "category": "content",
     "task": "Duplicate content hash found across 2 pages. Make each page's content hash unique and aligned with search intent.",
-    "affectedUrls": 383,
+    "affectedUrls": 172,
     "sampleUrls": [
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
       "https://triprindia.com/collections/baniyan-for-men/products/tripr-mens-printed-vest-joker",
@@ -42,17 +28,29 @@
     ]
   },
   {
-    "priority": 4,
+    "priority": 3,
     "severity": "high",
     "category": "metadata",
     "task": "Missing meta description Add a compelling unique meta description.",
-    "affectedUrls": 249,
+    "affectedUrls": 144,
     "sampleUrls": [
-      "https://triprindia.com/products/men-printed-half-sleeve-t-shirt-maroon",
-      "https://triprindia.com/products/pack-of-2-quarter-zip-high-neck-plain-combo-sweatshirts-st162",
-      "https://triprindia.com/products/pack-of-2-full-sleeve-dual-color-printed-hooded-t-shirts-7-variants-z137",
-      "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-black-t-shirt-d213",
-      "https://triprindia.com/products/samurai-dragon-graphic-design-printed-oversized-tshirt-black-d215"
+      "https://triprindia.com/pages/profile-edit",
+      "https://triprindia.com/pages/edit-notifications",
+      "https://triprindia.com/pages/size-chart",
+      "https://triprindia.com/pages/mens-cargos-size-chart",
+      "https://triprindia.com/pages/mens-shirt-size-chart"
+    ]
+  },
+  {
+    "priority": 4,
+    "severity": "high",
+    "category": "schema",
+    "task": "Missing expected schema type: Product or ProductGroup Add JSON-LD schema that matches the Shopify template.",
+    "affectedUrls": 3,
+    "sampleUrls": [
+      "https://triprindia.com/products/%20https://triprindia.com/pages/return-exchange",
+      "https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange",
+      "https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange"
     ]
   },
   {
@@ -60,35 +58,43 @@
     "severity": "high",
     "category": "schema",
     "task": "Product page is missing Product schema. Add Product JSON-LD with offers, price, availability, image, and reviews where available.",
-    "affectedUrls": 15,
+    "affectedUrls": 3,
     "sampleUrls": [
-      "https://triprindia.com/products/men-printed-half-sleeve-t-shirt-maroon",
-      "https://triprindia.com/products/pack-of-2-quarter-zip-high-neck-plain-combo-sweatshirts-st162",
-      "https://triprindia.com/products/pack-of-2-full-sleeve-dual-color-printed-hooded-t-shirts-7-variants-z137",
-      "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-black-t-shirt-d213",
-      "https://triprindia.com/products/samurai-dragon-graphic-design-printed-oversized-tshirt-black-d215"
+      "https://triprindia.com/products/%20https://triprindia.com/pages/return-exchange",
+      "https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange",
+      "https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange"
     ]
   },
   {
     "priority": 6,
-    "severity": "medium",
-    "category": "metadata",
-    "task": "Duplicate meta description found across 2 pages. Make each page's meta description unique and aligned with search intent.",
-    "affectedUrls": 1251,
+    "severity": "high",
+    "category": "shopify",
+    "task": "Collection product duplicate URL does not canonicalize to the clean product URL. Set the canonical tag to the primary /products/{handle} URL for Shopify collection-product paths.",
+    "affectedUrls": 1,
     "sampleUrls": [
-      "https://triprindia.com/",
-      "https://triprindia.com/collections",
-      "https://triprindia.com/products/tripr-mens-printed-vest-joker",
-      "https://triprindia.com/collections/baniyan-for-men/products/tripr-mens-printed-vest-joker",
-      "https://triprindia.com/collections/innerwear/products/tripr-mens-printed-vest-joker"
+      "https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange"
     ]
   },
   {
     "priority": 7,
     "severity": "medium",
     "category": "metadata",
+    "task": "Duplicate meta description found across 3 pages. Make each page's meta description unique and aligned with search intent.",
+    "affectedUrls": 1290,
+    "sampleUrls": [
+      "https://triprindia.com/products/tripr-mens-printed-vest-joker",
+      "https://triprindia.com/collections/baniyan-for-men/products/tripr-mens-printed-vest-joker",
+      "https://triprindia.com/collections/innerwear/products/tripr-mens-printed-vest-joker",
+      "https://triprindia.com/",
+      "https://triprindia.com/collections"
+    ]
+  },
+  {
+    "priority": 8,
+    "severity": "medium",
+    "category": "metadata",
     "task": "Duplicate title found across 3 pages. Make each page's title unique and aligned with search intent.",
-    "affectedUrls": 1042,
+    "affectedUrls": 885,
     "sampleUrls": [
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
       "https://triprindia.com/collections/baniyan-for-men/products/tripr-mens-printed-vest-joker",
@@ -98,25 +104,11 @@
     ]
   },
   {
-    "priority": 8,
-    "severity": "medium",
-    "category": "schema",
-    "task": "Missing expected schema type: Organization or WebSite Add JSON-LD schema that matches the Shopify template.",
-    "affectedUrls": 655,
-    "sampleUrls": [
-      "https://triprindia.com/",
-      "https://triprindia.com/pages/about-us",
-      "https://triprindia.com/pages/contact-us",
-      "https://triprindia.com/pages/exchange-policy",
-      "https://triprindia.com/pages/privacy-policy"
-    ]
-  },
-  {
     "priority": 9,
     "severity": "medium",
     "category": "metadata",
     "task": "Title length is outside the ideal range. Keep titles roughly 25 to 65 characters.",
-    "affectedUrls": 566,
+    "affectedUrls": 578,
     "sampleUrls": [
       "https://triprindia.com/products/tripr-mens-short-2",
       "https://triprindia.com/products/tripr-men-vest-green",
@@ -128,89 +120,61 @@
   {
     "priority": 10,
     "severity": "medium",
-    "category": "technical",
-    "task": "Missing canonical URL Add a self-referencing canonical or canonical target.",
-    "affectedUrls": 197,
+    "category": "schema",
+    "task": "Missing expected schema type: Organization or WebSite Add JSON-LD schema that matches the Shopify template.",
+    "affectedUrls": 155,
     "sampleUrls": [
-      "https://triprindia.com/products/men-printed-half-sleeve-t-shirt-maroon",
-      "https://triprindia.com/products/pack-of-2-quarter-zip-high-neck-plain-combo-sweatshirts-st162",
-      "https://triprindia.com/products/pack-of-2-full-sleeve-dual-color-printed-hooded-t-shirts-7-variants-z137",
-      "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-black-t-shirt-d213",
-      "https://triprindia.com/products/samurai-dragon-graphic-design-printed-oversized-tshirt-black-d215"
+      "https://triprindia.com/",
+      "https://triprindia.com/pages/about-us",
+      "https://triprindia.com/pages/contact-us",
+      "https://triprindia.com/pages/exchange-policy",
+      "https://triprindia.com/pages/privacy-policy"
     ]
   },
   {
     "priority": 11,
     "severity": "medium",
     "category": "content",
-    "task": "Collection page has very little crawlable copy. Add unique intro copy, buying guidance, FAQs, and internal links.",
-    "affectedUrls": 98,
+    "task": "Article content is short. Expand the article with original guidance, examples, images, and internal links.",
+    "affectedUrls": 83,
     "sampleUrls": [
-      "https://triprindia.com/collections/track-suite/products/t-shirt-and-pant-combo-for-men",
-      "https://triprindia.com/collections/track-suite/products/round-neck-sweatshirt-and-baggy-cargo-matching-outfits",
-      "https://triprindia.com/collections/track-suite/products/tracksuit-for-men-over-sized-printed-d199-white-blue-t-shirt-with-plain-black-track-pant",
-      "https://triprindia.com/collections/shorts/products/men-printed-regular-fit-shorts-20-variants",
-      "https://triprindia.com/collections/shorts/products/pack-of-2-men-printed-regular-fit-shorts"
+      "https://triprindia.com/blogs/news/tagged/cottonblendcare",
+      "https://triprindia.com/blogs/news/tagged/cottonfabric",
+      "https://triprindia.com/blogs/news/tagged/sustainablefashion",
+      "https://triprindia.com/blogs/news/tagged/washinghacks",
+      "https://triprindia.com/blogs/news/tagged/fashionfaqs"
     ]
   },
   {
     "priority": 12,
     "severity": "medium",
-    "category": "content",
-    "task": "Article content is short. Expand the article with original guidance, examples, images, and internal links.",
-    "affectedUrls": 86,
+    "category": "shopify",
+    "task": "Shopify collection tag URL appears indexable. Noindex tag-filter pages or canonicalize them to the clean collection URL to avoid tag bloat.",
+    "affectedUrls": 23,
     "sampleUrls": [
-      "https://triprindia.com/blogs/news/frequently-asked-questions-faqs-shopping-guide-for-tripr-india",
-      "https://triprindia.com/blogs/news/wash-like-a-pro-the-ultimate-guide-to-caring-for-cotton-blend-fabric",
-      "https://triprindia.com/blogs/news/tripr-india-real-or-fake",
-      "https://triprindia.com/blogs/news/tagged/cottonblendcare",
-      "https://triprindia.com/blogs/news/tagged/cottonfabric"
+      "https://triprindia.com/collections/track-pants-for-men/baggy-track-pants",
+      "https://triprindia.com/collections/track-pants-for-men/colour-blocked-track-pants",
+      "https://triprindia.com/collections/track-pants-for-men/printed-track-pants",
+      "https://triprindia.com/collections/track-pants-for-men/track-pants-combo",
+      "https://triprindia.com/collections/track-pants-for-men/plain-track-pants"
     ]
   },
   {
     "priority": 13,
     "severity": "medium",
-    "category": "schema",
-    "task": "Product schema does not expose Offer data. Include priceCurrency, price, availability, and url in Product offers.",
-    "affectedUrls": 15,
+    "category": "shopify",
+    "task": "Collection page has 0 crawlable product links. Add more relevant products to the collection or noindex/remove thin collection pages.",
+    "affectedUrls": 20,
     "sampleUrls": [
-      "https://triprindia.com/products/men-printed-half-sleeve-t-shirt-maroon",
-      "https://triprindia.com/products/pack-of-2-quarter-zip-high-neck-plain-combo-sweatshirts-st162",
-      "https://triprindia.com/products/pack-of-2-full-sleeve-dual-color-printed-hooded-t-shirts-7-variants-z137",
-      "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-black-t-shirt-d213",
-      "https://triprindia.com/products/samurai-dragon-graphic-design-printed-oversized-tshirt-black-d215"
+      "https://triprindia.com/collections/all-tshirt",
+      "https://triprindia.com/collections/kids-tshirt",
+      "https://triprindia.com/collections/half-sleeve-t-shirt",
+      "https://triprindia.com/collections/bottom-wear",
+      "https://triprindia.com/collections/men-innerwear-trunks"
     ]
   },
   {
     "priority": 14,
-    "severity": "medium",
-    "category": "content",
-    "task": "Product page has thin visible content. Add unique product copy, benefits, specs, sizing, FAQs, and care details.",
-    "affectedUrls": 13,
-    "sampleUrls": [
-      "https://triprindia.com/products/men-printed-half-sleeve-t-shirt-maroon",
-      "https://triprindia.com/products/pack-of-2-quarter-zip-high-neck-plain-combo-sweatshirts-st162",
-      "https://triprindia.com/products/pack-of-2-full-sleeve-dual-color-printed-hooded-t-shirts-7-variants-z137",
-      "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-black-t-shirt-d213",
-      "https://triprindia.com/products/samurai-dragon-graphic-design-printed-oversized-tshirt-black-d215"
-    ]
-  },
-  {
-    "priority": 15,
-    "severity": "medium",
-    "category": "images",
-    "task": "Product page has no crawlable images. Make product images available in HTML with descriptive alt text.",
-    "affectedUrls": 13,
-    "sampleUrls": [
-      "https://triprindia.com/products/men-printed-half-sleeve-t-shirt-maroon",
-      "https://triprindia.com/products/pack-of-2-quarter-zip-high-neck-plain-combo-sweatshirts-st162",
-      "https://triprindia.com/products/pack-of-2-full-sleeve-dual-color-printed-hooded-t-shirts-7-variants-z137",
-      "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-black-t-shirt-d213",
-      "https://triprindia.com/products/samurai-dragon-graphic-design-printed-oversized-tshirt-black-d215"
-    ]
-  },
-  {
-    "priority": 16,
     "severity": "medium",
     "category": "content",
     "task": "Missing H1 Add one clear H1 that describes the page.",
@@ -224,71 +188,84 @@
     ]
   },
   {
-    "priority": 17,
-    "severity": "low",
-    "category": "images",
-    "task": "35 images are missing alt text Add descriptive alt text for meaningful images.",
-    "affectedUrls": 1548,
+    "priority": 15,
+    "severity": "medium",
+    "category": "technical",
+    "task": "Missing canonical URL Add a self-referencing canonical or canonical target.",
+    "affectedUrls": 9,
     "sampleUrls": [
-      "https://triprindia.com/",
-      "https://triprindia.com/products/tripr-mens-printed-vest-joker",
-      "https://triprindia.com/products/tripr-mens-printed-vest-1",
-      "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
-      "https://triprindia.com/products/tripr-mens-printed-vest-2"
+      "https://triprindia.com/collections/all-tshirt",
+      "https://triprindia.com/collections/half-sleeve-t-shirt",
+      "https://triprindia.com/collections/bottom-wear",
+      "https://triprindia.com/collections/men-innerwear-trunks",
+      "https://triprindia.com/collections/drop-shoulder-t-shirts"
+    ]
+  },
+  {
+    "priority": 16,
+    "severity": "medium",
+    "category": "content",
+    "task": "Collection page has very little crawlable copy. Add unique intro copy, buying guidance, FAQs, and internal links.",
+    "affectedUrls": 9,
+    "sampleUrls": [
+      "https://triprindia.com/collections/all-tshirt",
+      "https://triprindia.com/collections/half-sleeve-t-shirt",
+      "https://triprindia.com/collections/bottom-wear",
+      "https://triprindia.com/collections/men-innerwear-trunks",
+      "https://triprindia.com/collections/drop-shoulder-t-shirts"
+    ]
+  },
+  {
+    "priority": 17,
+    "severity": "medium",
+    "category": "schema",
+    "task": "Product schema does not expose Offer data. Include priceCurrency, price, availability, and url in Product offers.",
+    "affectedUrls": 3,
+    "sampleUrls": [
+      "https://triprindia.com/products/%20https://triprindia.com/pages/return-exchange",
+      "https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange",
+      "https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange"
     ]
   },
   {
     "priority": 18,
     "severity": "low",
-    "category": "metadata",
-    "task": "Meta description length is outside the ideal range. Keep descriptions roughly 70 to 160 characters.",
-    "affectedUrls": 1360,
+    "category": "images",
+    "task": "6 images are missing alt text Add descriptive alt text for meaningful images.",
+    "affectedUrls": 1657,
     "sampleUrls": [
-      "https://triprindia.com/",
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
-      "https://triprindia.com/products/black-printed-men-vest",
-      "https://triprindia.com/products/dark-blue-men-vest",
-      "https://triprindia.com/products/red-printed-men-vest"
+      "https://triprindia.com/",
+      "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
+      "https://triprindia.com/products/tripr-mens-printed-vest-1",
+      "https://triprindia.com/products/tripr-mens-printed-vest-2"
     ]
   },
   {
     "priority": 19,
     "severity": "low",
-    "category": "internal_links",
-    "task": "Collection page has no crawlable product links. Ensure product cards render anchor links in server HTML.",
-    "affectedUrls": 106,
+    "category": "metadata",
+    "task": "Meta description length is outside the ideal range. Keep descriptions roughly 70 to 160 characters.",
+    "affectedUrls": 1387,
     "sampleUrls": [
-      "https://triprindia.com/collections/vendors",
-      "https://triprindia.com/collections/sweatshirt-for-mens/collar-sweatshirts",
-      "https://triprindia.com/collections/sweatshirt-for-mens/white-sweatshirts",
-      "https://triprindia.com/collections/track-suite/products/t-shirt-and-pant-combo-for-men",
-      "https://triprindia.com/collections/track-suite/products/round-neck-sweatshirt-and-baggy-cargo-matching-outfits"
+      "https://triprindia.com/products/tripr-mens-printed-vest-joker",
+      "https://triprindia.com/",
+      "https://triprindia.com/products/black-printed-men-vest",
+      "https://triprindia.com/products/dark-blue-men-vest",
+      "https://triprindia.com/products/grey-printed-men-vest"
     ]
   },
   {
     "priority": 20,
     "severity": "low",
-    "category": "internal_links",
-    "task": "Article has no internal links. Link to relevant products, collections, and related articles.",
-    "affectedUrls": 86,
-    "sampleUrls": [
-      "https://triprindia.com/blogs/news/frequently-asked-questions-faqs-shopping-guide-for-tripr-india",
-      "https://triprindia.com/blogs/news/wash-like-a-pro-the-ultimate-guide-to-caring-for-cotton-blend-fabric",
-      "https://triprindia.com/blogs/news/tripr-india-real-or-fake",
-      "https://triprindia.com/blogs/news/tagged/cottonblendcare",
-      "https://triprindia.com/blogs/news/tagged/cottonfabric"
-    ]
-  },
-  {
-    "priority": 21,
-    "severity": "low",
     "category": "content",
     "task": "Multiple H1 headings found Use one primary H1 per page.",
-    "affectedUrls": 3,
+    "affectedUrls": 4,
     "sampleUrls": [
       "https://triprindia.com/",
       "https://triprindia.com/pages/about-us",
-      "https://triprindia.com/pages/travel-jacket"
+      "https://triprindia.com/pages/travel-jacket",
+      "https://triprindia.com/blogs/news/tripr-india-real-or-fake"
     ]
   }
 ]

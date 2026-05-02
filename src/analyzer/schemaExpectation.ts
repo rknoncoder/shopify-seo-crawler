@@ -3,7 +3,7 @@ import type { ShopifyPageType } from "../types/shopify.js";
 export function expectedSchemaTypesForPage(pageType: ShopifyPageType): string[] {
   const expectations: Record<ShopifyPageType, string[]> = {
     home: ["Organization", "WebSite"],
-    product: ["Product"],
+    product: ["Product", "ProductGroup"],
     collection: ["CollectionPage", "ItemList"],
     blog: ["Blog"],
     article: ["Article", "BlogPosting"],

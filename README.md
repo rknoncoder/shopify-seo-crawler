@@ -4,6 +4,8 @@ A TypeScript SEO crawler initialized from the structure of `rknoncoder/wordpress
 
 It discovers Shopify sitemaps, crawls product, collection, blog, article, page, and policy URLs, extracts SEO signals, detects Shopify-specific templates, runs audits, and exports JSON, CSV, and Excel reports.
 
+Shopify-specific checks include duplicate collection-product URL canonicals, indexable collection tag pages, and thin collections with 0 or 1 crawlable product links.
+
 ## Install
 
 ```bash

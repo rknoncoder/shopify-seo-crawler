@@ -41,6 +41,7 @@ export function classifyPath(url: string): string {
   const { pathname } = new URL(url);
   if (pathname === "/" || pathname === "") return "home";
   if (pathname.startsWith("/products/")) return "product";
+  if (isShopifyCollectionProductUrl(url)) return "product";
   if (pathname.startsWith("/collections/")) return "collection";
   if (pathname.startsWith("/blogs/") && pathname.split("/").filter(Boolean).length >= 3) return "article";
   if (pathname.startsWith("/blogs/")) return "blog";
@@ -56,4 +57,34 @@ export function getHandle(url: string, segment: string): string | undefined {
   const parts = new URL(url).pathname.split("/").filter(Boolean);
   const index = parts.indexOf(segment);
   return index >= 0 ? parts[index + 1] : undefined;
+}
+
+export function isShopifyCollectionProductUrl(url: string): boolean {
+  const parts = new URL(url).pathname.split("/").filter(Boolean);
+  return parts[0] === "collections" && parts[2] === "products" && Boolean(parts[3]);
+}
+
+export function getShopifyProductCanonicalUrl(url: string): string | undefined {
+  const parsed = new URL(url);
+  const parts = parsed.pathname.split("/").filter(Boolean);
+
+  if (parts[0] === "products" && parts[1]) {
+    return `${parsed.origin}/products/${parts[1]}`;
+  }
+
+  if (parts[0] === "collections" && parts[2] === "products" && parts[3]) {
+    return `${parsed.origin}/products/${parts[3]}`;
+  }
+
+  return undefined;
+}
+
+export function isShopifyTagUrl(url: string): boolean {
+  const parts = new URL(url).pathname.split("/").filter(Boolean);
+  return parts[0] === "collections" && parts.length >= 3 && parts[2] !== "products";
+}
+
+export function isCollectionUrl(url: string): boolean {
+  const parts = new URL(url).pathname.split("/").filter(Boolean);
+  return parts[0] === "collections" && parts[1] !== undefined && !isShopifyCollectionProductUrl(url);
 }
