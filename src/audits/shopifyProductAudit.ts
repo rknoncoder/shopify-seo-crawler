@@ -4,6 +4,7 @@ import { getShopifyProductCanonicalUrl, isShopifyCollectionProductUrl } from "..
 
 export function auditShopifyProduct(page: CrawledPage): SeoIssue[] {
   if (page.pageType !== "product") return [];
+  if (page.status !== 200) return [];
 
   const issues: SeoIssue[] = [];
   const schemaTypes = page.schemas.map((schema) => schema.type).join(",");

@@ -8,6 +8,8 @@ export function auditSchema(page: CrawledPage): SeoIssue[] {
   const qualityIssues = evaluateSchemaQuality(page);
   issues.push(...qualityIssues);
 
+  if (page.status !== 200) return issues;
+
   const expectedTypes = expectedSchemaTypesForPage(page.pageType);
   if (expectedTypes.length === 0) return issues;
 

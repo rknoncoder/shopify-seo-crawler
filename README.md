@@ -6,6 +6,8 @@ It discovers Shopify sitemaps, crawls product, collection, blog, article, page, 
 
 Shopify-specific checks include duplicate collection-product URL canonicals, indexable collection tag pages, and thin collections with 0 or 1 crawlable product links.
 
+Schema validation goes beyond detecting JSON-LD types. It checks invalid JSON-LD, expected schema by page type, schema URL versus canonical URL, schema name/headline versus H1, product fields and offers, ProductGroup variants, article metadata, FAQ question/answer completeness, BreadcrumbList structure, Collection ItemList entries, and Organization/WebSite basics.
+
 ## Install
 
 ```bash

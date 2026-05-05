@@ -12,14 +12,14 @@
   ],
   "unavailableReason": "",
   "totalSitemapsFound": 4,
-  "totalUrlsFound": 1112,
+  "totalUrlsFound": 1108,
   "selectedSitemapsForCrawl": 4,
   "sitemaps": [
     {
       "sitemapUrl": "https://triprindia.com/sitemap_products_1.xml?from=25228083212&to=9022843191524",
       "type": "urlset",
       "sitemapType": "product",
-      "urlCount": 913,
+      "urlCount": 909,
       "selectedForCrawl": true
     },
     {
