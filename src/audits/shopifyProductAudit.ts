@@ -18,7 +18,7 @@ export function auditShopifyProduct(page: CrawledPage): SeoIssue[] {
     issues.push(issue(page, "high", "schema", "product_schema_missing", "Product page is missing Product schema.", "Add Product JSON-LD with offers, price, availability, image, and reviews where available."));
   }
 
-  if (!/Offer/i.test(JSON.stringify(page.schemas.map((schema) => schema.raw)))) {
+  if (!page.schemas.some((schema) => schema.summary.hasOffer)) {
     issues.push(issue(page, "medium", "schema", "product_offer_missing", "Product schema does not expose Offer data.", "Include priceCurrency, price, availability, and url in Product offers."));
   }
 

@@ -20,7 +20,7 @@ export function auditSchema(page: CrawledPage): SeoIssue[] {
     issues.push({
       url: page.finalUrl,
       pageType: page.pageType,
-      severity: page.pageType === "product" ? "high" : "medium",
+      severity: getMissingExpectedSchemaSeverity(page.pageType),
       category: "schema",
       code: "missing_expected_schema",
       message: `Missing expected schema type: ${expectedTypes.join(" or ")}`,
@@ -30,4 +30,10 @@ export function auditSchema(page: CrawledPage): SeoIssue[] {
   }
 
   return issues;
+}
+
+function getMissingExpectedSchemaSeverity(pageType: string): SeoIssue["severity"] {
+  if (pageType === "product") return "high";
+  if (pageType === "home" || pageType === "collection" || pageType === "article") return "medium";
+  return "recommended";
 }

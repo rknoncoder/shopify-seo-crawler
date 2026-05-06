@@ -10,6 +10,7 @@ import {
   type SitemapDetectionResult
 } from "./crawler/sitemapDetector.js";
 import { buildActionPlan, countIssuesByCode } from "./reports/actionPlan.js";
+import { buildSchemaInventory, buildSchemaSummary } from "./reports/schemaInventory.js";
 import { saveCsv } from "./storage/saveCsv.js";
 import { exportExcel } from "./storage/exportExcel.js";
 import { saveIssuesCsv } from "./storage/saveIssuesCsv.js";
@@ -58,22 +59,29 @@ async function main(): Promise<void> {
     ? [targetUrl]
     : await extractUrlsForCrawl(sitemapInventory.sitemaps.filter((sitemap) => sitemap.selectedForCrawl));
 
+  const crawledFromSitemap = crawlMode !== "single" && urls.length > 0;
   const finalUrls = urls.length > 0 ? urls : [targetUrl];
   console.log(`Final URLs selected: ${finalUrls.length}`);
 
-  const result = await startCrawler(finalUrls);
+  const result = await startCrawler(finalUrls, { followLinks: !crawledFromSitemap });
   const actionPlan = buildActionPlan(result.issues);
   const profile = buildSiteProfile(targetUrl, result.pages, countIssuesByCode(result.issues));
+  const schemaInventory = buildSchemaInventory(result.pages);
+  const schemaSummary = buildSchemaSummary(result.pages);
 
   await saveJson("data/raw/output.json", result.pages);
   await saveCsv("data/reports/pages.csv", result.pages.map(flattenPage));
+  await saveJson("data/reports/schema-inventory.json", schemaInventory);
+  await saveCsv("data/reports/schema-inventory.csv", schemaInventory);
+  await saveJson("data/reports/schema-summary.json", schemaSummary);
+  await saveCsv("data/reports/schema-summary.csv", schemaSummary);
   await saveIssuesJson(result.issues);
   await saveIssuesCsv(result.issues);
   await saveJson("data/reports/action-plan.json", actionPlan);
   await saveCsv("data/reports/action-plan.csv", actionPlan.map((item) => ({ ...item, sampleUrls: item.sampleUrls.join("|") })));
   await saveSiteProfileJson(profile);
   await saveSiteProfileCsv(profile);
-  const excelPath = await exportExcel(result.pages, result.issues, actionPlan, profile);
+  const excelPath = await exportExcel(result.pages, result.issues, actionPlan, profile, schemaInventory, schemaSummary);
 
   console.log(`Crawled pages: ${result.pages.length}`);
   console.log(`Issues found: ${result.issues.length}`);

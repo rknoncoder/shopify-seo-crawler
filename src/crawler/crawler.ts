@@ -10,7 +10,15 @@ import type { CrawledPage } from "../types/page.js";
 import type { SeoIssue } from "../types/issue.js";
 import { shouldSkipUrl } from "../utils/urlUtils.js";
 
-export async function startCrawler(seedUrls: string[]): Promise<CrawlResult> {
+interface StartCrawlerOptions {
+  followLinks?: boolean;
+}
+
+const maxStoredLinksPerPage = 250;
+const maxStoredImagesPerPage = 100;
+
+export async function startCrawler(seedUrls: string[], options: StartCrawlerOptions = {}): Promise<CrawlResult> {
+  const followLinks = options.followLinks ?? true;
   const baseUrl = seedUrls[0];
   const manager = new UrlManager(baseUrl);
   const pages: CrawledPage[] = [];
@@ -33,14 +41,15 @@ export async function startCrawler(seedUrls: string[]): Promise<CrawlResult> {
         const page = parseHtml(fetched, next.depth);
         const issues = runAudits(page);
         page.issues = issues.map((issue) => issue.code);
-        pages.push(page);
         pageIssues.push(...issues);
 
-        if (next.depth < config.maxDepth) {
+        if (followLinks && next.depth < config.maxDepth) {
           page.links
             .filter((link) => link.internal && !shouldSkipUrl(link.href, baseUrl))
             .forEach((link) => manager.add(link.href, next.depth + 1));
         }
+
+        pages.push(compactPageForStorage(page));
       } catch (error) {
         pageIssues.push({
           url: next.url,
@@ -66,4 +75,12 @@ export async function startCrawler(seedUrls: string[]): Promise<CrawlResult> {
 
   await queue.onIdle();
   return { pages, issues: analyzeSite(pages, pageIssues) };
+}
+
+function compactPageForStorage(page: CrawledPage): CrawledPage {
+  return {
+    ...page,
+    links: page.links.slice(0, maxStoredLinksPerPage),
+    images: page.images.slice(0, maxStoredImagesPerPage)
+  };
 }

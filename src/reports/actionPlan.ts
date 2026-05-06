@@ -6,7 +6,8 @@ const severityRank: Record<SeoIssue["severity"], number> = {
   high: 2,
   medium: 3,
   low: 4,
-  info: 5
+  recommended: 5,
+  info: 6
 };
 
 export function buildActionPlan(issues: SeoIssue[]): ActionPlanItem[] {

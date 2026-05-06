@@ -36,7 +36,7 @@ type SchemaNode = Record<string, unknown>;
 
 function getSchemaNodes(page: CrawledPage): SchemaNode[] {
   return page.schemas
-    .filter((schema) => schema.validJson)
+    .filter((schema) => schema.validJson && schema.raw)
     .flatMap((schema) => flattenSchemaNodes(schema.raw));
 }
 
@@ -96,7 +96,7 @@ function validatePageSchema(page: CrawledPage, nodes: SchemaNode[]): SeoIssue[] 
     if (name && page.headings.h1[0] && !textMatches(name, page.headings.h1[0])) {
       issues.push(issue(
         page,
-        "low",
+        "recommended",
         "schema_name_h1_mismatch",
         "Schema name/headline does not match the page H1.",
         "Align schema name/headline with the visible primary heading.",
@@ -112,6 +112,11 @@ function validateProductSchema(page: CrawledPage, nodes: SchemaNode[]): SeoIssue
   if (page.pageType !== "product") return [];
 
   const product = nodes.find((node) => hasType(node, ["Product", "ProductGroup"]));
+  const compactProductSchema = page.schemas.find((schema) => schema.type.split(",").map((type) => type.trim()).some((type) => type === "Product" || type === "ProductGroup"));
+  if (!product && compactProductSchema) {
+    return validateCompactProductSchema(page, compactProductSchema);
+  }
+
   if (!product) return [];
 
   const issues: SeoIssue[] = [];
@@ -179,6 +184,65 @@ function validateProductSchema(page: CrawledPage, nodes: SchemaNode[]): SeoIssue
         "Add variant Product nodes under hasVariant for Shopify variant products."
       ));
     }
+  }
+
+  return dedupeIssues(issues);
+}
+
+function validateCompactProductSchema(page: CrawledPage, schema: CrawledPage["schemas"][number]): SeoIssue[] {
+  const issues: SeoIssue[] = [];
+  const summary = schema.summary;
+
+  if (!summary.hasName) {
+    issues.push(issue(page, "medium", "product_schema_missing_name", "Product schema is missing name.", "Add the product name to Product/ProductGroup schema."));
+  }
+
+  if (!summary.hasDescription) {
+    issues.push(issue(page, "medium", "product_schema_missing_description", "Product schema is missing description.", "Add a product description to Product/ProductGroup schema."));
+  }
+
+  if (!summary.hasBrand) {
+    issues.push(issue(page, "medium", "product_schema_missing_brand", "Product schema is missing brand.", "Add brand.name to Product/ProductGroup schema."));
+  }
+
+  if (!summary.hasImage) {
+    issues.push(issue(page, "medium", "product_schema_missing_image", "Product schema is missing image.", "Add at least one product image URL to Product/ProductGroup schema or variant Product nodes."));
+  }
+
+  if (!summary.hasOffer) {
+    issues.push(issue(page, "medium", "product_schema_missing_offer", "Product schema has no Offer data.", "Add offers with price, priceCurrency, availability, and url."));
+  }
+
+  if (summary.hasOffer && (!summary.hasPrice || !summary.hasPriceCurrency || !summary.hasAvailability || !summary.hasUrl)) {
+    issues.push(issue(
+      page,
+      "medium",
+      "product_schema_incomplete_offer",
+      "Product schema Offer data is incomplete.",
+      "Include price, priceCurrency, availability, and url in product offers."
+    ));
+  }
+
+  if (schema.type.split(",").includes("ProductGroup") && !summary.hasVariant) {
+    issues.push(issue(
+      page,
+      "medium",
+      "product_group_missing_variants",
+      "ProductGroup schema has no hasVariant items.",
+      "Add variant Product nodes under hasVariant for Shopify variant products."
+    ));
+  }
+
+  const schemaName = summary.names[0];
+  if (schemaName && page.headings.h1[0] && !textMatches(schemaName, page.headings.h1[0])) {
+    issues.push(issue(
+      page,
+      "medium",
+      "product_schema_name_mismatch",
+      "Product schema name does not match the product H1.",
+      "Keep Product/ProductGroup name aligned with the visible product name.",
+      `schema=${schemaName}; h1=${page.headings.h1[0]}`
+    ));
   }
 
   return dedupeIssues(issues);

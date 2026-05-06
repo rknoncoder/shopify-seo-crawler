@@ -1,37 +1,39 @@
 {
-  "targetUrl": "https://triprindia.com/",
-  "crawledAt": "2026-05-05T12:15:09.087Z",
-  "totalPages": 1248,
+  "targetUrl": "https://nobero.com/",
+  "crawledAt": "2026-05-06T10:43:15.279Z",
+  "totalPages": 2457,
   "pageTypes": {
     "home": 1,
-    "product": 921,
-    "page": 51,
-    "collection": 73,
-    "blog": 1,
-    "article": 196,
-    "policy": 4,
-    "unknown": 1
+    "product": 1643,
+    "page": 88,
+    "collection": 490,
+    "blog": 30,
+    "article": 205
   },
   "isShopify": true,
   "detectedApps": [
-    "JudgeMe"
+    "JudgeMe",
+    "Loox"
   ],
   "commonIssues": {
-    "meta_description_length": 1007,
-    "multiple_h1": 4,
-    "missing_image_alt": 1248,
-    "missing_expected_schema": 139,
-    "title_length": 430,
-    "missing_h1": 9,
-    "missing_meta_description": 135,
-    "schema_name_h1_mismatch": 10,
-    "thin_collection_product_count": 11,
-    "article_schema_missing_image": 4,
-    "http_error": 10,
-    "indexable_collection_tag_url": 23,
-    "thin_article": 83,
-    "duplicate_title": 161,
-    "duplicate_meta_description": 798,
-    "duplicate_content": 65
+    "meta_description_length": 1775,
+    "missing_image_alt": 2456,
+    "multiple_h1": 2083,
+    "product_schema_missing_brand": 1642,
+    "offer_schema_missing_url": 1642,
+    "product_schema_url_mismatch": 727,
+    "title_length": 802,
+    "http_error": 1,
+    "missing_expected_schema": 608,
+    "missing_h1": 48,
+    "missing_meta_description": 6,
+    "missing_title": 1,
+    "missing_canonical": 1,
+    "thin_collection_product_count": 76,
+    "schema_name_h1_mismatch": 235,
+    "article_schema_headline_mismatch": 205,
+    "duplicate_title": 1267,
+    "duplicate_meta_description": 1946,
+    "duplicate_content": 17
   }
 }

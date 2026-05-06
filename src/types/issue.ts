@@ -1,4 +1,4 @@
-export type IssueSeverity = "critical" | "high" | "medium" | "low" | "info";
+export type IssueSeverity = "critical" | "high" | "medium" | "low" | "recommended" | "info";
 
 export type IssueCategory =
   | "technical"
