@@ -4,6 +4,7 @@ import { auditBasicSeo } from "./basicSeoAudit.js";
 import { auditBlog } from "./blogAudit.js";
 import { auditCollection } from "./collectionAudit.js";
 import { auditFacetedNavigation } from "./facetedNavigationAudit.js";
+import { auditLinkQuality } from "./linkQualityAudit.js";
 import { auditSchema } from "./schemaAudit.js";
 import { auditShopifyProduct } from "./shopifyProductAudit.js";
 
@@ -18,6 +19,7 @@ export function runAudits(page: CrawledPage): SeoIssue[] {
     ...auditShopifyProduct(page),
     ...auditCollection(page),
     ...auditBlog(page),
-    ...auditFacetedNavigation(page)
+    ...auditFacetedNavigation(page),
+    ...auditLinkQuality(page)
   ];
 }

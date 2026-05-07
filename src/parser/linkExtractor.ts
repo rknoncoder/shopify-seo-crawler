@@ -17,11 +17,13 @@ export function extractLinks($: CheerioAPI, baseUrl: string): LinkInfo[] {
         return null;
       }
 
-      if (seen.has(url)) return null;
-      seen.add(url);
+      const seenKey = `${url}\n${href}`;
+      if (seen.has(seenKey)) return null;
+      seen.add(seenKey);
 
       return {
         href: url,
+        rawHref: href,
         text: cleanText(anchor.text()),
         rel: (anchor.attr("rel") || "").split(/\s+/).filter(Boolean),
         internal: isSameOrigin(url, baseUrl)

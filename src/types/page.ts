@@ -17,6 +17,7 @@ export interface ImageInfo {
 
 export interface LinkInfo {
   href: string;
+  rawHref: string;
   text: string;
   rel: string[];
   internal: boolean;
