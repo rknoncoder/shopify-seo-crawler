@@ -2,45 +2,52 @@
   "source": "robots",
   "status": "found",
   "detectedSitemapUrls": [
-    "https://nobero.com/sitemap.xml"
+    "https://triprindia.com/sitemap.xml"
   ],
   "attempts": [
     {
-      "url": "https://nobero.com/robots.txt",
+      "url": "https://triprindia.com/robots.txt",
       "status": "200"
     }
   ],
   "unavailableReason": "",
-  "totalSitemapsFound": 4,
-  "totalUrlsFound": 2460,
-  "selectedSitemapsForCrawl": 4,
+  "totalSitemapsFound": 5,
+  "totalUrlsFound": 1110,
+  "selectedSitemapsForCrawl": 5,
   "sitemaps": [
     {
-      "sitemapUrl": "https://nobero.com/sitemap_products_1.xml?from=5391274475686&to=15301183832230",
+      "sitemapUrl": "https://triprindia.com/sitemap_agentic_discovery.xml",
+      "type": "urlset",
+      "sitemapType": "other",
+      "urlCount": 3,
+      "selectedForCrawl": true
+    },
+    {
+      "sitemapUrl": "https://triprindia.com/sitemap_products_1.xml?from=25228083212&to=9022843191524",
       "type": "urlset",
       "sitemapType": "product",
-      "urlCount": 1644,
+      "urlCount": 908,
       "selectedForCrawl": true
     },
     {
-      "sitemapUrl": "https://nobero.com/sitemap_pages_1.xml?from=55709597828&to=699297300646",
+      "sitemapUrl": "https://triprindia.com/sitemap_pages_1.xml?from=251872780&to=129298890980",
       "type": "urlset",
       "sitemapType": "page",
-      "urlCount": 90,
+      "urlCount": 47,
       "selectedForCrawl": true
     },
     {
-      "sitemapUrl": "https://nobero.com/sitemap_collections_1.xml?from=170010837124&to=686082392230",
+      "sitemapUrl": "https://triprindia.com/sitemap_collections_1.xml?from=739770380&to=476147548388",
       "type": "urlset",
       "sitemapType": "collection",
-      "urlCount": 491,
+      "urlCount": 38,
       "selectedForCrawl": true
     },
     {
-      "sitemapUrl": "https://nobero.com/sitemap_blogs_1.xml",
+      "sitemapUrl": "https://triprindia.com/sitemap_blogs_1.xml",
       "type": "urlset",
       "sitemapType": "blog",
-      "urlCount": 235,
+      "urlCount": 114,
       "selectedForCrawl": true
     }
   ]

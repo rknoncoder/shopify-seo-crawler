@@ -2,15 +2,15 @@ import type { CrawlConfig } from "../types/crawl.js";
 
 const config: CrawlConfig = {
   startUrl: "https://example.myshopify.com/",
-  crawlMode: "seo",
+  crawlMode: "full",
   maxPages: 700,
   maxDepth: 3,
   timeout: 15000,
-  concurrency: 2,
-  crawlDelayMs: 1000,
+  concurrency: 1,
+  crawlDelayMs: 3000,
   userAgent: "ShopifySEOBot/1.0 (+https://example.com/bot)",
   retries: 2,
-  retryDelayMs: 750,
+  retryDelayMs: 3000,
   crawl: {
     sameOriginOnly: true,
     keepQueryStrings: false,

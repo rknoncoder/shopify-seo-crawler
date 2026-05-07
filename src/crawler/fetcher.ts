@@ -19,6 +19,11 @@ export async function fetchPage(url: string): Promise<FetchResult> {
         responseType: "text"
       });
 
+      if ((response.status === 429 || response.status === 503) && attempt < config.retries) {
+        await delay(getBackoffDelayMs(response.headers["retry-after"], attempt));
+        continue;
+      }
+
       return {
         url,
         finalUrl: response.request?.res?.responseUrl || url,
@@ -43,6 +48,16 @@ export function delay(ms: number): Promise<void> {
 }
 
 export function sleepBetweenRequests(baseDelayMs: number): Promise<void> {
-  const jitterMs = Math.floor(Math.random() * 1000);
+  const jitterMs = Math.floor(Math.random() * 2000);
   return delay(baseDelayMs + jitterMs);
+}
+
+function getBackoffDelayMs(retryAfter: unknown, attempt: number): number {
+  const retryAfterSeconds = Number(Array.isArray(retryAfter) ? retryAfter[0] : retryAfter);
+
+  if (Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0) {
+    return retryAfterSeconds * 1000;
+  }
+
+  return config.retryDelayMs * (attempt + 2);
 }

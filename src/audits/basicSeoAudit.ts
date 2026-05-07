@@ -5,6 +5,8 @@ import { truncate } from "../utils/textUtils.js";
 export function auditBasicSeo(page: CrawledPage): SeoIssue[] {
   const issues: SeoIssue[] = [];
   addStatusIssues(page, issues);
+  if (page.status >= 400) return issues;
+
   addTitleIssues(page, issues);
   addDescriptionIssues(page, issues);
   addCanonicalIssues(page, issues);

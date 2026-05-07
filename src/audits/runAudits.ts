@@ -8,6 +8,10 @@ import { auditSchema } from "./schemaAudit.js";
 import { auditShopifyProduct } from "./shopifyProductAudit.js";
 
 export function runAudits(page: CrawledPage): SeoIssue[] {
+  if (page.status >= 400) {
+    return auditBasicSeo(page);
+  }
+
   return [
     ...auditBasicSeo(page),
     ...auditSchema(page),

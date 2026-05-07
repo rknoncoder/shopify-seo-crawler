@@ -1,110 +1,70 @@
 [
   {
-    "schemaType": "Organization",
+    "schemaType": "ProductGroup",
     "pageType": "product",
     "sourceType": "shopify_theme",
     "sourceName": "Shopify theme structured data",
-    "urls": 1643,
-    "schemaNodes": 1643
+    "urls": 906,
+    "schemaNodes": 906
   },
   {
-    "schemaType": "WebSite",
+    "schemaType": "FAQPage",
     "pageType": "product",
     "sourceType": "unknown",
     "sourceName": "Unknown JSON-LD source",
-    "urls": 1643,
-    "schemaNodes": 1643
+    "urls": 905,
+    "schemaNodes": 905
   },
   {
-    "schemaType": "Product",
-    "pageType": "product",
-    "sourceType": "shopify_theme",
-    "sourceName": "Shopify theme structured data",
-    "urls": 1642,
-    "schemaNodes": 1642
+    "schemaType": "Article",
+    "pageType": "article",
+    "sourceType": "unknown",
+    "sourceName": "Unknown JSON-LD source",
+    "urls": 109,
+    "schemaNodes": 109
   },
   {
-    "schemaType": "Organization",
-    "pageType": "collection",
-    "sourceType": "shopify_theme",
-    "sourceName": "Shopify theme structured data",
-    "urls": 490,
-    "schemaNodes": 490
-  },
-  {
-    "schemaType": "WebSite",
+    "schemaType": "CollectionPage",
     "pageType": "collection",
     "sourceType": "unknown",
     "sourceName": "Unknown JSON-LD source",
-    "urls": 490,
-    "schemaNodes": 490
+    "urls": 38,
+    "schemaNodes": 38
   },
   {
-    "schemaType": "BlogPosting",
+    "schemaType": "Article",
     "pageType": "article",
-    "sourceType": "shopify_theme",
-    "sourceName": "Shopify theme structured data",
-    "urls": 205,
-    "schemaNodes": 205
+    "sourceType": "custom_manual",
+    "sourceName": "Custom/manual JSON-LD",
+    "urls": 4,
+    "schemaNodes": 4
   },
   {
-    "schemaType": "Organization",
-    "pageType": "article",
-    "sourceType": "shopify_theme",
-    "sourceName": "Shopify theme structured data",
-    "urls": 205,
-    "schemaNodes": 205
-  },
-  {
-    "schemaType": "WebSite",
-    "pageType": "article",
-    "sourceType": "unknown",
-    "sourceName": "Unknown JSON-LD source",
-    "urls": 205,
-    "schemaNodes": 205
-  },
-  {
-    "schemaType": "Organization",
-    "pageType": "page",
-    "sourceType": "shopify_theme",
-    "sourceName": "Shopify theme structured data",
-    "urls": 81,
-    "schemaNodes": 81
-  },
-  {
-    "schemaType": "WebSite",
+    "schemaType": "FAQPage",
     "pageType": "page",
     "sourceType": "unknown",
     "sourceName": "Unknown JSON-LD source",
-    "urls": 81,
-    "schemaNodes": 81
+    "urls": 1,
+    "schemaNodes": 1
   },
   {
-    "schemaType": "BlogPosting",
-    "pageType": "blog",
-    "sourceType": "unknown",
-    "sourceName": "Unknown JSON-LD source",
-    "urls": 30,
-    "schemaNodes": 30
+    "schemaType": "FAQPage",
+    "pageType": "collection",
+    "sourceType": "custom_manual",
+    "sourceName": "Custom/manual JSON-LD",
+    "urls": 1,
+    "schemaNodes": 1
   },
   {
-    "schemaType": "Organization",
-    "pageType": "blog",
-    "sourceType": "shopify_theme",
-    "sourceName": "Shopify theme structured data",
-    "urls": 30,
-    "schemaNodes": 30
+    "schemaType": "FAQPage",
+    "pageType": "article",
+    "sourceType": "custom_manual",
+    "sourceName": "Custom/manual JSON-LD",
+    "urls": 1,
+    "schemaNodes": 1
   },
   {
-    "schemaType": "WebSite",
-    "pageType": "blog",
-    "sourceType": "unknown",
-    "sourceName": "Unknown JSON-LD source",
-    "urls": 30,
-    "schemaNodes": 30
-  },
-  {
-    "schemaType": "Organization",
+    "schemaType": "ProductGroup",
     "pageType": "home",
     "sourceType": "shopify_theme",
     "sourceName": "Shopify theme structured data",
@@ -112,10 +72,10 @@
     "schemaNodes": 1
   },
   {
-    "schemaType": "WebSite",
-    "pageType": "home",
-    "sourceType": "unknown",
-    "sourceName": "Unknown JSON-LD source",
+    "schemaType": "ProductGroup",
+    "pageType": "page",
+    "sourceType": "shopify_theme",
+    "sourceName": "Shopify theme structured data",
     "urls": 1,
     "schemaNodes": 1
   }

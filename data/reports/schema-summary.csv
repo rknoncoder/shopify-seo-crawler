@@ -1,16 +1,11 @@
 schemaType,pageType,sourceType,sourceName,urls,schemaNodes
-Organization,product,shopify_theme,Shopify theme structured data,1643,1643
-WebSite,product,unknown,Unknown JSON-LD source,1643,1643
-Product,product,shopify_theme,Shopify theme structured data,1642,1642
-Organization,collection,shopify_theme,Shopify theme structured data,490,490
-WebSite,collection,unknown,Unknown JSON-LD source,490,490
-BlogPosting,article,shopify_theme,Shopify theme structured data,205,205
-Organization,article,shopify_theme,Shopify theme structured data,205,205
-WebSite,article,unknown,Unknown JSON-LD source,205,205
-Organization,page,shopify_theme,Shopify theme structured data,81,81
-WebSite,page,unknown,Unknown JSON-LD source,81,81
-BlogPosting,blog,unknown,Unknown JSON-LD source,30,30
-Organization,blog,shopify_theme,Shopify theme structured data,30,30
-WebSite,blog,unknown,Unknown JSON-LD source,30,30
-Organization,home,shopify_theme,Shopify theme structured data,1,1
-WebSite,home,unknown,Unknown JSON-LD source,1,1
+ProductGroup,product,shopify_theme,Shopify theme structured data,906,906
+FAQPage,product,unknown,Unknown JSON-LD source,905,905
+Article,article,unknown,Unknown JSON-LD source,109,109
+CollectionPage,collection,unknown,Unknown JSON-LD source,38,38
+Article,article,custom_manual,Custom/manual JSON-LD,4,4
+FAQPage,page,unknown,Unknown JSON-LD source,1,1
+FAQPage,collection,custom_manual,Custom/manual JSON-LD,1,1
+FAQPage,article,custom_manual,Custom/manual JSON-LD,1,1
+ProductGroup,home,shopify_theme,Shopify theme structured data,1,1
+ProductGroup,page,shopify_theme,Shopify theme structured data,1,1
