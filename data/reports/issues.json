@@ -1720,6 +1720,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-multicolor-t-shirt-1",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"%20https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/%20https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-multicolor-t-shirt-2",
     "pageType": "product",
     "severity": "low",
@@ -7320,6 +7330,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/men-track-suit-round-neck-printed-jogger-02",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/men-printed-top-tank-black-01",
     "pageType": "product",
     "severity": "low",
@@ -7427,7 +7447,7 @@
     "code": "title_length",
     "message": "Title length is outside the ideal range.",
     "recommendation": "Keep titles roughly 25 to 65 characters.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Black T-Shirt – TRIPR"
+    "evidence": "Karma Printed Half Sleeve Round Neck Cotton Blend Black T-Shirt – TRIPR"
   },
   {
     "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-t-shirt-black",
@@ -7457,7 +7477,7 @@
     "code": "title_length",
     "message": "Title length is outside the ideal range.",
     "recommendation": "Keep titles roughly 25 to 65 characters.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Black T-Shirt – TRIPR"
+    "evidence": "Pause Printed Half Sleeve Round Neck Cotton Blend Black T-Shirt – TRIPR"
   },
   {
     "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-black-t-shirt",
@@ -8227,7 +8247,7 @@
     "code": "title_length",
     "message": "Title length is outside the ideal range.",
     "recommendation": "Keep titles roughly 25 to 65 characters.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Olivegreen T-Shirt – TRIPR"
+    "evidence": "Men Half Sleeve Round Neck Cotton Blend Olivegreen Printed TShirt – TRIPR"
   },
   {
     "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-olivegreen-t-shirt",
@@ -8248,16 +8268,6 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-grey-t-shirt",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "title_length",
-    "message": "Title length is outside the ideal range.",
-    "recommendation": "Keep titles roughly 25 to 65 characters.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Grey T-Shirt – TRIPR"
   },
   {
     "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-grey-t-shirt",
@@ -8418,16 +8428,6 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-black-t-shirt-1",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "title_length",
-    "message": "Title length is outside the ideal range.",
-    "recommendation": "Keep titles roughly 25 to 65 characters.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Black T-Shirt – TRIPR"
   },
   {
     "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-black-t-shirt-1",
@@ -8950,26 +8950,6 @@
     "evidence": ""
   },
   {
-    "url": "https://triprindia.com/products/men-v-neck-plain-vest-dark-grey-vt2",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints t..."
-  },
-  {
-    "url": "https://triprindia.com/products/men-v-neck-plain-vest-dark-grey-vt2",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
     "url": "https://triprindia.com/products/men-v-neck-plain-vest-vt2-brown",
     "pageType": "product",
     "severity": "low",
@@ -8981,66 +8961,6 @@
   },
   {
     "url": "https://triprindia.com/products/men-v-neck-plain-vest-vt2-brown",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/men-casual-plain-waffle-top-tank-vt10-red",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints t..."
-  },
-  {
-    "url": "https://triprindia.com/products/men-casual-plain-waffle-top-tank-vt10-red",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/men-casual-plain-waffle-top-tank-vt10-maroon",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints t..."
-  },
-  {
-    "url": "https://triprindia.com/products/men-casual-plain-waffle-top-tank-vt10-maroon",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-red-vt2-grey",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints t..."
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-red-vt2-grey",
     "pageType": "product",
     "severity": "low",
     "category": "images",
@@ -9070,26 +8990,6 @@
     "evidence": ""
   },
   {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-dark-grey-vt2-red",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints t..."
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-dark-grey-vt2-red",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
     "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-brown-vt2-navy",
     "pageType": "product",
     "severity": "low",
@@ -9121,46 +9021,6 @@
   },
   {
     "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-olive-green-vt2-red",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-dark-grey-vt2-grey",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints t..."
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-dark-grey-vt2-grey",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-navy-vt2-red",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints t..."
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-navy-vt2-red",
     "pageType": "product",
     "severity": "low",
     "category": "images",
@@ -9221,36 +9081,6 @@
   },
   {
     "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-d186-cotton-blend-grey-t-shirt",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-d186-cotton-blend-beige-t-shirt",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "title_length",
-    "message": "Title length is outside the ideal range.",
-    "recommendation": "Keep titles roughly 25 to 65 characters.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Beige T-Shirt – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-d186-cotton-blend-beige-t-shirt",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Trendy half sleeve t-shirt with a unique printed design for a stylish look. Crafted from soft and breathable fabric ..."
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-d186-cotton-blend-beige-t-shirt",
     "pageType": "product",
     "severity": "low",
     "category": "images",
@@ -9421,26 +9251,6 @@
   },
   {
     "url": "https://triprindia.com/products/pack-of-3-men-round-neck-plain-waffle-vest-vt10-maroon-red-white",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-3-men-v-neck-plain-vest-vt2-grey-red-dark-grey",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints t..."
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-3-men-v-neck-plain-vest-vt2-grey-red-dark-grey",
     "pageType": "product",
     "severity": "low",
     "category": "images",
@@ -10440,6 +10250,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-black-t-shirt-with-printed-track-pant-j61-beige",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/track-suit-printed-d184-beige-t-shirt-with-printed-track-pant-j61-olive-green",
     "pageType": "product",
     "severity": "medium",
@@ -10468,6 +10288,16 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-beige-t-shirt-with-printed-track-pant-j61-olive-green",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
   },
   {
     "url": "https://triprindia.com/products/track-suit-printed-d184-beige-t-shirt-with-printed-track-pant-j61-black",
@@ -10500,6 +10330,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-beige-t-shirt-with-printed-track-pant-j61-black",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/track-suit-printed-d184-grey-t-shirt-with-printed-track-pant-j61-black",
     "pageType": "product",
     "severity": "medium",
@@ -10528,6 +10368,16 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-grey-t-shirt-with-printed-track-pant-j61-black",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
   },
   {
     "url": "https://triprindia.com/products/track-suit-printed-d184-maroon-t-shirt-with-printed-track-pant-j61-black",
@@ -10560,6 +10410,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-maroon-t-shirt-with-printed-track-pant-j61-black",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/track-suit-printed-d184-olive-green-t-shirt-with-printed-track-pant-j61-black",
     "pageType": "product",
     "severity": "medium",
@@ -10588,6 +10448,16 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-olive-green-t-shirt-with-printed-track-pant-j61-black",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
   },
   {
     "url": "https://triprindia.com/products/track-suit-printed-d184-black-t-shirt-with-printed-track-pant-j61-olive-green",
@@ -10620,6 +10490,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-black-t-shirt-with-printed-track-pant-j61-olive-green",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/track-suit-printed-d184-black-t-shirt-with-printed-track-pant-j61-maroon",
     "pageType": "product",
     "severity": "medium",
@@ -10648,6 +10528,16 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-black-t-shirt-with-printed-track-pant-j61-maroon",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
   },
   {
     "url": "https://triprindia.com/products/track-suit-printed-d184-black-t-shirt-with-printed-track-pant-j61-grey",
@@ -10680,6 +10570,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-black-t-shirt-with-printed-track-pant-j61-grey",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/track-suit-printed-d184-maroon-t-shirt-with-printed-track-pant-j61-grey",
     "pageType": "product",
     "severity": "medium",
@@ -10708,6 +10608,16 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-maroon-t-shirt-with-printed-track-pant-j61-grey",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
   },
   {
     "url": "https://triprindia.com/products/track-suit-printed-d184-olive-green-t-shirt-with-printed-track-pant-j61-grey",
@@ -10740,6 +10650,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-olive-green-t-shirt-with-printed-track-pant-j61-grey",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/track-suit-printed-d184-grey-t-shirt-with-printed-track-pant-j61-olive-green",
     "pageType": "product",
     "severity": "medium",
@@ -10770,6 +10690,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-grey-t-shirt-with-printed-track-pant-j61-olive-green",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/track-suit-printed-d184-grey-t-shirt-with-printed-track-pant-j61-maroon",
     "pageType": "product",
     "severity": "medium",
@@ -10798,6 +10728,16 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/track-suit-printed-d184-grey-t-shirt-with-printed-track-pant-j61-maroon",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/products/&nbsp;https://triprindia.com/pages/return-exchange\""
   },
   {
     "url": "https://triprindia.com/products/track-suit-star-printed-beige-full-sleeve-t-shirt-with-star-printed-track-pant-beige",
@@ -12568,16 +12508,6 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/men-over-all-printed-hooded-full-sleeve-casual-t-shirt-black-d187",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "title_length",
-    "message": "Title length is outside the ideal range.",
-    "recommendation": "Keep titles roughly 25 to 65 characters.",
-    "evidence": "Men Over All Printed Hooded Full Sleeve Casual T-shirt Black – TRIPR"
   },
   {
     "url": "https://triprindia.com/products/men-over-all-printed-hooded-full-sleeve-casual-t-shirt-black-d187",
@@ -16912,11 +16842,21 @@
   {
     "url": "https://triprindia.com/products/men-printed-regular-fit-shorts-navyblue-s44",
     "pageType": "product",
-    "severity": "critical",
-    "category": "technical",
-    "code": "http_error",
-    "message": "Page returned HTTP 503",
-    "recommendation": "Fix the URL, redirect, or server response.",
+    "severity": "low",
+    "category": "metadata",
+    "code": "meta_description_length",
+    "message": "Meta description length is outside the ideal range.",
+    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
+    "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a tren..."
+  },
+  {
+    "url": "https://triprindia.com/products/men-printed-regular-fit-shorts-navyblue-s44",
+    "pageType": "product",
+    "severity": "low",
+    "category": "images",
+    "code": "missing_image_alt",
+    "message": "5 images are missing alt text",
+    "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
   },
   {
@@ -18310,6 +18250,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/colorblocked-multipockets-cargo-42-jogger-black-grey",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/colorblocked-multipockets-cargo-42-jogger-olivegreen-grey",
     "pageType": "product",
     "severity": "low",
@@ -18328,6 +18278,16 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/colorblocked-multipockets-cargo-42-jogger-olivegreen-grey",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\""
   },
   {
     "url": "https://triprindia.com/products/colorblocked-multipockets-cargo-43-jogger-beige-black",
@@ -18350,6 +18310,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/colorblocked-multipockets-cargo-43-jogger-beige-black",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/designer-cargo-grey-jogger-with-side-print-panel",
     "pageType": "product",
     "severity": "low",
@@ -18368,6 +18338,16 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/designer-cargo-grey-jogger-with-side-print-panel",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\""
   },
   {
     "url": "https://triprindia.com/products/designer-cargo-beige-jogger-with-side-print-panel",
@@ -18390,6 +18370,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/designer-cargo-beige-jogger-with-side-print-panel",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/designer-cargo-black-jogger-with-side-print-panel",
     "pageType": "product",
     "severity": "low",
@@ -18410,6 +18400,16 @@
     "evidence": ""
   },
   {
+    "url": "https://triprindia.com/products/designer-cargo-black-jogger-with-side-print-panel",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\""
+  },
+  {
     "url": "https://triprindia.com/products/designer-cargo-olivegreen-jogger-with-side-print-panel",
     "pageType": "product",
     "severity": "low",
@@ -18428,6 +18428,16 @@
     "message": "6 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/designer-cargo-olivegreen-jogger-with-side-print-panel",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "technical",
+    "code": "malformed_internal_link",
+    "message": "1 malformed internal links found.",
+    "recommendation": "Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "evidence": "raw=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\" normalized=\"https://triprindia.com/collections/cargo-pants-for-men/products/%20https://triprindia.com/pages/return-exchange\""
   },
   {
     "url": "https://triprindia.com/products/men-all-over-printed-short-red-s42",
@@ -20000,26 +20010,6 @@
     "evidence": ""
   },
   {
-    "url": "https://triprindia.com/products/japanese-dragon-printed-oversized-white-tshirt-d214",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day c..."
-  },
-  {
-    "url": "https://triprindia.com/products/japanese-dragon-printed-oversized-white-tshirt-d214",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "6 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
     "url": "https://triprindia.com/products/anime-graphic-back-printed-oversized-tshirt-beige-d211",
     "pageType": "product",
     "severity": "low",
@@ -20996,6 +20986,26 @@
     "category": "images",
     "code": "missing_image_alt",
     "message": "6 images are missing alt text",
+    "recommendation": "Add descriptive alt text for meaningful images.",
+    "evidence": ""
+  },
+  {
+    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-printed-t-shirts",
+    "pageType": "product",
+    "severity": "low",
+    "category": "metadata",
+    "code": "meta_description_length",
+    "message": "Meta description length is outside the ideal range.",
+    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
+    "evidence": "Product Description: Stylish men’s half sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend ..."
+  },
+  {
+    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-printed-t-shirts",
+    "pageType": "product",
+    "severity": "low",
+    "category": "images",
+    "code": "missing_image_alt",
+    "message": "5 images are missing alt text",
     "recommendation": "Add descriptive alt text for meaningful images.",
     "evidence": ""
   },
@@ -22997,7 +23007,7 @@
     "code": "schema_name_h1_mismatch",
     "message": "Schema name/headline does not match the page H1.",
     "recommendation": "Align schema name/headline with the visible primary heading.",
-    "evidence": "schema=Trunks For Men; h1=Trunks & Combo for Men"
+    "evidence": "schema=Trunks For Men; h1=Trunks / Combo for Men"
   },
   {
     "url": "https://triprindia.com/collections/drop-shoulder-t-shirts",
@@ -25920,142 +25930,12 @@
     "evidence": "Men Tank Tops (Pack of 2) – TRIPR"
   },
   {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-t-shirt-beige",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 2 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Beige T-Shirt – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-d186-cotton-blend-beige-t-shirt",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 2 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Beige T-Shirt – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-top-tank-black-01",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 2 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Casual Black Printed Top Tank – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-top-tank-black-02",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 2 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Casual Black Printed Top Tank – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-t-shirt-black",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 3 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Black T-Shirt – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-black-t-shirt",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 3 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Black T-Shirt – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-black-t-shirt-1",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 3 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Black T-Shirt – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-4-mens-round-neck-printed-vest-vt-4-black-vt-5-black-vt-6-black-vt-8-black",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 2 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "(Pack Of 4) Round Neck Printed Sleeveless / Black – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-4-mens-round-neck-printed-vest-vt-7-black-vt-4-black-vt-8-black-vt-5-black",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 2 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "(Pack Of 4) Round Neck Printed Sleeveless / Black – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-olivegreen-t-shirt",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 3 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Olivegreen T-Shirt – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-t-shirt-d185-olivegreen",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 3 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Olivegreen T-Shirt – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-d186-cotton-blend-olivegreen-t-shirt-1",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 3 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Olivegreen T-Shirt – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-grey-t-shirt",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 3 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Grey T-Shirt – TRIPR"
-  },
-  {
     "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-t-shirt-d185-grey",
     "pageType": "product",
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_title",
-    "message": "Duplicate title found across 3 pages.",
+    "message": "Duplicate title found across 2 pages.",
     "recommendation": "Make each page's title unique and aligned with search intent.",
     "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Grey T-Shirt – TRIPR"
   },
@@ -26065,9 +25945,29 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_title",
-    "message": "Duplicate title found across 3 pages.",
+    "message": "Duplicate title found across 2 pages.",
     "recommendation": "Make each page's title unique and aligned with search intent.",
     "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Grey T-Shirt – TRIPR"
+  },
+  {
+    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-t-shirt-d185-olivegreen",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "metadata",
+    "code": "duplicate_title",
+    "message": "Duplicate title found across 2 pages.",
+    "recommendation": "Make each page's title unique and aligned with search intent.",
+    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Olivegreen T-Shirt – TRIPR"
+  },
+  {
+    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-d186-cotton-blend-olivegreen-t-shirt-1",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "metadata",
+    "code": "duplicate_title",
+    "message": "Duplicate title found across 2 pages.",
+    "recommendation": "Make each page's title unique and aligned with search intent.",
+    "evidence": "Men Printed Half Sleeve Round Neck Cotton Blend Olivegreen T-Shirt – TRIPR"
   },
   {
     "url": "https://triprindia.com/products/mens-multi-pockets-all-over-printed-baggy-fit-oversized-cargo-jogger-black-os3",
@@ -26378,26 +26278,6 @@
     "message": "Duplicate title found across 31 pages.",
     "recommendation": "Make each page's title unique and aligned with search intent.",
     "evidence": "Buy Navy Blue Baggy fit Multi Pocket Cargo Joggers Online – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-over-all-printed-hooded-full-sleeve-casual-t-shirt-black-d187",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 2 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Over All Printed Hooded Full Sleeve Casual T-shirt Black – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-over-all-printed-hooded-full-sleeve-casual-t-shirt-black-d175",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_title",
-    "message": "Duplicate title found across 2 pages.",
-    "recommendation": "Make each page's title unique and aligned with search intent.",
-    "evidence": "Men Over All Printed Hooded Full Sleeve Casual T-shirt Black – TRIPR"
   },
   {
     "url": "https://triprindia.com/products/out-fit-set-black-printed-d202-hooded-t-shirt-grey-plain-track-pant",
@@ -29035,7 +28915,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29045,7 +28925,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29055,7 +28935,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29065,7 +28945,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29075,7 +28955,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29085,7 +28965,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29095,7 +28975,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29105,7 +28985,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29115,7 +28995,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29125,7 +29005,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29135,7 +29015,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29145,7 +29025,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29155,7 +29035,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29165,7 +29045,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29175,7 +29055,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29185,7 +29065,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29195,17 +29075,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
-  },
-  {
-    "url": "https://triprindia.com/products/men-v-neck-plain-vest-dark-grey-vt2",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29215,47 +29085,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
-  },
-  {
-    "url": "https://triprindia.com/products/men-casual-plain-waffle-top-tank-vt10-red",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
-  },
-  {
-    "url": "https://triprindia.com/products/men-casual-plain-waffle-top-tank-vt10-maroon",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-red-vt2-grey",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-dark-grey-vt2-red",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29265,7 +29095,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29275,27 +29105,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-dark-grey-vt2-grey",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-2-men-plain-v-neck-top-vest-vt2-navy-vt2-red",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29305,17 +29115,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-3-men-v-neck-plain-vest-vt2-grey-red-dark-grey",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29325,7 +29125,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29335,7 +29135,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29345,7 +29145,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -29355,7 +29155,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 33 pages.",
+    "message": "Duplicate meta description found across 25 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Fabric: Crafted with a soft and breathable cotton blend for all-day comfort. Stylish Printed Design: Trendy prints that add a touch of personality to your daily gym look. Versatile Gym Wear: Perfectly designed for workouts, casual outings, or lounging at home. Available in Multiple Colors: Choose f"
   },
@@ -30705,7 +30505,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 5 pages.",
+    "message": "Duplicate meta description found across 4 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy half sleeve t-shirt with a unique printed design for a stylish look. Crafted from soft and breathable fabric for all-day comfort. Perfect for casual outings, weekend wear, or everyday styling. Available in sizes S, M, L, XL, and 2XL for the ideal fit. Durable stitching and good print quality"
   },
@@ -30715,17 +30515,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 5 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Trendy half sleeve t-shirt with a unique printed design for a stylish look. Crafted from soft and breathable fabric for all-day comfort. Perfect for casual outings, weekend wear, or everyday styling. Available in sizes S, M, L, XL, and 2XL for the ideal fit. Durable stitching and good print quality"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-d186-cotton-blend-beige-t-shirt",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 5 pages.",
+    "message": "Duplicate meta description found across 4 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy half sleeve t-shirt with a unique printed design for a stylish look. Crafted from soft and breathable fabric for all-day comfort. Perfect for casual outings, weekend wear, or everyday styling. Available in sizes S, M, L, XL, and 2XL for the ideal fit. Durable stitching and good print quality"
   },
@@ -30735,7 +30525,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 5 pages.",
+    "message": "Duplicate meta description found across 4 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy half sleeve t-shirt with a unique printed design for a stylish look. Crafted from soft and breathable fabric for all-day comfort. Perfect for casual outings, weekend wear, or everyday styling. Available in sizes S, M, L, XL, and 2XL for the ideal fit. Durable stitching and good print quality"
   },
@@ -30745,7 +30535,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 5 pages.",
+    "message": "Duplicate meta description found across 4 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy half sleeve t-shirt with a unique printed design for a stylish look. Crafted from soft and breathable fabric for all-day comfort. Perfect for casual outings, weekend wear, or everyday styling. Available in sizes S, M, L, XL, and 2XL for the ideal fit. Durable stitching and good print quality"
   },
@@ -32645,7 +32435,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32655,7 +32445,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32665,7 +32455,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32675,7 +32465,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32685,7 +32475,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32695,7 +32485,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32705,7 +32495,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32715,7 +32505,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32725,7 +32515,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32735,7 +32525,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32745,7 +32535,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32755,7 +32545,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32765,7 +32555,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32775,7 +32565,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32785,17 +32575,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
-  },
-  {
-    "url": "https://triprindia.com/products/japanese-dragon-printed-oversized-white-tshirt-d214",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32805,7 +32585,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32815,7 +32595,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32825,7 +32605,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32835,7 +32615,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32845,7 +32625,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32855,7 +32635,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32865,7 +32645,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32875,7 +32655,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 24 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Trendy oversized men’s T-shirt with bold printed design. Made from soft, breathable cotton fabric ensuring all-day comfort. Features a relaxed drop-shoulder fit for a stylish, streetwear-inspired look. Perfect for casual outings, weekend wear, or daily comfort style. Easily pairs with joggers, carg"
   },
@@ -32885,7 +32665,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32895,7 +32675,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32905,7 +32685,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32915,7 +32695,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32925,7 +32705,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32935,7 +32715,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32945,7 +32725,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32955,7 +32735,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32965,7 +32745,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32975,7 +32755,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32985,7 +32765,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -32995,7 +32775,17 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
+    "recommendation": "Make each page's meta description unique and aligned with search intent.",
+    "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
+  },
+  {
+    "url": "https://triprindia.com/products/men-printed-regular-fit-shorts-navyblue-s44",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "metadata",
+    "code": "duplicate_meta_description",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33005,7 +32795,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33015,7 +32805,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33025,7 +32815,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33035,7 +32825,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33045,7 +32835,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33055,7 +32845,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33065,7 +32855,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33075,7 +32865,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33085,7 +32875,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33095,7 +32885,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 22 pages.",
+    "message": "Duplicate meta description found across 23 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Made from smooth and breathable fabric for all-day comfort. Features a stylish printed and Printed Design for a trendy look. Available in multiple vibrant colors to match your style. Designed for casual wear, gym, sports, or lounging. Elastic waistband with an adjustable drawstring for a secure and"
   },
@@ -33575,7 +33365,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 4 pages.",
+    "message": "Duplicate meta description found across 5 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Stylish men’s half sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
   },
@@ -33585,7 +33375,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 4 pages.",
+    "message": "Duplicate meta description found across 5 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Stylish men’s half sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
   },
@@ -33595,7 +33385,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 4 pages.",
+    "message": "Duplicate meta description found across 5 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Stylish men’s half sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
   },
@@ -33605,7 +33395,17 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 4 pages.",
+    "message": "Duplicate meta description found across 5 pages.",
+    "recommendation": "Make each page's meta description unique and aligned with search intent.",
+    "evidence": "Product Description: Stylish men’s half sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
+  },
+  {
+    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-printed-t-shirts",
+    "pageType": "product",
+    "severity": "medium",
+    "category": "metadata",
+    "code": "duplicate_meta_description",
+    "message": "Duplicate meta description found across 5 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Stylish men’s half sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
   },
@@ -34290,136 +34090,6 @@
     "evidence": "Browse through our latest collection of printed men’s sweatshirt at best prices. Our sweatshirts are available in all sizes and is made of best quality fabric. Timely delivery, COD, heavy discounts, best quality garments and much more. Buy now from Tripr India."
   },
   {
-    "url": "https://triprindia.com/products/men-printed-top-tank-black-01",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "03b9fed8cf24f57ac06f466496a605297a6833e9"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-top-tank-black-02",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "03b9fed8cf24f57ac06f466496a605297a6833e9"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-t-shirt-black",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 3 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "1d10fe7776b64cd6cc8c09fc3d9ffb23f31b6292"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-black-t-shirt",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 3 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "1d10fe7776b64cd6cc8c09fc3d9ffb23f31b6292"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-black-t-shirt-1",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 3 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "1d10fe7776b64cd6cc8c09fc3d9ffb23f31b6292"
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-4-mens-round-neck-printed-vest-vt-4-black-vt-5-black-vt-6-black-vt-8-black",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "240c9c81121bfb2ce2145eb5d94177eeda4b7627"
-  },
-  {
-    "url": "https://triprindia.com/products/pack-of-4-mens-round-neck-printed-vest-vt-7-black-vt-4-black-vt-8-black-vt-5-black",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "240c9c81121bfb2ce2145eb5d94177eeda4b7627"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-olivegreen-t-shirt",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "90f27e41ff78333f441d91692c4cbb8324f03347"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-t-shirt-d185-olivegreen",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "90f27e41ff78333f441d91692c4cbb8324f03347"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-grey-t-shirt",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "eb3f0c4caa1c7bb77f0495a6d54b67c5202ce453"
-  },
-  {
-    "url": "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-t-shirt-d185-grey",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "eb3f0c4caa1c7bb77f0495a6d54b67c5202ce453"
-  },
-  {
-    "url": "https://triprindia.com/products/men-over-all-printed-hooded-full-sleeve-casual-t-shirt-black-d187",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "5e354f3c5aecde93b67a9c7f4adf12da6b455b38"
-  },
-  {
-    "url": "https://triprindia.com/products/men-over-all-printed-hooded-full-sleeve-casual-t-shirt-black-d175",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "5e354f3c5aecde93b67a9c7f4adf12da6b455b38"
-  },
-  {
     "url": "https://triprindia.com/products/out-fit-set-black-printed-d202-hooded-t-shirt-grey-plain-track-pant",
     "pageType": "product",
     "severity": "high",
@@ -34520,6 +34190,16 @@
     "evidence": "b452778510ac58950eee762d8385e9fbac1d2cb2"
   },
   {
+    "url": "https://triprindia.com/products/men-half-sleeve-round-neck-t-shirt-black-d233",
+    "pageType": "product",
+    "severity": "high",
+    "category": "content",
+    "code": "duplicate_content",
+    "message": "Duplicate content hash found across 2 pages.",
+    "recommendation": "Make each page's content hash unique and aligned with search intent.",
+    "evidence": "aee594f036fde611bbcec3ae836dcee8cc4abed8"
+  },
+  {
     "url": "https://triprindia.com/products/men-half-sleeve-round-neck-t-shirt-black-d234",
     "pageType": "product",
     "severity": "high",
@@ -34527,17 +34207,7 @@
     "code": "duplicate_content",
     "message": "Duplicate content hash found across 2 pages.",
     "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "34615195bc5d429ce2f765fcc11505d9363240d5"
-  },
-  {
-    "url": "https://triprindia.com/products/men-half-sleeve-round-neck-t-shirt-black-d237",
-    "pageType": "product",
-    "severity": "high",
-    "category": "content",
-    "code": "duplicate_content",
-    "message": "Duplicate content hash found across 2 pages.",
-    "recommendation": "Make each page's content hash unique and aligned with search intent.",
-    "evidence": "34615195bc5d429ce2f765fcc11505d9363240d5"
+    "evidence": "aee594f036fde611bbcec3ae836dcee8cc4abed8"
   },
   {
     "url": "https://triprindia.com/products/men-half-sleeve-round-neck-t-shirt-beige-d235",
@@ -34618,6 +34288,26 @@
     "message": "Duplicate content hash found across 2 pages.",
     "recommendation": "Make each page's content hash unique and aligned with search intent.",
     "evidence": "96f6e4ccbd5d2611440ea9144d0752946b57c084"
+  },
+  {
+    "url": "https://triprindia.com/products/men-back-printed-round-neck-vest-black-vt15",
+    "pageType": "product",
+    "severity": "high",
+    "category": "content",
+    "code": "duplicate_content",
+    "message": "Duplicate content hash found across 2 pages.",
+    "recommendation": "Make each page's content hash unique and aligned with search intent.",
+    "evidence": "d752ec185812c0bcff41c4f7ec9957d931d39bea"
+  },
+  {
+    "url": "https://triprindia.com/products/men-back-printed-round-neck-vest-black-vt17",
+    "pageType": "product",
+    "severity": "high",
+    "category": "content",
+    "code": "duplicate_content",
+    "message": "Duplicate content hash found across 2 pages.",
+    "recommendation": "Make each page's content hash unique and aligned with search intent.",
+    "evidence": "d752ec185812c0bcff41c4f7ec9957d931d39bea"
   },
   {
     "url": "https://triprindia.com/pages/mens-shirt-size-chart",

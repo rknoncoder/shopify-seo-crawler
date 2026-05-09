@@ -1,16 +1,6 @@
 [
   {
     "priority": 1,
-    "severity": "critical",
-    "category": "technical",
-    "task": "Page returned HTTP 503 Fix the URL, redirect, or server response.",
-    "affectedUrls": 1,
-    "sampleUrls": [
-      "https://triprindia.com/products/men-printed-regular-fit-shorts-navyblue-s44"
-    ]
-  },
-  {
-    "priority": 2,
     "severity": "high",
     "category": "metadata",
     "task": "Missing meta description Add a compelling unique meta description.",
@@ -24,25 +14,25 @@
     ]
   },
   {
-    "priority": 3,
+    "priority": 2,
     "severity": "high",
     "category": "content",
-    "task": "Duplicate content hash found across 2 pages. Make each page's content hash unique and aligned with search intent.",
-    "affectedUrls": 35,
+    "task": "Duplicate content hash found across 3 pages. Make each page's content hash unique and aligned with search intent.",
+    "affectedUrls": 24,
     "sampleUrls": [
-      "https://triprindia.com/products/men-printed-top-tank-black-01",
-      "https://triprindia.com/products/men-printed-top-tank-black-02",
-      "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-t-shirt-black",
-      "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-black-t-shirt",
-      "https://triprindia.com/products/men-printed-half-sleeve-round-neck-cotton-blend-black-t-shirt-1"
+      "https://triprindia.com/products/out-fit-set-black-printed-d202-hooded-t-shirt-grey-plain-track-pant",
+      "https://triprindia.com/products/out-fit-set-black-printed-d187-hooded-t-shirt-grey-plain-track-pant",
+      "https://triprindia.com/products/out-fit-set-black-printed-d175-hooded-t-shirt-grey-plain-track-pant",
+      "https://triprindia.com/products/out-fit-set-black-printed-d202-hooded-t-shirt-black-plain-track-pant",
+      "https://triprindia.com/products/out-fit-set-black-printed-d187-hooded-t-shirt-black-plain-track-pant"
     ]
   },
   {
-    "priority": 4,
+    "priority": 3,
     "severity": "medium",
     "category": "metadata",
     "task": "Duplicate meta description found across 2 pages. Make each page's meta description unique and aligned with search intent.",
-    "affectedUrls": 736,
+    "affectedUrls": 728,
     "sampleUrls": [
       "https://triprindia.com/products/tripr-men-vest-black",
       "https://triprindia.com/products/men-sleeveless-printed-vest",
@@ -52,11 +42,11 @@
     ]
   },
   {
-    "priority": 5,
+    "priority": 4,
     "severity": "medium",
     "category": "metadata",
     "task": "Title length is outside the ideal range. Keep titles roughly 25 to 65 characters.",
-    "affectedUrls": 387,
+    "affectedUrls": 383,
     "sampleUrls": [
       "https://triprindia.com/products/tripr-mens-short-2",
       "https://triprindia.com/products/tripr-men-vest-green",
@@ -66,17 +56,31 @@
     ]
   },
   {
-    "priority": 6,
+    "priority": 5,
     "severity": "medium",
     "category": "metadata",
     "task": "Duplicate title found across 3 pages. Make each page's title unique and aligned with search intent.",
-    "affectedUrls": 118,
+    "affectedUrls": 105,
     "sampleUrls": [
       "https://triprindia.com/products/grey-printed-men-vest",
       "https://triprindia.com/products/tripr-men-vest-grey-1",
       "https://triprindia.com/products/men-sleeveless-men-printed-vest-white",
       "https://triprindia.com/products/tripr-men-vest-black",
       "https://triprindia.com/products/men-sleeveless-printed-vest"
+    ]
+  },
+  {
+    "priority": 6,
+    "severity": "medium",
+    "category": "technical",
+    "task": "1 malformed internal links found. Fix the original href value in the theme, product description, page content, or app output. Remove leading spaces, non-breaking spaces, and accidentally nested full URLs.",
+    "affectedUrls": 22,
+    "sampleUrls": [
+      "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-multicolor-t-shirt-1",
+      "https://triprindia.com/products/men-track-suit-round-neck-printed-jogger-02",
+      "https://triprindia.com/products/track-suit-printed-d184-black-t-shirt-with-printed-track-pant-j61-beige",
+      "https://triprindia.com/products/track-suit-printed-d184-beige-t-shirt-with-printed-track-pant-j61-olive-green",
+      "https://triprindia.com/products/track-suit-printed-d184-beige-t-shirt-with-printed-track-pant-j61-black"
     ]
   },
   {
@@ -132,7 +136,7 @@
     "severity": "low",
     "category": "images",
     "task": "35 images are missing alt text Add descriptive alt text for meaningful images.",
-    "affectedUrls": 1106,
+    "affectedUrls": 1098,
     "sampleUrls": [
       "https://triprindia.com/",
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
@@ -146,7 +150,7 @@
     "severity": "low",
     "category": "metadata",
     "task": "Meta description length is outside the ideal range. Keep descriptions roughly 70 to 160 characters.",
-    "affectedUrls": 974,
+    "affectedUrls": 966,
     "sampleUrls": [
       "https://triprindia.com/",
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
