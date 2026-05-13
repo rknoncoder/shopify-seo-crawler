@@ -22,6 +22,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   const baseUrl = seedUrls[0];
   const manager = new UrlManager(baseUrl);
   const pages: CrawledPage[] = [];
+  const analysisPages: CrawledPage[] = [];
   const pageIssues: SeoIssue[] = [];
   const queue = new PQueue({ concurrency: config.concurrency });
 
@@ -49,6 +50,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
             .forEach((link) => manager.add(link.href, next.depth + 1));
         }
 
+        analysisPages.push(compactPageForAnalysis(page));
         pages.push(compactPageForStorage(page));
       } catch (error) {
         pageIssues.push({
@@ -74,7 +76,15 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   }
 
   await queue.onIdle();
-  return { pages, issues: analyzeSite(pages, pageIssues) };
+  return { pages, issues: analyzeSite(analysisPages, pageIssues) };
+}
+
+function compactPageForAnalysis(page: CrawledPage): CrawledPage {
+  return {
+    ...page,
+    images: [],
+    schemas: []
+  };
 }
 
 function compactPageForStorage(page: CrawledPage): CrawledPage {

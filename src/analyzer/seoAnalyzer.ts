@@ -1,5 +1,6 @@
 import { detectCanonicalIssues } from "./canonicalChecker.js";
 import { detectDuplicates } from "./dublicateDetector.js";
+import { detectInternalLinkIssues } from "./internalLinkAnalyzer.js";
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
 
@@ -7,6 +8,7 @@ export function analyzeSite(pages: CrawledPage[], pageIssues: SeoIssue[]): SeoIs
   return [
     ...pageIssues,
     ...detectDuplicates(pages),
-    ...detectCanonicalIssues(pages)
+    ...detectCanonicalIssues(pages),
+    ...detectInternalLinkIssues(pages)
   ];
 }

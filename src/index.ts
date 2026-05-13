@@ -11,6 +11,7 @@ import {
 } from "./crawler/sitemapDetector.js";
 import { buildActionPlan, countIssuesByCode } from "./reports/actionPlan.js";
 import { buildSchemaInventory, buildSchemaSummary } from "./reports/schemaInventory.js";
+import { summarizeIndexability } from "./utils/indexability.js";
 import { saveCsv } from "./storage/saveCsv.js";
 import { exportExcel } from "./storage/exportExcel.js";
 import { saveIssuesCsv } from "./storage/saveIssuesCsv.js";
@@ -180,6 +181,8 @@ function applyNumericOverrides(): void {
 }
 
 function flattenPage(page: Awaited<ReturnType<typeof startCrawler>>["pages"][number]): Record<string, unknown> {
+  const indexability = summarizeIndexability(page);
+
   return {
     url: page.finalUrl,
     status: page.status,
@@ -188,6 +191,10 @@ function flattenPage(page: Awaited<ReturnType<typeof startCrawler>>["pages"][num
     description: page.meta.description,
     canonical: page.meta.canonical,
     robots: page.meta.robots,
+    indexable: indexability.indexable,
+    indexabilityStatus: indexability.status,
+    canonicalTarget: indexability.canonicalTarget,
+    canonicalSelfReferencing: indexability.canonicalSelfReferencing,
     h1: page.headings.h1.join("|"),
     h1Count: page.headings.h1.length,
     wordCount: page.wordCount,

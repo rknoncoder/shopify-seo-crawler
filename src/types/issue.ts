@@ -6,6 +6,7 @@ export type IssueCategory =
   | "content"
   | "schema"
   | "shopify"
+  | "indexability"
   | "faceted_navigation"
   | "internal_links"
   | "images";

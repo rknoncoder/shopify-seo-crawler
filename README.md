@@ -8,6 +8,10 @@ Shopify-specific checks include duplicate collection-product URL canonicals, ind
 
 Technical link checks include `malformed_internal_link`, which flags internal links created from bad raw `href` values such as leading spaces, non-breaking spaces, or accidentally nested absolute URLs.
 
+Indexability checks report pages blocked by meta robots, canonicalized URLs, invalid canonicals, nofollow directives, and page-level indexability status in `pages.csv`.
+
+Internal link checks report orphan pages, weakly linked pages, and products that are not linked from any crawled collection page.
+
 Schema validation goes beyond detecting JSON-LD types. It checks invalid JSON-LD, expected schema by page type, schema URL versus canonical URL, schema name/headline versus H1, product fields and offers, ProductGroup variants, article metadata, FAQ question/answer completeness, BreadcrumbList structure, Collection ItemList entries, and Organization/WebSite basics.
 
 Schema recommendations that are useful but optional use the separate `recommended` severity, so they do not compete with critical/high/medium SEO defects.
