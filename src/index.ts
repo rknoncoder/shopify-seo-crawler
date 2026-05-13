@@ -1,6 +1,7 @@
 import config from "./config/config.js";
 import { getCrawlMode, getNumericOverride, getSitemapUrls, getTargetUrlConfig } from "./config/runtimeConfig.js";
 import { buildSiteProfile } from "./classifier/siteClassifier.js";
+import { detectSitemapIndexabilityIssues } from "./analyzer/sitemapIndexabilityAnalyzer.js";
 import { startCrawler } from "./crawler/crawler.js";
 import {
   classifySitemapByUrlName,
@@ -10,6 +11,7 @@ import {
   type SitemapDetectionResult
 } from "./crawler/sitemapDetector.js";
 import { buildActionPlan, countIssuesByCode } from "./reports/actionPlan.js";
+import { buildIndexabilityReport } from "./reports/indexabilityReport.js";
 import { buildSchemaInventory, buildSchemaSummary } from "./reports/schemaInventory.js";
 import { summarizeIndexability } from "./utils/indexability.js";
 import { saveCsv } from "./storage/saveCsv.js";
@@ -65,27 +67,32 @@ async function main(): Promise<void> {
   console.log(`Final URLs selected: ${finalUrls.length}`);
 
   const result = await startCrawler(finalUrls, { followLinks: !crawledFromSitemap });
-  const actionPlan = buildActionPlan(result.issues);
-  const profile = buildSiteProfile(targetUrl, result.pages, countIssuesByCode(result.issues));
+  const sitemapIndexabilityIssues = detectSitemapIndexabilityIssues(result.pages, finalUrls);
+  const issues = [...result.issues, ...sitemapIndexabilityIssues];
+  const actionPlan = buildActionPlan(issues);
+  const profile = buildSiteProfile(targetUrl, result.pages, countIssuesByCode(issues));
   const schemaInventory = buildSchemaInventory(result.pages);
   const schemaSummary = buildSchemaSummary(result.pages);
+  const indexabilityReport = buildIndexabilityReport(result.pages, finalUrls);
 
   await saveJson("data/raw/output.json", result.pages);
   await saveCsv("data/reports/pages.csv", result.pages.map(flattenPage));
+  await saveJson("data/reports/indexability-report.json", indexabilityReport);
+  await saveCsv("data/reports/indexability-report.csv", indexabilityReport);
   await saveJson("data/reports/schema-inventory.json", schemaInventory);
   await saveCsv("data/reports/schema-inventory.csv", schemaInventory);
   await saveJson("data/reports/schema-summary.json", schemaSummary);
   await saveCsv("data/reports/schema-summary.csv", schemaSummary);
-  await saveIssuesJson(result.issues);
-  await saveIssuesCsv(result.issues);
+  await saveIssuesJson(issues);
+  await saveIssuesCsv(issues);
   await saveJson("data/reports/action-plan.json", actionPlan);
   await saveCsv("data/reports/action-plan.csv", actionPlan.map((item) => ({ ...item, sampleUrls: item.sampleUrls.join("|") })));
   await saveSiteProfileJson(profile);
   await saveSiteProfileCsv(profile);
-  const excelPath = await exportExcel(result.pages, result.issues, actionPlan, profile, schemaInventory, schemaSummary);
+  const excelPath = await exportExcel(result.pages, issues, actionPlan, profile, schemaInventory, schemaSummary, indexabilityReport);
 
   console.log(`Crawled pages: ${result.pages.length}`);
-  console.log(`Issues found: ${result.issues.length}`);
+  console.log(`Issues found: ${issues.length}`);
   console.log(`Excel export completed: ${excelPath}`);
 }
 

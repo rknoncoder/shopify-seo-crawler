@@ -46,7 +46,7 @@
     "severity": "medium",
     "category": "metadata",
     "task": "Duplicate meta description found across 2 pages. Make each page's meta description unique and aligned with search intent.",
-    "affectedUrls": 654,
+    "affectedUrls": 652,
     "sampleUrls": [
       "https://triprindia.com/products/tripr-men-vest-black",
       "https://triprindia.com/products/men-sleeveless-printed-vest",
@@ -60,7 +60,7 @@
     "severity": "medium",
     "category": "metadata",
     "task": "Title length is outside the ideal range. Keep titles roughly 25 to 65 characters.",
-    "affectedUrls": 337,
+    "affectedUrls": 335,
     "sampleUrls": [
       "https://triprindia.com/products/tripr-mens-short-2",
       "https://triprindia.com/products/tripr-men-vest-green",
@@ -114,20 +114,6 @@
   {
     "priority": 9,
     "severity": "medium",
-    "category": "internal_links",
-    "task": "Product has no internal links from crawled collection pages. Link this product from at least one relevant Shopify collection page.",
-    "affectedUrls": 7,
-    "sampleUrls": [
-      "https://triprindia.com/products/t-shirt-for-mens-4",
-      "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-beige-black-p55",
-      "https://triprindia.com/products/men-half-sleeve-t-shirt-with-contrast-neck-black-beige-d212",
-      "https://triprindia.com/products/full-sleeve-printed-t-shirt-maroon-d184-black-matching-track-pant-for-track-suit",
-      "https://triprindia.com/products/baggy-track-pants-combo"
-    ]
-  },
-  {
-    "priority": 10,
-    "severity": "medium",
     "category": "content",
     "task": "Missing H1 Add one clear H1 that describes the page.",
     "affectedUrls": 5,
@@ -137,6 +123,20 @@
       "https://triprindia.com/pages/buy-3-for-799",
       "https://triprindia.com/collections/top-wear-collections",
       "https://triprindia.com/collections/innerwear"
+    ]
+  },
+  {
+    "priority": 10,
+    "severity": "medium",
+    "category": "internal_links",
+    "task": "Product has no internal links from crawled collection pages. Link this product from at least one relevant Shopify collection page.",
+    "affectedUrls": 5,
+    "sampleUrls": [
+      "https://triprindia.com/products/t-shirt-for-mens-4",
+      "https://triprindia.com/products/full-sleeve-printed-t-shirt-maroon-d184-black-matching-track-pant-for-track-suit",
+      "https://triprindia.com/products/baggy-track-pants-combo",
+      "https://triprindia.com/products/men-smart-casual-double-pocket-full-sleeve-hooded-olive-textured-shirt-sh93",
+      "https://triprindia.com/products/mens-oversized-graphic-design-printed-t-shirt-black-d245"
     ]
   },
   {
@@ -178,7 +178,7 @@
     "severity": "low",
     "category": "images",
     "task": "34 images are missing alt text Add descriptive alt text for meaningful images.",
-    "affectedUrls": 1015,
+    "affectedUrls": 1013,
     "sampleUrls": [
       "https://triprindia.com/",
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
@@ -192,7 +192,7 @@
     "severity": "low",
     "category": "metadata",
     "task": "Meta description length is outside the ideal range. Keep descriptions roughly 70 to 160 characters.",
-    "affectedUrls": 885,
+    "affectedUrls": 883,
     "sampleUrls": [
       "https://triprindia.com/",
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
@@ -219,7 +219,7 @@
     "severity": "recommended",
     "category": "internal_links",
     "task": "Page has only 1 internal link(s) from other crawled pages. Add more relevant internal links so search engines and users can discover this page more easily.",
-    "affectedUrls": 197,
+    "affectedUrls": 194,
     "sampleUrls": [
       "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
       "https://triprindia.com/products/black-printed-men-vest",

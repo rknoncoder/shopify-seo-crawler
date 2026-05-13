@@ -8,9 +8,11 @@ Shopify-specific checks include duplicate collection-product URL canonicals, ind
 
 Technical link checks include `malformed_internal_link`, which flags internal links created from bad raw `href` values such as leading spaces, non-breaking spaces, or accidentally nested absolute URLs.
 
-Indexability checks report pages blocked by meta robots, canonicalized URLs, invalid canonicals, nofollow directives, and page-level indexability status in `pages.csv`.
+Indexability checks report pages blocked by meta robots, canonicalized URLs, invalid canonicals, nofollow directives, sitemap URLs that are not indexable, indexable pages missing from the selected sitemap URL set, and page-level indexability status in `pages.csv` plus `indexability-report.csv`.
 
 Internal link checks report orphan pages, weakly linked pages, and products that are not linked from any crawled collection page.
+
+SERP snippet checks report weak title/meta description quality, including generic titles, brand-only titles, title/H1 mismatch, boilerplate descriptions, descriptions that duplicate titles/headings, and product descriptions that lack useful shopping details.
 
 Schema validation goes beyond detecting JSON-LD types. It checks invalid JSON-LD, expected schema by page type, schema URL versus canonical URL, schema name/headline versus H1, product fields and offers, ProductGroup variants, article metadata, FAQ question/answer completeness, BreadcrumbList structure, Collection ItemList entries, and Organization/WebSite basics.
 
@@ -60,6 +62,8 @@ Reports are written to:
 - `data/raw/site-profile.json`
 - `data/raw/sitemaps.json`
 - `data/reports/pages.csv`
+- `data/reports/indexability-report.json`
+- `data/reports/indexability-report.csv`
 - `data/reports/issues.json`
 - `data/reports/issues.csv`
 - `data/reports/action-plan.json`

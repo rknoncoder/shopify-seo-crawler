@@ -4,6 +4,7 @@ import * as XLSX from "xlsx";
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
 import type { ActionPlanItem, SiteProfile } from "../types/report.js";
+import type { IndexabilityReportRow } from "../reports/indexabilityReport.js";
 import type { SchemaInventoryRow, SchemaSummaryRow } from "../reports/schemaInventory.js";
 
 export async function exportExcel(
@@ -13,6 +14,7 @@ export async function exportExcel(
   profile: SiteProfile,
   schemaInventory: SchemaInventoryRow[] = [],
   schemaSummary: SchemaSummaryRow[] = [],
+  indexabilityReport: IndexabilityReportRow[] = [],
   path = "data/reports/shopify-seo-report.xlsx"
 ): Promise<string> {
   await mkdir(dirname(path), { recursive: true });
@@ -21,6 +23,7 @@ export async function exportExcel(
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(flattenPages(pages)), "Pages");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(issues), "Issues");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(actionPlan), "Action Plan");
+  XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(indexabilityReport), "Indexability");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(schemaInventory), "Schema Inventory");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(schemaSummary), "Schema Summary");
   XLSX.writeFile(workbook, path);

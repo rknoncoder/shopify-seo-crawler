@@ -7,6 +7,7 @@ import { auditFacetedNavigation } from "./facetedNavigationAudit.js";
 import { auditIndexability } from "./indexabilityAudit.js";
 import { auditLinkQuality } from "./linkQualityAudit.js";
 import { auditSchema } from "./schemaAudit.js";
+import { auditSerpSnippet } from "./serpSnippetAudit.js";
 import { auditShopifyProduct } from "./shopifyProductAudit.js";
 
 export function runAudits(page: CrawledPage): SeoIssue[] {
@@ -16,6 +17,7 @@ export function runAudits(page: CrawledPage): SeoIssue[] {
 
   return [
     ...auditBasicSeo(page),
+    ...auditSerpSnippet(page),
     ...auditIndexability(page),
     ...auditSchema(page),
     ...auditShopifyProduct(page),

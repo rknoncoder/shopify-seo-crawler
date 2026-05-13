@@ -13530,66 +13530,6 @@
     "evidence": ""
   },
   {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-black-grey-p55",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "title_length",
-    "message": "Title length is outside the ideal range.",
-    "recommendation": "Keep titles roughly 25 to 65 characters.",
-    "evidence": "Men Quarter Zip Polo Neck Dual Color Printed T-SHIRT Black & Grey – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-black-grey-p55",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Stylish men’s full sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend ..."
-  },
-  {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-black-grey-p55",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "5 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-beige-black-p55",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "title_length",
-    "message": "Title length is outside the ideal range.",
-    "recommendation": "Keep titles roughly 25 to 65 characters.",
-    "evidence": "Men Quarter Zip Polo Neck Dual Color Printed T-SHIRT Beige & Black – TRIPR"
-  },
-  {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-beige-black-p55",
-    "pageType": "product",
-    "severity": "low",
-    "category": "metadata",
-    "code": "meta_description_length",
-    "message": "Meta description length is outside the ideal range.",
-    "recommendation": "Keep descriptions roughly 70 to 160 characters.",
-    "evidence": "Product Description: Stylish men’s full sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend ..."
-  },
-  {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-beige-black-p55",
-    "pageType": "product",
-    "severity": "low",
-    "category": "images",
-    "code": "missing_image_alt",
-    "message": "5 images are missing alt text",
-    "recommendation": "Add descriptive alt text for meaningful images.",
-    "evidence": ""
-  },
-  {
     "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-ful-sleeve-printed-t-shirt-black-white-p60",
     "pageType": "product",
     "severity": "low",
@@ -29365,27 +29305,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 7 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Stylish men’s full sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
-  },
-  {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-black-grey-p55",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 7 pages.",
-    "recommendation": "Make each page's meta description unique and aligned with search intent.",
-    "evidence": "Product Description: Stylish men’s full sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
-  },
-  {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-beige-black-p55",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "metadata",
-    "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 7 pages.",
+    "message": "Duplicate meta description found across 5 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Stylish men’s full sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
   },
@@ -29395,7 +29315,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 7 pages.",
+    "message": "Duplicate meta description found across 5 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Stylish men’s full sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
   },
@@ -29405,7 +29325,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 7 pages.",
+    "message": "Duplicate meta description found across 5 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Stylish men’s full sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
   },
@@ -29415,7 +29335,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 7 pages.",
+    "message": "Duplicate meta description found across 5 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Stylish men’s full sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
   },
@@ -29425,7 +29345,7 @@
     "severity": "medium",
     "category": "metadata",
     "code": "duplicate_meta_description",
-    "message": "Duplicate meta description found across 7 pages.",
+    "message": "Duplicate meta description found across 5 pages.",
     "recommendation": "Make each page's meta description unique and aligned with search intent.",
     "evidence": "Product Description: Stylish men’s full sleeve polo t-shirt with bold Vertical Striped – “Versatile Printed” Made from soft cotton blend fabric for all-day comfort and breathability polo neck design with ribbed hem and cuffs for a neat finish Perfect for casual outings, streetwear style, and travel wear Durable stitchi"
   },
@@ -35500,16 +35420,6 @@
     "evidence": "inboundInternalLinks=1; sampleSources=https://triprindia.com/collections/shorts"
   },
   {
-    "url": "https://triprindia.com/products/6-color-variants-with-mens-design-printed-trackpants-j59",
-    "pageType": "product",
-    "severity": "recommended",
-    "category": "internal_links",
-    "code": "low_internal_links",
-    "message": "Page has only 1 internal link(s) from other crawled pages.",
-    "recommendation": "Add more relevant internal links so search engines and users can discover this page more easily.",
-    "evidence": "inboundInternalLinks=1; sampleSources=https://triprindia.com/collections/new-collections"
-  },
-  {
     "url": "https://triprindia.com/products/pack-of-2-half-sleeve-printed-t-shirts-d186-black-d173-white",
     "pageType": "product",
     "severity": "high",
@@ -36460,36 +36370,6 @@
     "evidence": "inboundInternalLinks=1; sampleSources=https://triprindia.com/collections/loose-fit-cargo-trousers"
   },
   {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-black-grey-p55",
-    "pageType": "product",
-    "severity": "high",
-    "category": "internal_links",
-    "code": "orphan_page",
-    "message": "Page has no internal links from other crawled pages.",
-    "recommendation": "Add internal links from navigation, collections, related products, blog articles, or other relevant pages.",
-    "evidence": "inboundInternalLinks=0"
-  },
-  {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-beige-black-p55",
-    "pageType": "product",
-    "severity": "recommended",
-    "category": "internal_links",
-    "code": "low_internal_links",
-    "message": "Page has only 1 internal link(s) from other crawled pages.",
-    "recommendation": "Add more relevant internal links so search engines and users can discover this page more easily.",
-    "evidence": "inboundInternalLinks=1; sampleSources=https://triprindia.com/"
-  },
-  {
-    "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-dual-color-printed-t-shirt-beige-black-p55",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "internal_links",
-    "code": "product_not_linked_from_collection",
-    "message": "Product has no internal links from crawled collection pages.",
-    "recommendation": "Link this product from at least one relevant Shopify collection page.",
-    "evidence": "inboundInternalLinks=1"
-  },
-  {
     "url": "https://triprindia.com/products/men-quarter-zip-polo-neck-ful-sleeve-printed-t-shirt-black-white-p60",
     "pageType": "product",
     "severity": "high",
@@ -36792,22 +36672,12 @@
   {
     "url": "https://triprindia.com/products/men-half-sleeve-t-shirt-with-contrast-neck-black-beige-d212",
     "pageType": "product",
-    "severity": "recommended",
+    "severity": "high",
     "category": "internal_links",
-    "code": "low_internal_links",
-    "message": "Page has only 1 internal link(s) from other crawled pages.",
-    "recommendation": "Add more relevant internal links so search engines and users can discover this page more easily.",
-    "evidence": "inboundInternalLinks=1; sampleSources=https://triprindia.com/"
-  },
-  {
-    "url": "https://triprindia.com/products/men-half-sleeve-t-shirt-with-contrast-neck-black-beige-d212",
-    "pageType": "product",
-    "severity": "medium",
-    "category": "internal_links",
-    "code": "product_not_linked_from_collection",
-    "message": "Product has no internal links from crawled collection pages.",
-    "recommendation": "Link this product from at least one relevant Shopify collection page.",
-    "evidence": "inboundInternalLinks=1"
+    "code": "orphan_page",
+    "message": "Page has no internal links from other crawled pages.",
+    "recommendation": "Add internal links from navigation, collections, related products, blog articles, or other relevant pages.",
+    "evidence": "inboundInternalLinks=0"
   },
   {
     "url": "https://triprindia.com/products/men-half-sleeve-t-shirt-with-contrast-neck-black-grey-d212",
@@ -37298,6 +37168,16 @@
     "message": "Page has no internal links from other crawled pages.",
     "recommendation": "Add internal links from navigation, collections, related products, blog articles, or other relevant pages.",
     "evidence": "inboundInternalLinks=0"
+  },
+  {
+    "url": "https://triprindia.com/products/multi-pockets-colorblocked-plain-baggy-cargo-black-os11",
+    "pageType": "product",
+    "severity": "recommended",
+    "category": "internal_links",
+    "code": "low_internal_links",
+    "message": "Page has only 1 internal link(s) from other crawled pages.",
+    "recommendation": "Add more relevant internal links so search engines and users can discover this page more easily.",
+    "evidence": "inboundInternalLinks=1; sampleSources=https://triprindia.com/collections/cargo-pants-for-men"
   },
   {
     "url": "https://triprindia.com/products/pack-of-2-high-neck-printed-half-sleeve-t-shirts-13-variants",
@@ -37938,16 +37818,6 @@
     "message": "Page has no internal links from other crawled pages.",
     "recommendation": "Add internal links from navigation, collections, related products, blog articles, or other relevant pages.",
     "evidence": "inboundInternalLinks=0"
-  },
-  {
-    "url": "https://triprindia.com/products/men-beige-track-pant-bottom-with-cuffed-j84",
-    "pageType": "product",
-    "severity": "recommended",
-    "category": "internal_links",
-    "code": "low_internal_links",
-    "message": "Page has only 1 internal link(s) from other crawled pages.",
-    "recommendation": "Add more relevant internal links so search engines and users can discover this page more easily.",
-    "evidence": "inboundInternalLinks=1; sampleSources=https://triprindia.com/collections/new-collections"
   },
   {
     "url": "https://triprindia.com/products/men-grey-track-pant-bottom-with-cuffed-j84",
