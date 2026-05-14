@@ -1,23 +1,27 @@
 {
   "targetUrl": "https://triprindia.com/",
-  "crawledAt": "2026-05-14T08:09:59.726Z",
-  "totalPages": 97,
+  "crawledAt": "2026-05-14T13:32:34.987Z",
+  "totalPages": 100,
   "pageTypes": {
     "home": 1,
-    "product": 96
+    "product": 99
   },
   "isShopify": true,
   "detectedApps": [
     "JudgeMe"
   ],
   "commonIssues": {
-    "meta_description_length": 62,
+    "meta_description_length": 65,
     "multiple_h1": 1,
-    "missing_image_alt": 97,
+    "missing_image_alt": 88,
+    "html_size_large": 1,
+    "dom_size_large": 1,
+    "script_count_high": 100,
+    "image_count_high": 2,
+    "large_image_url_width": 6,
     "missing_expected_schema": 1,
-    "image_alt_duplicate_on_page": 97,
-    "image_missing_dimensions": 97,
-    "lazy_loading_missing": 97,
+    "image_alt_duplicate_on_page": 100,
+    "image_missing_dimensions": 100,
     "serp_product_description_missing_detail": 21,
     "title_length": 26,
     "serp_title_h1_mismatch": 17,
@@ -25,8 +29,8 @@
     "image_alt_too_short": 1,
     "product_variant_title_duplicate_risk": 1,
     "duplicate_title": 8,
-    "duplicate_meta_description": 8,
-    "orphan_page": 91,
+    "duplicate_meta_description": 12,
+    "orphan_page": 94,
     "low_internal_links": 5,
     "product_not_linked_from_collection": 5
   }

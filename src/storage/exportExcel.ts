@@ -5,6 +5,7 @@ import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
 import type { ActionPlanItem, SiteProfile } from "../types/report.js";
 import type { IndexabilityReportRow } from "../reports/indexabilityReport.js";
+import type { PageSpeedInsightsRow } from "../reports/pageSpeedInsightsReport.js";
 import type { SchemaInventoryRow, SchemaSummaryRow } from "../reports/schemaInventory.js";
 
 export async function exportExcel(
@@ -15,6 +16,7 @@ export async function exportExcel(
   schemaInventory: SchemaInventoryRow[] = [],
   schemaSummary: SchemaSummaryRow[] = [],
   indexabilityReport: IndexabilityReportRow[] = [],
+  pageSpeedReport: PageSpeedInsightsRow[] = [],
   path = "data/reports/shopify-seo-report.xlsx"
 ): Promise<string> {
   await mkdir(dirname(path), { recursive: true });
@@ -24,6 +26,7 @@ export async function exportExcel(
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(issues), "Issues");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(actionPlan), "Action Plan");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(indexabilityReport), "Indexability");
+  XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(pageSpeedReport), "PageSpeed");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(schemaInventory), "Schema Inventory");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(schemaSummary), "Schema Summary");
   XLSX.writeFile(workbook, path);
@@ -40,7 +43,17 @@ function flattenPages(pages: CrawledPage[]): Array<Record<string, unknown>> {
     canonical: page.meta.canonical,
     h1Count: page.headings.h1.length,
     wordCount: page.wordCount,
+    htmlSizeKb: page.speed.htmlSizeKb,
+    domElementCount: page.speed.domElementCount,
+    scriptCount: page.speed.scriptCount,
+    thirdPartyScriptCount: page.speed.thirdPartyScriptCount,
+    shopifyAppScriptCount: page.speed.shopifyAppScriptCount,
+    stylesheetCount: page.speed.stylesheetCount,
+    renderBlockingStylesheetCount: page.speed.renderBlockingStylesheetCount,
     imageCount: page.images.length,
+    largeImageUrlCount: page.speed.largeImageUrlCount,
+    primaryImageFetchPriority: page.speed.primaryImageFetchPriority,
+    primaryImageLazy: page.speed.primaryImageLazy,
     linkCount: page.links.length,
     schemaTypes: page.schemas.map((schema) => schema.type).join("|"),
     isShopify: page.shopify.isShopify,

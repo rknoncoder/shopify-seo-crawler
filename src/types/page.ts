@@ -13,6 +13,7 @@ export interface ImageInfo {
   alt: string;
   width?: string;
   height?: string;
+  fetchPriority?: string;
   lazy: boolean;
 }
 
@@ -37,6 +38,24 @@ export interface PageMeta {
   twitterDescription: string;
 }
 
+export interface PageSpeedSignals {
+  htmlSizeKb: number;
+  domElementCount: number;
+  scriptCount: number;
+  externalScriptCount: number;
+  thirdPartyScriptCount: number;
+  shopifyAppScriptCount: number;
+  stylesheetCount: number;
+  renderBlockingStylesheetCount: number;
+  imageCount: number;
+  largeImageUrlCount: number;
+  preloadedImageCount: number;
+  primaryImageFetchPriority: string;
+  primaryImageLazy: boolean;
+  thirdPartyScriptHosts: string[];
+  shopifyAppScriptHosts: string[];
+}
+
 export interface CrawledPage {
   url: string;
   finalUrl: string;
@@ -55,5 +74,6 @@ export interface CrawledPage {
   links: LinkInfo[];
   schemas: StructuredDataItem[];
   shopify: ShopifySignals;
+  speed: PageSpeedSignals;
   issues: string[];
 }

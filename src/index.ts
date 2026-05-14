@@ -1,5 +1,5 @@
 import config from "./config/config.js";
-import { getCrawlMode, getNumericOverride, getSitemapUrls, getTargetUrlConfig } from "./config/runtimeConfig.js";
+import { getBooleanOverride, getCrawlMode, getNumericOverride, getSitemapUrls, getStringOverride, getTargetUrlConfig } from "./config/runtimeConfig.js";
 import { buildSiteProfile } from "./classifier/siteClassifier.js";
 import { detectSitemapIndexabilityIssues } from "./analyzer/sitemapIndexabilityAnalyzer.js";
 import { startCrawler } from "./crawler/crawler.js";
@@ -12,6 +12,7 @@ import {
 } from "./crawler/sitemapDetector.js";
 import { buildActionPlan, countIssuesByCode } from "./reports/actionPlan.js";
 import { buildIndexabilityReport } from "./reports/indexabilityReport.js";
+import { buildPageSpeedInsightsReport, type PageSpeedInsightsOptions, type PageSpeedStrategy } from "./reports/pageSpeedInsightsReport.js";
 import { buildSchemaInventory, buildSchemaSummary } from "./reports/schemaInventory.js";
 import { summarizeIndexability } from "./utils/indexability.js";
 import { saveCsv } from "./storage/saveCsv.js";
@@ -74,11 +75,16 @@ async function main(): Promise<void> {
   const schemaInventory = buildSchemaInventory(result.pages);
   const schemaSummary = buildSchemaSummary(result.pages);
   const indexabilityReport = buildIndexabilityReport(result.pages, finalUrls);
+  const pageSpeedOptions = getPageSpeedInsightsOptions();
+  const pageSpeedUrls = result.pages.filter((page) => page.status === 200).map((page) => page.finalUrl);
+  const pageSpeedReport = await buildPageSpeedInsightsReport(pageSpeedUrls, pageSpeedOptions);
 
   await saveJson("data/raw/output.json", result.pages);
   await saveCsv("data/reports/pages.csv", result.pages.map(flattenPage));
   await saveJson("data/reports/indexability-report.json", indexabilityReport);
   await saveCsv("data/reports/indexability-report.csv", indexabilityReport);
+  await saveJson("data/reports/pagespeed-report.json", pageSpeedReport);
+  await saveCsv("data/reports/pagespeed-report.csv", pageSpeedReport);
   await saveJson("data/reports/schema-inventory.json", schemaInventory);
   await saveCsv("data/reports/schema-inventory.csv", schemaInventory);
   await saveJson("data/reports/schema-summary.json", schemaSummary);
@@ -89,10 +95,13 @@ async function main(): Promise<void> {
   await saveCsv("data/reports/action-plan.csv", actionPlan.map((item) => ({ ...item, sampleUrls: item.sampleUrls.join("|") })));
   await saveSiteProfileJson(profile);
   await saveSiteProfileCsv(profile);
-  const excelPath = await exportExcel(result.pages, issues, actionPlan, profile, schemaInventory, schemaSummary, indexabilityReport);
+  const excelPath = await exportExcel(result.pages, issues, actionPlan, profile, schemaInventory, schemaSummary, indexabilityReport, pageSpeedReport);
 
   console.log(`Crawled pages: ${result.pages.length}`);
   console.log(`Issues found: ${issues.length}`);
+  if (pageSpeedOptions.enabled) {
+    console.log(`PageSpeed Insights URLs tested: ${pageSpeedReport.length}`);
+  }
   console.log(`Excel export completed: ${excelPath}`);
 }
 
@@ -187,6 +196,18 @@ function applyNumericOverrides(): void {
   config.maxDepth = getNumericOverride("--max-depth", "SHOPIFY_CRAWLER_MAX_DEPTH") ?? config.maxDepth;
 }
 
+function getPageSpeedInsightsOptions(): PageSpeedInsightsOptions {
+  const rawStrategy = (getStringOverride("--pagespeed-strategy", "SHOPIFY_CRAWLER_PAGESPEED_STRATEGY") || "mobile").toLowerCase();
+  const strategy: PageSpeedStrategy = rawStrategy === "desktop" ? "desktop" : "mobile";
+
+  return {
+    enabled: getBooleanOverride("--pagespeed", "SHOPIFY_CRAWLER_PAGESPEED"),
+    limit: getNumericOverride("--pagespeed-limit", "SHOPIFY_CRAWLER_PAGESPEED_LIMIT") ?? 10,
+    strategy,
+    apiKey: getStringOverride("--pagespeed-key", "PAGESPEED_API_KEY") || process.env.SHOPIFY_CRAWLER_PAGESPEED_KEY
+  };
+}
+
 function flattenPage(page: Awaited<ReturnType<typeof startCrawler>>["pages"][number]): Record<string, unknown> {
   const indexability = summarizeIndexability(page);
 
@@ -205,6 +226,17 @@ function flattenPage(page: Awaited<ReturnType<typeof startCrawler>>["pages"][num
     h1: page.headings.h1.join("|"),
     h1Count: page.headings.h1.length,
     wordCount: page.wordCount,
+    htmlSizeKb: page.speed.htmlSizeKb,
+    domElementCount: page.speed.domElementCount,
+    scriptCount: page.speed.scriptCount,
+    externalScriptCount: page.speed.externalScriptCount,
+    thirdPartyScriptCount: page.speed.thirdPartyScriptCount,
+    shopifyAppScriptCount: page.speed.shopifyAppScriptCount,
+    stylesheetCount: page.speed.stylesheetCount,
+    renderBlockingStylesheetCount: page.speed.renderBlockingStylesheetCount,
+    largeImageUrlCount: page.speed.largeImageUrlCount,
+    primaryImageFetchPriority: page.speed.primaryImageFetchPriority,
+    primaryImageLazy: page.speed.primaryImageLazy,
     images: page.images.length,
     missingAltImages: page.images.filter((image) => !image.alt).length,
     links: page.links.length,

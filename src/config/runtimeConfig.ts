@@ -37,6 +37,16 @@ export function getNumericOverride(flag: string, envName: string): number | unde
   return Number.isFinite(value) && value >= 0 ? value : undefined;
 }
 
+export function getBooleanOverride(flag: string, envName: string): boolean {
+  if (process.argv.includes(flag)) return true;
+  const rawValue = process.env[envName];
+  return rawValue === "1" || rawValue?.toLowerCase() === "true";
+}
+
+export function getStringOverride(flag: string, envName: string): string | undefined {
+  return readCliValue(flag) || process.env[envName];
+}
+
 function readCliValue(flag: string): string | undefined {
   const index = process.argv.indexOf(flag);
   if (index === -1) return undefined;

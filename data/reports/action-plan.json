@@ -4,7 +4,7 @@
     "severity": "high",
     "category": "internal_links",
     "task": "Page has no internal links from other crawled pages. Add internal links from navigation, collections, related products, blog articles, or other relevant pages.",
-    "affectedUrls": 91,
+    "affectedUrls": 94,
     "sampleUrls": [
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
       "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
@@ -31,6 +31,20 @@
     "priority": 3,
     "severity": "medium",
     "category": "metadata",
+    "task": "Duplicate meta description found across 4 pages. Make each page's meta description unique and aligned with search intent.",
+    "affectedUrls": 12,
+    "sampleUrls": [
+      "https://triprindia.com/products/tripr-men-vest-combo-of-black-white-olive-green",
+      "https://triprindia.com/products/tripr-men-vest-combo-of-black-grey-navy-blue",
+      "https://triprindia.com/products/men-vest-pack-of-3-combo",
+      "https://triprindia.com/products/men-vest-combo-pack-of-3",
+      "https://triprindia.com/products/men-trunk"
+    ]
+  },
+  {
+    "priority": 4,
+    "severity": "medium",
+    "category": "metadata",
     "task": "Duplicate title found across 2 pages. Make each page's title unique and aligned with search intent.",
     "affectedUrls": 8,
     "sampleUrls": [
@@ -39,20 +53,6 @@
       "https://triprindia.com/products/men-printed-trunk-black",
       "https://triprindia.com/products/men-printed-multicolor-trunk",
       "https://triprindia.com/products/pack-of-2-men-multicolor-printed-trunk"
-    ]
-  },
-  {
-    "priority": 4,
-    "severity": "medium",
-    "category": "metadata",
-    "task": "Duplicate meta description found across 5 pages. Make each page's meta description unique and aligned with search intent.",
-    "affectedUrls": 8,
-    "sampleUrls": [
-      "https://triprindia.com/products/men-trunk",
-      "https://triprindia.com/products/men-printed-trunk-black",
-      "https://triprindia.com/products/men-printed-multicolor-trunk",
-      "https://triprindia.com/products/pack-of-2-men-multicolor-printed-trunk",
-      "https://triprindia.com/products/pack-of-2-men-printed-multicolor-trunks"
     ]
   },
   {
@@ -72,6 +72,36 @@
   {
     "priority": 6,
     "severity": "medium",
+    "category": "page_speed",
+    "task": "HTML document is very large. Reduce duplicated HTML, app embeds, inline JSON, and unnecessary rendered content.",
+    "affectedUrls": 1,
+    "sampleUrls": [
+      "https://triprindia.com/"
+    ]
+  },
+  {
+    "priority": 7,
+    "severity": "medium",
+    "category": "page_speed",
+    "task": "Page has a large DOM size. Reduce repeated product cards, hidden drawers, duplicate media markup, and app-injected elements.",
+    "affectedUrls": 1,
+    "sampleUrls": [
+      "https://triprindia.com/"
+    ]
+  },
+  {
+    "priority": 8,
+    "severity": "medium",
+    "category": "page_speed",
+    "task": "Page contains many image tags. Reduce duplicate media markup, lazy-load non-primary images, and avoid rendering hidden images unnecessarily.",
+    "affectedUrls": 1,
+    "sampleUrls": [
+      "https://triprindia.com/"
+    ]
+  },
+  {
+    "priority": 9,
+    "severity": "medium",
     "category": "schema",
     "task": "Missing expected schema type: Organization or WebSite Add JSON-LD schema that matches the Shopify template.",
     "affectedUrls": 1,
@@ -80,49 +110,11 @@
     ]
   },
   {
-    "priority": 7,
-    "severity": "low",
-    "category": "images",
-    "task": "34 images are missing alt text Add descriptive alt text for meaningful images.",
-    "affectedUrls": 97,
-    "sampleUrls": [
-      "https://triprindia.com/",
-      "https://triprindia.com/products/tripr-mens-printed-vest-joker",
-      "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
-      "https://triprindia.com/products/tripr-mens-printed-vest-1",
-      "https://triprindia.com/products/tripr-mens-printed-vest-2"
-    ]
-  },
-  {
-    "priority": 8,
-    "severity": "low",
-    "category": "metadata",
-    "task": "Meta description length is outside the ideal range. Keep descriptions roughly 70 to 160 characters.",
-    "affectedUrls": 62,
-    "sampleUrls": [
-      "https://triprindia.com/",
-      "https://triprindia.com/products/tripr-mens-printed-vest-joker",
-      "https://triprindia.com/products/black-printed-men-vest",
-      "https://triprindia.com/products/dark-blue-men-vest",
-      "https://triprindia.com/products/grey-printed-men-vest"
-    ]
-  },
-  {
-    "priority": 9,
-    "severity": "low",
-    "category": "content",
-    "task": "Multiple H1 headings found Use one primary H1 per page.",
-    "affectedUrls": 1,
-    "sampleUrls": [
-      "https://triprindia.com/"
-    ]
-  },
-  {
     "priority": 10,
-    "severity": "recommended",
+    "severity": "low",
     "category": "images",
-    "task": "73 duplicate image alt text value(s) found on the page. Use unique alt text when images show different angles, variants, colors, or details.",
-    "affectedUrls": 97,
+    "task": "19 images are missing alt text Add descriptive alt text for meaningful images.",
+    "affectedUrls": 88,
     "sampleUrls": [
       "https://triprindia.com/",
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
@@ -133,24 +125,34 @@
   },
   {
     "priority": 11,
-    "severity": "recommended",
-    "category": "images",
-    "task": "8 images are missing width or height attributes. Add width and height attributes to reduce layout shift and improve rendering stability.",
-    "affectedUrls": 97,
+    "severity": "low",
+    "category": "metadata",
+    "task": "Meta description length is outside the ideal range. Keep descriptions roughly 70 to 160 characters.",
+    "affectedUrls": 65,
     "sampleUrls": [
       "https://triprindia.com/",
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
-      "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
-      "https://triprindia.com/products/tripr-mens-printed-vest-1",
-      "https://triprindia.com/products/tripr-mens-printed-vest-2"
+      "https://triprindia.com/products/black-printed-men-vest",
+      "https://triprindia.com/products/dark-blue-men-vest",
+      "https://triprindia.com/products/grey-printed-men-vest"
     ]
   },
   {
     "priority": 12,
+    "severity": "low",
+    "category": "content",
+    "task": "Multiple H1 headings found Use one primary H1 per page.",
+    "affectedUrls": 1,
+    "sampleUrls": [
+      "https://triprindia.com/"
+    ]
+  },
+  {
+    "priority": 13,
     "severity": "recommended",
-    "category": "images",
-    "task": "12 non-primary images may be missing lazy loading. Lazy-load below-the-fold images while keeping primary hero/product images eager.",
-    "affectedUrls": 97,
+    "category": "page_speed",
+    "task": "Page has a high script count. Review app/theme JavaScript and defer non-critical scripts.",
+    "affectedUrls": 100,
     "sampleUrls": [
       "https://triprindia.com/",
       "https://triprindia.com/products/tripr-mens-printed-vest-joker",
@@ -160,7 +162,35 @@
     ]
   },
   {
-    "priority": 13,
+    "priority": 14,
+    "severity": "recommended",
+    "category": "images",
+    "task": "73 duplicate image alt text value(s) found on the page. Use unique alt text when images show different angles, variants, colors, or details.",
+    "affectedUrls": 100,
+    "sampleUrls": [
+      "https://triprindia.com/",
+      "https://triprindia.com/products/tripr-mens-printed-vest-joker",
+      "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
+      "https://triprindia.com/products/tripr-mens-printed-vest-1",
+      "https://triprindia.com/products/tripr-mens-printed-vest-2"
+    ]
+  },
+  {
+    "priority": 15,
+    "severity": "recommended",
+    "category": "images",
+    "task": "8 images are missing width or height attributes. Add width and height attributes to reduce layout shift and improve rendering stability.",
+    "affectedUrls": 100,
+    "sampleUrls": [
+      "https://triprindia.com/",
+      "https://triprindia.com/products/tripr-mens-printed-vest-joker",
+      "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
+      "https://triprindia.com/products/tripr-mens-printed-vest-1",
+      "https://triprindia.com/products/tripr-mens-printed-vest-2"
+    ]
+  },
+  {
+    "priority": 16,
     "severity": "recommended",
     "category": "serp_snippet",
     "task": "Product meta description may lack useful shopping details. Mention specific product benefits such as fabric, fit, pack size, color, price, or delivery where accurate.",
@@ -174,7 +204,7 @@
     ]
   },
   {
-    "priority": 14,
+    "priority": 17,
     "severity": "recommended",
     "category": "serp_snippet",
     "task": "Title tag and H1 target different wording. Keep the title and H1 aligned while allowing the title to include brand or offer terms.",
@@ -188,7 +218,7 @@
     ]
   },
   {
-    "priority": 15,
+    "priority": 18,
     "severity": "recommended",
     "category": "serp_snippet",
     "task": "Meta description contains common boilerplate wording. Write a unique description focused on this page's product, collection, benefit, or search intent.",
@@ -202,7 +232,21 @@
     ]
   },
   {
-    "priority": 16,
+    "priority": 19,
+    "severity": "recommended",
+    "category": "page_speed",
+    "task": "Page references many large Shopify image URLs. Serve appropriately sized responsive images and avoid loading large width variants below the fold.",
+    "affectedUrls": 6,
+    "sampleUrls": [
+      "https://triprindia.com/",
+      "https://triprindia.com/products/tripr-men-vest-pack-of-2-black-grey",
+      "https://triprindia.com/products/star-printed-black-jacket-1",
+      "https://triprindia.com/products/high-neck-black-half-sleeve-zip-tshirt-for-men",
+      "https://triprindia.com/products/full-sleeve-men-solid-high-neck-cotton-blend-black-t-shirt"
+    ]
+  },
+  {
+    "priority": 20,
     "severity": "recommended",
     "category": "internal_links",
     "task": "Page has only 1 internal link(s) from other crawled pages. Add more relevant internal links so search engines and users can discover this page more easily.",
@@ -216,7 +260,17 @@
     ]
   },
   {
-    "priority": 17,
+    "priority": 21,
+    "severity": "recommended",
+    "category": "page_speed",
+    "task": "Page contains a high number of image tags. Review product galleries, collection cards, and hidden media blocks.",
+    "affectedUrls": 1,
+    "sampleUrls": [
+      "https://triprindia.com/products/tripr-full-sleeve-men-travel-hoodie-jacket-black-grey"
+    ]
+  },
+  {
+    "priority": 22,
     "severity": "recommended",
     "category": "images",
     "task": "7 image alt texts are very short. Use concise but descriptive alt text that identifies the product, category, color, or context.",
@@ -226,7 +280,7 @@
     ]
   },
   {
-    "priority": 18,
+    "priority": 23,
     "severity": "recommended",
     "category": "shopify",
     "task": "Product page links to many other product URLs and may be part of a duplicate variant/combination cluster. Review whether these should be variants, bundles, canonicalized alternatives, or clearly differentiated products.",

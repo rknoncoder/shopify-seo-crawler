@@ -10,7 +10,7 @@
     "canonicalTarget": "https://triprindia.com/",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|multiple_h1|missing_image_alt|missing_expected_schema|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|multiple_h1|missing_image_alt|html_size_large|dom_size_large|script_count_high|image_count_high|large_image_url_width|missing_expected_schema|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-mens-printed-vest-joker",
@@ -23,7 +23,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-mens-printed-vest-joker",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
@@ -36,7 +36,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-mens-printed-vest-hangover",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-mens-printed-vest-1",
@@ -49,7 +49,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-mens-printed-vest-1",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-mens-printed-vest-2",
@@ -62,7 +62,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-mens-printed-vest-2",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-mens-printed-vest-3",
@@ -75,7 +75,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-mens-printed-vest-3",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-mens-short-2",
@@ -88,7 +88,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-mens-short-2",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-shorts-under-200-color-block-grey",
@@ -101,7 +101,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-shorts-under-200-color-block-grey",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "serp_title_h1_mismatch|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-printed-men-black-regular-shorts",
@@ -114,7 +114,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-printed-men-black-regular-shorts",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-printed-men-blue-regular-shorts",
@@ -127,7 +127,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-printed-men-blue-regular-shorts",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-red-printed-shorts",
@@ -140,7 +140,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-red-printed-shorts",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-full-sleeve-men-travel-hoodie-jacket-black-grey",
@@ -153,7 +153,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-full-sleeve-men-travel-hoodie-jacket-black-grey",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|script_count_high|image_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/black-printed-men-vest",
@@ -166,7 +166,7 @@
     "canonicalTarget": "https://triprindia.com/products/black-printed-men-vest",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/dark-blue-men-vest",
@@ -179,7 +179,7 @@
     "canonicalTarget": "https://triprindia.com/products/dark-blue-men-vest",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/grey-printed-men-vest",
@@ -192,7 +192,7 @@
     "canonicalTarget": "https://triprindia.com/products/grey-printed-men-vest",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/red-printed-men-vest",
@@ -205,7 +205,7 @@
     "canonicalTarget": "https://triprindia.com/products/red-printed-men-vest",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-men-vest-pack-of-2-black-grey",
@@ -218,7 +218,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-men-vest-pack-of-2-black-grey",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|large_image_url_width|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-men-vest-black",
@@ -231,7 +231,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-men-vest-black",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-men-vest-green",
@@ -244,7 +244,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-men-vest-green",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-men-vest-navy-blue",
@@ -257,7 +257,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-men-vest-navy-blue",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-men-vest-grey-1",
@@ -270,7 +270,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-men-vest-grey-1",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-solid-with-bottom-cuffed-men-maroon-track-pant",
@@ -283,7 +283,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-solid-with-bottom-cuffed-men-maroon-track-pant",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-beach-shorts-printed-black",
@@ -296,7 +296,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-beach-shorts-printed-black",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-beach-shorts-printed-grey",
@@ -309,7 +309,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-beach-shorts-printed-grey",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/olive-green-mens-shorts-printed",
@@ -322,7 +322,7 @@
     "canonicalTarget": "https://triprindia.com/products/olive-green-mens-shorts-printed",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-outdoor-shorts-red-printed",
@@ -335,7 +335,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-outdoor-shorts-red-printed",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_title_h1_mismatch|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|serp_title_h1_mismatch|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-men-vest-combo-of-black-white-olive-green",
@@ -348,7 +348,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-men-vest-combo-of-black-white-olive-green",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-men-vest-combo-of-black-navyblue-olive-green",
@@ -361,7 +361,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-men-vest-combo-of-black-navyblue-olive-green",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-men-vest-combo-of-black-red-navyblue",
@@ -374,7 +374,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-men-vest-combo-of-black-red-navyblue",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/printed-vest-combo-pack-of-3-for-men",
@@ -387,7 +387,7 @@
     "canonicalTarget": "https://triprindia.com/products/printed-vest-combo-pack-of-3-for-men",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tripr-solid-men-black-grey-track-pants-3",
@@ -400,7 +400,7 @@
     "canonicalTarget": "https://triprindia.com/products/tripr-solid-men-black-grey-track-pants-3",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/full-sleeve-black-travel-jacket",
@@ -413,7 +413,7 @@
     "canonicalTarget": "https://triprindia.com/products/full-sleeve-black-travel-jacket",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/full-sleeve-maroon-unisex-travel-jacket",
@@ -426,7 +426,7 @@
     "canonicalTarget": "https://triprindia.com/products/full-sleeve-maroon-unisex-travel-jacket",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/full-sleeve-olive-unisex-travel-jacket",
@@ -439,7 +439,7 @@
     "canonicalTarget": "https://triprindia.com/products/full-sleeve-olive-unisex-travel-jacket",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/full-sleeve-navy-blue-unisex-travel-jacket",
@@ -452,7 +452,7 @@
     "canonicalTarget": "https://triprindia.com/products/full-sleeve-navy-blue-unisex-travel-jacket",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/full-sleeve-grey-unisex-travel-jacket",
@@ -465,7 +465,7 @@
     "canonicalTarget": "https://triprindia.com/products/full-sleeve-grey-unisex-travel-jacket",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/star-printed-black-jacket-1",
@@ -478,7 +478,7 @@
     "canonicalTarget": "https://triprindia.com/products/star-printed-black-jacket-1",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|large_image_url_width|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/words-printed-cargo-pant-for-men",
@@ -491,7 +491,7 @@
     "canonicalTarget": "https://triprindia.com/products/words-printed-cargo-pant-for-men",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/sports-oversized-mens-tshirt",
@@ -504,7 +504,7 @@
     "canonicalTarget": "https://triprindia.com/products/sports-oversized-mens-tshirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/high-neck-black-half-sleeve-zip-tshirt-for-men",
@@ -517,7 +517,7 @@
     "canonicalTarget": "https://triprindia.com/products/high-neck-black-half-sleeve-zip-tshirt-for-men",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|missing_image_alt|script_count_high|large_image_url_width|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/white-short-sleeve-half-zip-high-neck-tshirts-for-men",
@@ -530,7 +530,7 @@
     "canonicalTarget": "https://triprindia.com/products/white-short-sleeve-half-zip-high-neck-tshirts-for-men",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-t-shirts-under-200-150-300",
@@ -543,7 +543,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-t-shirts-under-200-150-300",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_boilerplate_meta_description|image_alt_too_short|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_boilerplate_meta_description|script_count_high|image_alt_too_short|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/oversized-tshirt-men-under-300-printed-red",
@@ -556,7 +556,7 @@
     "canonicalTarget": "https://triprindia.com/products/oversized-tshirt-men-under-300-printed-red",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/striped-vest-navy-maroon-sleeveless",
@@ -569,7 +569,7 @@
     "canonicalTarget": "https://triprindia.com/products/striped-vest-navy-maroon-sleeveless",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-navy-red-striped-sleeveless-vest",
@@ -582,7 +582,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-navy-red-striped-sleeveless-vest",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-white-navy-striped-vest",
@@ -595,7 +595,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-white-navy-striped-vest",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-navy-yellow-striped-vest",
@@ -608,7 +608,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-navy-yellow-striped-vest",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-sleeveless-grey-printed-vest",
@@ -621,7 +621,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-sleeveless-grey-printed-vest",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-solid-full-sleeve-maroon-tshirt",
@@ -634,7 +634,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-solid-full-sleeve-maroon-tshirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-solid-full-hand-olive-green-tshirt",
@@ -647,7 +647,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-solid-full-hand-olive-green-tshirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-white-high-neck-full-hand-tshirt",
@@ -660,7 +660,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-white-high-neck-full-hand-tshirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-high-neck-t-shirt-beige",
@@ -673,7 +673,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-high-neck-t-shirt-beige",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/oversized-tshirt-under-500",
@@ -686,7 +686,7 @@
     "canonicalTarget": "https://triprindia.com/products/oversized-tshirt-under-500",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-oversized-tshirt-under-400",
@@ -699,7 +699,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-oversized-tshirt-under-400",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/high-neck-half-sleeve-brown-t-shirt-for-mens",
@@ -712,7 +712,7 @@
     "canonicalTarget": "https://triprindia.com/products/high-neck-half-sleeve-brown-t-shirt-for-mens",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/navy-blue-high-collar-t-shirt-for-men",
@@ -725,7 +725,7 @@
     "canonicalTarget": "https://triprindia.com/products/navy-blue-high-collar-t-shirt-for-men",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mandarin-collar-t-shirt-for-mens-d145-black",
@@ -738,7 +738,7 @@
     "canonicalTarget": "https://triprindia.com/products/mandarin-collar-t-shirt-for-mens-d145-black",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing|product_variant_title_duplicate_risk"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions|product_variant_title_duplicate_risk"
   },
   {
     "url": "https://triprindia.com/products/mens-zip-half-sleeve-white-t-shirt",
@@ -751,7 +751,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-zip-half-sleeve-white-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-zip-neck-half-sleeve-t-shirt-green",
@@ -764,7 +764,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-zip-neck-half-sleeve-t-shirt-green",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-zip-neck-half-sleeve-maroon-t-shirt",
@@ -777,7 +777,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-zip-neck-half-sleeve-maroon-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-zip-neck-navy-blue-t-shirt",
@@ -790,7 +790,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-zip-neck-navy-blue-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/t-shirt-for-mens-45",
@@ -803,7 +803,7 @@
     "canonicalTarget": "https://triprindia.com/products/t-shirt-for-mens-45",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/t-shirt-for-mens-4",
@@ -816,7 +816,7 @@
     "canonicalTarget": "https://triprindia.com/products/t-shirt-for-mens-4",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-slim-fit-beige-shorts",
@@ -829,7 +829,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-slim-fit-beige-shorts",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-regular-brown-black-shorts",
@@ -842,7 +842,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-regular-brown-black-shorts",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-slim-fit-printed-shorts",
@@ -855,7 +855,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-slim-fit-printed-shorts",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/olivegreen-black-cargo-jogger-for-men",
@@ -868,7 +868,7 @@
     "canonicalTarget": "https://triprindia.com/products/olivegreen-black-cargo-jogger-for-men",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/black-cargo-pant-for-men-under-500",
@@ -881,7 +881,7 @@
     "canonicalTarget": "https://triprindia.com/products/black-cargo-pant-for-men-under-500",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/solid-black-cargo-pant-for-men",
@@ -894,7 +894,7 @@
     "canonicalTarget": "https://triprindia.com/products/solid-black-cargo-pant-for-men",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_product_description_missing_detail|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-track-pants-combo-under-200",
@@ -907,7 +907,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-track-pants-combo-under-200",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_title_h1_mismatch|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_title_h1_mismatch|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/mens-plain-grey-track-pant",
@@ -920,7 +920,7 @@
     "canonicalTarget": "https://triprindia.com/products/mens-plain-grey-track-pant",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_title_h1_mismatch|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_title_h1_mismatch|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/beige-cotton-track-pant-for-men",
@@ -933,7 +933,7 @@
     "canonicalTarget": "https://triprindia.com/products/beige-cotton-track-pant-for-men",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-olive-green-cotton-joggers",
@@ -946,7 +946,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-olive-green-cotton-joggers",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/oversized-tshirt-under-200-rs",
@@ -959,7 +959,7 @@
     "canonicalTarget": "https://triprindia.com/products/oversized-tshirt-under-200-rs",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_title_h1_mismatch|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|serp_title_h1_mismatch|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-high-neck-maroon-half-sleeve-t-shirt",
@@ -972,7 +972,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-high-neck-maroon-half-sleeve-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/ti-ogrhn-d144",
@@ -985,7 +985,7 @@
     "canonicalTarget": "https://triprindia.com/products/ti-ogrhn-d144",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-high-neck-darkgrey-half-sleeve-zip-t-shirt",
@@ -998,7 +998,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-high-neck-darkgrey-half-sleeve-zip-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-beige-t-shirt",
@@ -1011,7 +1011,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-beige-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/full-sleeve-men-solid-high-neck-cotton-blend-black-t-shirt",
@@ -1024,7 +1024,7 @@
     "canonicalTarget": "https://triprindia.com/products/full-sleeve-men-solid-high-neck-cotton-blend-black-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|large_image_url_width|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-full-sleeve-high-neck-maroon-t-shirt",
@@ -1037,7 +1037,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-full-sleeve-high-neck-maroon-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/t-shirt-and-pant-combo-for-men",
@@ -1050,7 +1050,7 @@
     "canonicalTarget": "https://triprindia.com/products/t-shirt-and-pant-combo-for-men",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|serp_boilerplate_meta_description|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|serp_boilerplate_meta_description|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/full-sleeve-high-neck-men-olive-green-t-shirt",
@@ -1063,7 +1063,7 @@
     "canonicalTarget": "https://triprindia.com/products/full-sleeve-high-neck-men-olive-green-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|large_image_url_width|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-white-t-shirt",
@@ -1076,7 +1076,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-solid-henley-neck-cotton-blend-white-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-multicolor-t-shirt-1",
@@ -1089,7 +1089,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-multicolor-t-shirt-1",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-multicolor-t-shirt-2",
@@ -1102,7 +1102,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-multicolor-t-shirt-2",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-full-seelve-t-shirt",
@@ -1115,7 +1115,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-full-seelve-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-multicolor-t-shirt-4",
@@ -1128,7 +1128,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-multicolor-t-shirt-4",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-dark-green-t-shirt",
@@ -1141,7 +1141,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-solid-mandarin-collar-cotton-blend-dark-green-t-shirt",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-trunk",
@@ -1154,7 +1154,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-trunk",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-printed-trunk-black",
@@ -1167,7 +1167,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-printed-trunk-black",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-printed-multicolor-trunk",
@@ -1180,7 +1180,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-printed-multicolor-trunk",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/pack-of-2-men-multicolor-printed-trunk",
@@ -1193,7 +1193,7 @@
     "canonicalTarget": "https://triprindia.com/products/pack-of-2-men-multicolor-printed-trunk",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/pack-of-2-men-printed-multicolor-trunks",
@@ -1206,7 +1206,7 @@
     "canonicalTarget": "https://triprindia.com/products/pack-of-2-men-printed-multicolor-trunks",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "missing_image_alt|serp_title_h1_mismatch|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/tank-tops-combo-pack-of-2-navyblue",
@@ -1219,7 +1219,7 @@
     "canonicalTarget": "https://triprindia.com/products/tank-tops-combo-pack-of-2-navyblue",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "title_length|meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "title_length|meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-colorblock-tank-tops-pack-of-2",
@@ -1232,7 +1232,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-colorblock-tank-tops-pack-of-2",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-tank-tops-pack-of-9",
@@ -1245,7 +1245,7 @@
     "canonicalTarget": "https://triprindia.com/products/men-tank-tops-pack-of-9",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   },
   {
     "url": "https://triprindia.com/products/men-tank-tops-pack-of-10",
@@ -1258,6 +1258,45 @@
     "canonicalTarget": "https://triprindia.com/products/men-tank-tops-pack-of-10",
     "canonicalSelfReferencing": true,
     "robots": "",
-    "issueCodes": "meta_description_length|missing_image_alt|image_alt_duplicate_on_page|image_missing_dimensions|lazy_loading_missing"
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
+  },
+  {
+    "url": "https://triprindia.com/products/tripr-men-vest-combo-of-black-grey-navy-blue",
+    "status": 200,
+    "pageType": "product",
+    "indexable": true,
+    "indexabilityStatus": "indexable",
+    "inSitemap": true,
+    "canonical": "https://triprindia.com/products/tripr-men-vest-combo-of-black-grey-navy-blue",
+    "canonicalTarget": "https://triprindia.com/products/tripr-men-vest-combo-of-black-grey-navy-blue",
+    "canonicalSelfReferencing": true,
+    "robots": "",
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
+  },
+  {
+    "url": "https://triprindia.com/products/men-vest-pack-of-3-combo",
+    "status": 200,
+    "pageType": "product",
+    "indexable": true,
+    "indexabilityStatus": "indexable",
+    "inSitemap": true,
+    "canonical": "https://triprindia.com/products/men-vest-pack-of-3-combo",
+    "canonicalTarget": "https://triprindia.com/products/men-vest-pack-of-3-combo",
+    "canonicalSelfReferencing": true,
+    "robots": "",
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
+  },
+  {
+    "url": "https://triprindia.com/products/men-vest-combo-pack-of-3",
+    "status": 200,
+    "pageType": "product",
+    "indexable": true,
+    "indexabilityStatus": "indexable",
+    "inSitemap": true,
+    "canonical": "https://triprindia.com/products/men-vest-combo-pack-of-3",
+    "canonicalTarget": "https://triprindia.com/products/men-vest-combo-pack-of-3",
+    "canonicalSelfReferencing": true,
+    "robots": "",
+    "issueCodes": "meta_description_length|missing_image_alt|script_count_high|image_alt_duplicate_on_page|image_missing_dimensions"
   }
 ]

@@ -150,24 +150,49 @@ function addDimensionIssues(page: CrawledPage, issues: SeoIssue[]): void {
 }
 
 function addLazyLoadingIssues(page: CrawledPage, issues: SeoIssue[]): void {
-  if (page.images.length <= 3) return;
+  const eligibleImages = page.images.filter(isLazyLoadingEligibleImage);
+  if (eligibleImages.length <= 1) return;
 
-  const nonLazyAfterFirstThree = page.images.slice(3).filter((image) => !image.lazy);
-  if (nonLazyAfterFirstThree.length === 0) return;
+  const nonLazyAfterPrimary = eligibleImages
+    .filter((image) => !isPriorityImage(image))
+    .slice(1)
+    .filter((image) => !image.lazy);
+
+  if (nonLazyAfterPrimary.length === 0) return;
 
   issues.push(issue(
     page,
     "recommended",
     "lazy_loading_missing",
-    `${nonLazyAfterFirstThree.length} non-primary images may be missing lazy loading.`,
+    `${nonLazyAfterPrimary.length} non-primary images may be missing lazy loading.`,
     "Lazy-load below-the-fold images while keeping primary hero/product images eager.",
-    sampleImages(nonLazyAfterFirstThree, "src")
+    sampleImages(nonLazyAfterPrimary, "src")
   ));
 }
 
 function isLikelyProductImage(image: ImageInfo): boolean {
   const source = `${image.src} ${image.rawSrc}`.toLowerCase();
   return source.includes("/products/") || source.includes("/cdn/shop/files/") || source.includes("/cdn/shop/products/");
+}
+
+function isLazyLoadingEligibleImage(image: ImageInfo): boolean {
+  const source = `${image.src} ${image.rawSrc}`.toLowerCase();
+  const filename = getFilename(image.src).toLowerCase();
+
+  if (source.startsWith("data:")) return false;
+  if (source.includes("logo") || filename.includes("logo")) return false;
+  if (source.includes("icon") || filename.includes("icon")) return false;
+  if (source.includes("payment") || filename.includes("payment")) return false;
+  if (source.includes("placeholder") || filename.includes("placeholder")) return false;
+  if (source.includes("/preview_images/") || filename.includes("thumbnail")) return false;
+  if (source.includes("sprite") || filename.includes("sprite")) return false;
+  if (filename.endsWith(".svg")) return false;
+
+  return source.includes("/cdn/shop/files/") || source.includes("/cdn/shop/products/");
+}
+
+function isPriorityImage(image: ImageInfo): boolean {
+  return image.fetchPriority?.toLowerCase() === "high";
 }
 
 function sampleImages(images: ImageInfo[], field: "alt" | "filename" | "src"): string {

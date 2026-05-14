@@ -7,12 +7,14 @@ import { extractImages } from "./imageExtractor.js";
 import { extractLinks } from "./linkExtractor.js";
 import { extractMeta } from "./metaExtractor.js";
 import { extractSchemas } from "./schemaExtractor.js";
+import { extractSpeedSignals } from "./speedExtractor.js";
 import { detectShopify } from "./shopifyDetector.js";
 
 export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage {
   const $ = cheerio.load(fetchResult.html);
   const shopify = detectShopify($, fetchResult.finalUrl);
   const content = extractContentSummary($);
+  const images = extractImages($, fetchResult.finalUrl);
 
   return {
     url: fetchResult.url,
@@ -28,10 +30,11 @@ export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage 
     wordCount: content.wordCount,
     textSample: content.textSample,
     textHash: content.textHash,
-    images: extractImages($, fetchResult.finalUrl),
+    images,
     links: extractLinks($, fetchResult.finalUrl),
     schemas: extractSchemas($),
     shopify,
+    speed: extractSpeedSignals($, fetchResult.html, fetchResult.finalUrl, images),
     issues: []
   };
 }

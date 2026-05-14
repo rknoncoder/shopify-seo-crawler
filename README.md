@@ -12,6 +12,10 @@ Collection SEO checks include thin collection copy, low/no product links, repeat
 
 Image SEO checks include missing alt text, weak/generic/duplicate alt text, product image alt context, generic filenames, missing dimensions, and missing lazy loading for non-primary images.
 
+Page speed signals check HTML size, DOM size, script count, stylesheet count, render-blocking stylesheets, third-party/app script hosts, image count, large Shopify image URLs, and primary-image priority hints. These are lightweight crawl signals, not a Lighthouse replacement.
+
+Optional PageSpeed Insights integration can export Lighthouse/PageSpeed data for a limited sample of crawled URLs using `--pagespeed`. It supports unauthenticated test calls and optional API keys through `--pagespeed-key`, `PAGESPEED_API_KEY`, or `SHOPIFY_CRAWLER_PAGESPEED_KEY`.
+
 Technical link checks include `malformed_internal_link`, which flags internal links created from bad raw `href` values such as leading spaces, non-breaking spaces, or accidentally nested absolute URLs.
 
 Indexability checks report pages blocked by meta robots, canonicalized URLs, invalid canonicals, nofollow directives, sitemap URLs that are not indexable, indexable pages missing from the selected sitemap URL set, and page-level indexability status in `pages.csv` plus `indexability-report.csv`.
@@ -45,6 +49,10 @@ Useful flags:
 - `--max-pages` maximum pages to crawl.
 - `--max-depth` link crawl depth when falling back from sitemaps.
 - `--sitemap` repeatable manual sitemap URL.
+- `--pagespeed` run optional Google PageSpeed Insights checks after crawling.
+- `--pagespeed-limit` maximum crawled URLs to test with PageSpeed Insights. Default is `10`.
+- `--pagespeed-strategy` one of `mobile` or `desktop`. Default is `mobile`.
+- `--pagespeed-key` optional Google API key for PageSpeed Insights.
 
 The crawler identifies itself with this user agent:
 
@@ -70,6 +78,8 @@ Reports are written to:
 - `data/reports/pages.csv`
 - `data/reports/indexability-report.json`
 - `data/reports/indexability-report.csv`
+- `data/reports/pagespeed-report.json`
+- `data/reports/pagespeed-report.csv`
 - `data/reports/issues.json`
 - `data/reports/issues.csv`
 - `data/reports/action-plan.json`

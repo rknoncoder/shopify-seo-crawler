@@ -12,6 +12,7 @@ export function extractImages($: CheerioAPI, baseUrl: string): ImageInfo[] {
         alt: image.attr("alt")?.trim() || "",
         width: image.attr("width"),
         height: image.attr("height"),
+        fetchPriority: image.attr("fetchpriority"),
         lazy: image.attr("loading") === "lazy" || Boolean(image.attr("data-src"))
       };
     })
