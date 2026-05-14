@@ -12,6 +12,12 @@ export function normalizeUrl(input: string, base?: string): string {
   return url.toString();
 }
 
+export function normalizeSitemapUrl(input: string, base?: string): string {
+  const url = new URL(input, base);
+  url.hash = "";
+  return url.toString();
+}
+
 export function isSameOrigin(url: string, baseUrl: string): boolean {
   return new URL(url).origin === new URL(baseUrl).origin;
 }

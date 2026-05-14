@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
 import config from "../config/config.js";
-import { normalizeUrl } from "../utils/urlUtils.js";
+import { normalizeSitemapUrl } from "../utils/urlUtils.js";
 
 export interface SitemapDetectionResult {
   sitemapUrls: string[];
@@ -30,7 +30,7 @@ export async function detectSitemapUrls(targetUrl: string): Promise<SitemapDetec
         .split(/\r?\n/)
         .map((line) => line.match(/^sitemap:\s*(.+)$/i)?.[1]?.trim())
         .filter((url): url is string => Boolean(url))
-        .map((url) => normalizeUrl(url, origin));
+        .map((url) => normalizeSitemapUrl(url, origin));
 
       if (urls.length > 0) {
         return found([...new Set(urls)], "robots", attempts);

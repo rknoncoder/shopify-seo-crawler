@@ -9,6 +9,7 @@ export interface HeadingSummary {
 
 export interface ImageInfo {
   src: string;
+  rawSrc: string;
   alt: string;
   width?: string;
   height?: string;
@@ -48,6 +49,7 @@ export interface CrawledPage {
   meta: PageMeta;
   headings: HeadingSummary;
   wordCount: number;
+  textSample: string;
   textHash: string;
   images: ImageInfo[];
   links: LinkInfo[];

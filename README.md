@@ -6,6 +6,12 @@ It discovers Shopify sitemaps, crawls product, collection, blog, article, page, 
 
 Shopify-specific checks include duplicate collection-product URL canonicals, indexable collection tag pages, and thin collections with 0 or 1 crawlable product links.
 
+Shopify product SEO checks include product content depth, material/fabric details, size/fit details, care instructions, review signals, FAQ content, sold-out indexability risk, image count, and duplicate variant/combination cluster risk.
+
+Collection SEO checks include thin collection copy, low/no product links, repeated product links, missing ItemList schema, missing FAQ content, generic collection titles, boilerplate collection descriptions, crawlable sort/filter/pagination links, and indexable Shopify tag URLs.
+
+Image SEO checks include missing alt text, weak/generic/duplicate alt text, product image alt context, generic filenames, missing dimensions, and missing lazy loading for non-primary images.
+
 Technical link checks include `malformed_internal_link`, which flags internal links created from bad raw `href` values such as leading spaces, non-breaking spaces, or accidentally nested absolute URLs.
 
 Indexability checks report pages blocked by meta robots, canonicalized URLs, invalid canonicals, nofollow directives, sitemap URLs that are not indexable, indexable pages missing from the selected sitemap URL set, and page-level indexability status in `pages.csv` plus `indexability-report.csv`.

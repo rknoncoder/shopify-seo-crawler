@@ -26,6 +26,7 @@ export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage 
     meta: extractMeta($),
     headings: extractHeadings($),
     wordCount: content.wordCount,
+    textSample: content.textSample,
     textHash: content.textHash,
     images: extractImages($, fetchResult.finalUrl),
     links: extractLinks($, fetchResult.finalUrl),

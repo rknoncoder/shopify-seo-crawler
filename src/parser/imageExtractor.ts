@@ -8,6 +8,7 @@ export function extractImages($: CheerioAPI, baseUrl: string): ImageInfo[] {
       const rawSrc = image.attr("src") || image.attr("data-src") || image.attr("data-original") || "";
       return {
         src: normalizeImageSrc(rawSrc, baseUrl),
+        rawSrc,
         alt: image.attr("alt")?.trim() || "",
         width: image.attr("width"),
         height: image.attr("height"),

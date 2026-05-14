@@ -1,5 +1,5 @@
 import type { CrawlMode } from "../types/crawl.js";
-import { normalizeUrl } from "../utils/urlUtils.js";
+import { normalizeSitemapUrl, normalizeUrl } from "../utils/urlUtils.js";
 
 const validModes = new Set<CrawlMode>(["single", "seo", "full"]);
 
@@ -27,7 +27,7 @@ export function getSitemapUrls(): string[] {
     .map((url) => url.trim())
     .filter(Boolean);
 
-  return [...cliSitemaps, ...envSitemaps].map((url) => normalizeUrl(url));
+  return [...cliSitemaps, ...envSitemaps].map((url) => normalizeSitemapUrl(url));
 }
 
 export function getNumericOverride(flag: string, envName: string): number | undefined {

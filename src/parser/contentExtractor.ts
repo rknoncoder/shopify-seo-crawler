@@ -7,10 +7,13 @@ export function extractVisibleText($: CheerioAPI): string {
   return cleanText(clone.text());
 }
 
-export function extractContentSummary($: CheerioAPI): { wordCount: number; textHash: string } {
+const maxTextSampleLength = 6000;
+
+export function extractContentSummary($: CheerioAPI): { wordCount: number; textSample: string; textHash: string } {
   const text = extractVisibleText($);
   return {
     wordCount: countWords(text),
+    textSample: text.slice(0, maxTextSampleLength),
     textHash: hashText(text)
   };
 }
