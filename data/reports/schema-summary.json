@@ -4,16 +4,16 @@
     "pageType": "product",
     "sourceType": "shopify_theme",
     "sourceName": "Shopify theme structured data",
-    "urls": 99,
-    "schemaNodes": 99
+    "urls": 496,
+    "schemaNodes": 496
   },
   {
     "schemaType": "FAQPage",
     "pageType": "product",
     "sourceType": "unknown",
     "sourceName": "Unknown JSON-LD source",
-    "urls": 98,
-    "schemaNodes": 98
+    "urls": 495,
+    "schemaNodes": 495
   },
   {
     "schemaType": "ProductGroup",

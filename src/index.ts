@@ -11,8 +11,11 @@ import {
   type SitemapDetectionResult
 } from "./crawler/sitemapDetector.js";
 import { buildActionPlan, countIssuesByCode } from "./reports/actionPlan.js";
+import { buildContentCannibalizationReport } from "./reports/contentCannibalizationReport.js";
 import { buildIndexabilityReport } from "./reports/indexabilityReport.js";
 import { buildPageSpeedInsightsReport, type PageSpeedInsightsOptions, type PageSpeedStrategy } from "./reports/pageSpeedInsightsReport.js";
+import { buildRedirectReport } from "./reports/redirectReport.js";
+import { buildRichResultEligibilityReport } from "./reports/richResultEligibilityReport.js";
 import { buildSchemaInventory, buildSchemaSummary } from "./reports/schemaInventory.js";
 import { summarizeIndexability } from "./utils/indexability.js";
 import { saveCsv } from "./storage/saveCsv.js";
@@ -74,7 +77,10 @@ async function main(): Promise<void> {
   const profile = buildSiteProfile(targetUrl, result.pages, countIssuesByCode(issues));
   const schemaInventory = buildSchemaInventory(result.pages);
   const schemaSummary = buildSchemaSummary(result.pages);
+  const contentCannibalizationReport = buildContentCannibalizationReport(result.pages);
   const indexabilityReport = buildIndexabilityReport(result.pages, finalUrls);
+  const redirectReport = buildRedirectReport(result.pages);
+  const richResultEligibilityReport = buildRichResultEligibilityReport(result.pages, issues);
   const pageSpeedOptions = getPageSpeedInsightsOptions();
   const pageSpeedUrls = result.pages.filter((page) => page.status === 200).map((page) => page.finalUrl);
   const pageSpeedReport = await buildPageSpeedInsightsReport(pageSpeedUrls, pageSpeedOptions);
@@ -83,6 +89,12 @@ async function main(): Promise<void> {
   await saveCsv("data/reports/pages.csv", result.pages.map(flattenPage));
   await saveJson("data/reports/indexability-report.json", indexabilityReport);
   await saveCsv("data/reports/indexability-report.csv", indexabilityReport);
+  await saveJson("data/reports/content-cannibalization-report.json", contentCannibalizationReport);
+  await saveCsv("data/reports/content-cannibalization-report.csv", contentCannibalizationReport);
+  await saveJson("data/reports/redirect-report.json", redirectReport);
+  await saveCsv("data/reports/redirect-report.csv", redirectReport);
+  await saveJson("data/reports/rich-result-eligibility.json", richResultEligibilityReport);
+  await saveCsv("data/reports/rich-result-eligibility.csv", richResultEligibilityReport);
   await saveJson("data/reports/pagespeed-report.json", pageSpeedReport);
   await saveCsv("data/reports/pagespeed-report.csv", pageSpeedReport);
   await saveJson("data/reports/schema-inventory.json", schemaInventory);
@@ -95,7 +107,7 @@ async function main(): Promise<void> {
   await saveCsv("data/reports/action-plan.csv", actionPlan.map((item) => ({ ...item, sampleUrls: item.sampleUrls.join("|") })));
   await saveSiteProfileJson(profile);
   await saveSiteProfileCsv(profile);
-  const excelPath = await exportExcel(result.pages, issues, actionPlan, profile, schemaInventory, schemaSummary, indexabilityReport, pageSpeedReport);
+  const excelPath = await exportExcel(result.pages, issues, actionPlan, profile, schemaInventory, schemaSummary, indexabilityReport, pageSpeedReport, richResultEligibilityReport, redirectReport, contentCannibalizationReport);
 
   console.log(`Crawled pages: ${result.pages.length}`);
   console.log(`Issues found: ${issues.length}`);
@@ -213,6 +225,9 @@ function flattenPage(page: Awaited<ReturnType<typeof startCrawler>>["pages"][num
 
   return {
     url: page.finalUrl,
+    requestedUrl: page.url,
+    redirected: page.redirected,
+    redirectCount: page.redirectCount,
     status: page.status,
     pageType: page.pageType,
     title: page.meta.title,

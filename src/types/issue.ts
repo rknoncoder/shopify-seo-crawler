@@ -2,8 +2,10 @@ export type IssueSeverity = "critical" | "high" | "medium" | "low" | "recommende
 
 export type IssueCategory =
   | "technical"
+  | "redirects"
   | "metadata"
   | "content"
+  | "content_cannibalization"
   | "schema"
   | "shopify"
   | "indexability"

@@ -1,6 +1,8 @@
 import { detectCanonicalIssues } from "./canonicalChecker.js";
+import { detectContentCannibalizationIssues } from "./contentCannibalizationAnalyzer.js";
 import { detectDuplicates } from "./dublicateDetector.js";
 import { detectInternalLinkIssues } from "./internalLinkAnalyzer.js";
+import { detectRedirectIssues } from "./redirectAnalyzer.js";
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
 
@@ -8,7 +10,9 @@ export function analyzeSite(pages: CrawledPage[], pageIssues: SeoIssue[]): SeoIs
   return [
     ...pageIssues,
     ...detectDuplicates(pages),
+    ...detectContentCannibalizationIssues(pages),
     ...detectCanonicalIssues(pages),
+    ...detectRedirectIssues(pages),
     ...detectInternalLinkIssues(pages)
   ];
 }

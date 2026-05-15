@@ -27,6 +27,8 @@ export async function fetchPage(url: string): Promise<FetchResult> {
       return {
         url,
         finalUrl: response.request?.res?.responseUrl || url,
+        redirected: normalizeForRedirectCompare(url) !== normalizeForRedirectCompare(response.request?.res?.responseUrl || url),
+        redirectCount: Number(response.request?._redirectable?._redirectCount || 0),
         status: response.status,
         contentType: String(response.headers["content-type"] || ""),
         html: typeof response.data === "string" ? response.data : String(response.data),
@@ -41,6 +43,17 @@ export async function fetchPage(url: string): Promise<FetchResult> {
   }
 
   throw lastError;
+}
+
+function normalizeForRedirectCompare(url: string): string {
+  try {
+    const parsed = new URL(url);
+    parsed.hash = "";
+    const normalized = parsed.toString();
+    return normalized.endsWith("/") && parsed.pathname !== "/" ? normalized.slice(0, -1) : normalized;
+  } catch {
+    return url;
+  }
 }
 
 export function delay(ms: number): Promise<void> {

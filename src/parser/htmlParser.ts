@@ -19,6 +19,8 @@ export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage 
   return {
     url: fetchResult.url,
     finalUrl: fetchResult.finalUrl,
+    redirected: fetchResult.redirected,
+    redirectCount: fetchResult.redirectCount,
     status: fetchResult.status,
     depth,
     contentType: fetchResult.contentType,

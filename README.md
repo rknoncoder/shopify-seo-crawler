@@ -16,6 +16,10 @@ Page speed signals check HTML size, DOM size, script count, stylesheet count, re
 
 Optional PageSpeed Insights integration can export Lighthouse/PageSpeed data for a limited sample of crawled URLs using `--pagespeed`. It supports unauthenticated test calls and optional API keys through `--pagespeed-key`, `PAGESPEED_API_KEY`, or `SHOPIFY_CRAWLER_PAGESPEED_KEY`.
 
+Redirect checks report crawled URLs that redirect, redirect chains when detected, and internal links pointing to known redirected URLs. Page exports and `redirect-report` include requested URL, final URL, redirected, and redirect count.
+
+Content cannibalization checks group indexable URLs that appear to compete for the same search intent using duplicate content, duplicate SERP metadata, collection-product overlap, and normalized keyword intent from titles, H1s, and URL handles. It is variant-aware, so Shopify product color/model/pack/combo clusters are separated into `variant_cluster` or `variant_serp_risk` instead of being treated the same as true cannibalization. The dedicated report recommends a primary URL and lists competing URLs.
+
 Technical link checks include `malformed_internal_link`, which flags internal links created from bad raw `href` values such as leading spaces, non-breaking spaces, or accidentally nested absolute URLs.
 
 Indexability checks report pages blocked by meta robots, canonicalized URLs, invalid canonicals, nofollow directives, sitemap URLs that are not indexable, indexable pages missing from the selected sitemap URL set, and page-level indexability status in `pages.csv` plus `indexability-report.csv`.
@@ -25,6 +29,8 @@ Internal link checks report orphan pages, weakly linked pages, and products that
 SERP snippet checks report weak title/meta description quality, including generic titles, brand-only titles, title/H1 mismatch, boilerplate descriptions, descriptions that duplicate titles/headings, and product descriptions that lack useful shopping details.
 
 Schema validation goes beyond detecting JSON-LD types. It checks invalid JSON-LD, expected schema by page type, schema URL versus canonical URL, schema name/headline versus H1, product fields and offers, ProductGroup variants, article metadata, FAQ question/answer completeness, BreadcrumbList structure, Collection ItemList entries, and Organization/WebSite basics.
+
+Rich result eligibility reporting summarizes Product snippet, Merchant listing, Breadcrumb, Article, FAQ, and Collection ItemList eligibility based on detected schema and validation issues. It is a crawler-side estimate, not a replacement for Google's Rich Results Test.
 
 Schema recommendations that are useful but optional use the separate `recommended` severity, so they do not compete with critical/high/medium SEO defects.
 
@@ -78,6 +84,10 @@ Reports are written to:
 - `data/reports/pages.csv`
 - `data/reports/indexability-report.json`
 - `data/reports/indexability-report.csv`
+- `data/reports/content-cannibalization-report.json`
+- `data/reports/content-cannibalization-report.csv`
+- `data/reports/redirect-report.json`
+- `data/reports/redirect-report.csv`
 - `data/reports/pagespeed-report.json`
 - `data/reports/pagespeed-report.csv`
 - `data/reports/issues.json`
@@ -88,4 +98,6 @@ Reports are written to:
 - `data/reports/schema-inventory.csv`
 - `data/reports/schema-summary.json`
 - `data/reports/schema-summary.csv`
+- `data/reports/rich-result-eligibility.json`
+- `data/reports/rich-result-eligibility.csv`
 - `data/reports/shopify-seo-report.xlsx`

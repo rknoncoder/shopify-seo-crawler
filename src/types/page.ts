@@ -59,6 +59,8 @@ export interface PageSpeedSignals {
 export interface CrawledPage {
   url: string;
   finalUrl: string;
+  redirected: boolean;
+  redirectCount: number;
   status: number;
   depth: number;
   contentType: string;

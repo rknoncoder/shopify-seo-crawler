@@ -34,6 +34,8 @@ export interface CrawlConfig {
 export interface FetchResult {
   url: string;
   finalUrl: string;
+  redirected: boolean;
+  redirectCount: number;
   status: number;
   contentType: string;
   html: string;
