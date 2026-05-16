@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-05-16T09:46:55.650Z",
+  "totalRequested": 1017,
+  "totalCrawled": 1014,
+  "statusCodeCounts": {
+    "families": {
+      "2xx": 1014,
+      "3xx": 0,
+      "4xx": 0,
+      "5xx": 0,
+      "other": 0
+    },
+    "exact": {
+      "200": 1014
+    }
+  },
+  "fetchFailedCount": 0,
+  "skippedNonHtmlCount": 3,
+  "redirectedCount": 0,
+  "retryCounters": {
+    "totalRetries": 3,
+    "statusRetries": 1,
+    "errorRetries": 2,
+    "retryStatusCounts": {
+      "503": 1
+    }
+  },
+  "loadTimeMs": {
+    "avg": 562,
+    "p50": 320,
+    "p95": 1003,
+    "max": 93400
+  }
+}
