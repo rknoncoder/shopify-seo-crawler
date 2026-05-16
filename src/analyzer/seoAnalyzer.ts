@@ -1,6 +1,6 @@
 import { detectCanonicalIssues } from "./canonicalChecker.js";
 import { detectContentCannibalizationIssues } from "./contentCannibalizationAnalyzer.js";
-import { detectDuplicates } from "./dublicateDetector.js";
+import { detectDuplicates } from "./duplicateDetector.js";
 import { detectInternalLinkIssues } from "./internalLinkAnalyzer.js";
 import { detectRedirectIssues } from "./redirectAnalyzer.js";
 import type { SeoIssue } from "../types/issue.js";
