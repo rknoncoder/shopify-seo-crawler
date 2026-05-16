@@ -91,6 +91,14 @@ Environment variables with the `SHOPIFY_CRAWLER_` prefix also work, for example:
 SHOPIFY_CRAWLER_URL=https://example.com npm run crawl
 ```
 
+## Testing
+
+```bash
+npm test
+```
+
+The baseline unit tests use Node's built-in test runner with `tsx` for TypeScript files.
+
 ## Output
 
 Reports are written to:
