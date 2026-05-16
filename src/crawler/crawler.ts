@@ -2,7 +2,7 @@ import PQueue from "p-queue";
 import config from "../config/config.js";
 import { runAudits } from "../audits/runAudits.js";
 import { analyzeSite } from "../analyzer/seoAnalyzer.js";
-import { fetchPage, sleepBetweenRequests } from "./fetcher.js";
+import { fetchPage, getFetchTelemetry, resetFetchTelemetry, sleepBetweenRequests } from "./fetcher.js";
 import { UrlManager } from "./urlManager.js";
 import { parseHtml } from "../parser/htmlParser.js";
 import type { CrawlResult } from "../types/crawl.js";
@@ -16,12 +16,15 @@ interface StartCrawlerOptions {
 }
 
 export async function startCrawler(seedUrls: string[], options: StartCrawlerOptions = {}): Promise<CrawlResult> {
+  resetFetchTelemetry();
   const followLinks = options.followLinks ?? true;
   const baseUrl = seedUrls[0];
   const manager = new UrlManager(baseUrl);
   const pages: CrawledPage[] = [];
   const analysisPages: CrawledPage[] = [];
   const pageIssues: SeoIssue[] = [];
+  let totalRequested = 0;
+  let skippedNonHtmlCount = 0;
   const queue = new PQueue({ concurrency: config.concurrency });
 
   seedUrls.slice(0, config.maxPages).forEach((url) => manager.add(url, 0));
@@ -32,8 +35,10 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
 
     queue.add(async () => {
       try {
+        totalRequested += 1;
         const fetched = await fetchPage(next.url);
         if (!fetched.contentType.includes("text/html") && fetched.html.trim().startsWith("<") === false) {
+          skippedNonHtmlCount += 1;
           return;
         }
 
@@ -74,7 +79,15 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   }
 
   await queue.onIdle();
-  return { pages, issues: analyzeSite(analysisPages, pageIssues) };
+  return {
+    pages,
+    issues: analyzeSite(analysisPages, pageIssues),
+    telemetry: {
+      totalRequested,
+      skippedNonHtmlCount,
+      retries: getFetchTelemetry()
+    }
+  };
 }
 
 function compactPageForAnalysis(page: CrawledPage): CrawledPage {

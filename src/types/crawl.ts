@@ -47,9 +47,23 @@ export interface FetchResult {
   loadTimeMs: number;
 }
 
+export interface CrawlRetryTelemetry {
+  totalRetries: number;
+  statusRetries: number;
+  errorRetries: number;
+  retryStatusCounts: Record<string, number>;
+}
+
+export interface CrawlTelemetry {
+  totalRequested: number;
+  skippedNonHtmlCount: number;
+  retries: CrawlRetryTelemetry;
+}
+
 export interface CrawlResult {
   pages: CrawledPage[];
   issues: SeoIssue[];
+  telemetry: CrawlTelemetry;
 }
 
 export interface SitemapEntry {

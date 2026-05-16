@@ -12,6 +12,7 @@ import {
 } from "./crawler/sitemapDetector.js";
 import { buildActionPlan, countIssuesByCode } from "./reports/actionPlan.js";
 import { buildContentCannibalizationReport } from "./reports/contentCannibalizationReport.js";
+import { buildCrawlStatsCsvRows, buildCrawlStatsReport } from "./reports/crawlStatsReport.js";
 import { buildIndexabilityReport } from "./reports/indexabilityReport.js";
 import { buildPageSpeedInsightsReport, type PageSpeedInsightsOptions, type PageSpeedStrategy } from "./reports/pageSpeedInsightsReport.js";
 import { buildRedirectReport } from "./reports/redirectReport.js";
@@ -73,6 +74,7 @@ async function main(): Promise<void> {
   const result = await startCrawler(finalUrls, { followLinks: !crawledFromSitemap });
   const sitemapIndexabilityIssues = detectSitemapIndexabilityIssues(result.pages, finalUrls);
   const issues = [...result.issues, ...sitemapIndexabilityIssues];
+  const crawlStatsReport = buildCrawlStatsReport(result.pages, result.issues, result.telemetry);
   const actionPlan = buildActionPlan(issues);
   const profile = buildSiteProfile(targetUrl, result.pages, countIssuesByCode(issues));
   const schemaInventory = buildSchemaInventory(result.pages);
@@ -88,6 +90,8 @@ async function main(): Promise<void> {
 
   await saveJson("data/raw/output.json", result.pages);
   await saveCsv("data/reports/pages.csv", result.pages.map(flattenPage));
+  await saveJson("data/reports/crawl-stats.json", crawlStatsReport);
+  await saveCsv("data/reports/crawl-stats.csv", buildCrawlStatsCsvRows(crawlStatsReport));
   await saveJson("data/reports/indexability-report.json", indexabilityReport);
   await saveCsv("data/reports/indexability-report.csv", indexabilityReport);
   await saveJson("data/reports/content-cannibalization-report.json", contentCannibalizationReport);

@@ -1,6 +1,29 @@
 import axios from "axios";
 import config from "../config/config.js";
-import type { FetchResult } from "../types/crawl.js";
+import type { CrawlRetryTelemetry, FetchResult } from "../types/crawl.js";
+
+const retryTelemetry: CrawlRetryTelemetry = {
+  totalRetries: 0,
+  statusRetries: 0,
+  errorRetries: 0,
+  retryStatusCounts: {}
+};
+
+export function resetFetchTelemetry(): void {
+  retryTelemetry.totalRetries = 0;
+  retryTelemetry.statusRetries = 0;
+  retryTelemetry.errorRetries = 0;
+  retryTelemetry.retryStatusCounts = {};
+}
+
+export function getFetchTelemetry(): CrawlRetryTelemetry {
+  return {
+    totalRetries: retryTelemetry.totalRetries,
+    statusRetries: retryTelemetry.statusRetries,
+    errorRetries: retryTelemetry.errorRetries,
+    retryStatusCounts: { ...retryTelemetry.retryStatusCounts }
+  };
+}
 
 export async function fetchPage(url: string): Promise<FetchResult> {
   const startedAt = Date.now();
@@ -20,6 +43,7 @@ export async function fetchPage(url: string): Promise<FetchResult> {
       });
 
       if ((response.status === 429 || response.status === 503) && attempt < config.retries) {
+        recordStatusRetry(response.status);
         await delay(getBackoffDelayMs(response.headers["retry-after"], attempt));
         continue;
       }
@@ -37,6 +61,7 @@ export async function fetchPage(url: string): Promise<FetchResult> {
     } catch (error) {
       lastError = error;
       if (attempt < config.retries) {
+        recordErrorRetry();
         await delay(config.retryDelayMs);
       }
     }
@@ -63,6 +88,18 @@ export function delay(ms: number): Promise<void> {
 export function sleepBetweenRequests(baseDelayMs: number): Promise<void> {
   const jitterMs = Math.floor(Math.random() * 2000);
   return delay(baseDelayMs + jitterMs);
+}
+
+function recordStatusRetry(status: number): void {
+  retryTelemetry.totalRetries += 1;
+  retryTelemetry.statusRetries += 1;
+  const key = String(status);
+  retryTelemetry.retryStatusCounts[key] = (retryTelemetry.retryStatusCounts[key] || 0) + 1;
+}
+
+function recordErrorRetry(): void {
+  retryTelemetry.totalRetries += 1;
+  retryTelemetry.errorRetries += 1;
 }
 
 function getBackoffDelayMs(retryAfter: unknown, attempt: number): number {
