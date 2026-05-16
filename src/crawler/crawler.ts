@@ -8,14 +8,12 @@ import { parseHtml } from "../parser/htmlParser.js";
 import type { CrawlResult } from "../types/crawl.js";
 import type { CrawledPage } from "../types/page.js";
 import type { SeoIssue } from "../types/issue.js";
+import { truncate } from "../utils/textUtils.js";
 import { shouldSkipUrl } from "../utils/urlUtils.js";
 
 interface StartCrawlerOptions {
   followLinks?: boolean;
 }
-
-const maxStoredLinksPerPage = 250;
-const maxStoredImagesPerPage = 100;
 
 export async function startCrawler(seedUrls: string[], options: StartCrawlerOptions = {}): Promise<CrawlResult> {
   const followLinks = options.followLinks ?? true;
@@ -82,6 +80,17 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
 function compactPageForAnalysis(page: CrawledPage): CrawledPage {
   return {
     ...page,
+    textSample: "",
+    links: page.links
+      .filter((link) => link.internal)
+      .map((link) => ({
+        href: link.href,
+        rawHref: "",
+        text: truncate(link.text, 90),
+        rel: [],
+        internal: true,
+        status: link.status
+      })),
     images: [],
     schemas: []
   };
@@ -90,7 +99,8 @@ function compactPageForAnalysis(page: CrawledPage): CrawledPage {
 function compactPageForStorage(page: CrawledPage): CrawledPage {
   return {
     ...page,
-    links: page.links.slice(0, maxStoredLinksPerPage),
-    images: page.images.slice(0, maxStoredImagesPerPage)
+    textSample: truncate(page.textSample, config.storage.maxStoredTextSampleChars),
+    links: page.links.slice(0, config.storage.maxStoredLinksPerPage),
+    images: page.images.slice(0, config.storage.maxStoredImagesPerPage)
   };
 }

@@ -84,6 +84,7 @@ async function main(): Promise<void> {
   const pageSpeedOptions = getPageSpeedInsightsOptions();
   const pageSpeedUrls = result.pages.filter((page) => page.status === 200).map((page) => page.finalUrl);
   const pageSpeedReport = await buildPageSpeedInsightsReport(pageSpeedUrls, pageSpeedOptions);
+  const excelOptions = getExcelExportOptions(result.pages.length);
 
   await saveJson("data/raw/output.json", result.pages);
   await saveCsv("data/reports/pages.csv", result.pages.map(flattenPage));
@@ -107,14 +108,20 @@ async function main(): Promise<void> {
   await saveCsv("data/reports/action-plan.csv", actionPlan.map((item) => ({ ...item, sampleUrls: item.sampleUrls.join("|") })));
   await saveSiteProfileJson(profile);
   await saveSiteProfileCsv(profile);
-  const excelPath = await exportExcel(result.pages, issues, actionPlan, profile, schemaInventory, schemaSummary, indexabilityReport, pageSpeedReport, richResultEligibilityReport, redirectReport, contentCannibalizationReport);
+  const excelPath = excelOptions.enabled
+    ? await exportExcel(result.pages, issues, actionPlan, profile, schemaInventory, schemaSummary, indexabilityReport, pageSpeedReport, richResultEligibilityReport, redirectReport, contentCannibalizationReport)
+    : "";
 
   console.log(`Crawled pages: ${result.pages.length}`);
   console.log(`Issues found: ${issues.length}`);
   if (pageSpeedOptions.enabled) {
     console.log(`PageSpeed Insights URLs tested: ${pageSpeedReport.length}`);
   }
-  console.log(`Excel export completed: ${excelPath}`);
+  if (excelPath) {
+    console.log(`Excel export completed: ${excelPath}`);
+  } else {
+    console.log(`Excel export skipped: ${excelOptions.reason}`);
+  }
 }
 
 async function buildSitemapInventory(detectionResult: SitemapDetectionResult): Promise<{
@@ -206,6 +213,16 @@ function applyCrawlMode(crawlMode: typeof config.crawlMode): void {
 function applyNumericOverrides(): void {
   config.maxPages = getNumericOverride("--max-pages", "SHOPIFY_CRAWLER_MAX_PAGES") ?? config.maxPages;
   config.maxDepth = getNumericOverride("--max-depth", "SHOPIFY_CRAWLER_MAX_DEPTH") ?? config.maxDepth;
+
+  if (getBooleanOverride("--memory-safe", "SHOPIFY_CRAWLER_MEMORY_SAFE")) {
+    config.storage.maxStoredLinksPerPage = 60;
+    config.storage.maxStoredImagesPerPage = 20;
+    config.storage.maxStoredTextSampleChars = 1000;
+  }
+
+  config.storage.maxStoredLinksPerPage = getNumericOverride("--max-stored-links", "SHOPIFY_CRAWLER_MAX_STORED_LINKS") ?? config.storage.maxStoredLinksPerPage;
+  config.storage.maxStoredImagesPerPage = getNumericOverride("--max-stored-images", "SHOPIFY_CRAWLER_MAX_STORED_IMAGES") ?? config.storage.maxStoredImagesPerPage;
+  config.storage.maxStoredTextSampleChars = getNumericOverride("--max-stored-text", "SHOPIFY_CRAWLER_MAX_STORED_TEXT") ?? config.storage.maxStoredTextSampleChars;
 }
 
 function getPageSpeedInsightsOptions(): PageSpeedInsightsOptions {
@@ -218,6 +235,30 @@ function getPageSpeedInsightsOptions(): PageSpeedInsightsOptions {
     strategy,
     apiKey: getStringOverride("--pagespeed-key", "PAGESPEED_API_KEY") || process.env.SHOPIFY_CRAWLER_PAGESPEED_KEY
   };
+}
+
+function getExcelExportOptions(pageCount: number): { enabled: boolean; reason: string } {
+  if (getBooleanOverride("--no-excel", "SHOPIFY_CRAWLER_NO_EXCEL")) {
+    return { enabled: false, reason: "--no-excel was set." };
+  }
+
+  if (getBooleanOverride("--memory-safe", "SHOPIFY_CRAWLER_MEMORY_SAFE")) {
+    return { enabled: false, reason: "memory-safe mode skips Excel; CSV/JSON reports were still written." };
+  }
+
+  if (getBooleanOverride("--excel", "SHOPIFY_CRAWLER_EXCEL")) {
+    return { enabled: true, reason: "--excel was set." };
+  }
+
+  const maxExcelPages = getNumericOverride("--excel-max-pages", "SHOPIFY_CRAWLER_EXCEL_MAX_PAGES") ?? 1500;
+  if (pageCount > maxExcelPages) {
+    return {
+      enabled: false,
+      reason: `page count ${pageCount} is above Excel auto limit ${maxExcelPages}; use --excel to force it.`
+    };
+  }
+
+  return { enabled: true, reason: "within Excel auto limit." };
 }
 
 function flattenPage(page: Awaited<ReturnType<typeof startCrawler>>["pages"][number]): Record<string, unknown> {

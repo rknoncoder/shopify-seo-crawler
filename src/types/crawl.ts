@@ -14,6 +14,11 @@ export interface CrawlConfig {
   userAgent: string;
   retries: number;
   retryDelayMs: number;
+  storage: {
+    maxStoredLinksPerPage: number;
+    maxStoredImagesPerPage: number;
+    maxStoredTextSampleChars: number;
+  };
   crawl: {
     sameOriginOnly: boolean;
     keepQueryStrings: boolean;

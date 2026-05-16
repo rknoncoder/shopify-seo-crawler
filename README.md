@@ -59,6 +59,13 @@ Useful flags:
 - `--pagespeed-limit` maximum crawled URLs to test with PageSpeed Insights. Default is `10`.
 - `--pagespeed-strategy` one of `mobile` or `desktop`. Default is `mobile`.
 - `--pagespeed-key` optional Google API key for PageSpeed Insights.
+- `--memory-safe` reduce stored raw page detail and skip Excel export for large crawls.
+- `--no-excel` skip Excel export and write CSV/JSON reports only.
+- `--excel` force Excel export even when the crawl is above the automatic Excel page limit.
+- `--excel-max-pages` page count limit for automatic Excel export. Default is `1500`.
+- `--max-stored-links` maximum links stored per page in `data/raw/output.json`.
+- `--max-stored-images` maximum images stored per page in `data/raw/output.json`.
+- `--max-stored-text` maximum visible-text sample characters stored per page.
 
 The crawler identifies itself with this user agent:
 
@@ -67,6 +74,12 @@ ShopifySEOBot/1.0 (+https://example.com/bot)
 ```
 
 By default it crawls with one request at a time and waits roughly 3-5 seconds between requests to reduce Shopify bot-protection blocks.
+
+For large Shopify stores, use memory-safe mode so the crawler writes CSV/JSON reports without building the heavy Excel workbook:
+
+```bash
+npm run crawl -- --url https://example.com --mode full --max-pages 3000 --memory-safe
+```
 
 Environment variables with the `SHOPIFY_CRAWLER_` prefix also work, for example:
 

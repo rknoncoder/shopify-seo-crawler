@@ -1,5 +1,7 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { createWriteStream } from "node:fs";
+import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
+import { once } from "node:events";
 
 export async function saveCsv<T extends object>(path: string, rows: T[]): Promise<string> {
   await mkdir(dirname(path), { recursive: true });
@@ -7,11 +9,18 @@ export async function saveCsv<T extends object>(path: string, rows: T[]): Promis
     Object.keys(row).forEach((key) => set.add(key));
     return set;
   }, new Set<string>())];
-  const csv = [
-    headers.join(","),
-    ...rows.map((row) => headers.map((header) => csvEscape((row as Record<string, unknown>)[header])).join(","))
-  ].join("\n");
-  await writeFile(path, `${csv}\n`, "utf8");
+  const stream = createWriteStream(path, { encoding: "utf8" });
+
+  stream.write(`${headers.join(",")}\n`);
+  for (const row of rows) {
+    const line = headers.map((header) => csvEscape((row as Record<string, unknown>)[header])).join(",");
+    if (!stream.write(`${line}\n`)) {
+      await once(stream, "drain");
+    }
+  }
+
+  stream.end();
+  await once(stream, "finish");
   return path;
 }
 

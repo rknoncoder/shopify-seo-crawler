@@ -11,6 +11,11 @@ const config: CrawlConfig = {
   userAgent: "ShopifySEOBot/1.0 (+https://example.com/bot)",
   retries: 2,
   retryDelayMs: 3000,
+  storage: {
+    maxStoredLinksPerPage: 120,
+    maxStoredImagesPerPage: 40,
+    maxStoredTextSampleChars: 2000
+  },
   crawl: {
     sameOriginOnly: true,
     keepQueryStrings: false,
