@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-16T09:46:55.650Z",
+  "generatedAt": "2026-05-16T11:45:16.602Z",
   "totalRequested": 1017,
   "totalCrawled": 1014,
   "statusCodeCounts": {
@@ -19,16 +19,14 @@
   "redirectedCount": 0,
   "retryCounters": {
     "totalRetries": 3,
-    "statusRetries": 1,
-    "errorRetries": 2,
-    "retryStatusCounts": {
-      "503": 1
-    }
+    "statusRetries": 0,
+    "errorRetries": 3,
+    "retryStatusCounts": {}
   },
   "loadTimeMs": {
-    "avg": 562,
-    "p50": 320,
-    "p95": 1003,
-    "max": 93400
+    "avg": 637,
+    "p50": 340,
+    "p95": 1501,
+    "max": 36384
   }
 }
