@@ -8,6 +8,7 @@ import { parseHtml } from "../parser/htmlParser.js";
 import type { CrawlResult } from "../types/crawl.js";
 import type { CrawledPage } from "../types/page.js";
 import type { SeoIssue } from "../types/issue.js";
+import { classifyFetchError } from "../utils/fetchFailureClassifier.js";
 import { truncate } from "../utils/textUtils.js";
 import { shouldSkipUrl } from "../utils/urlUtils.js";
 
@@ -56,15 +57,16 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
         analysisPages.push(compactPageForAnalysis(page));
         pages.push(compactPageForStorage(page));
       } catch (error) {
+        const fetchIssue = classifyFetchError(error);
         pageIssues.push({
           url: next.url,
           pageType: "unknown",
-          severity: "critical",
+          severity: fetchIssue.severity,
           category: "technical",
-          code: "fetch_failed",
-          message: "Page could not be fetched.",
-          recommendation: "Check DNS, redirects, blocking, timeout, or server availability.",
-          evidence: error instanceof Error ? error.message : String(error)
+          code: fetchIssue.code,
+          message: fetchIssue.message,
+          recommendation: fetchIssue.recommendation,
+          evidence: fetchIssue.evidence
         });
       } finally {
         if (config.crawlDelayMs > 0) {

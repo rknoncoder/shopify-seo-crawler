@@ -1,5 +1,6 @@
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
+import { classifyHttpFetchFailure } from "../utils/fetchFailureClassifier.js";
 import { truncate } from "../utils/textUtils.js";
 
 export function auditBasicSeo(page: CrawledPage): SeoIssue[] {
@@ -17,7 +18,17 @@ export function auditBasicSeo(page: CrawledPage): SeoIssue[] {
 
 function addStatusIssues(page: CrawledPage, issues: SeoIssue[]): void {
   if (page.status >= 400) {
-    issues.push(issue(page, "critical", "technical", "http_error", `Page returned HTTP ${page.status}`, "Fix the URL, redirect, or server response."));
+    const fetchIssue = classifyHttpFetchFailure(page.status);
+    if (!fetchIssue) return;
+    issues.push(issue(
+      page,
+      fetchIssue.severity,
+      "technical",
+      fetchIssue.code,
+      fetchIssue.message,
+      fetchIssue.recommendation,
+      fetchIssue.evidence
+    ));
   }
 }
 

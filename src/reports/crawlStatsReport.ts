@@ -1,6 +1,7 @@
 import type { CrawlTelemetry } from "../types/crawl.js";
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
+import { isFetchFailureCode } from "../utils/fetchFailureClassifier.js";
 
 interface LoadTimeSummary {
   avg: number | null;
@@ -65,7 +66,7 @@ export function buildCrawlStatsReport(
     totalRequested: telemetry.totalRequested,
     totalCrawled: pages.length,
     statusCodeCounts: countStatusCodes(pages),
-    fetchFailedCount: issues.filter((issue) => issue.code === "fetch_failed").length,
+    fetchFailedCount: issues.filter((issue) => isFetchFailureCode(issue.code)).length,
     skippedNonHtmlCount: telemetry.skippedNonHtmlCount,
     redirectedCount: pages.filter((page) => page.redirected).length,
     retryCounters: telemetry.retries,

@@ -22,6 +22,8 @@ Content cannibalization checks group indexable URLs that appear to compete for t
 
 Technical link checks include `malformed_internal_link`, which flags internal links created from bad raw `href` values such as leading spaces, non-breaking spaces, or accidentally nested absolute URLs.
 
+Fetch failures are categorized into actionable technical issue codes such as `fetch_timeout`, `fetch_dns_error`, `fetch_tls_error`, `fetch_blocked_403`, `fetch_rate_limited_429`, and `fetch_server_error`.
+
 Indexability checks report pages blocked by meta robots, canonicalized URLs, invalid canonicals, nofollow directives, sitemap URLs that are not indexable, indexable pages missing from the selected sitemap URL set, and page-level indexability status in `pages.csv` plus `indexability-report.csv`.
 
 Internal link checks report orphan pages, weakly linked pages, and products that are not linked from any crawled collection page.
