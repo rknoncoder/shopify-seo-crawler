@@ -187,12 +187,14 @@ function selectSitemapsForCrawl(sitemaps: SitemapEntry[]): SitemapEntry[] {
 
 async function extractUrlsForCrawl(sitemaps: SitemapEntry[]): Promise<string[]> {
   const crawlUrls: string[] = [];
+  const seenUrls = new Set<string>();
 
   for (const sitemap of sitemaps) {
     if (crawlUrls.length >= config.maxPages) break;
     const parsed = await parseSitemap(sitemap.sitemapUrl, { limit: config.maxPages - crawlUrls.length });
     for (const url of parsed.urls) {
-      if (crawlUrls.length < config.maxPages && !crawlUrls.includes(url)) {
+      if (crawlUrls.length < config.maxPages && !seenUrls.has(url)) {
+        seenUrls.add(url);
         crawlUrls.push(url);
       }
     }
