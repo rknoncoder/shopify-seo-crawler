@@ -1,6 +1,7 @@
 import axios from "axios";
 import config from "../config/config.js";
 import type { CrawlRetryTelemetry, FetchResult } from "../types/crawl.js";
+import type { HttpHeaderMetadata } from "../types/page.js";
 
 const retryTelemetry: CrawlRetryTelemetry = {
   totalRetries: 0,
@@ -55,6 +56,7 @@ export async function fetchPage(url: string): Promise<FetchResult> {
         redirectCount: Number(response.request?._redirectable?._redirectCount || 0),
         status: response.status,
         contentType: String(response.headers["content-type"] || ""),
+        http: extractHttpMetadata(response.headers, response.data),
         html: typeof response.data === "string" ? response.data : String(response.data),
         loadTimeMs: Date.now() - startedAt
       };
@@ -79,6 +81,29 @@ function normalizeForRedirectCompare(url: string): string {
   } catch {
     return url;
   }
+}
+
+function extractHttpMetadata(headers: Record<string, unknown>, responseData: unknown): HttpHeaderMetadata {
+  const html = typeof responseData === "string" ? responseData : String(responseData);
+
+  return {
+    xRobotsTag: headerValue(headers, "x-robots-tag"),
+    contentType: headerValue(headers, "content-type"),
+    lastModified: headerValue(headers, "last-modified"),
+    etag: headerValue(headers, "etag"),
+    cacheControl: headerValue(headers, "cache-control"),
+    server: headerValue(headers, "server"),
+    cfCacheStatus: headerValue(headers, "cf-cache-status"),
+    cdnCacheStatus: headerValue(headers, "x-cache") || headerValue(headers, "x-cache-status") || headerValue(headers, "cdn-cache-status"),
+    contentLength: headerValue(headers, "content-length"),
+    responseSizeBytes: Buffer.byteLength(html, "utf8")
+  };
+}
+
+function headerValue(headers: Record<string, unknown>, name: string): string {
+  const value = headers[name];
+  if (Array.isArray(value)) return value.map(String).join(", ");
+  return value === undefined || value === null ? "" : String(value);
 }
 
 export function delay(ms: number): Promise<void> {

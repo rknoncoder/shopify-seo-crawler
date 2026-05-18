@@ -38,6 +38,19 @@ export interface PageMeta {
   twitterDescription: string;
 }
 
+export interface HttpHeaderMetadata {
+  xRobotsTag: string;
+  contentType: string;
+  lastModified: string;
+  etag: string;
+  cacheControl: string;
+  server: string;
+  cfCacheStatus: string;
+  cdnCacheStatus: string;
+  contentLength: string;
+  responseSizeBytes: number;
+}
+
 export interface PageSpeedSignals {
   htmlSizeKb: number;
   domElementCount: number;
@@ -64,6 +77,7 @@ export interface CrawledPage {
   status: number;
   depth: number;
   contentType: string;
+  http: HttpHeaderMetadata;
   fetchedAt: string;
   loadTimeMs: number;
   pageType: ShopifyPageType;

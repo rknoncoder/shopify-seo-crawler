@@ -8,7 +8,30 @@ export function auditIndexability(page: CrawledPage): SeoIssue[] {
 
   const issues: SeoIssue[] = [];
   const robots = parseRobotsDirectives(page.meta.robots);
+  const xRobots = parseRobotsDirectives(page.http?.xRobotsTag ?? "");
   const indexability = summarizeIndexability(page);
+
+  if (xRobots.noindex) {
+    issues.push(issue(
+      page,
+      "high",
+      "x_robots_tag_noindex",
+      "Page is blocked from indexing by X-Robots-Tag noindex.",
+      "Remove the HTTP X-Robots-Tag noindex directive if this page should appear in Google Search.",
+      page.http?.xRobotsTag ?? ""
+    ));
+  }
+
+  if (xRobots.nofollow) {
+    issues.push(issue(
+      page,
+      "low",
+      "x_robots_tag_nofollow",
+      "Page uses X-Robots-Tag nofollow.",
+      "Use nofollow only when you intentionally do not want search engines to follow links on this page.",
+      page.http?.xRobotsTag ?? ""
+    ));
+  }
 
   if (robots.noindex) {
     issues.push(issue(

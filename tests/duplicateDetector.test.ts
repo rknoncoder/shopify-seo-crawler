@@ -84,6 +84,18 @@ function page(
     status: 200,
     depth: 0,
     contentType: "text/html",
+    http: {
+      xRobotsTag: "",
+      contentType: "text/html",
+      lastModified: "",
+      etag: "",
+      cacheControl: "",
+      server: "",
+      cfCacheStatus: "",
+      cdnCacheStatus: "",
+      contentLength: "",
+      responseSizeBytes: 0
+    },
     fetchedAt: "2026-05-16T00:00:00.000Z",
     loadTimeMs: 10,
     pageType: "product",

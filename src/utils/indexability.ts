@@ -18,7 +18,7 @@ export function parseRobotsDirectives(value: string): RobotsDirectives {
   const directives = value
     .toLowerCase()
     .split(",")
-    .map((directive) => directive.trim())
+    .map((directive) => normalizeRobotsDirective(directive))
     .filter(Boolean);
 
   return {
@@ -30,7 +30,8 @@ export function parseRobotsDirectives(value: string): RobotsDirectives {
 }
 
 export function summarizeIndexability(page: CrawledPage): IndexabilitySummary {
-  const robots = parseRobotsDirectives(page.meta.robots);
+  const metaRobots = parseRobotsDirectives(page.meta.robots);
+  const headerRobots = parseRobotsDirectives(page.http?.xRobotsTag ?? "");
   const canonicalTarget = normalizeCanonicalTarget(page.meta.canonical, page.finalUrl);
   const canonicalSelfReferencing = canonicalTarget ? sameNormalizedUrl(canonicalTarget, page.finalUrl) : false;
 
@@ -43,7 +44,16 @@ export function summarizeIndexability(page: CrawledPage): IndexabilitySummary {
     };
   }
 
-  if (robots.noindex) {
+  if (headerRobots.noindex) {
+    return {
+      indexable: false,
+      status: "not_indexable_x_robots_tag",
+      canonicalTarget,
+      canonicalSelfReferencing
+    };
+  }
+
+  if (metaRobots.noindex) {
     return {
       indexable: false,
       status: "not_indexable_noindex",
@@ -67,6 +77,12 @@ export function summarizeIndexability(page: CrawledPage): IndexabilitySummary {
     canonicalTarget,
     canonicalSelfReferencing
   };
+}
+
+function normalizeRobotsDirective(directive: string): string {
+  const trimmed = directive.trim();
+  const prefixedDirective = trimmed.match(/^[a-z0-9_-]+\s*:\s*(.+)$/i);
+  return prefixedDirective ? prefixedDirective[1].trim() : trimmed;
 }
 
 export function normalizeCanonicalTarget(canonical: string, baseUrl: string): string {

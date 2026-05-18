@@ -24,6 +24,7 @@ export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage 
     status: fetchResult.status,
     depth,
     contentType: fetchResult.contentType,
+    http: fetchResult.http,
     fetchedAt: new Date().toISOString(),
     loadTimeMs: fetchResult.loadTimeMs,
     pageType: shopify.pageType,

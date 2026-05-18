@@ -1,4 +1,5 @@
 import type { CrawledPage } from "./page.js";
+import type { HttpHeaderMetadata } from "./page.js";
 import type { SeoIssue } from "./issue.js";
 
 export type CrawlMode = "single" | "seo" | "full";
@@ -43,6 +44,7 @@ export interface FetchResult {
   redirectCount: number;
   status: number;
   contentType: string;
+  http: HttpHeaderMetadata;
   html: string;
   loadTimeMs: number;
 }

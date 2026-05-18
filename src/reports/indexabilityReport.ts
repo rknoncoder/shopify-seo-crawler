@@ -12,6 +12,7 @@ export interface IndexabilityReportRow {
   canonicalTarget: string;
   canonicalSelfReferencing: boolean;
   robots: string;
+  xRobotsTag: string;
   issueCodes: string;
 }
 
@@ -32,6 +33,7 @@ export function buildIndexabilityReport(pages: CrawledPage[], sitemapUrls: strin
       canonicalTarget: indexability.canonicalTarget,
       canonicalSelfReferencing: indexability.canonicalSelfReferencing,
       robots: page.meta.robots,
+      xRobotsTag: page.http?.xRobotsTag ?? "",
       issueCodes: page.issues.join("|")
     };
   });

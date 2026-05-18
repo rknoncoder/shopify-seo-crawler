@@ -26,6 +26,8 @@ Fetch failures are categorized into actionable technical issue codes such as `fe
 
 Indexability checks report pages blocked by meta robots, canonicalized URLs, invalid canonicals, nofollow directives, sitemap URLs that are not indexable, indexable pages missing from the selected sitemap URL set, and page-level indexability status in `pages.csv` plus `indexability-report.csv`.
 
+HTTP header metadata is captured for each crawled page, including `X-Robots-Tag`, cache headers, server/CDN cache hints, content length, and measured response size. `X-Robots-Tag` noindex/nofollow directives are included in indexability audits.
+
 Internal link checks report orphan pages, weakly linked pages, and products that are not linked from any crawled collection page.
 
 SERP snippet checks report weak title/meta description quality, including generic titles, brand-only titles, title/H1 mismatch, boilerplate descriptions, descriptions that duplicate titles/headings, and product descriptions that lack useful shopping details.
