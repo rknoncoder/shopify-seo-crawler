@@ -104,11 +104,18 @@ function page(
       description: overrides.description,
       canonical: url,
       robots: "",
+      alternates: [],
       ogTitle: "",
       ogDescription: "",
+      ogType: "",
+      ogUrl: "",
       ogImage: "",
+      ogImageWidth: "",
+      ogImageHeight: "",
+      twitterCard: "",
       twitterTitle: "",
-      twitterDescription: ""
+      twitterDescription: "",
+      twitterImage: ""
     },
     headings: {
       h1: [],

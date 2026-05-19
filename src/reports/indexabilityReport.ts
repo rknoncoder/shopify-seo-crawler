@@ -13,6 +13,8 @@ export interface IndexabilityReportRow {
   canonicalSelfReferencing: boolean;
   robots: string;
   xRobotsTag: string;
+  alternateCount: number;
+  hreflangValues: string;
   issueCodes: string;
 }
 
@@ -34,6 +36,8 @@ export function buildIndexabilityReport(pages: CrawledPage[], sitemapUrls: strin
       canonicalSelfReferencing: indexability.canonicalSelfReferencing,
       robots: page.meta.robots,
       xRobotsTag: page.http?.xRobotsTag ?? "",
+      alternateCount: page.meta.alternates.length,
+      hreflangValues: page.meta.alternates.map((alternate) => alternate.hreflang).filter(Boolean).join("|"),
       issueCodes: page.issues.join("|")
     };
   });

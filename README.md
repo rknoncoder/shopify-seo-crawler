@@ -28,6 +28,10 @@ Indexability checks report pages blocked by meta robots, canonicalized URLs, inv
 
 HTTP header metadata is captured for each crawled page, including `X-Robots-Tag`, cache headers, server/CDN cache hints, content length, and measured response size. `X-Robots-Tag` noindex/nofollow directives are included in indexability audits.
 
+Hreflang and `rel="alternate"` links are extracted into page outputs. The crawler flags malformed hreflang values, invalid alternate URLs, duplicate language alternates, and missing self-references in hreflang clusters.
+
+Robots directives include richer snippet controls such as `nosnippet`, `noimageindex`, `max-snippet`, `max-image-preview`, `max-video-preview`, and `unavailable_after`. Open Graph and Twitter metadata checks flag missing social preview fields, invalid image URLs, invalid Twitter card values, and URL/title mismatches.
+
 Internal link checks report orphan pages, weakly linked pages, and products that are not linked from any crawled collection page.
 
 SERP snippet checks report weak title/meta description quality, including generic titles, brand-only titles, title/H1 mismatch, boilerplate descriptions, descriptions that duplicate titles/headings, and product descriptions that lack useful shopping details.

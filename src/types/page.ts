@@ -26,16 +26,30 @@ export interface LinkInfo {
   status?: number;
 }
 
+export interface AlternateLinkInfo {
+  href: string;
+  hreflang: string;
+  type: string;
+  title: string;
+}
+
 export interface PageMeta {
   title: string;
   description: string;
   canonical: string;
   robots: string;
+  alternates: AlternateLinkInfo[];
   ogTitle: string;
   ogDescription: string;
+  ogType: string;
+  ogUrl: string;
   ogImage: string;
+  ogImageWidth: string;
+  ogImageHeight: string;
+  twitterCard: string;
   twitterTitle: string;
   twitterDescription: string;
+  twitterImage: string;
 }
 
 export interface HttpHeaderMetadata {

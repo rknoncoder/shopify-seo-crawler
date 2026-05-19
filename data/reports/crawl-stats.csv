@@ -1,2 +1,2 @@
 generatedAt,totalRequested,totalCrawled,status2xx,status3xx,status4xx,status5xx,statusOther,exactStatusCounts,fetchFailedCount,skippedNonHtmlCount,redirectedCount,totalRetries,statusRetries,errorRetries,retryStatusCounts,avgLoadTimeMs,p50LoadTimeMs,p95LoadTimeMs,maxLoadTimeMs
-2026-05-16T11:45:16.602Z,1017,1014,1014,0,0,0,0,"{""200"":1014}",0,3,0,3,0,3,{},637,340,1501,36384
+2026-05-19T12:10:16.633Z,1019,1018,1018,0,0,0,0,"{""200"":1018}",0,1,0,0,0,0,{},274,266,441,2673

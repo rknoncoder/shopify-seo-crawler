@@ -5,6 +5,12 @@ export interface RobotsDirectives {
   nofollow: boolean;
   none: boolean;
   noarchive: boolean;
+  nosnippet: boolean;
+  noimageindex: boolean;
+  maxSnippet: string;
+  maxImagePreview: string;
+  maxVideoPreview: string;
+  unavailableAfter: string;
 }
 
 export interface IndexabilitySummary {
@@ -15,17 +21,21 @@ export interface IndexabilitySummary {
 }
 
 export function parseRobotsDirectives(value: string): RobotsDirectives {
-  const directives = value
-    .toLowerCase()
-    .split(",")
-    .map((directive) => normalizeRobotsDirective(directive))
-    .filter(Boolean);
+  const tokens = tokenizeRobotsDirectives(value);
+  const directiveNames = tokens.map((token) => token.name);
+  const valueMap = new Map(tokens.map((token) => [token.name, token.value]));
 
   return {
-    noindex: directives.includes("noindex") || directives.includes("none"),
-    nofollow: directives.includes("nofollow") || directives.includes("none"),
-    none: directives.includes("none"),
-    noarchive: directives.includes("noarchive")
+    noindex: directiveNames.includes("noindex") || directiveNames.includes("none"),
+    nofollow: directiveNames.includes("nofollow") || directiveNames.includes("none"),
+    none: directiveNames.includes("none"),
+    noarchive: directiveNames.includes("noarchive"),
+    nosnippet: directiveNames.includes("nosnippet"),
+    noimageindex: directiveNames.includes("noimageindex"),
+    maxSnippet: valueMap.get("max-snippet") || "",
+    maxImagePreview: valueMap.get("max-image-preview") || "",
+    maxVideoPreview: valueMap.get("max-video-preview") || "",
+    unavailableAfter: valueMap.get("unavailable_after") || ""
   };
 }
 
@@ -62,6 +72,24 @@ export function summarizeIndexability(page: CrawledPage): IndexabilitySummary {
     };
   }
 
+  if (isUnavailableAfterExpired(headerRobots.unavailableAfter)) {
+    return {
+      indexable: false,
+      status: "not_indexable_x_robots_tag_unavailable_after",
+      canonicalTarget,
+      canonicalSelfReferencing
+    };
+  }
+
+  if (isUnavailableAfterExpired(metaRobots.unavailableAfter)) {
+    return {
+      indexable: false,
+      status: "not_indexable_unavailable_after",
+      canonicalTarget,
+      canonicalSelfReferencing
+    };
+  }
+
   if (canonicalTarget && !canonicalSelfReferencing) {
     return {
       indexable: false,
@@ -79,10 +107,102 @@ export function summarizeIndexability(page: CrawledPage): IndexabilitySummary {
   };
 }
 
-function normalizeRobotsDirective(directive: string): string {
+interface RobotsToken {
+  name: string;
+  value: string;
+}
+
+const valuedRobotsDirectives = new Set([
+  "max-snippet",
+  "max-image-preview",
+  "max-video-preview",
+  "unavailable_after"
+]);
+
+const knownRobotsDirectives = new Set([
+  "all",
+  "index",
+  "follow",
+  "noindex",
+  "nofollow",
+  "none",
+  "noarchive",
+  "nosnippet",
+  "noimageindex",
+  "notranslate",
+  "indexifembedded",
+  ...valuedRobotsDirectives
+]);
+
+function tokenizeRobotsDirectives(value: string): RobotsToken[] {
+  return splitRobotsDirectiveValue(value)
+    .map((directive) => parseRobotsToken(stripUserAgentPrefix(directive)))
+    .filter((token): token is RobotsToken => Boolean(token));
+}
+
+function splitRobotsDirectiveValue(value: string): string[] {
+  const parts = value.split(",");
+  const directives: string[] = [];
+
+  for (const part of parts) {
+    const trimmed = part.trim();
+    if (!trimmed) continue;
+
+    const previous = directives[directives.length - 1] || "";
+    if (isUnavailableAfterToken(previous) && !looksLikeRobotsDirective(trimmed)) {
+      directives[directives.length - 1] = `${previous}, ${trimmed}`;
+    } else {
+      directives.push(trimmed);
+    }
+  }
+
+  return directives;
+}
+
+function stripUserAgentPrefix(directive: string): string {
   const trimmed = directive.trim();
-  const prefixedDirective = trimmed.match(/^[a-z0-9_-]+\s*:\s*(.+)$/i);
-  return prefixedDirective ? prefixedDirective[1].trim() : trimmed;
+  const separator = trimmed.indexOf(":");
+  if (separator < 0) return trimmed;
+
+  const prefix = normalizeDirectiveName(trimmed.slice(0, separator));
+  if (valuedRobotsDirectives.has(prefix)) return trimmed;
+
+  const remainder = trimmed.slice(separator + 1).trim();
+  return looksLikeRobotsDirective(remainder) ? remainder : trimmed;
+}
+
+function parseRobotsToken(directive: string): RobotsToken | null {
+  const separator = directive.indexOf(":");
+  const rawName = separator >= 0 ? directive.slice(0, separator) : directive;
+  const name = normalizeDirectiveName(rawName);
+  if (!knownRobotsDirectives.has(name)) return null;
+
+  return {
+    name,
+    value: separator >= 0 ? directive.slice(separator + 1).trim() : ""
+  };
+}
+
+function looksLikeRobotsDirective(value: string): boolean {
+  const separator = value.indexOf(":");
+  const rawName = separator >= 0 ? value.slice(0, separator) : value;
+  return knownRobotsDirectives.has(normalizeDirectiveName(rawName));
+}
+
+function normalizeDirectiveName(name: string): string {
+  return name.trim().toLowerCase().replace(/_/g, "-") === "unavailable-after"
+    ? "unavailable_after"
+    : name.trim().toLowerCase().replace(/_/g, "-");
+}
+
+function isUnavailableAfterToken(value: string): boolean {
+  return normalizeDirectiveName(value.split(":")[0] || "") === "unavailable_after";
+}
+
+function isUnavailableAfterExpired(value: string): boolean {
+  if (!value) return false;
+  const expiresAt = Date.parse(value);
+  return Number.isFinite(expiresAt) && expiresAt <= Date.now();
 }
 
 export function normalizeCanonicalTarget(canonical: string, baseUrl: string): string {

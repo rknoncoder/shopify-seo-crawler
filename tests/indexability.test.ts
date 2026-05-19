@@ -6,10 +6,14 @@ import type { CrawledPage } from "../src/types/page.js";
 
 describe("indexability", () => {
   it("parses user-agent-prefixed X-Robots-Tag directives", () => {
-    const directives = parseRobotsDirectives("googlebot: noindex, otherbot: nofollow");
+    const directives = parseRobotsDirectives("googlebot: noindex, otherbot: nofollow, max-snippet:50, max-image-preview:standard, max-video-preview:0, unavailable_after: Wed, 21 Oct 2015 07:28:00 GMT");
 
     assert.equal(directives.noindex, true);
     assert.equal(directives.nofollow, true);
+    assert.equal(directives.maxSnippet, "50");
+    assert.equal(directives.maxImagePreview, "standard");
+    assert.equal(directives.maxVideoPreview, "0");
+    assert.equal(directives.unavailableAfter, "Wed, 21 Oct 2015 07:28:00 GMT");
   });
 
   it("marks pages as not indexable when X-Robots-Tag contains noindex", () => {
@@ -31,6 +35,24 @@ describe("indexability", () => {
     assert.equal(summary.indexable, false);
     assert.equal(summary.status, "not_indexable_noindex");
     assert.equal(issues.some((issue) => issue.code === "meta_robots_noindex"), true);
+  });
+
+  it("flags richer robots preview directives", () => {
+    const page = crawledPage({
+      robots: "nosnippet, noarchive, noimageindex, max-snippet:50, max-image-preview:standard, max-video-preview:0, unavailable_after: 1 Jan 2000 00:00:00 GMT"
+    });
+    const summary = summarizeIndexability(page);
+    const issueCodes = auditIndexability(page).map((issue) => issue.code);
+
+    assert.equal(summary.indexable, false);
+    assert.equal(summary.status, "not_indexable_unavailable_after");
+    assert.equal(issueCodes.includes("meta_robots_nosnippet"), true);
+    assert.equal(issueCodes.includes("meta_robots_noarchive"), true);
+    assert.equal(issueCodes.includes("meta_robots_noimageindex"), true);
+    assert.equal(issueCodes.includes("meta_robots_max_snippet_limited"), true);
+    assert.equal(issueCodes.includes("meta_robots_max_image_preview_restricted"), true);
+    assert.equal(issueCodes.includes("meta_robots_max_video_preview_limited"), true);
+    assert.equal(issueCodes.includes("meta_robots_unavailable_after"), true);
   });
 });
 
@@ -65,11 +87,18 @@ function crawledPage(overrides: { robots?: string; xRobotsTag?: string } = {}): 
       description: "Test product description",
       canonical: url,
       robots: overrides.robots ?? "",
+      alternates: [],
       ogTitle: "",
       ogDescription: "",
+      ogType: "",
+      ogUrl: "",
       ogImage: "",
+      ogImageWidth: "",
+      ogImageHeight: "",
+      twitterCard: "",
       twitterTitle: "",
-      twitterDescription: ""
+      twitterDescription: "",
+      twitterImage: ""
     },
     headings: {
       h1: ["Test Product"],
