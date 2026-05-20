@@ -37,7 +37,7 @@ export function buildIndexabilityReport(pages: CrawledPage[], sitemapUrls: strin
       robots: page.meta.robots,
       xRobotsTag: page.http?.xRobotsTag ?? "",
       alternateCount: page.meta.alternates.length,
-      hreflangValues: page.meta.alternates.map((alternate) => alternate.hreflang).filter(Boolean).join("|"),
+      hreflangValues: page.meta.hreflangLanguages.join("|"),
       issueCodes: page.issues.join("|")
     };
   });

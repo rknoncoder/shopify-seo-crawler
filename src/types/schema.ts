@@ -12,6 +12,9 @@ export interface SchemaSummary {
   hasPriceCurrency: boolean;
   hasAvailability: boolean;
   hasUrl: boolean;
+  prices: string[];
+  priceCurrencies: string[];
+  availabilityValues: string[];
   names: string[];
   urls: string[];
 }

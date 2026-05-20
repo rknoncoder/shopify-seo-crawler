@@ -32,6 +32,8 @@ Hreflang and `rel="alternate"` links are extracted into page outputs. The crawle
 
 Robots directives include richer snippet controls such as `nosnippet`, `noimageindex`, `max-snippet`, `max-image-preview`, `max-video-preview`, and `unavailable_after`. Open Graph and Twitter metadata checks flag missing social preview fields, invalid image URLs, invalid Twitter card values, and URL/title mismatches.
 
+Advanced metadata validation records compact page-level signals for noindex, canonical validity, Open Graph product data, OG/schema/visible price mismatches, viewport issues, hreflang count, HTML language, UTF-8 charset placement, and e-commerce social metadata.
+
 Internal link checks report orphan pages, weakly linked pages, and products that are not linked from any crawled collection page.
 
 SERP snippet checks report weak title/meta description quality, including generic titles, brand-only titles, title/H1 mismatch, boilerplate descriptions, descriptions that duplicate titles/headings, and product descriptions that lack useful shopping details.

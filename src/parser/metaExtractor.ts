@@ -1,13 +1,22 @@
 import type { CheerioAPI } from "cheerio";
+import { extractAdvancedMetadataFields } from "../analyzer/metadata.js";
 import type { PageMeta } from "../types/page.js";
 
-export function extractMeta($: CheerioAPI): PageMeta {
+export function extractMeta($: CheerioAPI, html = ""): PageMeta {
+  const advanced = extractAdvancedMetadataFields($, html);
+  const alternates = extractAlternates($);
+
   return {
     title: $("title").first().text().trim(),
     description: $('meta[name="description"]').attr("content")?.trim() || "",
     canonical: $('link[rel="canonical"]').attr("href")?.trim() || "",
     robots: $('meta[name="robots"]').attr("content")?.trim() || "",
-    alternates: extractAlternates($),
+    htmlLang: advanced.htmlLang,
+    charset: advanced.charset,
+    charsetWithinFirst1024: advanced.charsetWithinFirst1024,
+    viewport: advanced.viewport,
+    alternates,
+    hreflangLanguages: [...new Set(alternates.map((alternate) => alternate.hreflang).filter(Boolean))],
     ogTitle: $('meta[property="og:title"]').attr("content")?.trim() || "",
     ogDescription: $('meta[property="og:description"]').attr("content")?.trim() || "",
     ogType: $('meta[property="og:type"]').attr("content")?.trim() || "",
@@ -15,6 +24,9 @@ export function extractMeta($: CheerioAPI): PageMeta {
     ogImage: $('meta[property="og:image"]').attr("content")?.trim() || "",
     ogImageWidth: $('meta[property="og:image:width"]').attr("content")?.trim() || "",
     ogImageHeight: $('meta[property="og:image:height"]').attr("content")?.trim() || "",
+    ogPriceAmount: advanced.ogPriceAmount,
+    ogPriceCurrency: advanced.ogPriceCurrency,
+    ogAvailability: advanced.ogAvailability,
     twitterCard: $('meta[name="twitter:card"]').attr("content")?.trim() || "",
     twitterTitle: $('meta[name="twitter:title"]').attr("content")?.trim() || "",
     twitterDescription: $('meta[name="twitter:description"]').attr("content")?.trim() || "",

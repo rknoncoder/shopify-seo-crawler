@@ -45,6 +45,9 @@ function buildSchemaSummary(raw: unknown, rawText: string): SchemaSummary {
   const values = nodes.flatMap((node) => Object.entries(node));
   const names = getStringValues(values, ["name", "headline"]).slice(0, 20);
   const urls = getStringValues(values, ["url", "@id", "item"]).filter((value) => /^https?:|^\//.test(value)).slice(0, 50);
+  const prices = getStringValues(values, ["price", "lowPrice", "highPrice"]).slice(0, 20);
+  const priceCurrencies = getStringValues(values, ["priceCurrency"]).slice(0, 10);
+  const availabilityValues = getStringValues(values, ["availability"]).slice(0, 10);
 
   return {
     rawSizeBytes: Buffer.byteLength(rawText, "utf8"),
@@ -58,6 +61,9 @@ function buildSchemaSummary(raw: unknown, rawText: string): SchemaSummary {
     hasPriceCurrency: values.some(([key, value]) => key === "priceCurrency" && hasAnyValue(value)),
     hasAvailability: values.some(([key, value]) => key === "availability" && hasAnyValue(value)),
     hasUrl: values.some(([key, value]) => (key === "url" || key === "@id") && hasAnyValue(value)),
+    prices,
+    priceCurrencies,
+    availabilityValues,
     names,
     urls
   };

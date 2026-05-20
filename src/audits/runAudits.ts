@@ -8,6 +8,7 @@ import { auditHreflang } from "./hreflangAudit.js";
 import { auditIndexability } from "./indexabilityAudit.js";
 import { auditImageSeo } from "./imageSeoAudit.js";
 import { auditLinkQuality } from "./linkQualityAudit.js";
+import { auditMetadataValidation } from "./metadataAudit.js";
 import { auditPageSpeedSignals } from "./pageSpeedAudit.js";
 import { auditSchema } from "./schemaAudit.js";
 import { auditSerpSnippet } from "./serpSnippetAudit.js";
@@ -24,6 +25,7 @@ export function runAudits(page: CrawledPage): SeoIssue[] {
     ...auditBasicSeo(page),
     ...auditSerpSnippet(page),
     ...auditSocialMetadata(page),
+    ...auditMetadataValidation(page),
     ...auditIndexability(page),
     ...auditHreflang(page),
     ...auditPageSpeedSignals(page),

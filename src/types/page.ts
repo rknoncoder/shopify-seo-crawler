@@ -38,7 +38,12 @@ export interface PageMeta {
   description: string;
   canonical: string;
   robots: string;
+  htmlLang: string;
+  charset: string;
+  charsetWithinFirst1024: boolean;
+  viewport: string;
   alternates: AlternateLinkInfo[];
+  hreflangLanguages: string[];
   ogTitle: string;
   ogDescription: string;
   ogType: string;
@@ -46,6 +51,9 @@ export interface PageMeta {
   ogImage: string;
   ogImageWidth: string;
   ogImageHeight: string;
+  ogPriceAmount: string;
+  ogPriceCurrency: string;
+  ogAvailability: string;
   twitterCard: string;
   twitterTitle: string;
   twitterDescription: string;
@@ -83,6 +91,15 @@ export interface PageSpeedSignals {
   shopifyAppScriptHosts: string[];
 }
 
+export interface MetadataValidationSummary {
+  hasNoIndex: boolean;
+  isCanonicalValid: boolean;
+  hasOpenGraphProductData: boolean;
+  ogPriceMismatch: boolean;
+  hasViewportIssue: boolean;
+  hreflangCount: number;
+}
+
 export interface CrawledPage {
   url: string;
   finalUrl: string;
@@ -105,5 +122,6 @@ export interface CrawledPage {
   schemas: StructuredDataItem[];
   shopify: ShopifySignals;
   speed: PageSpeedSignals;
+  metadataValidation: MetadataValidationSummary;
   issues: string[];
 }

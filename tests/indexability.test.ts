@@ -87,7 +87,12 @@ function crawledPage(overrides: { robots?: string; xRobotsTag?: string } = {}): 
       description: "Test product description",
       canonical: url,
       robots: overrides.robots ?? "",
+      htmlLang: "en",
+      charset: "utf-8",
+      charsetWithinFirst1024: true,
+      viewport: "width=device-width, initial-scale=1",
       alternates: [],
+      hreflangLanguages: [],
       ogTitle: "",
       ogDescription: "",
       ogType: "",
@@ -95,6 +100,9 @@ function crawledPage(overrides: { robots?: string; xRobotsTag?: string } = {}): 
       ogImage: "",
       ogImageWidth: "",
       ogImageHeight: "",
+      ogPriceAmount: "",
+      ogPriceCurrency: "",
+      ogAvailability: "",
       twitterCard: "",
       twitterTitle: "",
       twitterDescription: "",
@@ -132,6 +140,14 @@ function crawledPage(overrides: { robots?: string; xRobotsTag?: string } = {}): 
       primaryImageLazy: false,
       thirdPartyScriptHosts: [],
       shopifyAppScriptHosts: []
+    },
+    metadataValidation: {
+      hasNoIndex: Boolean(overrides.robots?.includes("noindex") || overrides.xRobotsTag?.includes("noindex")),
+      isCanonicalValid: true,
+      hasOpenGraphProductData: false,
+      ogPriceMismatch: false,
+      hasViewportIssue: false,
+      hreflangCount: 0
     },
     issues: []
   };

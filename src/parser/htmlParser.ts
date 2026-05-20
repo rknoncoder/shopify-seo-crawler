@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio";
+import { analyzeMetadata } from "../analyzer/metadata.js";
 import type { FetchResult } from "../types/crawl.js";
 import type { CrawledPage } from "../types/page.js";
 import { extractContentSummary } from "./contentExtractor.js";
@@ -15,6 +16,16 @@ export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage 
   const shopify = detectShopify($, fetchResult.finalUrl);
   const content = extractContentSummary($);
   const images = extractImages($, fetchResult.finalUrl);
+  const meta = extractMeta($, fetchResult.html);
+  const schemas = extractSchemas($);
+  const metadataValidation = analyzeMetadata({
+    finalUrl: fetchResult.finalUrl,
+    pageType: shopify.pageType,
+    meta,
+    schemas,
+    textSample: content.textSample,
+    xRobotsTag: fetchResult.http?.xRobotsTag
+  });
 
   return {
     url: fetchResult.url,
@@ -28,16 +39,17 @@ export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage 
     fetchedAt: new Date().toISOString(),
     loadTimeMs: fetchResult.loadTimeMs,
     pageType: shopify.pageType,
-    meta: extractMeta($),
+    meta,
     headings: extractHeadings($),
     wordCount: content.wordCount,
     textSample: content.textSample,
     textHash: content.textHash,
     images,
     links: extractLinks($, fetchResult.finalUrl),
-    schemas: extractSchemas($),
+    schemas,
     shopify,
     speed: extractSpeedSignals($, fetchResult.html, fetchResult.finalUrl, images),
+    metadataValidation,
     issues: []
   };
 }
