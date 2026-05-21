@@ -1,12 +1,7 @@
 [
-  {"schemaType":"ProductGroup","pageType":"product","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":820,"schemaNodes":820},
-  {"schemaType":"FAQPage","pageType":"product","sourceType":"unknown","sourceName":"Unknown JSON-LD source","urls":819,"schemaNodes":819},
-  {"schemaType":"Article","pageType":"article","sourceType":"unknown","sourceName":"Unknown JSON-LD source","urls":109,"schemaNodes":109},
-  {"schemaType":"CollectionPage","pageType":"collection","sourceType":"unknown","sourceName":"Unknown JSON-LD source","urls":38,"schemaNodes":38},
-  {"schemaType":"Article","pageType":"article","sourceType":"custom_manual","sourceName":"Custom/manual JSON-LD","urls":4,"schemaNodes":4},
-  {"schemaType":"FAQPage","pageType":"page","sourceType":"unknown","sourceName":"Unknown JSON-LD source","urls":1,"schemaNodes":1},
-  {"schemaType":"FAQPage","pageType":"collection","sourceType":"custom_manual","sourceName":"Custom/manual JSON-LD","urls":1,"schemaNodes":1},
-  {"schemaType":"FAQPage","pageType":"article","sourceType":"custom_manual","sourceName":"Custom/manual JSON-LD","urls":1,"schemaNodes":1},
-  {"schemaType":"ProductGroup","pageType":"home","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":1,"schemaNodes":1},
-  {"schemaType":"ProductGroup","pageType":"page","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":1,"schemaNodes":1}
+  {"schemaType":"Organization","pageType":"product","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":1198,"schemaNodes":1198},
+  {"schemaType":"Product","pageType":"product","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":1198,"schemaNodes":1198},
+  {"schemaType":"WebSite","pageType":"product","sourceType":"unknown","sourceName":"Unknown JSON-LD source","urls":1198,"schemaNodes":1198},
+  {"schemaType":"Organization","pageType":"home","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":1,"schemaNodes":1},
+  {"schemaType":"WebSite","pageType":"home","sourceType":"unknown","sourceName":"Unknown JSON-LD source","urls":1,"schemaNodes":1}
 ]
