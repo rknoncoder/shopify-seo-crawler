@@ -87,6 +87,22 @@ ShopifySEOBot/1.0 (+https://example.com/bot)
 
 By default it crawls with one request at a time and waits roughly 3-5 seconds between requests to reduce Shopify bot-protection blocks.
 
+## Local Dashboard
+
+Run the local API and dashboard:
+
+```bash
+npm run server
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+The dashboard starts crawls through the existing CLI engine and serves the latest CSV/JSON/XLSX reports from `data/reports`. It binds to `127.0.0.1` by default for local use.
+
 For large Shopify stores, use memory-safe mode so the crawler writes CSV/JSON reports without building the heavy Excel workbook:
 
 ```bash
