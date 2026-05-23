@@ -6,6 +6,7 @@ import { fetchPage, getFetchTelemetry, resetFetchTelemetry, sleepBetweenRequests
 import { UrlManager } from "./urlManager.js";
 import { parseHtml } from "../parser/htmlParser.js";
 import type { CrawlResult } from "../types/crawl.js";
+import type { ImageInventoryUsage } from "../types/image.js";
 import type { CrawledPage } from "../types/page.js";
 import type { SeoIssue } from "../types/issue.js";
 import { classifyFetchError } from "../utils/fetchFailureClassifier.js";
@@ -24,6 +25,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   const pages: CrawledPage[] = [];
   const analysisPages: CrawledPage[] = [];
   const pageIssues: SeoIssue[] = [];
+  const imageInventoryUsages: ImageInventoryUsage[] = [];
   let totalRequested = 0;
   let skippedNonHtmlCount = 0;
   const queue = new PQueue({ concurrency: config.concurrency });
@@ -47,6 +49,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
         const issues = runAudits(page);
         page.issues = issues.map((issue) => issue.code);
         pageIssues.push(...issues);
+        imageInventoryUsages.push(...buildImageInventoryUsages(page));
 
         if (followLinks && next.depth < config.maxDepth) {
           page.links
@@ -84,12 +87,27 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   return {
     pages,
     issues: analyzeSite(analysisPages, pageIssues),
+    imageInventoryUsages,
     telemetry: {
       totalRequested,
       skippedNonHtmlCount,
       retries: getFetchTelemetry()
     }
   };
+}
+
+function buildImageInventoryUsages(page: CrawledPage): ImageInventoryUsage[] {
+  return page.images.map((image) => ({
+    imageUrl: image.src,
+    rawSrc: truncate(image.rawSrc, 500),
+    alt: truncate(image.alt, 300),
+    pageUrl: page.finalUrl,
+    pageType: page.pageType,
+    width: image.width || "",
+    height: image.height || "",
+    lazy: image.lazy,
+    fetchPriority: image.fetchPriority || ""
+  }));
 }
 
 function compactPageForAnalysis(page: CrawledPage): CrawledPage {

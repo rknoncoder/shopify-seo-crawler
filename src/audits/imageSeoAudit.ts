@@ -81,13 +81,15 @@ function addGenericAltIssues(page: CrawledPage, issues: SeoIssue[], images: Imag
 }
 
 function addDuplicateAltIssues(page: CrawledPage, issues: SeoIssue[], images: ImageInfo[]): void {
-  const counts = new Map<string, number>();
+  const groups = new Map<string, { alt: string; images: ImageInfo[] }>();
   for (const image of images) {
     const normalized = normalizeText(image.alt);
-    counts.set(normalized, (counts.get(normalized) || 0) + 1);
+    const group = groups.get(normalized) || { alt: image.alt, images: [] };
+    group.images.push(image);
+    groups.set(normalized, group);
   }
 
-  const duplicates = [...counts.entries()].filter(([, count]) => count > 1);
+  const duplicates = [...groups.entries()].filter(([, group]) => group.images.length > 1);
   if (duplicates.length === 0) return;
 
   issues.push(issue(
@@ -96,7 +98,21 @@ function addDuplicateAltIssues(page: CrawledPage, issues: SeoIssue[], images: Im
     "image_alt_duplicate_on_page",
     `${duplicates.length} duplicate image alt text value(s) found on the page.`,
     "Use unique alt text when images show different angles, variants, colors, or details.",
-    duplicates.slice(0, 5).map(([alt, count]) => `${alt} (${count})`).join(" | ")
+    duplicates.slice(0, 5).map(([, group]) => `${normalizeText(group.alt)} (${group.images.length})`).join(" | ")
+  ));
+
+  const shopifyFallbackGroups = duplicates
+    .map(([, group]) => group)
+    .filter((group) => isLikelyShopifyVariantFallbackAlt(page, group.alt, group.images));
+  if (shopifyFallbackGroups.length === 0) return;
+
+  issues.push(issue(
+    page,
+    "recommended",
+    "shopify_variant_auto_alt_duplicate",
+    "Duplicate image alt text appears to be Shopify's automatic product-title fallback on variant/media images.",
+    "If the images show different variants, colors, angles, or product details, customize media alt text so each important image is unique. If duplicates are hidden theme clones, consider reducing duplicated media markup.",
+    shopifyFallbackGroups.slice(0, 5).map((group) => `alt="${group.alt}" repeated ${group.images.length} times`).join(" | ")
   ));
 }
 
@@ -193,6 +209,20 @@ function isLazyLoadingEligibleImage(image: ImageInfo): boolean {
 
 function isPriorityImage(image: ImageInfo): boolean {
   return image.fetchPriority?.toLowerCase() === "high";
+}
+
+function isLikelyShopifyVariantFallbackAlt(page: CrawledPage, alt: string, images: ImageInfo[]): boolean {
+  if (page.pageType !== "product") return false;
+
+  const productImages = images.filter(isLikelyProductImage);
+  if (productImages.length < 3) return false;
+
+  const pageWords = meaningfulWords(page.headings.h1[0] || page.meta.title);
+  const altWords = new Set(meaningfulWords(alt));
+  if (pageWords.length < 2 || altWords.size < 2) return false;
+
+  const overlap = pageWords.filter((word) => altWords.has(word)).length / pageWords.length;
+  return overlap >= 0.7;
 }
 
 function sampleImages(images: ImageInfo[], field: "alt" | "filename" | "src"): string {

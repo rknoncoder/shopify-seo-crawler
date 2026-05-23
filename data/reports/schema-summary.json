@@ -1,7 +1,4 @@
 [
-  {"schemaType":"Organization","pageType":"product","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":1198,"schemaNodes":1198},
-  {"schemaType":"Product","pageType":"product","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":1198,"schemaNodes":1198},
-  {"schemaType":"WebSite","pageType":"product","sourceType":"unknown","sourceName":"Unknown JSON-LD source","urls":1198,"schemaNodes":1198},
-  {"schemaType":"Organization","pageType":"home","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":1,"schemaNodes":1},
-  {"schemaType":"WebSite","pageType":"home","sourceType":"unknown","sourceName":"Unknown JSON-LD source","urls":1,"schemaNodes":1}
+  {"schemaType":"FAQPage","pageType":"product","sourceType":"unknown","sourceName":"Unknown JSON-LD source","urls":1,"schemaNodes":1},
+  {"schemaType":"ProductGroup","pageType":"product","sourceType":"shopify_theme","sourceName":"Shopify theme structured data","urls":1,"schemaNodes":1}
 ]

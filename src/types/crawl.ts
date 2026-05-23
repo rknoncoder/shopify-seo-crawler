@@ -1,5 +1,6 @@
 import type { CrawledPage } from "./page.js";
 import type { HttpHeaderMetadata } from "./page.js";
+import type { ImageInventoryUsage } from "./image.js";
 import type { SeoIssue } from "./issue.js";
 
 export type CrawlMode = "single" | "seo" | "full";
@@ -65,6 +66,7 @@ export interface CrawlTelemetry {
 export interface CrawlResult {
   pages: CrawledPage[];
   issues: SeoIssue[];
+  imageInventoryUsages: ImageInventoryUsage[];
   telemetry: CrawlTelemetry;
 }
 

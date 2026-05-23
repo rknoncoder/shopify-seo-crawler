@@ -1,54 +1,11 @@
 {
-  "source": "robots",
-  "status": "found",
-  "detectedSitemapUrls": [
-    "https://nobero.com/sitemap.xml"
-  ],
-  "attempts": [
-    {
-      "url": "https://nobero.com/robots.txt",
-      "status": "200"
-    }
-  ],
-  "unavailableReason": "",
-  "totalSitemapsFound": 5,
-  "totalUrlsFound": 2505,
-  "selectedSitemapsForCrawl": 5,
-  "sitemaps": [
-    {
-      "sitemapUrl": "https://nobero.com/sitemap_agentic_discovery.xml",
-      "type": "urlset",
-      "sitemapType": "other",
-      "urlCount": 1,
-      "selectedForCrawl": true
-    },
-    {
-      "sitemapUrl": "https://nobero.com/sitemap_products_1.xml?from=5391274475686&to=15321575391398",
-      "type": "urlset",
-      "sitemapType": "product",
-      "urlCount": 1681,
-      "selectedForCrawl": true
-    },
-    {
-      "sitemapUrl": "https://nobero.com/sitemap_pages_1.xml?from=55709597828&to=699297300646",
-      "type": "urlset",
-      "sitemapType": "page",
-      "urlCount": 90,
-      "selectedForCrawl": true
-    },
-    {
-      "sitemapUrl": "https://nobero.com/sitemap_collections_1.xml?from=170010837124&to=686741323942",
-      "type": "urlset",
-      "sitemapType": "collection",
-      "urlCount": 495,
-      "selectedForCrawl": true
-    },
-    {
-      "sitemapUrl": "https://nobero.com/sitemap_blogs_1.xml",
-      "type": "urlset",
-      "sitemapType": "blog",
-      "urlCount": 238,
-      "selectedForCrawl": true
-    }
-  ]
+  "source": "none",
+  "status": "skipped",
+  "detectedSitemapUrls": [],
+  "attempts": [],
+  "unavailableReason": "Single URL crawl requested.",
+  "totalSitemapsFound": 0,
+  "totalUrlsFound": 0,
+  "selectedSitemapsForCrawl": 0,
+  "sitemaps": []
 }

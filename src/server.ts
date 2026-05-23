@@ -276,11 +276,13 @@ function appendLog(job: CrawlJob, value: string): void {
 async function buildReportsSummary(): Promise<Record<string, unknown>> {
   const crawlStats = await readReportJson("crawl-stats.json");
   const issues = await readReportJson("issues.json");
+  const imageSeoSummary = await readReportJson("image-seo-summary.json");
   const pages = await readCsvRowCount("pages.csv");
 
   return {
     generatedAt: new Date().toISOString(),
     crawlStats,
+    imageSeoSummary,
     pageRows: pages,
     issueCount: Array.isArray(issues) ? issues.length : 0,
     severityCounts: Array.isArray(issues) ? countBy(issues, "severity") : {},
@@ -633,6 +635,8 @@ function dashboardHtml(): string {
       <div class="grid">
         <div class="metric"><span>Pages</span><strong id="pages">0</strong></div>
         <div class="metric"><span>Issues</span><strong id="issues">0</strong></div>
+        <div class="metric"><span>Missing Alt</span><strong id="missingAlt">0</strong></div>
+        <div class="metric"><span>Pages Missing Alt</span><strong id="pagesMissingAlt">0</strong></div>
         <div class="metric"><span>Fetch Failures</span><strong id="failures">0</strong></div>
         <div class="metric"><span>P95 Load</span><strong id="p95">0 ms</strong></div>
       </div>
@@ -704,6 +708,8 @@ function dashboardHtml(): string {
       const summary = await response.json();
       document.getElementById("pages").textContent = summary.pageRows || 0;
       document.getElementById("issues").textContent = summary.issueCount || 0;
+      document.getElementById("missingAlt").textContent = summary.imageSeoSummary?.missingAltImages || 0;
+      document.getElementById("pagesMissingAlt").textContent = summary.imageSeoSummary?.pagesWithMissingAlt || 0;
       document.getElementById("failures").textContent = summary.crawlStats?.fetchFailedCount || 0;
       const p95 = summary.crawlStats?.loadTimeMs?.p95 || 0;
       document.getElementById("p95").textContent = p95 + " ms";

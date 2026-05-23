@@ -1,6 +1,3 @@
 schemaType,pageType,sourceType,sourceName,urls,schemaNodes
-Organization,product,shopify_theme,Shopify theme structured data,1198,1198
-Product,product,shopify_theme,Shopify theme structured data,1198,1198
-WebSite,product,unknown,Unknown JSON-LD source,1198,1198
-Organization,home,shopify_theme,Shopify theme structured data,1,1
-WebSite,home,unknown,Unknown JSON-LD source,1,1
+FAQPage,product,unknown,Unknown JSON-LD source,1,1
+ProductGroup,product,shopify_theme,Shopify theme structured data,1,1

@@ -12,6 +12,8 @@ Collection SEO checks include thin collection copy, low/no product links, repeat
 
 Image SEO checks include missing alt text, weak/generic/duplicate alt text, product image alt context, generic filenames, missing dimensions, and missing lazy loading for non-primary images.
 
+Image SEO reporting includes a Screaming Frog-style image inventory with image URL, alt text, usage count, pages used, and sample pages. Image SEO summary reporting adds site-wide totals for missing alt images, pages affected by missing alt, missing dimensions, duplicate alt issue pages, large image URLs, and primary-image lazy loading. Product pages also flag duplicate alt text that appears to be Shopify's automatic product-title fallback on variant/media images.
+
 Page speed signals check HTML size, DOM size, script count, stylesheet count, render-blocking stylesheets, third-party/app script hosts, image count, large Shopify image URLs, and primary-image priority hints. These are lightweight crawl signals, not a Lighthouse replacement.
 
 Optional PageSpeed Insights integration can export Lighthouse/PageSpeed data for a limited sample of crawled URLs using `--pagespeed`. It supports unauthenticated test calls and optional API keys through `--pagespeed-key`, `PAGESPEED_API_KEY`, or `SHOPIFY_CRAWLER_PAGESPEED_KEY`.
@@ -141,6 +143,10 @@ Reports are written to:
 - `data/reports/redirect-report.csv`
 - `data/reports/pagespeed-report.json`
 - `data/reports/pagespeed-report.csv`
+- `data/reports/image-inventory.json`
+- `data/reports/image-inventory.csv`
+- `data/reports/image-seo-summary.json`
+- `data/reports/image-seo-summary.csv`
 - `data/reports/issues.json`
 - `data/reports/issues.csv`
 - `data/reports/action-plan.json`

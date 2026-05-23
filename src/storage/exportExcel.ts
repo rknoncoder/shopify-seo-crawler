@@ -5,11 +5,14 @@ import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
 import type { ActionPlanItem, SiteProfile } from "../types/report.js";
 import type { ContentCannibalizationReportRow } from "../reports/contentCannibalizationReport.js";
+import type { ImageInventoryRow } from "../reports/imageInventoryReport.js";
+import type { ImageSeoSummaryReport } from "../reports/imageSeoSummaryReport.js";
 import type { IndexabilityReportRow } from "../reports/indexabilityReport.js";
 import type { PageSpeedInsightsRow } from "../reports/pageSpeedInsightsReport.js";
 import type { RedirectReportRow } from "../reports/redirectReport.js";
 import type { RichResultEligibilityRow } from "../reports/richResultEligibilityReport.js";
 import type { SchemaInventoryRow, SchemaSummaryRow } from "../reports/schemaInventory.js";
+import { isMissingRequiredAlt } from "../utils/imageSeo.js";
 
 export async function exportExcel(
   pages: CrawledPage[],
@@ -23,6 +26,8 @@ export async function exportExcel(
   richResultEligibilityReport: RichResultEligibilityRow[] = [],
   redirectReport: RedirectReportRow[] = [],
   contentCannibalizationReport: ContentCannibalizationReportRow[] = [],
+  imageInventoryReport: ImageInventoryRow[] = [],
+  imageSeoSummaryReport?: ImageSeoSummaryReport,
   path = "data/reports/shopify-seo-report.xlsx"
 ): Promise<string> {
   await mkdir(dirname(path), { recursive: true });
@@ -35,6 +40,11 @@ export async function exportExcel(
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(indexabilityReport), "Indexability");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(redirectReport), "Redirects");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(pageSpeedReport), "PageSpeed");
+  XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(imageInventoryReport), "Images");
+  if (imageSeoSummaryReport) {
+    XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet([flattenImageSeoSummary(imageSeoSummaryReport)]), "Image SEO Summary");
+    XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(imageSeoSummaryReport.topMissingAltPages), "Missing Alt Samples");
+  }
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(richResultEligibilityReport), "Rich Results");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(schemaInventory), "Schema Inventory");
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(schemaSummary), "Schema Summary");
@@ -93,6 +103,7 @@ function flattenPages(pages: CrawledPage[]): Array<Record<string, unknown>> {
     stylesheetCount: page.speed.stylesheetCount,
     renderBlockingStylesheetCount: page.speed.renderBlockingStylesheetCount,
     imageCount: page.images.length,
+    missingAltImages: page.images.filter(isMissingRequiredAlt).length,
     largeImageUrlCount: page.speed.largeImageUrlCount,
     primaryImageFetchPriority: page.speed.primaryImageFetchPriority,
     primaryImageLazy: page.speed.primaryImageLazy,
@@ -102,4 +113,26 @@ function flattenPages(pages: CrawledPage[]): Array<Record<string, unknown>> {
     detectedApps: page.shopify.detectedApps.join("|"),
     issueCodes: page.issues.join("|")
   }));
+}
+
+function flattenImageSeoSummary(report: ImageSeoSummaryReport): Record<string, unknown> {
+  return {
+    generatedAt: report.generatedAt,
+    totalPages: report.totalPages,
+    pagesWithImages: report.pagesWithImages,
+    totalImagesStored: report.totalImagesStored,
+    totalImageUsages: report.totalImageUsages,
+    uniqueImageRows: report.uniqueImageRows,
+    missingAltImages: report.missingAltImages,
+    pagesWithMissingAlt: report.pagesWithMissingAlt,
+    duplicateAltIssuePages: report.duplicateAltIssuePages,
+    missingDimensionImages: report.missingDimensionImages,
+    pagesWithMissingDimensions: report.pagesWithMissingDimensions,
+    lazyLoadingIssuePages: report.lazyLoadingIssuePages,
+    primaryImageLazyPages: report.primaryImageLazyPages,
+    largeImageUrlCount: report.largeImageUrlCount,
+    pagesWithLargeImageUrls: report.pagesWithLargeImageUrls,
+    imageIssueCounts: Object.entries(report.imageIssueCounts).map(([code, count]) => `${code}:${count}`).join("|"),
+    note: report.note
+  };
 }

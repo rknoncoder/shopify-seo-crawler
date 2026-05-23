@@ -3,6 +3,8 @@ import { buildSiteProfile } from "../classifier/siteClassifier.js";
 import { buildActionPlan, countIssuesByCode } from "../reports/actionPlan.js";
 import { buildContentCannibalizationReport } from "../reports/contentCannibalizationReport.js";
 import { buildCrawlStatsReport } from "../reports/crawlStatsReport.js";
+import { buildImageInventoryReport } from "../reports/imageInventoryReport.js";
+import { buildImageSeoSummaryReport } from "../reports/imageSeoSummaryReport.js";
 import { buildIndexabilityReport } from "../reports/indexabilityReport.js";
 import { buildPageSpeedInsightsReport, type PageSpeedInsightsOptions } from "../reports/pageSpeedInsightsReport.js";
 import { buildRedirectReport } from "../reports/redirectReport.js";
@@ -29,6 +31,8 @@ export interface ReportBundle {
   richResultEligibilityReport: ReturnType<typeof buildRichResultEligibilityReport>;
   pageSpeedReport: Awaited<ReturnType<typeof buildPageSpeedInsightsReport>>;
   crawlStatsReport: ReturnType<typeof buildCrawlStatsReport>;
+  imageInventoryReport: ReturnType<typeof buildImageInventoryReport>;
+  imageSeoSummaryReport: ReturnType<typeof buildImageSeoSummaryReport>;
 }
 
 export async function buildReportBundle(options: BuildReportBundleOptions): Promise<ReportBundle> {
@@ -44,6 +48,8 @@ export async function buildReportBundle(options: BuildReportBundleOptions): Prom
   const indexabilityReport = buildIndexabilityReport(result.pages, finalUrls);
   const redirectReport = buildRedirectReport(result.pages);
   const richResultEligibilityReport = buildRichResultEligibilityReport(result.pages, issues);
+  const imageInventoryReport = buildImageInventoryReport(result.imageInventoryUsages);
+  const imageSeoSummaryReport = buildImageSeoSummaryReport(result.pages, issues, imageInventoryReport);
   const pageSpeedUrls = result.pages.filter((page) => page.status === 200).map((page) => page.finalUrl);
   const pageSpeedReport = await buildPageSpeedInsightsReport(pageSpeedUrls, pageSpeedOptions);
 
@@ -58,6 +64,8 @@ export async function buildReportBundle(options: BuildReportBundleOptions): Prom
     redirectReport,
     richResultEligibilityReport,
     pageSpeedReport,
-    crawlStatsReport
+    crawlStatsReport,
+    imageInventoryReport,
+    imageSeoSummaryReport
   };
 }

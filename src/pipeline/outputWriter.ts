@@ -1,4 +1,5 @@
 import { buildCrawlStatsCsvRows } from "../reports/crawlStatsReport.js";
+import { buildImageSeoSummaryCsvRows } from "../reports/imageSeoSummaryReport.js";
 import { exportExcel } from "../storage/exportExcel.js";
 import { saveCsv } from "../storage/saveCsv.js";
 import { saveIssuesCsv } from "../storage/saveIssuesCsv.js";
@@ -8,6 +9,7 @@ import { saveSiteProfileCsv } from "../storage/saveSiteProfileCsv.js";
 import { saveSiteProfileJson } from "../storage/saveSiteProfileJson.js";
 import type { CrawlResult } from "../types/crawl.js";
 import type { CrawledPage } from "../types/page.js";
+import { isMissingRequiredAlt } from "../utils/imageSeo.js";
 import { summarizeIndexability } from "../utils/indexability.js";
 import type { ExcelExportOptions } from "./configureRun.js";
 import type { ReportBundle } from "./reportBuilder.js";
@@ -36,6 +38,10 @@ export async function writeCrawlOutputs(
   await saveCsv("data/reports/rich-result-eligibility.csv", reports.richResultEligibilityReport);
   await saveJson("data/reports/pagespeed-report.json", reports.pageSpeedReport);
   await saveCsv("data/reports/pagespeed-report.csv", reports.pageSpeedReport);
+  await saveJson("data/reports/image-inventory.json", reports.imageInventoryReport);
+  await saveCsv("data/reports/image-inventory.csv", reports.imageInventoryReport);
+  await saveJson("data/reports/image-seo-summary.json", reports.imageSeoSummaryReport);
+  await saveCsv("data/reports/image-seo-summary.csv", buildImageSeoSummaryCsvRows(reports.imageSeoSummaryReport));
   await saveJson("data/reports/schema-inventory.json", reports.schemaInventory);
   await saveCsv("data/reports/schema-inventory.csv", reports.schemaInventory);
   await saveJson("data/reports/schema-summary.json", reports.schemaSummary);
@@ -59,7 +65,9 @@ export async function writeCrawlOutputs(
         reports.pageSpeedReport,
         reports.richResultEligibilityReport,
         reports.redirectReport,
-        reports.contentCannibalizationReport
+        reports.contentCannibalizationReport,
+        reports.imageInventoryReport,
+        reports.imageSeoSummaryReport
       )
     : "";
 }
@@ -126,7 +134,7 @@ function flattenPage(page: CrawledPage): Record<string, unknown> {
     primaryImageFetchPriority: page.speed.primaryImageFetchPriority,
     primaryImageLazy: page.speed.primaryImageLazy,
     images: page.images.length,
-    missingAltImages: page.images.filter((image) => !image.alt).length,
+    missingAltImages: page.images.filter(isMissingRequiredAlt).length,
     links: page.links.length,
     schemaTypes: page.schemas.map((schema) => schema.type).join("|"),
     isShopify: page.shopify.isShopify,

@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-05-23T06:58:32.766Z",
+  "totalPages": 1,
+  "pagesWithImages": 1,
+  "totalImagesStored": 20,
+  "totalImageUsages": 33,
+  "uniqueImageRows": 29,
+  "missingAltImages": 1,
+  "pagesWithMissingAlt": 1,
+  "duplicateAltIssuePages": 1,
+  "missingDimensionImages": 1,
+  "pagesWithMissingDimensions": 1,
+  "lazyLoadingIssuePages": 0,
+  "primaryImageLazyPages": 0,
+  "largeImageUrlCount": 13,
+  "pagesWithLargeImageUrls": 1,
+  "imageIssueCounts": {
+    "image_alt_duplicate_on_page": 1,
+    "image_missing_dimensions": 1,
+    "large_image_url_width": 1,
+    "missing_image_alt": 1,
+    "shopify_variant_auto_alt_duplicate": 1
+  },
+  "topMissingAltPages": [
+    {
+      "url": "https://triprindia.com/products/tripr-men-vest-pack-of-2-black-grey",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/mens-inner-vest-size-chart.png?v=1753687653"
+      ]
+    }
+  ],
+  "note": "Image totals use audit issue counts for missing alt and stored page-image arrays for aggregate image inventory. In memory-safe mode, stored image arrays may be capped, but missing-alt issue counts are calculated before storage compaction."
+}

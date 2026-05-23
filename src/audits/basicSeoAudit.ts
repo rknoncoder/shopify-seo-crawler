@@ -1,6 +1,7 @@
 import type { SeoIssue } from "../types/issue.js";
-import type { CrawledPage } from "../types/page.js";
+import type { CrawledPage, ImageInfo } from "../types/page.js";
 import { classifyHttpFetchFailure } from "../utils/fetchFailureClassifier.js";
+import { isMissingRequiredAlt } from "../utils/imageSeo.js";
 import { truncate } from "../utils/textUtils.js";
 
 export function auditBasicSeo(page: CrawledPage): SeoIssue[] {
@@ -65,34 +66,22 @@ function addHeadingIssues(page: CrawledPage, issues: SeoIssue[]): void {
 }
 
 function addImageIssues(page: CrawledPage, issues: SeoIssue[]): void {
-  const missingAlt = page.images.filter((image) => !image.alt && shouldRequireAlt(image.src)).length;
-  if (missingAlt > 0) {
-    issues.push(issue(page, "low", "images", "missing_image_alt", `${missingAlt} images are missing alt text`, "Add descriptive alt text for meaningful images."));
+  const missingAlt = page.images.filter(isMissingRequiredAlt);
+  if (missingAlt.length > 0) {
+    issues.push(issue(
+      page,
+      "low",
+      "images",
+      "missing_image_alt",
+      `${missingAlt.length} images are missing alt text`,
+      "Add descriptive alt text for meaningful images.",
+      sampleImageUrls(missingAlt)
+    ));
   }
 }
 
-function shouldRequireAlt(src: string): boolean {
-  const lowerSrc = src.toLowerCase();
-  const filename = getFilename(lowerSrc);
-
-  if (lowerSrc.startsWith("data:")) return false;
-  if (lowerSrc.includes("logo") || filename.includes("logo")) return false;
-  if (lowerSrc.includes("icon") || filename.includes("icon")) return false;
-  if (lowerSrc.includes("payment") || filename.includes("payment")) return false;
-  if (lowerSrc.includes("placeholder") || filename.includes("placeholder")) return false;
-  if (lowerSrc.includes("sprite") || filename.includes("sprite")) return false;
-  if (lowerSrc.includes("/preview_images/") || filename.includes("thumbnail")) return false;
-  if (filename.endsWith(".svg")) return false;
-
-  return true;
-}
-
-function getFilename(src: string): string {
-  try {
-    return decodeURIComponent(new URL(src).pathname.split("/").filter(Boolean).pop() || "");
-  } catch {
-    return src.split("/").filter(Boolean).pop() || src;
-  }
+function sampleImageUrls(images: ImageInfo[]): string {
+  return images.slice(0, 5).map((image) => image.src).join(" | ");
 }
 
 function issue(
