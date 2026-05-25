@@ -118,7 +118,6 @@ function crawledPage(overrides: { robots?: string; xRobotsTag?: string } = {}): 
     textHash: "",
     images: [],
     links: [],
-    schemas: [],
     shopify: {
       isShopify: true,
       detectedApps: [],

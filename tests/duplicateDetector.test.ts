@@ -127,7 +127,6 @@ function page(
     textHash: overrides.textHash,
     images: [],
     links: [],
-    schemas: [],
     shopify: {
       isShopify: true,
       detectedApps: [],

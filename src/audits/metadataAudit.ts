@@ -83,14 +83,14 @@ function addOpenGraphIssues(page: CrawledPage, issues: SeoIssue[]): void {
     ));
   }
 
-  const priceMismatch = detectMetadataPriceMismatch(page.meta, page.schemas, page.textSample);
+  const priceMismatch = detectMetadataPriceMismatch(page.meta, page.textSample);
   if (priceMismatch.mismatch || page.metadataValidation.ogPriceMismatch) {
     issues.push(issue(
       page,
       "high",
       "metadata_price_mismatch",
-      "Open Graph product price conflicts with schema or visible page pricing.",
-      "Keep OG price, Product schema Offer price, and visible product price in sync.",
+      "Open Graph product price conflicts with visible page pricing.",
+      "Keep OG price and visible product price in sync.",
       priceMismatch.evidence || "metadataValidation.ogPriceMismatch=true"
     ));
   }

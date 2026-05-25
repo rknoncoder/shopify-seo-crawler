@@ -1,2 +1,0 @@
-url,status,pageType,schemaTypes,productSnippetEligibility,merchantListingEligibility,breadcrumbEligibility,articleEligibility,faqEligibility,collectionItemListEligibility,blockingIssues,notes
-https://triprindia.com/products/tripr-men-vest-pack-of-2-black-grey,200,product,ProductGroup|FAQPage,eligible,eligible,missing_schema,not_applicable,eligible,not_applicable,,ProductGroup detected; good for variant products if variants/offers are valid. BreadcrumbList not detected.

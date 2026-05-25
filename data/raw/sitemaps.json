@@ -1,11 +1,54 @@
 {
-  "source": "none",
-  "status": "skipped",
-  "detectedSitemapUrls": [],
-  "attempts": [],
-  "unavailableReason": "Single URL crawl requested.",
-  "totalSitemapsFound": 0,
-  "totalUrlsFound": 0,
-  "selectedSitemapsForCrawl": 0,
-  "sitemaps": []
+  "source": "robots",
+  "status": "found",
+  "detectedSitemapUrls": [
+    "https://triprindia.com/sitemap.xml"
+  ],
+  "attempts": [
+    {
+      "url": "https://triprindia.com/robots.txt",
+      "status": "200"
+    }
+  ],
+  "unavailableReason": "",
+  "totalSitemapsFound": 5,
+  "totalUrlsFound": 1010,
+  "selectedSitemapsForCrawl": 5,
+  "sitemaps": [
+    {
+      "sitemapUrl": "https://triprindia.com/sitemap_agentic_discovery.xml",
+      "type": "urlset",
+      "sitemapType": "other",
+      "urlCount": 1,
+      "selectedForCrawl": true
+    },
+    {
+      "sitemapUrl": "https://triprindia.com/sitemap_products_1.xml?from=25228083212&to=9038107377892",
+      "type": "urlset",
+      "sitemapType": "product",
+      "urlCount": 810,
+      "selectedForCrawl": true
+    },
+    {
+      "sitemapUrl": "https://triprindia.com/sitemap_pages_1.xml?from=251872780&to=129298890980",
+      "type": "urlset",
+      "sitemapType": "page",
+      "urlCount": 47,
+      "selectedForCrawl": true
+    },
+    {
+      "sitemapUrl": "https://triprindia.com/sitemap_collections_1.xml?from=739770380&to=476147548388",
+      "type": "urlset",
+      "sitemapType": "collection",
+      "urlCount": 38,
+      "selectedForCrawl": true
+    },
+    {
+      "sitemapUrl": "https://triprindia.com/sitemap_blogs_1.xml",
+      "type": "urlset",
+      "sitemapType": "blog",
+      "urlCount": 114,
+      "selectedForCrawl": true
+    }
+  ]
 }

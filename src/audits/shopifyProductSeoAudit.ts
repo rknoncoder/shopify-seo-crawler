@@ -56,7 +56,6 @@ export function auditShopifyProductSeo(page: CrawledPage): SeoIssue[] {
   const searchableText = buildSearchableText(page);
   const title = page.headings.h1[0] || page.meta.title;
   const productLinks = page.links.filter((link) => link.internal && link.href.includes("/products/"));
-  const faqSchemaPresent = page.schemas.some((schema) => schema.type.split(",").map((type) => type.trim()).includes("FAQPage"));
 
   if (page.wordCount < 250) {
     issues.push(issue(
@@ -118,7 +117,7 @@ export function auditShopifyProductSeo(page: CrawledPage): SeoIssue[] {
     ));
   }
 
-  if (!faqSchemaPresent && !matchesAny(searchableText, faqSignals)) {
+  if (!matchesAny(searchableText, faqSignals)) {
     issues.push(issue(
       page,
       "recommended",
@@ -130,7 +129,7 @@ export function auditShopifyProductSeo(page: CrawledPage): SeoIssue[] {
     ));
   }
 
-  if (hasSoldOutSchemaAvailability(page) && summarizeIndexability(page).indexable) {
+  if (hasSoldOutSignal(searchableText) && summarizeIndexability(page).indexable) {
     issues.push(issue(
       page,
       "medium",
@@ -177,8 +176,7 @@ function buildSearchableText(page: CrawledPage): string {
     page.headings.h2.join(" "),
     page.headings.h3.join(" "),
     page.textSample,
-    page.links.map((link) => link.text).join(" "),
-    page.schemas.map((schema) => schema.type).join(" ")
+    page.links.map((link) => link.text).join(" ")
   ].join(" ");
 }
 
@@ -186,11 +184,8 @@ function matchesAny(value: string, patterns: RegExp[]): boolean {
   return patterns.some((pattern) => pattern.test(value));
 }
 
-function hasSoldOutSchemaAvailability(page: CrawledPage): boolean {
-  return page.schemas.some((schema) => {
-    const rawSchema = JSON.stringify(schema.raw || schema.summary || {});
-    return /schema\.org\/(?:OutOfStock|SoldOut|Discontinued)/i.test(rawSchema);
-  });
+function hasSoldOutSignal(text: string): boolean {
+  return /\b(?:sold out|out of stock|unavailable|notify me when available)\b/i.test(text);
 }
 
 function issue(

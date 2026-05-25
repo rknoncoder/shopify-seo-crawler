@@ -1,4 +1,3 @@
-import type { StructuredDataItem } from "./schema.js";
 import type { ShopifyPageType, ShopifySignals } from "./shopify.js";
 
 export interface HeadingSummary {
@@ -119,7 +118,6 @@ export interface CrawledPage {
   textHash: string;
   images: ImageInfo[];
   links: LinkInfo[];
-  schemas: StructuredDataItem[];
   shopify: ShopifySignals;
   speed: PageSpeedSignals;
   metadataValidation: MetadataValidationSummary;

@@ -1,32 +1,34 @@
 {
-  "generatedAt": "2026-05-23T06:58:32.470Z",
-  "totalRequested": 1,
-  "totalCrawled": 1,
+  "generatedAt": "2026-05-25T08:39:59.047Z",
+  "totalRequested": 1010,
+  "totalCrawled": 1008,
   "statusCodeCounts": {
     "families": {
-      "2xx": 1,
+      "2xx": 1008,
       "3xx": 0,
       "4xx": 0,
       "5xx": 0,
       "other": 0
     },
     "exact": {
-      "200": 1
+      "200": 1008
     }
   },
   "fetchFailedCount": 0,
-  "skippedNonHtmlCount": 0,
+  "skippedNonHtmlCount": 2,
   "redirectedCount": 0,
   "retryCounters": {
-    "totalRetries": 0,
-    "statusRetries": 0,
+    "totalRetries": 12,
+    "statusRetries": 12,
     "errorRetries": 0,
-    "retryStatusCounts": {}
+    "retryStatusCounts": {
+      "503": 12
+    }
   },
   "loadTimeMs": {
-    "avg": 1063,
-    "p50": 1063,
-    "p95": 1063,
-    "max": 1063
+    "avg": 1947,
+    "p50": 349,
+    "p95": 775,
+    "max": 179676
   }
 }

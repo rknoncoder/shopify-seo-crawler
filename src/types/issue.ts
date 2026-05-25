@@ -6,7 +6,6 @@ export type IssueCategory =
   | "metadata"
   | "content"
   | "content_cannibalization"
-  | "schema"
   | "shopify"
   | "indexability"
   | "serp_snippet"

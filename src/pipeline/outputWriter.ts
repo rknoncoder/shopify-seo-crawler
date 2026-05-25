@@ -1,3 +1,4 @@
+import { rm } from "node:fs/promises";
 import { buildCrawlStatsCsvRows } from "../reports/crawlStatsReport.js";
 import { buildImageSeoSummaryCsvRows } from "../reports/imageSeoSummaryReport.js";
 import { exportExcel } from "../storage/exportExcel.js";
@@ -34,18 +35,13 @@ export async function writeCrawlOutputs(
   await saveCsv("data/reports/content-cannibalization-report.csv", reports.contentCannibalizationReport);
   await saveJson("data/reports/redirect-report.json", reports.redirectReport);
   await saveCsv("data/reports/redirect-report.csv", reports.redirectReport);
-  await saveJson("data/reports/rich-result-eligibility.json", reports.richResultEligibilityReport);
-  await saveCsv("data/reports/rich-result-eligibility.csv", reports.richResultEligibilityReport);
   await saveJson("data/reports/pagespeed-report.json", reports.pageSpeedReport);
   await saveCsv("data/reports/pagespeed-report.csv", reports.pageSpeedReport);
   await saveJson("data/reports/image-inventory.json", reports.imageInventoryReport);
   await saveCsv("data/reports/image-inventory.csv", reports.imageInventoryReport);
   await saveJson("data/reports/image-seo-summary.json", reports.imageSeoSummaryReport);
   await saveCsv("data/reports/image-seo-summary.csv", buildImageSeoSummaryCsvRows(reports.imageSeoSummaryReport));
-  await saveJson("data/reports/schema-inventory.json", reports.schemaInventory);
-  await saveCsv("data/reports/schema-inventory.csv", reports.schemaInventory);
-  await saveJson("data/reports/schema-summary.json", reports.schemaSummary);
-  await saveCsv("data/reports/schema-summary.csv", reports.schemaSummary);
+  await deleteDisabledSchemaReports();
   await saveIssuesJson(reports.issues);
   await saveIssuesCsv(reports.issues);
   await saveJson("data/reports/action-plan.json", reports.actionPlan);
@@ -59,11 +55,8 @@ export async function writeCrawlOutputs(
         reports.issues,
         reports.actionPlan,
         reports.profile,
-        reports.schemaInventory,
-        reports.schemaSummary,
         reports.indexabilityReport,
         reports.pageSpeedReport,
-        reports.richResultEligibilityReport,
         reports.redirectReport,
         reports.contentCannibalizationReport,
         reports.imageInventoryReport,
@@ -136,9 +129,19 @@ function flattenPage(page: CrawledPage): Record<string, unknown> {
     images: page.images.length,
     missingAltImages: page.images.filter(isMissingRequiredAlt).length,
     links: page.links.length,
-    schemaTypes: page.schemas.map((schema) => schema.type).join("|"),
     isShopify: page.shopify.isShopify,
     detectedApps: page.shopify.detectedApps.join("|"),
     issues: page.issues.join("|")
   };
+}
+
+async function deleteDisabledSchemaReports(): Promise<void> {
+  await Promise.all([
+    "data/reports/schema-inventory.json",
+    "data/reports/schema-inventory.csv",
+    "data/reports/schema-summary.json",
+    "data/reports/schema-summary.csv",
+    "data/reports/rich-result-eligibility.json",
+    "data/reports/rich-result-eligibility.csv"
+  ].map((path) => rm(path, { force: true })));
 }

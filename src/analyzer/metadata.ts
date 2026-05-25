@@ -2,7 +2,6 @@ import type { CheerioAPI } from "cheerio";
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage, MetadataValidationSummary, PageMeta } from "../types/page.js";
 import type { ShopifyPageType } from "../types/shopify.js";
-import type { StructuredDataItem } from "../types/schema.js";
 import { parseRobotsDirectives } from "../utils/indexability.js";
 import { truncate } from "../utils/textUtils.js";
 
@@ -42,7 +41,6 @@ export interface AnalyzeMetadataOptions {
   finalUrl: string;
   pageType: ShopifyPageType;
   meta: PageMeta;
-  schemas: StructuredDataItem[];
   textSample: string;
   xRobotsTag?: string;
 }
@@ -63,7 +61,7 @@ export function analyzeMetadata(options: AnalyzeMetadataOptions): MetadataValida
   const robots = parseRobotsDirectives(options.meta.robots);
   const xRobots = parseRobotsDirectives(options.xRobotsTag || "");
   const canonical = validateMetadataCanonical(options.meta.canonical, options.finalUrl);
-  const priceMismatch = detectMetadataPriceMismatch(options.meta, options.schemas, options.textSample);
+  const priceMismatch = detectMetadataPriceMismatch(options.meta, options.textSample);
 
   return {
     hasNoIndex: robots.noindex || xRobots.noindex,
@@ -183,7 +181,6 @@ export function isMissingOrPlaceholderOgImage(meta: PageMeta, pageUrl: string): 
 
 export function detectMetadataPriceMismatch(
   meta: Pick<PageMeta, "ogPriceAmount">,
-  schemas: StructuredDataItem[],
   textSample: string
 ): MetadataPriceMismatchResult {
   const ogPrice = parsePrice(meta.ogPriceAmount);
@@ -194,20 +191,13 @@ export function detectMetadataPriceMismatch(
     };
   }
 
-  const schemaPrices = schemas
-    .flatMap((schema) => schema.summary?.prices || [])
-    .map(parsePrice)
-    .filter((price): price is number => price !== null);
   const visiblePrices = extractVisiblePrices(textSample);
-
-  const schemaMismatch = schemaPrices.length > 0 && !schemaPrices.some((price) => pricesMatch(price, ogPrice));
-  const visibleMismatch = schemaPrices.length === 0 && visiblePrices.length > 0 && !visiblePrices.some((price) => pricesMatch(price, ogPrice));
-  const mismatch = schemaMismatch || visibleMismatch;
+  const mismatch = visiblePrices.length > 0 && !visiblePrices.some((price) => pricesMatch(price, ogPrice));
 
   return {
     mismatch,
     evidence: mismatch
-      ? `ogPrice=${formatPrice(ogPrice)}; schemaPrices=${formatPrices(schemaPrices)}; visiblePrices=${formatPrices(visiblePrices)}`
+      ? `ogPrice=${formatPrice(ogPrice)}; visiblePrices=${formatPrices(visiblePrices)}`
       : ""
   };
 }

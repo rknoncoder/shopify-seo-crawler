@@ -7,7 +7,6 @@ import { extractHeadings } from "./headingExtractor.js";
 import { extractImages } from "./imageExtractor.js";
 import { extractLinks } from "./linkExtractor.js";
 import { extractMeta } from "./metaExtractor.js";
-import { extractSchemas } from "./schemaExtractor.js";
 import { extractSpeedSignals } from "./speedExtractor.js";
 import { detectShopify } from "./shopifyDetector.js";
 
@@ -17,12 +16,10 @@ export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage 
   const content = extractContentSummary($);
   const images = extractImages($, fetchResult.finalUrl);
   const meta = extractMeta($, fetchResult.html);
-  const schemas = extractSchemas($);
   const metadataValidation = analyzeMetadata({
     finalUrl: fetchResult.finalUrl,
     pageType: shopify.pageType,
     meta,
-    schemas,
     textSample: content.textSample,
     xRobotsTag: fetchResult.http?.xRobotsTag
   });
@@ -46,7 +43,6 @@ export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage 
     textHash: content.textHash,
     images,
     links: extractLinks($, fetchResult.finalUrl),
-    schemas,
     shopify,
     speed: extractSpeedSignals($, fetchResult.html, fetchResult.finalUrl, images),
     metadataValidation,

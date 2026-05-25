@@ -43,7 +43,6 @@ export function auditCollection(page: CrawledPage): SeoIssue[] {
 
   addCollectionTitleIssues(page, issues);
   addCollectionMetaIssues(page, issues);
-  addCollectionSchemaIssues(page, issues);
   addCollectionFaqIssues(page, issues);
   addCollectionProductLinkIssues(page, issues, productLinkSummary);
   addCollectionFacetIssues(page, issues);
@@ -141,27 +140,10 @@ function addCollectionMetaIssues(page: CrawledPage, issues: SeoIssue[]): void {
   }
 }
 
-function addCollectionSchemaIssues(page: CrawledPage, issues: SeoIssue[]): void {
-  const schemaTypes = page.schemas.flatMap((schema) => schema.type.split(",").map((type) => type.trim()));
-
-  if (!schemaTypes.includes("ItemList")) {
-    issues.push(issue(
-      page,
-      "recommended",
-      "schema",
-      "collection_missing_itemlist_schema",
-      "Collection page is missing ItemList schema.",
-      "Add ItemList JSON-LD that lists visible collection products, if this matches your schema strategy.",
-      schemaTypes.join("|") || "No schema found"
-    ));
-  }
-}
-
 function addCollectionFaqIssues(page: CrawledPage, issues: SeoIssue[]): void {
-  const hasFaqSchema = page.schemas.some((schema) => schema.type.split(",").map((type) => type.trim()).includes("FAQPage"));
   const hasFaqText = faqPatterns.some((pattern) => pattern.test(page.textSample));
 
-  if (!hasFaqSchema && !hasFaqText) {
+  if (!hasFaqText) {
     issues.push(issue(
       page,
       "recommended",

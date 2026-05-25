@@ -123,9 +123,8 @@ function compactPageForAnalysis(page: CrawledPage): CrawledPage {
         rel: [],
         internal: true,
         status: link.status
-      })),
-    images: [],
-    schemas: []
+    })),
+    images: []
   };
 }
 

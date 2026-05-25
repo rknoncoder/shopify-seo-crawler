@@ -10,7 +10,6 @@ import { auditImageSeo } from "./imageSeoAudit.js";
 import { auditLinkQuality } from "./linkQualityAudit.js";
 import { auditMetadataValidation } from "./metadataAudit.js";
 import { auditPageSpeedSignals } from "./pageSpeedAudit.js";
-import { auditSchema } from "./schemaAudit.js";
 import { auditSerpSnippet } from "./serpSnippetAudit.js";
 import { auditShopifyProduct } from "./shopifyProductAudit.js";
 import { auditShopifyProductSeo } from "./shopifyProductSeoAudit.js";
@@ -29,7 +28,6 @@ export function runAudits(page: CrawledPage): SeoIssue[] {
     ...auditIndexability(page),
     ...auditHreflang(page),
     ...auditPageSpeedSignals(page),
-    ...auditSchema(page),
     ...auditImageSeo(page),
     ...auditShopifyProduct(page),
     ...auditShopifyProductSeo(page),

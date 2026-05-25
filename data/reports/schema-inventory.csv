@@ -1,2 +1,0 @@
-url,status,pageType,schemaCount,validSchemaCount,invalidSchemaCount,schemaTypes,schemaSources,schemaSourceNames,schemaSourceConfidence,hasProduct,hasProductGroup,hasOffer,hasFAQPage,hasCollectionPage,hasItemList,hasArticle,hasBlogPosting,hasBreadcrumbList,hasOrganization,hasWebSite
-https://triprindia.com/products/tripr-men-vest-pack-of-2-black-grey,200,product,2,2,0,ProductGroup|FAQPage,shopify_theme|unknown,Shopify theme structured data|Unknown JSON-LD source,medium|low,false,true,true,true,false,false,false,false,false,false,false

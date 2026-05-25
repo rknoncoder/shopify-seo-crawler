@@ -4,7 +4,6 @@ import * as cheerio from "cheerio";
 import { analyzeMetadata, validateMetadataCanonical } from "../src/analyzer/metadata.js";
 import { auditMetadataValidation } from "../src/audits/metadataAudit.js";
 import { extractMeta } from "../src/parser/metaExtractor.js";
-import { extractSchemas } from "../src/parser/schemaExtractor.js";
 import type { CrawledPage } from "../src/types/page.js";
 
 describe("metadata analyzer", () => {
@@ -25,22 +24,17 @@ describe("metadata analyzer", () => {
           <meta property="og:price:amount" content="299.00">
           <meta property="og:price:currency" content="INR">
           <meta property="og:availability" content="in stock">
-          <script type="application/ld+json">
-            {"@context":"https://schema.org","@type":"Product","offers":{"@type":"Offer","price":"299.00","priceCurrency":"INR"}}
-          </script>
         </head>
         <body>Now INR 299</body>
       </html>
     `;
     const $ = cheerio.load(html);
     const meta = extractMeta($, html);
-    const schemas = extractSchemas($);
 
     const summary = analyzeMetadata({
       finalUrl,
       pageType: "product",
       meta,
-      schemas,
       textSample: "Now INR 299"
     });
 
@@ -54,7 +48,7 @@ describe("metadata analyzer", () => {
     });
   });
 
-  it("flags price mismatches using compact OG, schema, and visible text values", () => {
+  it("flags price mismatches using compact OG and visible text values", () => {
     const finalUrl = "https://example.com/products/vest";
     const html = `
       <html lang="en">
@@ -65,21 +59,16 @@ describe("metadata analyzer", () => {
           <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0000/vest.jpg">
           <meta property="og:price:amount" content="599.00">
           <meta property="og:price:currency" content="INR">
-          <script type="application/ld+json">
-            {"@context":"https://schema.org","@type":"Product","offers":{"@type":"Offer","price":"299.00","priceCurrency":"INR"}}
-          </script>
         </head>
         <body>Now INR 299</body>
       </html>
     `;
     const $ = cheerio.load(html);
     const meta = extractMeta($, html);
-    const schemas = extractSchemas($);
     const metadataValidation = analyzeMetadata({
       finalUrl,
       pageType: "product",
       meta,
-      schemas,
       textSample: "Now INR 299"
     });
 
@@ -88,7 +77,6 @@ describe("metadata analyzer", () => {
       status: 200,
       pageType: "product",
       meta,
-      schemas,
       textSample: "Now INR 299",
       metadataValidation
     } as CrawledPage);

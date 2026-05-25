@@ -10,8 +10,6 @@ import type { ImageSeoSummaryReport } from "../reports/imageSeoSummaryReport.js"
 import type { IndexabilityReportRow } from "../reports/indexabilityReport.js";
 import type { PageSpeedInsightsRow } from "../reports/pageSpeedInsightsReport.js";
 import type { RedirectReportRow } from "../reports/redirectReport.js";
-import type { RichResultEligibilityRow } from "../reports/richResultEligibilityReport.js";
-import type { SchemaInventoryRow, SchemaSummaryRow } from "../reports/schemaInventory.js";
 import { isMissingRequiredAlt } from "../utils/imageSeo.js";
 
 export async function exportExcel(
@@ -19,11 +17,8 @@ export async function exportExcel(
   issues: SeoIssue[],
   actionPlan: ActionPlanItem[],
   profile: SiteProfile,
-  schemaInventory: SchemaInventoryRow[] = [],
-  schemaSummary: SchemaSummaryRow[] = [],
   indexabilityReport: IndexabilityReportRow[] = [],
   pageSpeedReport: PageSpeedInsightsRow[] = [],
-  richResultEligibilityReport: RichResultEligibilityRow[] = [],
   redirectReport: RedirectReportRow[] = [],
   contentCannibalizationReport: ContentCannibalizationReportRow[] = [],
   imageInventoryReport: ImageInventoryRow[] = [],
@@ -45,9 +40,6 @@ export async function exportExcel(
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet([flattenImageSeoSummary(imageSeoSummaryReport)]), "Image SEO Summary");
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(imageSeoSummaryReport.topMissingAltPages), "Missing Alt Samples");
   }
-  XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(richResultEligibilityReport), "Rich Results");
-  XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(schemaInventory), "Schema Inventory");
-  XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(schemaSummary), "Schema Summary");
   XLSX.writeFile(workbook, path);
   return path;
 }
@@ -108,7 +100,6 @@ function flattenPages(pages: CrawledPage[]): Array<Record<string, unknown>> {
     primaryImageFetchPriority: page.speed.primaryImageFetchPriority,
     primaryImageLazy: page.speed.primaryImageLazy,
     linkCount: page.links.length,
-    schemaTypes: page.schemas.map((schema) => schema.type).join("|"),
     isShopify: page.shopify.isShopify,
     detectedApps: page.shopify.detectedApps.join("|"),
     issueCodes: page.issues.join("|")
