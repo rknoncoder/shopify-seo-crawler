@@ -15,19 +15,20 @@ async function main(): Promise<void> {
   const sitemapInventory = await buildSitemapInventory(detectionResult);
   await writeSitemapInventory(sitemapInventory);
 
-  const urls = run.crawlMode === "single"
+  const urls = run.crawlMode === "single" || run.crawlMode === "discover"
     ? [run.targetUrl]
     : await extractUrlsForCrawl(sitemapInventory.sitemaps.filter((sitemap) => sitemap.selectedForCrawl));
 
-  const crawledFromSitemap = run.crawlMode !== "single" && urls.length > 0;
+  const crawledFromSitemap = !["single", "discover"].includes(run.crawlMode) && urls.length > 0;
   const finalUrls = urls.length > 0 ? urls : [run.targetUrl];
+  const sitemapUrlsForReports = crawledFromSitemap ? finalUrls : [];
   console.log(`Final URLs selected: ${finalUrls.length}`);
 
   const result = await startCrawler(finalUrls, { followLinks: !crawledFromSitemap });
   const reports = await buildReportBundle({
     targetUrl: run.targetUrl,
     result,
-    finalUrls,
+    finalUrls: sitemapUrlsForReports,
     pageSpeedOptions: run.pageSpeedOptions
   });
   const excelOptions = getExcelExportOptions(result.pages.length);

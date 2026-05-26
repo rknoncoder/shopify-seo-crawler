@@ -1,7 +1,7 @@
 import type { CrawlMode } from "../types/crawl.js";
 import { normalizeSitemapUrl, normalizeUrl } from "../utils/urlUtils.js";
 
-const validModes = new Set<CrawlMode>(["single", "seo", "full"]);
+const validModes = new Set<CrawlMode>(["single", "seo", "full", "discover"]);
 
 export function getCrawlMode(defaultMode: CrawlMode): CrawlMode {
   const cliMode = readCliValue("--mode");

@@ -88,6 +88,15 @@ const config: CrawlConfig = {
         includePatterns: [],
         excludePatterns: []
       }
+    },
+    discover: {
+      maxPages: 5000,
+      maxDepth: 10,
+      sitemapSelection: {
+        crawlAll: false,
+        includePatterns: [],
+        excludePatterns: []
+      }
     }
   }
 };

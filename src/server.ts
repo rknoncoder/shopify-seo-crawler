@@ -4,7 +4,7 @@ import { readdir, readFile, stat } from "node:fs/promises";
 import { extname, join, normalize, resolve } from "node:path";
 
 type CrawlJobStatus = "running" | "completed" | "failed";
-type CrawlMode = "single" | "seo" | "full";
+type CrawlMode = "single" | "seo" | "full" | "discover";
 
 interface CrawlRequest {
   url: string;
@@ -233,7 +233,7 @@ function normalizeCrawlRequest(input: unknown): CrawlRequest {
 }
 
 function normalizeMode(value: unknown): CrawlMode {
-  return value === "single" || value === "full" || value === "seo" ? value : "seo";
+  return value === "single" || value === "full" || value === "seo" || value === "discover" ? value : "seo";
 }
 
 function normalizeOptionalNumber(value: unknown, min: number, max: number): number | undefined {
@@ -613,6 +613,7 @@ function dashboardHtml(): string {
             <option value="seo">SEO</option>
             <option value="single">Single</option>
             <option value="full">Full</option>
+            <option value="discover">Discover</option>
           </select>
         </label>
         <label>Max Pages

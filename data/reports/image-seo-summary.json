@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-05-25T08:39:59.288Z",
-  "totalPages": 1008,
-  "pagesWithImages": 1008,
-  "totalImagesStored": 15527,
-  "totalImageUsages": 18993,
-  "uniqueImageRows": 9863,
-  "missingAltImages": 771,
-  "pagesWithMissingAlt": 744,
-  "duplicateAltIssuePages": 848,
-  "missingDimensionImages": 862,
-  "pagesWithMissingDimensions": 846,
+  "generatedAt": "2026-05-26T13:06:32.345Z",
+  "totalPages": 628,
+  "pagesWithImages": 628,
+  "totalImagesStored": 9111,
+  "totalImageUsages": 12818,
+  "uniqueImageRows": 5224,
+  "missingAltImages": 380,
+  "pagesWithMissingAlt": 351,
+  "duplicateAltIssuePages": 447,
+  "missingDimensionImages": 405,
+  "pagesWithMissingDimensions": 391,
   "lazyLoadingIssuePages": 0,
-  "primaryImageLazyPages": 38,
-  "largeImageUrlCount": 5344,
-  "pagesWithLargeImageUrls": 587,
+  "primaryImageLazyPages": 57,
+  "largeImageUrlCount": 4552,
+  "pagesWithLargeImageUrls": 390,
   "imageIssueCounts": {
-    "image_alt_duplicate_on_page": 848,
-    "image_missing_dimensions": 846,
-    "shopify_variant_auto_alt_duplicate": 806,
-    "missing_image_alt": 744,
-    "large_image_url_width": 173,
-    "image_count_high": 67,
-    "image_alt_too_long": 52,
-    "primary_image_lazy_loaded": 38,
-    "product_image_alt_missing_product_name": 21,
-    "image_alt_too_short": 11,
-    "image_filename_not_descriptive": 6
+    "image_alt_duplicate_on_page": 453,
+    "image_missing_dimensions": 391,
+    "shopify_variant_auto_alt_duplicate": 385,
+    "missing_image_alt": 351,
+    "large_image_url_width": 156,
+    "image_count_high": 74,
+    "primary_image_lazy_loaded": 63,
+    "image_alt_too_long": 26,
+    "image_alt_too_short": 15,
+    "image_filename_not_descriptive": 11,
+    "product_image_alt_missing_product_name": 10
   },
   "topMissingAltPages": [
     {
@@ -65,11 +65,12 @@
       ]
     },
     {
-      "url": "https://triprindia.com/blogs/news/common-terms-of-the-t-shirt-designs",
-      "pageType": "article",
-      "missingAltImages": 1,
+      "url": "https://triprindia.com/collections",
+      "pageType": "unknown",
+      "missingAltImages": 3,
       "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/Single_Jersey_Yarn_Dyed_large.jpg?v=1514552419"
+        "https://triprindia.com/cdn/shop/files/bl-gy-plain_combo3.jpg?v=1754898982&width=2000",
+        "https://triprindia.com/cdn/shop/files/TBLD208-BLRN..."
       ]
     },
     {
@@ -81,11 +82,59 @@
       ]
     },
     {
+      "url": "https://triprindia.com/collections/all/products/full-sleeve-jacket-black",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/men_hoodie_size_chart.jpg?v=1733320830"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/collections/cargo-pants-for-men/products/6-pockets-cargo-jogger-color-blocked-white-grey",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/collections/cargo-pants-for-men/products/words-printed-cargo-pant-for-men",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/collections/oversized-tshirt/products/pack-of-2-loose-fit-back-printed-oversized-tshirts-11-variants",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/OVERSIZED-TSHIRT-SIZE-CHART-TRIPRINDIA.jpg?v=1775719491"
+      ]
+    },
+    {
       "url": "https://triprindia.com/collections/polos",
       "pageType": "collection",
       "missingAltImages": 1,
       "sampleImages": [
         "https://triprindia.com/cdn/shop/files/3_799.png?height=100&v=1772517792"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/collections/sweatshirt-for-mens/products/pack-of-2-quarter-zip-high-neck-plain-combo-sweatshirts-st162",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/men_hoodie_size_chart.jpg?v=1733320830"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/collections/sweatshirt-for-mens/products/pack-of-3-mens-quarter-zip-high-neck-plain-combo-sweatshirts",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/men_hoodie_size_chart.jpg?v=1733320830"
       ]
     },
     {
@@ -105,19 +154,35 @@
       ]
     },
     {
-      "url": "https://triprindia.com/pages/baggy-track-pant-size-chart",
-      "pageType": "page",
+      "url": "https://triprindia.com/collections/track-suite/combo-tracksuit",
+      "pageType": "collection",
       "missingAltImages": 1,
       "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/baggy-track-pant-size-chart-tripr-india.jpg?v=1769841152"
+        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
       ]
     },
     {
-      "url": "https://triprindia.com/pages/boys-t-shirt-size-chart",
-      "pageType": "page",
+      "url": "https://triprindia.com/collections/track-suite/full-sleeve-tracksuit",
+      "pageType": "collection",
       "missingAltImages": 1,
       "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/tshirtfull_0d205ff2-7f2b-4247-8d7a-8de63579aa49.jpg?v=1674020821"
+        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/collections/track-suite/half-sleeve-tracksuit",
+      "pageType": "collection",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/collections/track-suite/hooded-tracksuit",
+      "pageType": "collection",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
       ]
     },
     {
@@ -129,54 +194,6 @@
       ]
     },
     {
-      "url": "https://triprindia.com/pages/co-ords-size-chart",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/WhatsApp_Image_2023-06-06_at_12.58.09_PM_480x480.jpg?v=1686036616"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/fk-jacket-size-chart",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/men_hoodie_size_chart.jpg?v=1733320830"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/fk-sweatshirt-size-chart",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/men_hoodie_size_chart.jpg?v=1733320830"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/full-and-half-sleeves-mens-t-shirt-size-chart-in-inches",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/MEN-TSHIRT-SIZE-CHART-TRIPR-INDIA_2.jpg?v=1775719567"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/kids-t-shirt-age-10-16-size-chart",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/kids_tshirt_sizechart_new.jpg?v=1727685703"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/kids-wear-size-chart",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/kids_wear_size_chart.jpg?v=1729602657"
-      ]
-    },
-    {
       "url": "https://triprindia.com/pages/loose-fit-cargo-size-chart",
       "pageType": "page",
       "missingAltImages": 1,
@@ -185,51 +202,35 @@
       ]
     },
     {
-      "url": "https://triprindia.com/pages/men-sweatshirt-jacket-size-chart",
+      "url": "https://triprindia.com/pages/tracksuit-fullsleeve-trackpant-fk",
       "pageType": "page",
       "missingAltImages": 1,
       "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/men_hoodie_size_chart.jpg?v=1733320830"
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/tracksuit-full_tshirt_and_trackpant_set_size_chart.jpg?v=1753531125"
       ]
     },
     {
-      "url": "https://triprindia.com/pages/men-trunks-size-chart",
+      "url": "https://triprindia.com/pages/tracksuit-halfsleeve-trackpant-fk",
       "pageType": "page",
       "missingAltImages": 1,
       "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/trunks_size_chart_copy.jpg?v=1733815410"
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/tracksuit-half_tshirt_and_trackpant_set_size_chart.jpg?v=1753531125"
       ]
     },
     {
-      "url": "https://triprindia.com/pages/mens-cargos-size-chart",
-      "pageType": "page",
+      "url": "https://triprindia.com/products/6-color-variants-with-mens-design-printed-trackpants-j59",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/men-track-pant-size-chart-tripr-india.jpg?v=1769847016"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/products/6-pockets-cargo-jogger-color-blocked-white-grey",
+      "pageType": "product",
       "missingAltImages": 1,
       "sampleImages": [
         "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/mens-shirt-size-chart-1",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/WhatsApp_Image_2023-06-06_at_12.39.47_PM_480x480.jpg?v=1686035513"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/mens-vest-size-chart",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/mens-inner-vest-size-chart.png?v=1753687653"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/oversized-t-shirt-size-chart",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/OVERSIZED-TSHIRT-SIZE-CHART-TRIPRINDIA.jpg?v=1775719491"
       ]
     }
   ],

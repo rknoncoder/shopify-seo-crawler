@@ -25,6 +25,19 @@ export async function resolveSitemapDetection(
   crawlMode: CrawlMode,
   manualSitemapUrls: string[]
 ): Promise<SitemapDetectionResult> {
+  if (crawlMode === "single" || crawlMode === "discover") {
+    return {
+      sitemapUrls: [],
+      source: "none",
+      status: "skipped",
+      attempts: [],
+      detectedSeoPlugins: [],
+      unavailableReason: crawlMode === "single"
+        ? "Single URL crawl requested."
+        : "Discover crawl requested; sitemap detection skipped."
+    };
+  }
+
   if (manualSitemapUrls.length > 0) {
     return {
       sitemapUrls: manualSitemapUrls,
@@ -33,17 +46,6 @@ export async function resolveSitemapDetection(
       attempts: [],
       detectedSeoPlugins: [],
       unavailableReason: ""
-    };
-  }
-
-  if (crawlMode === "single") {
-    return {
-      sitemapUrls: [],
-      source: "none",
-      status: "skipped",
-      attempts: [],
-      detectedSeoPlugins: [],
-      unavailableReason: "Single URL crawl requested."
     };
   }
 

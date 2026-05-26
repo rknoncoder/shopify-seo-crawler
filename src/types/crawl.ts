@@ -3,7 +3,7 @@ import type { HttpHeaderMetadata } from "./page.js";
 import type { ImageInventoryUsage } from "./image.js";
 import type { SeoIssue } from "./issue.js";
 
-export type CrawlMode = "single" | "seo" | "full";
+export type CrawlMode = "single" | "seo" | "full" | "discover";
 
 export interface CrawlConfig {
   startUrl: string;

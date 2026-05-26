@@ -59,7 +59,7 @@ npm run crawl -- --url https://example.myshopify.com
 Useful flags:
 
 - `--url` target storefront URL.
-- `--mode` one of `single`, `seo`, or `full`. Default is `full`.
+- `--mode` one of `single`, `seo`, `full`, or `discover`. Default is `full`.
 - `--max-pages` maximum pages to crawl.
 - `--max-depth` link crawl depth when falling back from sitemaps.
 - `--sitemap` repeatable manual sitemap URL.
@@ -82,6 +82,12 @@ ShopifySEOBot/1.0 (+https://example.com/bot)
 ```
 
 By default it crawls with one request at a time and waits roughly 3-5 seconds between requests to reduce Shopify bot-protection blocks.
+
+Use `discover` mode when you want to ignore sitemaps and crawl from the target URL through internal HTML links:
+
+```bash
+npm run crawl -- --url https://example.com --mode discover --max-pages 3000 --max-depth 8 --memory-safe --no-excel
+```
 
 ## Local Dashboard
 

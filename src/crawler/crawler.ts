@@ -3,6 +3,7 @@ import config from "../config/config.js";
 import { runAudits } from "../audits/runAudits.js";
 import { analyzeSite } from "../analyzer/seoAnalyzer.js";
 import { fetchPage, getFetchTelemetry, resetFetchTelemetry, sleepBetweenRequests } from "./fetcher.js";
+import { discoverShopifyCollectionPagination } from "./shopifyCollectionPagination.js";
 import { UrlManager } from "./urlManager.js";
 import { parseHtml } from "../parser/htmlParser.js";
 import type { CrawlResult } from "../types/crawl.js";
@@ -32,9 +33,13 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
 
   seedUrls.slice(0, config.maxPages).forEach((url) => manager.add(url, 0));
 
-  while (manager.hasNext() && pages.length < config.maxPages) {
+  while (pages.length < config.maxPages) {
     const next = manager.next();
-    if (!next) break;
+    if (!next) {
+      if (queue.size === 0 && queue.pending === 0) break;
+      await queue.onIdle();
+      continue;
+    }
 
     queue.add(async () => {
       try {
@@ -55,6 +60,17 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
           page.links
             .filter((link) => link.internal && !shouldSkipUrl(link.href, baseUrl))
             .forEach((link) => manager.add(link.href, next.depth + 1));
+
+          await discoverShopifyCollectionPagination({
+            collectionUrl: page.finalUrl,
+            baseUrl,
+            depth: next.depth,
+            initialLinks: page.links,
+            manager,
+            onRequest: () => {
+              totalRequested += 1;
+            }
+          });
         }
 
         analysisPages.push(compactPageForAnalysis(page));

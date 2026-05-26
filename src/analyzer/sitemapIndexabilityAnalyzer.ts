@@ -3,6 +3,8 @@ import type { CrawledPage } from "../types/page.js";
 import { summarizeIndexability } from "../utils/indexability.js";
 
 export function detectSitemapIndexabilityIssues(pages: CrawledPage[], sitemapUrls: string[]): SeoIssue[] {
+  if (sitemapUrls.length === 0) return [];
+
   const sitemapSet = new Set(sitemapUrls.map(normalizeForCompare));
   const issues: SeoIssue[] = [];
 
