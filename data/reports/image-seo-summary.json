@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-05-26T13:06:32.345Z",
-  "totalPages": 628,
-  "pagesWithImages": 628,
-  "totalImagesStored": 9111,
-  "totalImageUsages": 12818,
-  "uniqueImageRows": 5224,
-  "missingAltImages": 380,
-  "pagesWithMissingAlt": 351,
-  "duplicateAltIssuePages": 447,
-  "missingDimensionImages": 405,
-  "pagesWithMissingDimensions": 391,
+  "generatedAt": "2026-05-27T07:46:28.317Z",
+  "totalPages": 948,
+  "pagesWithImages": 948,
+  "totalImagesStored": 15328,
+  "totalImageUsages": 19502,
+  "uniqueImageRows": 9541,
+  "missingAltImages": 727,
+  "pagesWithMissingAlt": 698,
+  "duplicateAltIssuePages": 848,
+  "missingDimensionImages": 811,
+  "pagesWithMissingDimensions": 795,
   "lazyLoadingIssuePages": 0,
-  "primaryImageLazyPages": 57,
-  "largeImageUrlCount": 4552,
-  "pagesWithLargeImageUrls": 390,
+  "primaryImageLazyPages": 55,
+  "largeImageUrlCount": 6084,
+  "pagesWithLargeImageUrls": 607,
   "imageIssueCounts": {
-    "image_alt_duplicate_on_page": 453,
-    "image_missing_dimensions": 391,
-    "shopify_variant_auto_alt_duplicate": 385,
-    "missing_image_alt": 351,
-    "large_image_url_width": 156,
-    "image_count_high": 74,
-    "primary_image_lazy_loaded": 63,
-    "image_alt_too_long": 26,
-    "image_alt_too_short": 15,
-    "image_filename_not_descriptive": 11,
-    "product_image_alt_missing_product_name": 10
+    "image_alt_duplicate_on_page": 854,
+    "image_missing_dimensions": 795,
+    "shopify_variant_auto_alt_duplicate": 788,
+    "missing_image_alt": 698,
+    "large_image_url_width": 205,
+    "image_count_high": 83,
+    "primary_image_lazy_loaded": 61,
+    "image_alt_too_long": 50,
+    "product_image_alt_missing_product_name": 19,
+    "image_filename_not_descriptive": 6,
+    "image_alt_too_short": 5
   },
   "topMissingAltPages": [
     {
@@ -95,6 +95,14 @@
       "missingAltImages": 1,
       "sampleImages": [
         "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/collections/cargo-pants-for-men/products/pack-of-2-multi-pockets-plain-baggy-cargos-beige-black",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/baggy-cargos-size-chart-tripr-india.jpg?v=1769846066"
       ]
     },
     {
@@ -202,6 +210,14 @@
       ]
     },
     {
+      "url": "https://triprindia.com/pages/mens-cargos-size-chart",
+      "pageType": "page",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
+      ]
+    },
+    {
       "url": "https://triprindia.com/pages/tracksuit-fullsleeve-trackpant-fk",
       "pageType": "page",
       "missingAltImages": 1,
@@ -215,22 +231,6 @@
       "missingAltImages": 1,
       "sampleImages": [
         "https://cdn.shopify.com/s/files/1/2028/4467/files/tracksuit-half_tshirt_and_trackpant_set_size_chart.jpg?v=1753531125"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/products/6-color-variants-with-mens-design-printed-trackpants-j59",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/men-track-pant-size-chart-tripr-india.jpg?v=1769847016"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/products/6-pockets-cargo-jogger-color-blocked-white-grey",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
       ]
     }
   ],
