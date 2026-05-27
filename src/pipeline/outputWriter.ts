@@ -41,6 +41,9 @@ export async function writeCrawlOutputs(
   await saveCsv("data/reports/image-inventory.csv", reports.imageInventoryReport);
   await saveJson("data/reports/image-seo-summary.json", reports.imageSeoSummaryReport);
   await saveCsv("data/reports/image-seo-summary.csv", buildImageSeoSummaryCsvRows(reports.imageSeoSummaryReport));
+  await saveJson("data/reports/link-graph.json", reports.linkGraphReport);
+  await saveCsv("data/reports/link-graph.csv", reports.linkGraphCsvRows);
+  await saveJson("data/reports/link-graph-summary.json", reports.linkGraphSummaryReport);
   await deleteDisabledSchemaReports();
   await saveIssuesJson(reports.issues);
   await saveIssuesCsv(reports.issues);
@@ -71,6 +74,7 @@ function flattenPage(page: CrawledPage): Record<string, unknown> {
   return {
     url: page.finalUrl,
     requestedUrl: page.url,
+    discoverySource: page.discoverySource ?? "",
     redirected: page.redirected,
     redirectCount: page.redirectCount,
     status: page.status,

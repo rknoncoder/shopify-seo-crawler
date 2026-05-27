@@ -6,6 +6,7 @@ import { buildCrawlStatsReport } from "../reports/crawlStatsReport.js";
 import { buildImageInventoryReport } from "../reports/imageInventoryReport.js";
 import { buildImageSeoSummaryReport } from "../reports/imageSeoSummaryReport.js";
 import { buildIndexabilityReport } from "../reports/indexabilityReport.js";
+import { buildLinkGraphCsvRows, buildLinkGraphReport, buildLinkGraphSummaryReport } from "../reports/linkGraphReport.js";
 import { buildPageSpeedInsightsReport, type PageSpeedInsightsOptions } from "../reports/pageSpeedInsightsReport.js";
 import { buildRedirectReport } from "../reports/redirectReport.js";
 import type { CrawlResult } from "../types/crawl.js";
@@ -28,6 +29,9 @@ export interface ReportBundle {
   crawlStatsReport: ReturnType<typeof buildCrawlStatsReport>;
   imageInventoryReport: ReturnType<typeof buildImageInventoryReport>;
   imageSeoSummaryReport: ReturnType<typeof buildImageSeoSummaryReport>;
+  linkGraphReport: ReturnType<typeof buildLinkGraphReport>;
+  linkGraphCsvRows: ReturnType<typeof buildLinkGraphCsvRows>;
+  linkGraphSummaryReport: ReturnType<typeof buildLinkGraphSummaryReport>;
 }
 
 export async function buildReportBundle(options: BuildReportBundleOptions): Promise<ReportBundle> {
@@ -42,6 +46,9 @@ export async function buildReportBundle(options: BuildReportBundleOptions): Prom
   const redirectReport = buildRedirectReport(result.pages);
   const imageInventoryReport = buildImageInventoryReport(result.imageInventoryUsages);
   const imageSeoSummaryReport = buildImageSeoSummaryReport(result.pages, issues, imageInventoryReport);
+  const linkGraphReport = buildLinkGraphReport(result.linkGraph, result.pages);
+  const linkGraphCsvRows = buildLinkGraphCsvRows(linkGraphReport);
+  const linkGraphSummaryReport = buildLinkGraphSummaryReport(result.linkGraph, result.pages);
   const pageSpeedUrls = result.pages.filter((page) => page.status === 200).map((page) => page.finalUrl);
   const pageSpeedReport = await buildPageSpeedInsightsReport(pageSpeedUrls, pageSpeedOptions);
 
@@ -55,6 +62,9 @@ export async function buildReportBundle(options: BuildReportBundleOptions): Prom
     pageSpeedReport,
     crawlStatsReport,
     imageInventoryReport,
-    imageSeoSummaryReport
+    imageSeoSummaryReport,
+    linkGraphReport,
+    linkGraphCsvRows,
+    linkGraphSummaryReport
   };
 }

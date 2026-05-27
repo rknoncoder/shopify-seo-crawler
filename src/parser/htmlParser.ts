@@ -1,7 +1,7 @@
 import * as cheerio from "cheerio";
 import { analyzeMetadata } from "../analyzer/metadata.js";
 import type { FetchResult } from "../types/crawl.js";
-import type { CrawledPage } from "../types/page.js";
+import type { CrawledPage, DiscoverySource } from "../types/page.js";
 import { extractContentSummary } from "./contentExtractor.js";
 import { extractHeadings } from "./headingExtractor.js";
 import { extractImages } from "./imageExtractor.js";
@@ -10,7 +10,7 @@ import { extractMeta } from "./metaExtractor.js";
 import { extractSpeedSignals } from "./speedExtractor.js";
 import { detectShopify } from "./shopifyDetector.js";
 
-export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage {
+export function parseHtml(fetchResult: FetchResult, depth: number, discoverySource?: DiscoverySource): CrawledPage {
   const $ = cheerio.load(fetchResult.html);
   const shopify = detectShopify($, fetchResult.finalUrl);
   const content = extractContentSummary($);
@@ -27,6 +27,7 @@ export function parseHtml(fetchResult: FetchResult, depth: number): CrawledPage 
   return {
     url: fetchResult.url,
     finalUrl: fetchResult.finalUrl,
+    discoverySource,
     redirected: fetchResult.redirected,
     redirectCount: fetchResult.redirectCount,
     status: fetchResult.status,

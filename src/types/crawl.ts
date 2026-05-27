@@ -60,6 +60,10 @@ export interface CrawlRetryTelemetry {
 export interface CrawlTelemetry {
   totalRequested: number;
   skippedNonHtmlCount: number;
+  apiSeededProducts: number;
+  apiSeededCollections: number;
+  probeDiscoveredProducts: number;
+  sitemapOnlyProducts: number;
   retries: CrawlRetryTelemetry;
 }
 
@@ -67,6 +71,7 @@ export interface CrawlResult {
   pages: CrawledPage[];
   issues: SeoIssue[];
   imageInventoryUsages: ImageInventoryUsage[];
+  linkGraph: LinkGraph;
   telemetry: CrawlTelemetry;
 }
 
@@ -77,3 +82,11 @@ export interface SitemapEntry {
   urlCount: number;
   selectedForCrawl?: boolean;
 }
+
+export interface QueuedUrl {
+  url: string;
+  depth: number;
+  discoverySource?: CrawledPage["discoverySource"];
+}
+
+export type LinkGraph = Map<string, Set<string>>;

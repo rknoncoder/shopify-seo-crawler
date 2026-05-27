@@ -1,5 +1,7 @@
 import type { ShopifyPageType, ShopifySignals } from "./shopify.js";
 
+export type DiscoverySource = "api_probe" | "pagination_probe" | "sitemap_unlisted";
+
 export interface HeadingSummary {
   h1: string[];
   h2: string[];
@@ -102,6 +104,7 @@ export interface MetadataValidationSummary {
 export interface CrawledPage {
   url: string;
   finalUrl: string;
+  discoverySource?: DiscoverySource;
   redirected: boolean;
   redirectCount: number;
   status: number;

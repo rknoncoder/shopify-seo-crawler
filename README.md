@@ -38,9 +38,17 @@ Advanced metadata validation records compact page-level signals for noindex, can
 
 Internal link checks report orphan pages, weakly linked pages, and products that are not linked from any crawled collection page.
 
+Discover mode includes a Shopify collection pagination probe for infinite-scroll themes. When a crawled collection URL is found, the crawler also fetches lightweight pagination variants such as `/collections/t-shirts?limit=250&page=1`, `/collections/t-shirts?limit=250&page=2`, and so on. These probe pages are used only to discover canonical product URLs and are not stored as normal crawled pages, which keeps report output focused and avoids duplicate collection-page audits.
+
+Discover mode also seeds storefront URLs from Shopify JSON and sitemap sources before normal BFS crawling starts. It reads `/products.json` for listed products, `/collections.json` for listed collections, and `/sitemap.xml` plus product sitemap files to catch live product URLs that exist in the sitemap but are not returned by `/products.json`.
+
 SERP snippet checks report weak title/meta description quality, including generic titles, brand-only titles, title/H1 mismatch, boilerplate descriptions, descriptions that duplicate titles/headings, and product descriptions that lack useful shopping details.
 
 Crawl telemetry reporting writes request/crawl totals, status-code buckets, fetch failures, redirects, retry counters, and load-time summaries to `crawl-stats`.
+
+Discover telemetry also reports `api_seeded_products`, `api_seeded_collections`, `probe_discovered_products`, and `sitemap_only_products` so large crawls can explain where product URLs came from.
+
+Link graph reporting exports the crawl's internal HTML link network as a JSON adjacency list, a flat CSV edge list for Excel/Gephi/Cytoscape, and a per-node summary with inbound count, outbound count, inbound sources, home-depth, orphan status, hub/sink flags, and a normalized PageRank score.
 
 Schema and rich-result crawling are intentionally out of scope for this project and should be handled by the separate schema crawler.
 
@@ -61,7 +69,7 @@ Useful flags:
 - `--url` target storefront URL.
 - `--mode` one of `single`, `seo`, `full`, or `discover`. Default is `full`.
 - `--max-pages` maximum pages to crawl.
-- `--max-depth` link crawl depth when falling back from sitemaps.
+- `--max-depth` internal link crawl depth, mainly useful for `discover` mode.
 - `--sitemap` repeatable manual sitemap URL.
 - `--pagespeed` run optional Google PageSpeed Insights checks after crawling.
 - `--pagespeed-limit` maximum crawled URLs to test with PageSpeed Insights. Default is `10`.
@@ -83,11 +91,34 @@ ShopifySEOBot/1.0 (+https://example.com/bot)
 
 By default it crawls with one request at a time and waits roughly 3-5 seconds between requests to reduce Shopify bot-protection blocks.
 
+### Crawl Modes
+
+| Mode | Best for | Behavior |
+| --- | --- | --- |
+| `single` | One-page audit, Chrome-extension style checks, quick debugging | Crawls only the target URL. |
+| `seo` | Smaller sitemap-based SEO crawls | Uses selected Shopify sitemap URLs and conservative limits. |
+| `full` | Full Shopify sitemap crawl | Uses all selected sitemap URLs and larger limits. |
+| `discover` | Internal-link discovery, orphan/reachability checks, infinite-scroll collection testing | Skips sitemaps, starts from the target URL, follows internal links, and probes Shopify collection pagination for hidden product links. |
+
 Use `discover` mode when you want to ignore sitemaps and crawl from the target URL through internal HTML links:
 
 ```bash
 npm run crawl -- --url https://example.com --mode discover --max-pages 3000 --max-depth 8 --memory-safe --no-excel
 ```
+
+In `discover` mode, Shopify collection URLs are also probed with pagination parameters:
+
+```text
+/collections/example?limit=250&page=1
+/collections/example?limit=250&page=2
+/collections/example?limit=250&page=3
+```
+
+The crawler extracts product links from those responses, normalizes collection-product URLs such as `/collections/summer/products/cool-shirt` to `/products/cool-shirt`, and queues the canonical product URL. The probe loop stops when a pagination page returns an error, has no product links, or adds no new product URLs.
+
+This is designed to catch products that are hidden behind Shopify infinite scroll or JavaScript "load more" behavior without using a heavy browser renderer. It is much faster and lighter than Playwright/Puppeteer. A future optional JavaScript rendering fallback can be added for themes or apps that do not expose product links through normal Shopify pagination.
+
+Important: pagination probe and sitemap seed requests are not stored as normal crawled pages. URLs discovered only through Shopify JSON/API/sitemap sources are tagged with `discoverySource` values such as `api_probe`, `pagination_probe`, or `sitemap_unlisted`. If they have no crawlable HTML inbound links, they are reported as `no_html_inbound_link` instead of being mixed into true `orphan_page` issues.
 
 ## Local Dashboard
 
@@ -147,6 +178,9 @@ Reports are written to:
 - `data/reports/image-inventory.csv`
 - `data/reports/image-seo-summary.json`
 - `data/reports/image-seo-summary.csv`
+- `data/reports/link-graph.json`
+- `data/reports/link-graph.csv`
+- `data/reports/link-graph-summary.json`
 - `data/reports/issues.json`
 - `data/reports/issues.csv`
 - `data/reports/action-plan.json`

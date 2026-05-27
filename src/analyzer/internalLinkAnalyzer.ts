@@ -16,6 +16,18 @@ export function detectInternalLinkIssues(pages: CrawledPage[]): SeoIssue[] {
     if (node.page.status >= 400 || node.page.pageType === "home") continue;
 
     if (node.inboundLinks.size === 0) {
+      if (isNonHtmlDiscovered(node.page)) {
+        issues.push(issue(
+          node.page,
+          "medium",
+          "no_html_inbound_link",
+          "Page was discovered by a Shopify API, sitemap, or pagination probe but has no HTML inbound links from crawled pages.",
+          "Add crawlable HTML links from collections, navigation, related products, or content pages so search engines can discover this URL through normal links.",
+          `inboundInternalLinks=0; inboundSourceType=non_html_discovered; discoverySource=${node.page.discoverySource}`
+        ));
+        continue;
+      }
+
       issues.push(issue(
         node.page,
         node.page.pageType === "product" || node.page.pageType === "collection" ? "high" : "medium",
@@ -52,6 +64,12 @@ export function detectInternalLinkIssues(pages: CrawledPage[]): SeoIssue[] {
   }
 
   return issues;
+}
+
+function isNonHtmlDiscovered(page: CrawledPage): boolean {
+  return page.discoverySource === "api_probe"
+    || page.discoverySource === "pagination_probe"
+    || page.discoverySource === "sitemap_unlisted";
 }
 
 function buildLinkGraph(pages: CrawledPage[]): Map<string, LinkGraphNode> {

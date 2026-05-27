@@ -28,6 +28,10 @@ export interface CrawlStatsReport {
   statusCodeCounts: StatusCodeCounts;
   fetchFailedCount: number;
   skippedNonHtmlCount: number;
+  api_seeded_products: number;
+  api_seeded_collections: number;
+  probe_discovered_products: number;
+  sitemap_only_products: number;
   redirectedCount: number;
   retryCounters: CrawlTelemetry["retries"];
   loadTimeMs: LoadTimeSummary;
@@ -45,6 +49,10 @@ export interface CrawlStatsCsvRow {
   exactStatusCounts: string;
   fetchFailedCount: number;
   skippedNonHtmlCount: number;
+  api_seeded_products: number;
+  api_seeded_collections: number;
+  probe_discovered_products: number;
+  sitemap_only_products: number;
   redirectedCount: number;
   totalRetries: number;
   statusRetries: number;
@@ -68,6 +76,10 @@ export function buildCrawlStatsReport(
     statusCodeCounts: countStatusCodes(pages),
     fetchFailedCount: issues.filter((issue) => isFetchFailureCode(issue.code)).length,
     skippedNonHtmlCount: telemetry.skippedNonHtmlCount,
+    api_seeded_products: telemetry.apiSeededProducts,
+    api_seeded_collections: telemetry.apiSeededCollections,
+    probe_discovered_products: telemetry.probeDiscoveredProducts,
+    sitemap_only_products: telemetry.sitemapOnlyProducts,
     redirectedCount: pages.filter((page) => page.redirected).length,
     retryCounters: telemetry.retries,
     loadTimeMs: summarizeLoadTimes(pages)
@@ -87,6 +99,10 @@ export function buildCrawlStatsCsvRows(report: CrawlStatsReport): CrawlStatsCsvR
     exactStatusCounts: JSON.stringify(report.statusCodeCounts.exact),
     fetchFailedCount: report.fetchFailedCount,
     skippedNonHtmlCount: report.skippedNonHtmlCount,
+    api_seeded_products: report.api_seeded_products,
+    api_seeded_collections: report.api_seeded_collections,
+    probe_discovered_products: report.probe_discovered_products,
+    sitemap_only_products: report.sitemap_only_products,
     redirectedCount: report.redirectedCount,
     totalRetries: report.retryCounters.totalRetries,
     statusRetries: report.retryCounters.statusRetries,

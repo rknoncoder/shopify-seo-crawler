@@ -1,13 +1,15 @@
 import config from "../config/config.js";
+import type { QueuedUrl } from "../types/crawl.js";
+import type { DiscoverySource } from "../types/page.js";
 import { normalizeUrl, shouldSkipUrl } from "../utils/urlUtils.js";
 
 export class UrlManager {
   private readonly seen = new Set<string>();
-  private readonly queue: Array<{ url: string; depth: number }> = [];
+  private readonly queue: QueuedUrl[] = [];
 
   constructor(private readonly baseUrl: string) {}
 
-  add(url: string, depth: number): boolean {
+  add(url: string, depth: number, discoverySource?: DiscoverySource): boolean {
     if (this.seen.size >= config.maxPages || depth > config.maxDepth) return false;
 
     let normalized: string;
@@ -19,11 +21,11 @@ export class UrlManager {
 
     if (this.seen.has(normalized) || shouldSkipUrl(normalized, this.baseUrl)) return false;
     this.seen.add(normalized);
-    this.queue.push({ url: normalized, depth });
+    this.queue.push({ url: normalized, depth, discoverySource });
     return true;
   }
 
-  next(): { url: string; depth: number } | undefined {
+  next(): QueuedUrl | undefined {
     return this.queue.shift();
   }
 

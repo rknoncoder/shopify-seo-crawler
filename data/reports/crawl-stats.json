@@ -1,23 +1,26 @@
 {
-  "generatedAt": "2026-05-27T07:46:28.149Z",
-  "totalRequested": 1185,
-  "totalCrawled": 948,
+  "generatedAt": "2026-05-27T11:33:30.517Z",
+  "totalRequested": 1040,
+  "totalCrawled": 969,
   "statusCodeCounts": {
     "families": {
-      "2xx": 945,
+      "2xx": 966,
       "3xx": 0,
       "4xx": 3,
       "5xx": 0,
       "other": 0
     },
     "exact": {
-      "200": 945,
+      "200": 966,
       "404": 3
     }
   },
   "fetchFailedCount": 3,
   "skippedNonHtmlCount": 0,
-  "redirectedCount": 9,
+  "api_seeded_products": 797,
+  "api_seeded_collections": 38,
+  "probe_discovered_products": 0,
+  "redirectedCount": 10,
   "retryCounters": {
     "totalRetries": 0,
     "statusRetries": 0,
@@ -25,9 +28,9 @@
     "retryStatusCounts": {}
   },
   "loadTimeMs": {
-    "avg": 309,
-    "p50": 298,
-    "p95": 458,
-    "max": 2953
+    "avg": 351,
+    "p50": 341,
+    "p95": 544,
+    "max": 1817
   }
 }

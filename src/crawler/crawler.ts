@@ -1,12 +1,13 @@
+import * as cheerio from "cheerio";
 import PQueue from "p-queue";
 import config from "../config/config.js";
 import { runAudits } from "../audits/runAudits.js";
 import { analyzeSite } from "../analyzer/seoAnalyzer.js";
-import { fetchPage, getFetchTelemetry, resetFetchTelemetry, sleepBetweenRequests } from "./fetcher.js";
+import { delay, fetchPage, getFetchTelemetry, resetFetchTelemetry, sleepBetweenRequests } from "./fetcher.js";
 import { discoverShopifyCollectionPagination } from "./shopifyCollectionPagination.js";
 import { UrlManager } from "./urlManager.js";
 import { parseHtml } from "../parser/htmlParser.js";
-import type { CrawlResult } from "../types/crawl.js";
+import type { CrawlResult, LinkGraph } from "../types/crawl.js";
 import type { ImageInventoryUsage } from "../types/image.js";
 import type { CrawledPage } from "../types/page.js";
 import type { SeoIssue } from "../types/issue.js";
@@ -27,11 +28,29 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   const analysisPages: CrawledPage[] = [];
   const pageIssues: SeoIssue[] = [];
   const imageInventoryUsages: ImageInventoryUsage[] = [];
+  const linkGraph: LinkGraph = new Map();
   let totalRequested = 0;
   let skippedNonHtmlCount = 0;
+  let apiSeededProducts = 0;
+  let apiSeededCollections = 0;
+  let probeDiscoveredProducts = 0;
+  let sitemapOnlyProducts = 0;
   const queue = new PQueue({ concurrency: config.concurrency });
 
   seedUrls.slice(0, config.maxPages).forEach((url) => manager.add(url, 0));
+  if (config.crawlMode === "discover") {
+    const productSeed = await seedAllProductsFromApi(baseUrl, manager);
+    totalRequested += productSeed.apiRequests;
+    apiSeededProducts += productSeed.seededUrls;
+
+    const sitemapSeed = await seedUnlistedProductsFromSitemap(baseUrl, manager);
+    totalRequested += sitemapSeed.apiRequests;
+    sitemapOnlyProducts += sitemapSeed.seededUrls;
+
+    const collectionSeed = await seedAllCollectionsFromApi(baseUrl, manager);
+    totalRequested += collectionSeed.apiRequests;
+    apiSeededCollections += collectionSeed.seededUrls;
+  }
 
   while (pages.length < config.maxPages) {
     const next = manager.next();
@@ -50,7 +69,8 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
           return;
         }
 
-        const page = parseHtml(fetched, next.depth);
+        const page = parseHtml(fetched, next.depth, next.discoverySource);
+        recordLinkGraphEdges(linkGraph, page, baseUrl);
         const issues = runAudits(page);
         page.issues = issues.map((issue) => issue.code);
         pageIssues.push(...issues);
@@ -61,11 +81,10 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
             .filter((link) => link.internal && !shouldSkipUrl(link.href, baseUrl))
             .forEach((link) => manager.add(link.href, next.depth + 1));
 
-          await discoverShopifyCollectionPagination({
+          probeDiscoveredProducts += await discoverShopifyCollectionPagination({
             collectionUrl: page.finalUrl,
             baseUrl,
             depth: next.depth,
-            initialLinks: page.links,
             manager,
             onRequest: () => {
               totalRequested += 1;
@@ -104,12 +123,268 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
     pages,
     issues: analyzeSite(analysisPages, pageIssues),
     imageInventoryUsages,
+    linkGraph,
     telemetry: {
       totalRequested,
       skippedNonHtmlCount,
+      apiSeededProducts,
+      apiSeededCollections,
+      probeDiscoveredProducts,
+      sitemapOnlyProducts,
       retries: getFetchTelemetry()
     }
   };
+}
+
+function recordLinkGraphEdges(linkGraph: LinkGraph, page: CrawledPage, baseUrl: string): void {
+  if (page.status >= 400) return;
+
+  const sourceUrl = normalizeLinkGraphUrl(page.finalUrl);
+  const destinations = new Set<string>();
+
+  for (const link of page.links) {
+    if (!link.internal) continue;
+
+    const destinationUrl = normalizeLinkGraphUrl(link.href);
+    if (!destinationUrl || isAssetUrl(destinationUrl, baseUrl)) continue;
+
+    destinations.add(destinationUrl);
+  }
+
+  linkGraph.set(sourceUrl, destinations);
+}
+
+function normalizeLinkGraphUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    parsed.hash = "";
+    const normalized = parsed.toString();
+    return normalized.endsWith("/") && parsed.pathname !== "/" ? normalized.slice(0, -1) : normalized;
+  } catch {
+    return "";
+  }
+}
+
+function isAssetUrl(url: string, baseUrl: string): boolean {
+  let parsed: URL;
+  try {
+    parsed = new URL(url, baseUrl);
+  } catch {
+    return true;
+  }
+
+  const lowerPath = parsed.pathname.toLowerCase();
+  return config.crawl.excludedExtensions.some((extension) => lowerPath.endsWith(extension));
+}
+
+interface ApiSeedResult {
+  apiRequests: number;
+  seededUrls: number;
+}
+
+async function seedAllProductsFromApi(baseUrl: string, manager: UrlManager): Promise<ApiSeedResult> {
+  const productLimit = 250;
+  let apiRequests = 0;
+  let seededProducts = 0;
+
+  for (let pageNumber = 1; ; pageNumber += 1) {
+    const apiUrl = buildProductsApiUrl(baseUrl, productLimit, pageNumber);
+    let products: Array<{ handle?: unknown }>;
+
+    try {
+      apiRequests += 1;
+      const fetched = await fetchPage(apiUrl);
+      if (fetched.status < 200 || fetched.status >= 300) break;
+
+      products = parseProductsJson(fetched.html);
+    } catch {
+      break;
+    }
+
+    if (products.length === 0) break;
+
+    for (const product of products) {
+      if (typeof product.handle !== "string" || product.handle.trim() === "") continue;
+      const productUrl = new URL(`/products/${product.handle.trim()}`, baseUrl).toString();
+      if (manager.add(productUrl, 0, "api_probe")) {
+        seededProducts += 1;
+      }
+    }
+
+    if (products.length < productLimit) break;
+    await delay(1000 + Math.floor(Math.random() * 1000));
+  }
+
+  console.log(`Seeded ${seededProducts} product URLs from Shopify products.json.`);
+  return {
+    apiRequests,
+    seededUrls: seededProducts
+  };
+}
+
+async function seedAllCollectionsFromApi(baseUrl: string, manager: UrlManager): Promise<ApiSeedResult> {
+  const collectionLimit = 250;
+  let apiRequests = 0;
+  let seededCollections = 0;
+
+  for (let pageNumber = 1; ; pageNumber += 1) {
+    const apiUrl = buildCollectionsApiUrl(baseUrl, collectionLimit, pageNumber);
+    let collections: Array<{ handle?: unknown }>;
+
+    try {
+      apiRequests += 1;
+      const fetched = await fetchPage(apiUrl);
+      if (fetched.status < 200 || fetched.status >= 300) break;
+
+      collections = parseCollectionsJson(fetched.html);
+    } catch {
+      break;
+    }
+
+    if (collections.length === 0) break;
+
+    for (const collection of collections) {
+      if (typeof collection.handle !== "string" || collection.handle.trim() === "") continue;
+      const collectionUrl = new URL(`/collections/${collection.handle.trim()}`, baseUrl).toString();
+      if (manager.add(collectionUrl, 0, "api_probe")) {
+        seededCollections += 1;
+      }
+    }
+
+    if (collections.length < collectionLimit) break;
+    await delay(1000 + Math.floor(Math.random() * 1000));
+  }
+
+  console.log(`Seeded ${seededCollections} collection URLs from Shopify collections.json.`);
+  return {
+    apiRequests,
+    seededUrls: seededCollections
+  };
+}
+
+async function seedUnlistedProductsFromSitemap(baseUrl: string, manager: UrlManager): Promise<ApiSeedResult> {
+  let apiRequests = 0;
+  let seededProducts = 0;
+
+  try {
+    apiRequests += 1;
+    const sitemapIndex = await fetchPage(buildSitemapIndexUrl(baseUrl));
+    if (sitemapIndex.status < 200 || sitemapIndex.status >= 300) {
+      console.log("Seeded 0 sitemap-only product URLs from Shopify sitemap.");
+      return { apiRequests, seededUrls: seededProducts };
+    }
+
+    const productSitemapUrls = extractProductSitemapUrls(sitemapIndex.html, sitemapIndex.finalUrl);
+    const sitemapUrls = productSitemapUrls.length > 0 ? productSitemapUrls : [sitemapIndex.finalUrl];
+
+    for (const sitemapUrl of sitemapUrls) {
+      apiRequests += 1;
+      const productSitemap = await fetchPage(sitemapUrl);
+      if (productSitemap.status < 200 || productSitemap.status >= 300) continue;
+
+      for (const productUrl of extractProductUrlsFromSitemap(productSitemap.html, productSitemap.finalUrl)) {
+        if (manager.add(productUrl, 0, "sitemap_unlisted")) {
+          seededProducts += 1;
+        }
+      }
+    }
+  } catch {
+    // Sitemap discovery is best-effort in discover mode.
+  }
+
+  console.log(`Seeded ${seededProducts} sitemap-only product URLs from Shopify sitemap.`);
+  return {
+    apiRequests,
+    seededUrls: seededProducts
+  };
+}
+
+function buildProductsApiUrl(baseUrl: string, limit: number, pageNumber: number): string {
+  const origin = new URL(baseUrl).origin;
+  const url = new URL("/products.json", origin);
+  url.searchParams.set("limit", String(limit));
+  url.searchParams.set("page", String(pageNumber));
+  return url.toString();
+}
+
+function buildCollectionsApiUrl(baseUrl: string, limit: number, pageNumber: number): string {
+  const origin = new URL(baseUrl).origin;
+  const url = new URL("/collections.json", origin);
+  url.searchParams.set("limit", String(limit));
+  url.searchParams.set("page", String(pageNumber));
+  return url.toString();
+}
+
+function buildSitemapIndexUrl(baseUrl: string): string {
+  const origin = new URL(baseUrl).origin;
+  return new URL("/sitemap.xml", origin).toString();
+}
+
+function parseProductsJson(rawJson: string): Array<{ handle?: unknown }> {
+  const parsed: unknown = JSON.parse(rawJson);
+  if (!parsed || typeof parsed !== "object" || !("products" in parsed)) return [];
+
+  const products = (parsed as { products?: unknown }).products;
+  return Array.isArray(products) ? products as Array<{ handle?: unknown }> : [];
+}
+
+function parseCollectionsJson(rawJson: string): Array<{ handle?: unknown }> {
+  const parsed: unknown = JSON.parse(rawJson);
+  if (!parsed || typeof parsed !== "object" || !("collections" in parsed)) return [];
+
+  const collections = (parsed as { collections?: unknown }).collections;
+  return Array.isArray(collections) ? collections as Array<{ handle?: unknown }> : [];
+}
+
+function extractProductSitemapUrls(xml: string, baseUrl: string): string[] {
+  const $ = cheerio.load(xml, { xmlMode: true });
+  return $("sitemap > loc")
+    .map((_, element) => $(element).text().trim())
+    .get()
+    .filter((url) => /sitemap_products/i.test(url))
+    .map((url) => normalizeSitemapSeedUrl(url, baseUrl));
+}
+
+function extractProductUrlsFromSitemap(xml: string, baseUrl: string): string[] {
+  const $ = cheerio.load(xml, { xmlMode: true });
+  const seen = new Set<string>();
+
+  $("url > loc")
+    .map((_, element) => $(element).text().trim())
+    .get()
+    .forEach((url) => {
+      const normalized = normalizeProductSitemapUrl(url, baseUrl);
+      if (normalized) {
+        seen.add(normalized);
+      }
+    });
+
+  return [...seen];
+}
+
+function normalizeSitemapSeedUrl(url: string, baseUrl: string): string {
+  try {
+    const parsed = new URL(url, baseUrl);
+    parsed.hash = "";
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
+
+function normalizeProductSitemapUrl(url: string, baseUrl: string): string {
+  try {
+    const parsed = new URL(url, baseUrl);
+    const parts = parsed.pathname.split("/").filter(Boolean);
+    if (parts[0] !== "products" || !parts[1]) return "";
+
+    parsed.hash = "";
+    parsed.search = "";
+    parsed.pathname = `/products/${parts[1]}`;
+    return parsed.toString();
+  } catch {
+    return "";
+  }
 }
 
 function buildImageInventoryUsages(page: CrawledPage): ImageInventoryUsage[] {

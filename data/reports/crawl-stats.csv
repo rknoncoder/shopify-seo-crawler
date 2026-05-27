@@ -1,2 +1,2 @@
-generatedAt,totalRequested,totalCrawled,status2xx,status3xx,status4xx,status5xx,statusOther,exactStatusCounts,fetchFailedCount,skippedNonHtmlCount,redirectedCount,totalRetries,statusRetries,errorRetries,retryStatusCounts,avgLoadTimeMs,p50LoadTimeMs,p95LoadTimeMs,maxLoadTimeMs
-2026-05-27T07:46:28.149Z,1185,948,945,0,3,0,0,"{""200"":945,""404"":3}",3,0,9,0,0,0,{},309,298,458,2953
+generatedAt,totalRequested,totalCrawled,status2xx,status3xx,status4xx,status5xx,statusOther,exactStatusCounts,fetchFailedCount,skippedNonHtmlCount,api_seeded_products,api_seeded_collections,probe_discovered_products,redirectedCount,totalRetries,statusRetries,errorRetries,retryStatusCounts,avgLoadTimeMs,p50LoadTimeMs,p95LoadTimeMs,maxLoadTimeMs
+2026-05-27T11:33:30.517Z,1040,969,966,0,3,0,0,"{""200"":966,""404"":3}",3,0,797,38,0,10,0,0,0,{},351,341,544,1817

@@ -44,6 +44,10 @@ describe("crawl stats report", () => {
     });
     assert.equal(report.fetchFailedCount, 2);
     assert.equal(report.skippedNonHtmlCount, 2);
+    assert.equal(report.api_seeded_products, 7);
+    assert.equal(report.api_seeded_collections, 3);
+    assert.equal(report.probe_discovered_products, 5);
+    assert.equal(report.sitemap_only_products, 2);
     assert.equal(report.redirectedCount, 1);
     assert.deepEqual(report.retryCounters, telemetry().retries);
     assert.deepEqual(report.loadTimeMs, {
@@ -64,6 +68,10 @@ describe("crawl stats report", () => {
     assert.equal(row.status5xx, 1);
     assert.equal(row.exactStatusCounts, JSON.stringify({ "200": 1, "503": 1 }));
     assert.equal(row.fetchFailedCount, 1);
+    assert.equal(row.api_seeded_products, 7);
+    assert.equal(row.api_seeded_collections, 3);
+    assert.equal(row.probe_discovered_products, 5);
+    assert.equal(row.sitemap_only_products, 2);
     assert.equal(row.retryStatusCounts, JSON.stringify({ "503": 2 }));
     assert.equal(row.avgLoadTimeMs, 50);
     assert.equal(row.p50LoadTimeMs, 25);
@@ -95,6 +103,10 @@ function telemetry(): CrawlTelemetry {
   return {
     totalRequested: 8,
     skippedNonHtmlCount: 2,
+    apiSeededProducts: 7,
+    apiSeededCollections: 3,
+    probeDiscoveredProducts: 5,
+    sitemapOnlyProducts: 2,
     retries: {
       totalRetries: 3,
       statusRetries: 2,

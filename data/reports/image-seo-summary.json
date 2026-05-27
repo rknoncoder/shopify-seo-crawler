@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-05-27T07:46:28.317Z",
-  "totalPages": 948,
-  "pagesWithImages": 948,
-  "totalImagesStored": 15328,
-  "totalImageUsages": 19502,
-  "uniqueImageRows": 9541,
-  "missingAltImages": 727,
-  "pagesWithMissingAlt": 698,
-  "duplicateAltIssuePages": 848,
-  "missingDimensionImages": 811,
-  "pagesWithMissingDimensions": 795,
+  "generatedAt": "2026-05-27T11:33:30.715Z",
+  "totalPages": 969,
+  "pagesWithImages": 969,
+  "totalImagesStored": 15670,
+  "totalImageUsages": 19885,
+  "uniqueImageRows": 9677,
+  "missingAltImages": 744,
+  "pagesWithMissingAlt": 715,
+  "duplicateAltIssuePages": 868,
+  "missingDimensionImages": 828,
+  "pagesWithMissingDimensions": 812,
   "lazyLoadingIssuePages": 0,
-  "primaryImageLazyPages": 55,
-  "largeImageUrlCount": 6084,
-  "pagesWithLargeImageUrls": 607,
+  "primaryImageLazyPages": 58,
+  "largeImageUrlCount": 6150,
+  "pagesWithLargeImageUrls": 615,
   "imageIssueCounts": {
-    "image_alt_duplicate_on_page": 854,
-    "image_missing_dimensions": 795,
-    "shopify_variant_auto_alt_duplicate": 788,
-    "missing_image_alt": 698,
-    "large_image_url_width": 205,
+    "image_alt_duplicate_on_page": 875,
+    "image_missing_dimensions": 813,
+    "shopify_variant_auto_alt_duplicate": 805,
+    "missing_image_alt": 716,
+    "large_image_url_width": 206,
     "image_count_high": 83,
-    "primary_image_lazy_loaded": 61,
+    "primary_image_lazy_loaded": 64,
     "image_alt_too_long": 50,
     "product_image_alt_missing_product_name": 19,
-    "image_filename_not_descriptive": 6,
-    "image_alt_too_short": 5
+    "image_alt_too_short": 6,
+    "image_filename_not_descriptive": 6
   },
   "topMissingAltPages": [
     {
@@ -79,14 +79,6 @@
       "missingAltImages": 1,
       "sampleImages": [
         "https://cdn.shopify.com/s/files/1/2028/4467/files/SHIRT_BANNER_09.11.2023_480x480.jpg?v=1699514071"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/all/products/full-sleeve-jacket-black",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/men_hoodie_size_chart.jpg?v=1733320830"
       ]
     },
     {
@@ -231,6 +223,14 @@
       "missingAltImages": 1,
       "sampleImages": [
         "https://cdn.shopify.com/s/files/1/2028/4467/files/tracksuit-half_tshirt_and_trackpant_set_size_chart.jpg?v=1753531125"
+      ]
+    },
+    {
+      "url": "https://triprindia.com/products/6-color-variants-with-mens-design-printed-trackpants-j59",
+      "pageType": "product",
+      "missingAltImages": 1,
+      "sampleImages": [
+        "https://cdn.shopify.com/s/files/1/2028/4467/files/men-track-pant-size-chart-tripr-india.jpg?v=1769847016"
       ]
     }
   ],
