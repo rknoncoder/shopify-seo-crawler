@@ -1,6 +1,7 @@
 import type { CrawlTelemetry } from "../types/crawl.js";
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
+import type { LinkGraphSummaryRow } from "./linkGraphReport.js";
 import { isFetchFailureCode } from "../utils/fetchFailureClassifier.js";
 
 interface LoadTimeSummary {
@@ -21,6 +22,18 @@ interface StatusCodeCounts {
   exact: Record<string, number>;
 }
 
+export interface NetworkSummary {
+  total_nodes: number;
+  total_edges: number;
+  orphan_count: number;
+  sink_count: number;
+  hub_count: number;
+  avg_inbound_links: number | null;
+  max_inbound_url: string;
+  avg_depth_from_home: number | null;
+  top_pagerank_url: string;
+}
+
 export interface CrawlStatsReport {
   generatedAt: string;
   totalRequested: number;
@@ -35,6 +48,7 @@ export interface CrawlStatsReport {
   redirectedCount: number;
   retryCounters: CrawlTelemetry["retries"];
   loadTimeMs: LoadTimeSummary;
+  network: NetworkSummary;
 }
 
 export interface CrawlStatsCsvRow {
@@ -62,12 +76,22 @@ export interface CrawlStatsCsvRow {
   p50LoadTimeMs: number | null;
   p95LoadTimeMs: number | null;
   maxLoadTimeMs: number | null;
+  total_nodes: number;
+  total_edges: number;
+  orphan_count: number;
+  sink_count: number;
+  hub_count: number;
+  avg_inbound_links: number | null;
+  max_inbound_url: string;
+  avg_depth_from_home: number | null;
+  top_pagerank_url: string;
 }
 
 export function buildCrawlStatsReport(
   pages: CrawledPage[],
   issues: SeoIssue[],
-  telemetry: CrawlTelemetry
+  telemetry: CrawlTelemetry,
+  linkGraphSummary: LinkGraphSummaryRow[] = []
 ): CrawlStatsReport {
   return {
     generatedAt: new Date().toISOString(),
@@ -82,7 +106,8 @@ export function buildCrawlStatsReport(
     sitemap_only_products: telemetry.sitemapOnlyProducts,
     redirectedCount: pages.filter((page) => page.redirected).length,
     retryCounters: telemetry.retries,
-    loadTimeMs: summarizeLoadTimes(pages)
+    loadTimeMs: summarizeLoadTimes(pages),
+    network: summarizeNetwork(linkGraphSummary)
   };
 }
 
@@ -111,7 +136,16 @@ export function buildCrawlStatsCsvRows(report: CrawlStatsReport): CrawlStatsCsvR
     avgLoadTimeMs: report.loadTimeMs.avg,
     p50LoadTimeMs: report.loadTimeMs.p50,
     p95LoadTimeMs: report.loadTimeMs.p95,
-    maxLoadTimeMs: report.loadTimeMs.max
+    maxLoadTimeMs: report.loadTimeMs.max,
+    total_nodes: report.network.total_nodes,
+    total_edges: report.network.total_edges,
+    orphan_count: report.network.orphan_count,
+    sink_count: report.network.sink_count,
+    hub_count: report.network.hub_count,
+    avg_inbound_links: report.network.avg_inbound_links,
+    max_inbound_url: report.network.max_inbound_url,
+    avg_depth_from_home: report.network.avg_depth_from_home,
+    top_pagerank_url: report.network.top_pagerank_url
   }];
 }
 
@@ -171,4 +205,45 @@ function percentile(sortedValues: number[], percentileValue: number): number {
     Math.max(0, Math.ceil(sortedValues.length * percentileValue) - 1)
   );
   return sortedValues[index];
+}
+
+function summarizeNetwork(rows: LinkGraphSummaryRow[]): NetworkSummary {
+  if (rows.length === 0) {
+    return {
+      total_nodes: 0,
+      total_edges: 0,
+      orphan_count: 0,
+      sink_count: 0,
+      hub_count: 0,
+      avg_inbound_links: null,
+      max_inbound_url: "",
+      avg_depth_from_home: null,
+      top_pagerank_url: ""
+    };
+  }
+
+  const totalInbound = rows.reduce((sum, row) => sum + row.inbound_count, 0);
+  const depthValues = rows
+    .map((row) => row.depth_from_home)
+    .filter((depth): depth is number => typeof depth === "number" && Number.isFinite(depth));
+  const maxInboundRow = rows.reduce((best, row) => row.inbound_count > best.inbound_count ? row : best, rows[0]);
+  const topPageRankRow = rows.reduce((best, row) => row.pagerank_score > best.pagerank_score ? row : best, rows[0]);
+
+  return {
+    total_nodes: rows.length,
+    total_edges: rows.reduce((sum, row) => sum + row.outbound_count, 0),
+    orphan_count: rows.filter((row) => row.is_orphan).length,
+    sink_count: rows.filter((row) => row.is_sink).length,
+    hub_count: rows.filter((row) => row.is_hub).length,
+    avg_inbound_links: round(totalInbound / rows.length),
+    max_inbound_url: maxInboundRow.url,
+    avg_depth_from_home: depthValues.length > 0
+      ? round(depthValues.reduce((sum, depth) => sum + depth, 0) / depthValues.length)
+      : null,
+    top_pagerank_url: topPageRankRow.url
+  };
+}
+
+function round(value: number): number {
+  return Number(value.toFixed(2));
 }

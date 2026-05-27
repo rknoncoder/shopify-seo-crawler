@@ -46,7 +46,7 @@ SERP snippet checks report weak title/meta description quality, including generi
 
 Crawl telemetry reporting writes request/crawl totals, status-code buckets, fetch failures, redirects, retry counters, and load-time summaries to `crawl-stats`.
 
-Discover telemetry also reports `api_seeded_products`, `api_seeded_collections`, `probe_discovered_products`, and `sitemap_only_products` so large crawls can explain where product URLs came from.
+Discover telemetry also reports `api_seeded_products`, `api_seeded_collections`, `probe_discovered_products`, and `sitemap_only_products` so large crawls can explain where product URLs came from. Crawl stats also include network counters such as total nodes/edges, orphan/sink/hub counts, average inbound links, average home-depth, max-inbound URL, and top PageRank URL.
 
 Link graph reporting exports the crawl's internal HTML link network as a JSON adjacency list, a flat CSV edge list for Excel/Gephi/Cytoscape, and a per-node summary with inbound count, outbound count, inbound sources, home-depth, orphan status, hub/sink flags, and a normalized PageRank score.
 
@@ -135,6 +135,14 @@ http://localhost:3000
 ```
 
 The dashboard starts crawls through the existing CLI engine and serves the latest CSV/JSON/XLSX reports from `data/reports`. It binds to `127.0.0.1` by default for local use.
+
+After a crawl has generated link graph reports, open the interactive internal link network view:
+
+```text
+http://localhost:3000/network
+```
+
+The network view reads `data/reports/link-graph.json` through `GET /api/link-graph` and uses `link-graph-summary.json` for inbound counts, hubs, orphans, and PageRank details.
 
 For large Shopify stores, use memory-safe mode so the crawler writes CSV/JSON reports without building the heavy Excel workbook:
 

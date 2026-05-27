@@ -71,6 +71,11 @@ async function routeRequest(request: IncomingMessage, response: ServerResponse):
     return;
   }
 
+  if (request.method === "GET" && requestUrl.pathname === "/network") {
+    sendHtml(response, networkHtml());
+    return;
+  }
+
   if (request.method === "GET" && requestUrl.pathname === "/api/health") {
     sendJson(response, 200, { ok: true, generatedAt: new Date().toISOString() });
     return;
@@ -115,6 +120,16 @@ async function routeRequest(request: IncomingMessage, response: ServerResponse):
 
   if (request.method === "GET" && requestUrl.pathname === "/api/reports/files") {
     sendJson(response, 200, await listReportFiles());
+    return;
+  }
+
+  if (request.method === "GET" && requestUrl.pathname === "/api/link-graph") {
+    await sendReportJson(response, "link-graph.json");
+    return;
+  }
+
+  if (request.method === "GET" && requestUrl.pathname === "/api/link-graph-summary") {
+    await sendReportJson(response, "link-graph-summary.json");
     return;
   }
 
@@ -368,6 +383,16 @@ async function sendReportFile(response: ServerResponse, fileName: string): Promi
   }
 }
 
+async function sendReportJson(response: ServerResponse, fileName: string): Promise<void> {
+  const report = await readReportJson(fileName);
+  if (report === null) {
+    sendJson(response, 404, { error: `${fileName} not found. Run a crawl first.` });
+    return;
+  }
+
+  sendJson(response, 200, report);
+}
+
 function contentTypeFor(fileName: string): string {
   const extension = extname(fileName).toLowerCase();
   if (extension === ".json") return "application/json; charset=utf-8";
@@ -434,6 +459,19 @@ function dashboardHtml(): string {
       align-items: center;
       gap: 16px;
       flex-wrap: wrap;
+    }
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .header-actions a {
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 13px;
     }
     h1 {
       margin: 0;
@@ -599,7 +637,10 @@ function dashboardHtml(): string {
 <body>
   <header>
     <h1>Shopify SEO Crawler</h1>
-    <span id="serverStatus" class="status">Ready</span>
+    <div class="header-actions">
+      <a href="/network">Network Graph</a>
+      <span id="serverStatus" class="status">Ready</span>
+    </div>
   </header>
   <main>
     <section>
@@ -741,6 +782,606 @@ function dashboardHtml(): string {
     }
 
     poll();
+  </script>
+</body>
+</html>`;
+}
+
+function networkHtml(): string {
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopify SEO Crawler - Network Graph</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --line: #d8dde5;
+      --text: #151923;
+      --muted: #5d6675;
+      --accent: #167a5b;
+      --accent-strong: #0d5e45;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      background: #101820;
+      color: #ffffff;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    header a {
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    main {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+    .toolbar, .layout, aside {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .toolbar {
+      padding: 14px;
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) auto auto;
+      gap: 14px;
+      align-items: end;
+    }
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    input, select {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 11px;
+      font: inherit;
+      background: #ffffff;
+      color: var(--text);
+    }
+    .statline {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .layout {
+      min-height: calc(100vh - 170px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      overflow: hidden;
+    }
+    #chart {
+      min-height: calc(100vh - 170px);
+      position: relative;
+      background: #fbfcfd;
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    aside {
+      border-width: 0 0 0 1px;
+      border-radius: 0;
+      padding: 18px;
+      overflow: auto;
+    }
+    aside h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    dl {
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+    dt {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    dd {
+      margin: 3px 0 0;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+    dd a {
+      color: var(--accent-strong);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .legend span {
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+    }
+    .swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .node circle {
+      stroke: #ffffff;
+      stroke-width: 1.5px;
+    }
+    .node.orphan circle {
+      stroke: #334155;
+      stroke-dasharray: 4 3;
+    }
+    .node.search-hit circle {
+      stroke: #111827;
+      stroke-width: 3px;
+    }
+    .empty {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-weight: 700;
+      text-align: center;
+      padding: 24px;
+    }
+    @media (max-width: 980px) {
+      .toolbar, .layout {
+        grid-template-columns: 1fr;
+      }
+      aside {
+        border-width: 1px 0 0;
+      }
+      #chart {
+        min-height: 520px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Link Network</h1>
+    <a href="/">Dashboard</a>
+  </header>
+  <main>
+    <section class="toolbar">
+      <label>Search URL
+        <input id="search" type="search" placeholder="products, collections, handle...">
+      </label>
+      <label>Filter
+        <select id="graphFilter">
+          <option value="all">All nodes</option>
+          <option value="hubs">Hubs only</option>
+          <option value="orphans">Orphans only</option>
+          <option value="catalog">Collections + Products only</option>
+        </select>
+      </label>
+      <div>
+        <div id="graphCounts" class="statline">Loading graph...</div>
+        <div id="searchCount" class="muted"></div>
+      </div>
+    </section>
+    <section class="layout">
+      <div id="chart">
+        <svg id="graph" role="img" aria-label="Internal link force graph"></svg>
+        <div id="emptyState" class="empty" hidden></div>
+      </div>
+      <aside>
+        <h2>Node Details</h2>
+        <div id="nodeDetails" class="muted">Click a node to inspect URL, type, inbound links, outbound links, PageRank, and orphan status.</div>
+        <div class="legend" aria-label="Node color legend">
+          <span><i class="swatch" style="background:#ef4444"></i>Home</span>
+          <span><i class="swatch" style="background:#f7a64f"></i>Collection</span>
+          <span><i class="swatch" style="background:#4f86f7"></i>Product</span>
+          <span><i class="swatch" style="background:#6dbf67"></i>Blog</span>
+          <span><i class="swatch" style="background:#c084fc"></i>Page</span>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script>
+    const colorByType = {
+      product: "#4f86f7",
+      collection: "#f7a64f",
+      blog: "#6dbf67",
+      page: "#c084fc",
+      home: "#ef4444",
+      other: "#64748b"
+    };
+
+    const d3 = window.d3;
+    const svg = d3 ? d3.select("#graph") : null;
+    const chart = document.getElementById("chart");
+    const emptyState = document.getElementById("emptyState");
+    const filterSelect = document.getElementById("graphFilter");
+    const searchInput = document.getElementById("search");
+    const graphCounts = document.getElementById("graphCounts");
+    const searchCount = document.getElementById("searchCount");
+    const nodeDetails = document.getElementById("nodeDetails");
+
+    let allNodes = [];
+    let allEdges = [];
+    let simulation = null;
+    let nodeSelection = null;
+    let linkSelection = null;
+    let resizeTimer = 0;
+
+    if (!d3) {
+      showEmpty("D3 could not load from the CDN. Check your internet connection and reload this page.");
+    } else {
+      loadGraph();
+    }
+
+    filterSelect.addEventListener("change", renderGraph);
+    searchInput.addEventListener("input", applySearchHighlight);
+    window.addEventListener("resize", () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(renderGraph, 180);
+    });
+
+    async function loadGraph() {
+      try {
+        const graphResponse = await fetch("/api/link-graph");
+        if (!graphResponse.ok) throw new Error("link-graph.json was not found. Run a crawl first.");
+        const summaryResponse = await fetch("/api/link-graph-summary");
+        const graph = await graphResponse.json();
+        const summary = summaryResponse.ok ? await summaryResponse.json() : [];
+        mergeGraphData(graph, summary);
+        renderGraph();
+      } catch (error) {
+        showEmpty(error instanceof Error ? error.message : "Unable to load link graph.");
+      }
+    }
+
+    function mergeGraphData(graph, summaryRows) {
+      const summaryByUrl = new Map();
+      if (Array.isArray(summaryRows)) {
+        for (const row of summaryRows) {
+          if (row && row.url) summaryByUrl.set(String(row.url), row);
+        }
+      }
+
+      allNodes = (Array.isArray(graph.nodes) ? graph.nodes : [])
+        .map((node) => {
+          const id = String(node.id || "");
+          const summary = summaryByUrl.get(id) || {};
+          return {
+            id,
+            type: String(summary.type || node.type || "other"),
+            crawled: Boolean(node.crawled),
+            inbound_count: toNumber(summary.inbound_count),
+            outbound_count: toNumber(summary.outbound_count),
+            pagerank_score: toNumber(summary.pagerank_score),
+            is_orphan: Boolean(summary.is_orphan),
+            is_hub: Boolean(summary.is_hub),
+            is_sink: Boolean(summary.is_sink),
+            depth_from_home: summary.depth_from_home === null || summary.depth_from_home === undefined ? "" : summary.depth_from_home
+          };
+        })
+        .filter((node) => node.id);
+
+      const nodeIds = new Set(allNodes.map((node) => node.id));
+      allEdges = (Array.isArray(graph.edges) ? graph.edges : [])
+        .map((edge) => ({ source: String(edge.source || ""), target: String(edge.target || "") }))
+        .filter((edge) => edge.source && edge.target);
+
+      for (const edge of allEdges) {
+        if (!nodeIds.has(edge.source)) {
+          nodeIds.add(edge.source);
+          allNodes.push(createFallbackNode(edge.source));
+        }
+        if (!nodeIds.has(edge.target)) {
+          nodeIds.add(edge.target);
+          allNodes.push(createFallbackNode(edge.target));
+        }
+      }
+    }
+
+    function createFallbackNode(url) {
+      return {
+        id: url,
+        type: inferType(url),
+        crawled: false,
+        inbound_count: 0,
+        outbound_count: 0,
+        pagerank_score: 0,
+        is_orphan: false,
+        is_hub: false,
+        is_sink: false,
+        depth_from_home: ""
+      };
+    }
+
+    function renderGraph() {
+      if (!d3 || !svg) return;
+      if (simulation) simulation.stop();
+      svg.selectAll("*").remove();
+      emptyState.hidden = true;
+
+      const filter = filterSelect.value;
+      const nodes = allNodes.filter((node) => nodeMatchesFilter(node, filter)).map((node) => ({ ...node }));
+      const visibleIds = new Set(nodes.map((node) => node.id));
+      const edges = allEdges
+        .filter((edge) => visibleIds.has(edge.source) && visibleIds.has(edge.target))
+        .map((edge) => ({ ...edge }));
+
+      graphCounts.textContent = "Showing " + nodes.length + " nodes / " + edges.length + " edges";
+
+      if (nodes.length === 0) {
+        showEmpty("No nodes match this filter.");
+        return;
+      }
+
+      const width = Math.max(640, chart.clientWidth || 900);
+      const height = Math.max(420, chart.clientHeight || 620);
+      const maxInbound = Math.max(1, ...nodes.map((node) => node.inbound_count));
+      const radius = d3.scaleSqrt().domain([0, maxInbound]).range([4, 20]);
+
+      svg.attr("viewBox", "0 0 " + width + " " + height);
+
+      const defs = svg.append("defs");
+      defs.append("marker")
+        .attr("id", "arrowHover")
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 16)
+        .attr("refY", 0)
+        .attr("markerWidth", 7)
+        .attr("markerHeight", 7)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M0,-5L10,0L0,5")
+        .attr("fill", "#334155");
+
+      linkSelection = svg.append("g")
+        .attr("stroke", "#64748b")
+        .attr("stroke-width", 0.8)
+        .selectAll("line")
+        .data(edges)
+        .join("line")
+        .attr("stroke-opacity", 0.3)
+        .on("mouseenter", function () {
+          d3.select(this).attr("marker-end", "url(#arrowHover)").attr("stroke-opacity", 0.9).attr("stroke-width", 1.4);
+        })
+        .on("mouseleave", function () {
+          d3.select(this).attr("marker-end", null).attr("stroke-opacity", 0.3).attr("stroke-width", 0.8);
+        });
+
+      nodeSelection = svg.append("g")
+        .selectAll("g")
+        .data(nodes)
+        .join("g")
+        .attr("class", (node) => "node" + (node.is_orphan ? " orphan" : ""))
+        .attr("opacity", (node) => baseNodeOpacity(node))
+        .on("mouseenter", handleNodeHover)
+        .on("mouseleave", resetHover)
+        .on("click", (_event, node) => renderNodeDetails(node))
+        .call(d3.drag()
+          .on("start", dragStarted)
+          .on("drag", dragged)
+          .on("end", dragEnded));
+
+      nodeSelection.append("circle")
+        .attr("r", (node) => radius(node.inbound_count))
+        .attr("fill", (node) => colorByType[node.type] || colorByType.other);
+
+      nodeSelection.append("title").text((node) => node.id);
+
+      simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(edges).id((node) => node.id).distance(72).strength(0.45))
+        .force("charge", d3.forceManyBody().strength(-45))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius((node) => radius(node.inbound_count) + 5))
+        .on("tick", () => {
+          linkSelection
+            .attr("x1", (edge) => endpoint(edge.source).x)
+            .attr("y1", (edge) => endpoint(edge.source).y)
+            .attr("x2", (edge) => endpoint(edge.target).x)
+            .attr("y2", (edge) => endpoint(edge.target).y);
+
+          nodeSelection.attr("transform", (node) => {
+            node.x = clamp(node.x, 24, width - 24);
+            node.y = clamp(node.y, 24, height - 24);
+            return "translate(" + node.x + "," + node.y + ")";
+          });
+        });
+
+      applySearchHighlight();
+    }
+
+    function handleNodeHover(_event, hoveredNode) {
+      const neighbors = new Set([hoveredNode.id]);
+
+      linkSelection
+        .attr("stroke-opacity", (edge) => {
+          const connected = isConnected(edge, hoveredNode.id);
+          if (connected) {
+            neighbors.add(endpointId(edge.source));
+            neighbors.add(endpointId(edge.target));
+          }
+          return connected ? 0.9 : 0.05;
+        })
+        .attr("stroke-width", (edge) => isConnected(edge, hoveredNode.id) ? 1.4 : 0.6)
+        .attr("marker-end", (edge) => isConnected(edge, hoveredNode.id) ? "url(#arrowHover)" : null);
+
+      nodeSelection.attr("opacity", (node) => neighbors.has(node.id) ? Math.max(baseNodeOpacity(node), 0.72) : 0.12);
+    }
+
+    function resetHover() {
+      linkSelection
+        .attr("stroke-opacity", 0.3)
+        .attr("stroke-width", 0.8)
+        .attr("marker-end", null);
+      nodeSelection.attr("opacity", (node) => baseNodeOpacity(node));
+      applySearchHighlight();
+    }
+
+    function applySearchHighlight() {
+      if (!nodeSelection) return;
+      const query = searchInput.value.trim().toLowerCase();
+      let matches = 0;
+
+      nodeSelection.classed("search-hit", (node) => {
+        const matched = Boolean(query) && node.id.toLowerCase().includes(query);
+        if (matched) matches += 1;
+        return matched;
+      });
+
+      searchCount.textContent = query ? matches + " matching visible nodes" : "";
+    }
+
+    function renderNodeDetails(node) {
+      nodeDetails.className = "";
+      nodeDetails.innerHTML =
+        "<dl>" +
+        detailRow("URL", "<a href=\\"" + safeAttr(node.id) + "\\" target=\\"_blank\\" rel=\\"noopener\\">" + safe(node.id) + "</a>", true) +
+        detailRow("Type", node.type) +
+        detailRow("Inbound count", String(node.inbound_count)) +
+        detailRow("Outbound count", String(node.outbound_count)) +
+        detailRow("PageRank score", formatScore(node.pagerank_score)) +
+        detailRow("Orphan", node.is_orphan ? "Yes" : "No") +
+        detailRow("Hub", node.is_hub ? "Yes" : "No") +
+        detailRow("Depth from home", node.depth_from_home === "" ? "Not reachable from home" : String(node.depth_from_home)) +
+        "</dl>";
+    }
+
+    function detailRow(label, value, valueIsHtml) {
+      return "<div><dt>" + safe(label) + "</dt><dd>" + (valueIsHtml ? value : safe(value)) + "</dd></div>";
+    }
+
+    function nodeMatchesFilter(node, filter) {
+      if (filter === "hubs") return node.is_hub === true;
+      if (filter === "orphans") return node.is_orphan === true;
+      if (filter === "catalog") return node.type === "collection" || node.type === "product";
+      return true;
+    }
+
+    function isConnected(edge, nodeId) {
+      return endpointId(edge.source) === nodeId || endpointId(edge.target) === nodeId;
+    }
+
+    function endpoint(value) {
+      return typeof value === "string" ? { id: value, x: 0, y: 0 } : value;
+    }
+
+    function endpointId(value) {
+      return typeof value === "string" ? value : value.id;
+    }
+
+    function baseNodeOpacity(node) {
+      return node.is_orphan ? 0.52 : 1;
+    }
+
+    function dragStarted(event, node) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      node.fx = node.x;
+      node.fy = node.y;
+    }
+
+    function dragged(event, node) {
+      node.fx = event.x;
+      node.fy = event.y;
+    }
+
+    function dragEnded(event, node) {
+      if (!event.active) simulation.alphaTarget(0);
+      node.fx = null;
+      node.fy = null;
+    }
+
+    function showEmpty(message) {
+      emptyState.hidden = false;
+      emptyState.textContent = message;
+      graphCounts.textContent = "No graph loaded";
+    }
+
+    function inferType(url) {
+      try {
+        const pathname = new URL(url).pathname;
+        if (pathname === "/" || pathname === "") return "home";
+        if (pathname.startsWith("/products/")) return "product";
+        if (pathname.startsWith("/collections/")) return "collection";
+        if (pathname.startsWith("/blogs/")) return "blog";
+        if (pathname.startsWith("/pages/")) return "page";
+      } catch {
+        return "other";
+      }
+      return "other";
+    }
+
+    function toNumber(value) {
+      const numeric = Number(value);
+      return Number.isFinite(numeric) ? numeric : 0;
+    }
+
+    function clamp(value, min, max) {
+      if (!Number.isFinite(value)) return min;
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function formatScore(value) {
+      const numeric = Number(value);
+      return Number.isFinite(numeric) ? numeric.toFixed(6) : "0.000000";
+    }
+
+    function safe(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function safeAttr(value) {
+      return safe(value).split(String.fromCharCode(96)).join("&#096;");
+    }
   </script>
 </body>
 </html>`;

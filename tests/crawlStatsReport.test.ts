@@ -21,7 +21,8 @@ describe("crawl stats report", () => {
         issue("http_error"),
         issue("missing_title")
       ],
-      telemetry()
+      telemetry(),
+      linkGraphSummary()
     );
 
     assert.match(report.generatedAt, /^\d{4}-\d{2}-\d{2}T/);
@@ -56,10 +57,21 @@ describe("crawl stats report", () => {
       p95: 60,
       max: 60
     });
+    assert.deepEqual(report.network, {
+      total_nodes: 3,
+      total_edges: 4,
+      orphan_count: 1,
+      sink_count: 1,
+      hub_count: 1,
+      avg_inbound_links: 1.33,
+      max_inbound_url: "https://example.com/products/foo",
+      avg_depth_from_home: 1,
+      top_pagerank_url: "https://example.com/products/foo"
+    });
   });
 
   it("flattens crawl stats into one CSV row", () => {
-    const report = buildCrawlStatsReport([page(200, 25), page(503, 75)], [issue("fetch_server_error")], telemetry());
+    const report = buildCrawlStatsReport([page(200, 25), page(503, 75)], [issue("fetch_server_error")], telemetry(), linkGraphSummary());
     const [row] = buildCrawlStatsCsvRows(report);
 
     assert.equal(row.totalRequested, 8);
@@ -77,6 +89,15 @@ describe("crawl stats report", () => {
     assert.equal(row.p50LoadTimeMs, 25);
     assert.equal(row.p95LoadTimeMs, 75);
     assert.equal(row.maxLoadTimeMs, 75);
+    assert.equal(row.total_nodes, 3);
+    assert.equal(row.total_edges, 4);
+    assert.equal(row.orphan_count, 1);
+    assert.equal(row.sink_count, 1);
+    assert.equal(row.hub_count, 1);
+    assert.equal(row.avg_inbound_links, 1.33);
+    assert.equal(row.max_inbound_url, "https://example.com/products/foo");
+    assert.equal(row.avg_depth_from_home, 1);
+    assert.equal(row.top_pagerank_url, "https://example.com/products/foo");
   });
 
   it("returns null load-time summary values when no pages were crawled", () => {
@@ -93,6 +114,47 @@ describe("crawl stats report", () => {
 
 function page(status: number, loadTimeMs: number, redirected = false): CrawledPage {
   return { status, loadTimeMs, redirected } as CrawledPage;
+}
+
+function linkGraphSummary() {
+  return [
+    {
+      url: "https://example.com/",
+      type: "home" as const,
+      inbound_count: 1,
+      outbound_count: 2,
+      inbound_sources: ["https://example.com/collections/rugs"],
+      depth_from_home: 0,
+      is_orphan: false,
+      is_hub: true,
+      is_sink: false,
+      pagerank_score: 0.25
+    },
+    {
+      url: "https://example.com/collections/rugs",
+      type: "collection" as const,
+      inbound_count: 1,
+      outbound_count: 2,
+      inbound_sources: ["https://example.com/"],
+      depth_from_home: 1,
+      is_orphan: false,
+      is_hub: false,
+      is_sink: false,
+      pagerank_score: 0.6
+    },
+    {
+      url: "https://example.com/products/foo",
+      type: "product" as const,
+      inbound_count: 2,
+      outbound_count: 0,
+      inbound_sources: ["https://example.com/", "https://example.com/collections/rugs"],
+      depth_from_home: 2,
+      is_orphan: true,
+      is_hub: false,
+      is_sink: true,
+      pagerank_score: 1
+    }
+  ];
 }
 
 function issue(code: string): SeoIssue {

@@ -38,7 +38,6 @@ export async function buildReportBundle(options: BuildReportBundleOptions): Prom
   const { targetUrl, result, finalUrls, pageSpeedOptions } = options;
   const sitemapIndexabilityIssues = detectSitemapIndexabilityIssues(result.pages, finalUrls);
   const issues = [...result.issues, ...sitemapIndexabilityIssues];
-  const crawlStatsReport = buildCrawlStatsReport(result.pages, result.issues, result.telemetry);
   const actionPlan = buildActionPlan(issues);
   const profile = buildSiteProfile(targetUrl, result.pages, countIssuesByCode(issues));
   const contentCannibalizationReport = buildContentCannibalizationReport(result.pages);
@@ -49,6 +48,7 @@ export async function buildReportBundle(options: BuildReportBundleOptions): Prom
   const linkGraphReport = buildLinkGraphReport(result.linkGraph, result.pages);
   const linkGraphCsvRows = buildLinkGraphCsvRows(linkGraphReport);
   const linkGraphSummaryReport = buildLinkGraphSummaryReport(result.linkGraph, result.pages);
+  const crawlStatsReport = buildCrawlStatsReport(result.pages, result.issues, result.telemetry, linkGraphSummaryReport);
   const pageSpeedUrls = result.pages.filter((page) => page.status === 200).map((page) => page.finalUrl);
   const pageSpeedReport = await buildPageSpeedInsightsReport(pageSpeedUrls, pageSpeedOptions);
 
