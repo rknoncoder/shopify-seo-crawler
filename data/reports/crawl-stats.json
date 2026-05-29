@@ -1,36 +1,50 @@
 {
-  "generatedAt": "2026-05-27T11:33:30.517Z",
-  "totalRequested": 1040,
-  "totalCrawled": 969,
+  "generatedAt": "2026-05-29T07:11:45.662Z",
+  "totalRequested": 1079,
+  "totalCrawled": 1004,
   "statusCodeCounts": {
     "families": {
-      "2xx": 966,
+      "2xx": 1000,
       "3xx": 0,
-      "4xx": 3,
+      "4xx": 4,
       "5xx": 0,
       "other": 0
     },
     "exact": {
-      "200": 966,
-      "404": 3
+      "200": 1000,
+      "404": 4
     }
   },
-  "fetchFailedCount": 3,
+  "fetchFailedCount": 4,
   "skippedNonHtmlCount": 0,
-  "api_seeded_products": 797,
+  "api_seeded_products": 789,
   "api_seeded_collections": 38,
   "probe_discovered_products": 0,
+  "sitemap_only_products": 0,
   "redirectedCount": 10,
   "retryCounters": {
-    "totalRetries": 0,
-    "statusRetries": 0,
+    "totalRetries": 4,
+    "statusRetries": 4,
     "errorRetries": 0,
-    "retryStatusCounts": {}
+    "retryStatusCounts": {
+      "503": 4
+    }
   },
   "loadTimeMs": {
-    "avg": 351,
-    "p50": 341,
-    "p95": 544,
-    "max": 1817
+    "avg": 718,
+    "p50": 342,
+    "p95": 579,
+    "max": 105093
+  },
+  "network": {
+    "total_nodes": 1032,
+    "total_edges": 37146,
+    "orphan_count": 0,
+    "sink_count": 42,
+    "hub_count": 106,
+    "avg_inbound_links": 35.99,
+    "max_inbound_url": "https://triprindia.com/",
+    "avg_depth_from_home": 3.42,
+    "top_pagerank_url": "https://triprindia.com/"
   }
 }
