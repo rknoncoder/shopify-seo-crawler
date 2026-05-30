@@ -34,6 +34,10 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   let apiSeededProducts = 0;
   let apiSeededCollections = 0;
   let probeDiscoveredProducts = 0;
+  let probeCollectionsAttempted = 0;
+  let probeCollectionsExhausted = 0;
+  let probeCollectionsFailed = 0;
+  let probeTotalPagesFetched = 0;
   let sitemapOnlyProducts = 0;
   const queue = new PQueue({ concurrency: config.concurrency });
 
@@ -76,20 +80,28 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
         pageIssues.push(...issues);
         imageInventoryUsages.push(...buildImageInventoryUsages(page));
 
-        if (followLinks && next.depth < config.maxDepth) {
-          page.links
-            .filter((link) => link.internal && !shouldSkipUrl(link.href, baseUrl))
-            .forEach((link) => manager.add(link.href, next.depth + 1));
+        if (followLinks) {
+          if (next.depth < config.maxDepth) {
+            page.links
+              .filter((link) => link.internal && !shouldSkipUrl(link.href, baseUrl))
+              .forEach((link) => manager.add(link.href, next.depth + 1));
+          }
 
-          probeDiscoveredProducts += await discoverShopifyCollectionPagination({
+          const probeResult = await discoverShopifyCollectionPagination({
             collectionUrl: page.finalUrl,
             baseUrl,
             depth: next.depth,
+            status: page.status,
             manager,
             onRequest: () => {
               totalRequested += 1;
             }
           });
+          probeDiscoveredProducts += probeResult.discoveredProducts;
+          probeCollectionsAttempted += probeResult.attempted;
+          probeCollectionsExhausted += probeResult.exhausted;
+          probeCollectionsFailed += probeResult.failed;
+          probeTotalPagesFetched += probeResult.pagesFetched;
         }
 
         analysisPages.push(compactPageForAnalysis(page));
@@ -121,7 +133,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   await queue.onIdle();
   return {
     pages,
-    issues: analyzeSite(analysisPages, pageIssues),
+    issues: analyzeSite(analysisPages, pageIssues, linkGraph),
     imageInventoryUsages,
     linkGraph,
     telemetry: {
@@ -130,6 +142,10 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
       apiSeededProducts,
       apiSeededCollections,
       probeDiscoveredProducts,
+      probeCollectionsAttempted,
+      probeCollectionsExhausted,
+      probeCollectionsFailed,
+      probeTotalPagesFetched,
       sitemapOnlyProducts,
       retries: getFetchTelemetry()
     }
@@ -140,6 +156,8 @@ function recordLinkGraphEdges(linkGraph: LinkGraph, page: CrawledPage, baseUrl: 
   if (page.status >= 400) return;
 
   const sourceUrl = normalizeLinkGraphUrl(page.finalUrl);
+  if (!sourceUrl) return;
+
   const destinations = new Set<string>();
 
   for (const link of page.links) {
@@ -147,6 +165,7 @@ function recordLinkGraphEdges(linkGraph: LinkGraph, page: CrawledPage, baseUrl: 
 
     const destinationUrl = normalizeLinkGraphUrl(link.href);
     if (!destinationUrl || isAssetUrl(destinationUrl, baseUrl)) continue;
+    if (sourceUrl === destinationUrl) continue;
 
     destinations.add(destinationUrl);
   }

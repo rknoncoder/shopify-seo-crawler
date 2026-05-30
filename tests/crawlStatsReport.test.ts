@@ -19,7 +19,8 @@ describe("crawl stats report", () => {
       [
         issue("fetch_timeout"),
         issue("http_error"),
-        issue("missing_title")
+        issue("missing_title"),
+        issue("orphaned_collection")
       ],
       telemetry(),
       linkGraphSummary()
@@ -48,7 +49,12 @@ describe("crawl stats report", () => {
     assert.equal(report.api_seeded_products, 7);
     assert.equal(report.api_seeded_collections, 3);
     assert.equal(report.probe_discovered_products, 5);
+    assert.equal(report.probe_collections_attempted, 4);
+    assert.equal(report.probe_collections_exhausted, 3);
+    assert.equal(report.probe_collections_failed, 1);
+    assert.equal(report.probe_total_pages_fetched, 9);
     assert.equal(report.sitemap_only_products, 2);
+    assert.equal(report.orphaned_collection_count, 1);
     assert.equal(report.redirectedCount, 1);
     assert.deepEqual(report.retryCounters, telemetry().retries);
     assert.deepEqual(report.loadTimeMs, {
@@ -66,7 +72,9 @@ describe("crawl stats report", () => {
       avg_inbound_links: 1.33,
       max_inbound_url: "https://example.com/products/foo",
       avg_depth_from_home: 1,
-      top_pagerank_url: "https://example.com/products/foo"
+      top_pagerank_url: "https://example.com/products/foo",
+      top_seo_pagerank_url: "https://example.com/products/foo",
+      top_seo_pagerank_score: 0.9
     });
   });
 
@@ -83,7 +91,12 @@ describe("crawl stats report", () => {
     assert.equal(row.api_seeded_products, 7);
     assert.equal(row.api_seeded_collections, 3);
     assert.equal(row.probe_discovered_products, 5);
+    assert.equal(row.probe_collections_attempted, 4);
+    assert.equal(row.probe_collections_exhausted, 3);
+    assert.equal(row.probe_collections_failed, 1);
+    assert.equal(row.probe_total_pages_fetched, 9);
     assert.equal(row.sitemap_only_products, 2);
+    assert.equal(row.orphaned_collection_count, 0);
     assert.equal(row.retryStatusCounts, JSON.stringify({ "503": 2 }));
     assert.equal(row.avgLoadTimeMs, 50);
     assert.equal(row.p50LoadTimeMs, 25);
@@ -98,6 +111,8 @@ describe("crawl stats report", () => {
     assert.equal(row.max_inbound_url, "https://example.com/products/foo");
     assert.equal(row.avg_depth_from_home, 1);
     assert.equal(row.top_pagerank_url, "https://example.com/products/foo");
+    assert.equal(row.top_seo_pagerank_url, "https://example.com/products/foo");
+    assert.equal(row.top_seo_pagerank_score, 0.9);
   });
 
   it("returns null load-time summary values when no pages were crawled", () => {
@@ -128,7 +143,9 @@ function linkGraphSummary() {
       is_orphan: false,
       is_hub: true,
       is_sink: false,
-      pagerank_score: 0.25
+      is_utility: false,
+      pagerank_score: 0.25,
+      seo_pagerank_score: 0.2
     },
     {
       url: "https://example.com/collections/rugs",
@@ -140,7 +157,9 @@ function linkGraphSummary() {
       is_orphan: false,
       is_hub: false,
       is_sink: false,
-      pagerank_score: 0.6
+      is_utility: false,
+      pagerank_score: 0.6,
+      seo_pagerank_score: 0.4
     },
     {
       url: "https://example.com/products/foo",
@@ -152,7 +171,9 @@ function linkGraphSummary() {
       is_orphan: true,
       is_hub: false,
       is_sink: true,
-      pagerank_score: 1
+      is_utility: false,
+      pagerank_score: 1,
+      seo_pagerank_score: 0.9
     }
   ];
 }
@@ -168,6 +189,10 @@ function telemetry(): CrawlTelemetry {
     apiSeededProducts: 7,
     apiSeededCollections: 3,
     probeDiscoveredProducts: 5,
+    probeCollectionsAttempted: 4,
+    probeCollectionsExhausted: 3,
+    probeCollectionsFailed: 1,
+    probeTotalPagesFetched: 9,
     sitemapOnlyProducts: 2,
     retries: {
       totalRetries: 3,

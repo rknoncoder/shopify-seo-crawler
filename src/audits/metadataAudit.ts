@@ -6,8 +6,10 @@ import {
 } from "../analyzer/metadata.js";
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
-import { parseRobotsDirectives } from "../utils/indexability.js";
+import { parseRobotsDirectives, summarizeIndexability } from "../utils/indexability.js";
 import { truncate } from "../utils/textUtils.js";
+
+type NoindexSource = NonNullable<SeoIssue["noindex_source"]>;
 
 export function auditMetadataValidation(page: CrawledPage): SeoIssue[] {
   if (page.status !== 200) return [];
@@ -23,16 +25,7 @@ export function auditMetadataValidation(page: CrawledPage): SeoIssue[] {
 function addRobotsIssues(page: CrawledPage, issues: SeoIssue[]): void {
   const robots = parseRobotsDirectives(page.meta.robots);
 
-  if (robots.noindex && ["product", "collection"].includes(page.pageType)) {
-    issues.push(issue(
-      page,
-      "critical",
-      "metadata_noindex_main_page",
-      "Main product or collection page is blocked by meta robots noindex.",
-      "Remove noindex from product and collection pages that should appear in Google Search.",
-      page.meta.robots
-    ));
-  }
+  addNoindexPageIssue(page, issues);
 
   if (robots.nofollow) {
     issues.push(issue(
@@ -54,6 +47,68 @@ function addRobotsIssues(page: CrawledPage, issues: SeoIssue[]): void {
       "Add max-image-preview:large to blog/article robots metadata unless large previews should be restricted.",
       page.meta.robots || "robots meta missing"
     ));
+  }
+}
+
+function addNoindexPageIssue(page: CrawledPage, issues: SeoIssue[]): void {
+  if (!isPrimaryProductOrCollectionUrl(page.finalUrl)) return;
+
+  const source = detectNoindexSource(page);
+  if (!source) return;
+
+  const indexability = summarizeIndexability(page);
+  issues.push({
+    url: page.finalUrl,
+    pageType: page.pageType,
+    severity: source === "canonical_mismatch" ? "medium" : "critical",
+    category: "indexability",
+    code: "noindex_page",
+    issue: "noindex_page",
+    noindex_source: source,
+    noindex_removable: source === "meta_robots",
+    message: "Product or collection page is not indexable.",
+    recommendation: noindexRecommendation(source),
+    evidence: truncate(noindexEvidence(page, source, indexability.canonicalTarget), 240)
+  });
+}
+
+function detectNoindexSource(page: CrawledPage): NoindexSource | undefined {
+  const robots = parseRobotsDirectives(page.meta.robots);
+  if (robots.noindex) return "meta_robots";
+
+  const xRobots = parseRobotsDirectives(page.http?.xRobotsTag ?? "");
+  if (xRobots.noindex) return "x_robots_tag";
+
+  const indexability = summarizeIndexability(page);
+  if (indexability.canonicalTarget && !indexability.canonicalSelfReferencing) return "canonical_mismatch";
+
+  return undefined;
+}
+
+function noindexRecommendation(source: NoindexSource): string {
+  if (source === "meta_robots") {
+    return "Remove the meta robots noindex directive from this product or collection page if it should appear in Google Search.";
+  }
+
+  if (source === "x_robots_tag") {
+    return "Remove the HTTP X-Robots-Tag noindex directive if this product or collection page should appear in Google Search.";
+  }
+
+  return "Use a self-referencing canonical for product and collection pages that should be indexed, or keep this canonical only when the page is intentionally consolidated.";
+}
+
+function noindexEvidence(page: CrawledPage, source: NoindexSource, canonicalTarget: string): string {
+  if (source === "meta_robots") return page.meta.robots;
+  if (source === "x_robots_tag") return page.http?.xRobotsTag ?? "";
+  return `canonical=${canonicalTarget || page.meta.canonical || "missing"}`;
+}
+
+function isPrimaryProductOrCollectionUrl(url: string): boolean {
+  try {
+    const segments = new URL(url).pathname.split("/").filter(Boolean);
+    return segments.length === 2 && (segments[0] === "products" || segments[0] === "collections");
+  } catch {
+    return false;
   }
 }
 

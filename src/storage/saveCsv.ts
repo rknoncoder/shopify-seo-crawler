@@ -3,9 +3,9 @@ import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
 import { once } from "node:events";
 
-export async function saveCsv<T extends object>(path: string, rows: T[]): Promise<string> {
+export async function saveCsv<T extends object>(path: string, rows: T[], explicitHeaders?: string[]): Promise<string> {
   await mkdir(dirname(path), { recursive: true });
-  const headers = [...rows.reduce((set, row) => {
+  const headers = explicitHeaders ?? [...rows.reduce((set, row) => {
     Object.keys(row).forEach((key) => set.add(key));
     return set;
   }, new Set<string>())];

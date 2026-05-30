@@ -1,237 +1,58 @@
 {
-  "generatedAt": "2026-05-29T07:11:45.574Z",
-  "totalPages": 1004,
-  "pagesWithImages": 1004,
-  "totalImagesStored": 15800,
-  "totalImageUsages": 20001,
-  "uniqueImageRows": 9620,
-  "missingAltImages": 736,
-  "pagesWithMissingAlt": 707,
-  "duplicateAltIssuePages": 861,
-  "missingDimensionImages": 821,
-  "pagesWithMissingDimensions": 805,
+  "generatedAt": "2026-05-30T12:36:44.853Z",
+  "totalPages": 1,
+  "pagesWithImages": 1,
+  "totalImagesStored": 40,
+  "totalImageUsages": 59,
+  "uniqueImageRows": 45,
+  "missingAltImages": 0,
+  "pagesWithMissingAlt": 0,
+  "duplicateAltIssuePages": 1,
+  "missingDimensionImages": 0,
+  "pagesWithMissingDimensions": 0,
   "lazyLoadingIssuePages": 0,
-  "primaryImageLazyPages": 58,
-  "largeImageUrlCount": 6116,
-  "pagesWithLargeImageUrls": 623,
+  "primaryImageLazyPages": 1,
+  "largeImageUrlCount": 36,
+  "pagesWithLargeImageUrls": 1,
   "imageIssueCounts": {
-    "image_alt_duplicate_on_page": 868,
-    "image_missing_dimensions": 806,
-    "shopify_variant_auto_alt_duplicate": 797,
-    "missing_image_alt": 708,
-    "large_image_url_width": 207,
-    "image_count_high": 83,
-    "primary_image_lazy_loaded": 64,
-    "image_alt_too_long": 50,
-    "product_image_alt_missing_product_name": 19,
-    "image_alt_too_short": 13,
-    "image_filename_not_descriptive": 13
+    "image_alt_duplicate_on_page": 1,
+    "image_count_high": 1,
+    "large_image_url_width": 1,
+    "primary_image_lazy_loaded": 1
   },
-  "topMissingAltPages": [
+  "topMissingAltPages": [],
+  "alt_text_pattern_analysis": [
     {
-      "url": "https://triprindia.com/",
-      "pageType": "home",
-      "missingAltImages": 19,
-      "sampleImages": [
-        "https://triprindia.com/cdn/shop/files/WhatsApp_Image_2026-03-25_at_7.15.40_PM.jpg?v=1774505019&width=1600",
-        "https://triprindia.com/cdn/sh..."
-      ]
+      "pattern": "/cdn/shop/files/*",
+      "missing_alt_count": 0,
+      "pages_affected": 0,
+      "fix_location": "Shopify Admin > Content > Files",
+      "bulk_fix_possible": false,
+      "sample_urls": []
     },
     {
-      "url": "https://triprindia.com/products/mandarin-collar-t-shirt-for-mens-d145-black",
-      "pageType": "product",
-      "missingAltImages": 5,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/MEN-TSHIRT-SIZE-CHART-TRIPR-INDIA_2.jpg?v=1775719567",
-        "https://cdn.shopify.com/s/files/..."
-      ]
+      "pattern": "/cdn/shop/products/*",
+      "missing_alt_count": 0,
+      "pages_affected": 0,
+      "fix_location": "Shopify Admin > Products > Media (bulk editor)",
+      "bulk_fix_possible": true,
+      "sample_urls": []
     },
     {
-      "url": "https://triprindia.com/blogs/news/why-customers-love-tripr-india-a-brand-that-redefines-mens-fashion",
-      "pageType": "article",
-      "missingAltImages": 4,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/piyush_1_480x480.png?v=1695384178",
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/u..."
-      ]
+      "pattern": "/cdn/shop/t/*/assets/*",
+      "missing_alt_count": 0,
+      "pages_affected": 0,
+      "fix_location": "Theme Editor > Assets",
+      "bulk_fix_possible": false,
+      "sample_urls": []
     },
     {
-      "url": "https://triprindia.com/blogs/news/tripr-india-real-or-fake",
-      "pageType": "article",
-      "missingAltImages": 3,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/tripr_tiruppur_store.png?v=1760516357",
-        "https://cdn.shopify.com/s/files/1/2028/4467/fil..."
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections",
-      "pageType": "unknown",
-      "missingAltImages": 3,
-      "sampleImages": [
-        "https://triprindia.com/cdn/shop/files/bl-gy-plain_combo3.jpg?v=1754898982&width=2000",
-        "https://triprindia.com/cdn/shop/files/TBLD208-BLRN..."
-      ]
-    },
-    {
-      "url": "https://triprindia.com/blogs/news/tripr-india-wishes-you-a-diwali-filled-with-style-and-sparkle",
-      "pageType": "article",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/SHIRT_BANNER_09.11.2023_480x480.jpg?v=1699514071"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/cargo-pants-for-men/products/6-pockets-cargo-jogger-color-blocked-white-grey",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/cargo-pants-for-men/products/pack-of-2-multi-pockets-plain-baggy-cargos-beige-black",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/baggy-cargos-size-chart-tripr-india.jpg?v=1769846066"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/cargo-pants-for-men/products/words-printed-cargo-pant-for-men",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/oversized-tshirt/products/pack-of-2-loose-fit-back-printed-oversized-tshirts-11-variants",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/OVERSIZED-TSHIRT-SIZE-CHART-TRIPRINDIA.jpg?v=1775719491"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/polos",
-      "pageType": "collection",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://triprindia.com/cdn/shop/files/3_799.png?height=100&v=1772517792"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/sweatshirt-for-mens/products/pack-of-2-quarter-zip-high-neck-plain-combo-sweatshirts-st162",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/men_hoodie_size_chart.jpg?v=1733320830"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/sweatshirt-for-mens/products/pack-of-3-mens-quarter-zip-high-neck-plain-combo-sweatshirts",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/men_hoodie_size_chart.jpg?v=1733320830"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/t-shirt",
-      "pageType": "collection",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/track-suite",
-      "pageType": "collection",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/track-suite/combo-tracksuit",
-      "pageType": "collection",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/track-suite/full-sleeve-tracksuit",
-      "pageType": "collection",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/track-suite/half-sleeve-tracksuit",
-      "pageType": "collection",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/collections/track-suite/hooded-tracksuit",
-      "pageType": "collection",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://triprindia.com/cdn/shop/files/2_39159825-ed6b-4571-a001-b11283a4b9c3.png?height=100&v=1769517066"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/cargo-pant-size-chart-fk",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/loose-fit-cargo-size-chart",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/baggy-cargos-size-chart-tripr-india.jpg?v=1769846066"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/mens-cargos-size-chart",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/cargo-trousers-for-men-size-chart-tripr-india.jpg?v=1769858973"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/tracksuit-fullsleeve-trackpant-fk",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/tracksuit-full_tshirt_and_trackpant_set_size_chart.jpg?v=1753531125"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/pages/tracksuit-halfsleeve-trackpant-fk",
-      "pageType": "page",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/tracksuit-half_tshirt_and_trackpant_set_size_chart.jpg?v=1753531125"
-      ]
-    },
-    {
-      "url": "https://triprindia.com/products/6-color-variants-with-mens-design-printed-trackpants-j59",
-      "pageType": "product",
-      "missingAltImages": 1,
-      "sampleImages": [
-        "https://cdn.shopify.com/s/files/1/2028/4467/files/men-track-pant-size-chart-tripr-india.jpg?v=1769847016"
-      ]
+      "pattern": "anything else",
+      "missing_alt_count": 0,
+      "pages_affected": 0,
+      "fix_location": "Manual review required",
+      "bulk_fix_possible": false,
+      "sample_urls": []
     }
   ],
   "note": "Image totals use audit issue counts for missing alt and stored page-image arrays for aggregate image inventory. In memory-safe mode, stored image arrays may be capped, but missing-alt issue counts are calculated before storage compaction."

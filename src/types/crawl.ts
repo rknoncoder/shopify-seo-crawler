@@ -63,6 +63,10 @@ export interface CrawlTelemetry {
   apiSeededProducts: number;
   apiSeededCollections: number;
   probeDiscoveredProducts: number;
+  probeCollectionsAttempted: number;
+  probeCollectionsExhausted: number;
+  probeCollectionsFailed: number;
+  probeTotalPagesFetched: number;
   sitemapOnlyProducts: number;
   retries: CrawlRetryTelemetry;
 }

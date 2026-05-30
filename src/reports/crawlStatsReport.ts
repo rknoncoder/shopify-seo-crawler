@@ -32,6 +32,8 @@ export interface NetworkSummary {
   max_inbound_url: string;
   avg_depth_from_home: number | null;
   top_pagerank_url: string;
+  top_seo_pagerank_url: string;
+  top_seo_pagerank_score: number;
 }
 
 export interface CrawlStatsReport {
@@ -44,7 +46,12 @@ export interface CrawlStatsReport {
   api_seeded_products: number;
   api_seeded_collections: number;
   probe_discovered_products: number;
+  probe_collections_attempted: number;
+  probe_collections_exhausted: number;
+  probe_collections_failed: number;
+  probe_total_pages_fetched: number;
   sitemap_only_products: number;
+  orphaned_collection_count: number;
   redirectedCount: number;
   retryCounters: CrawlTelemetry["retries"];
   loadTimeMs: LoadTimeSummary;
@@ -66,7 +73,12 @@ export interface CrawlStatsCsvRow {
   api_seeded_products: number;
   api_seeded_collections: number;
   probe_discovered_products: number;
+  probe_collections_attempted: number;
+  probe_collections_exhausted: number;
+  probe_collections_failed: number;
+  probe_total_pages_fetched: number;
   sitemap_only_products: number;
+  orphaned_collection_count: number;
   redirectedCount: number;
   totalRetries: number;
   statusRetries: number;
@@ -85,6 +97,8 @@ export interface CrawlStatsCsvRow {
   max_inbound_url: string;
   avg_depth_from_home: number | null;
   top_pagerank_url: string;
+  top_seo_pagerank_url: string;
+  top_seo_pagerank_score: number;
 }
 
 export function buildCrawlStatsReport(
@@ -103,7 +117,12 @@ export function buildCrawlStatsReport(
     api_seeded_products: telemetry.apiSeededProducts,
     api_seeded_collections: telemetry.apiSeededCollections,
     probe_discovered_products: telemetry.probeDiscoveredProducts,
+    probe_collections_attempted: telemetry.probeCollectionsAttempted,
+    probe_collections_exhausted: telemetry.probeCollectionsExhausted,
+    probe_collections_failed: telemetry.probeCollectionsFailed,
+    probe_total_pages_fetched: telemetry.probeTotalPagesFetched,
     sitemap_only_products: telemetry.sitemapOnlyProducts,
+    orphaned_collection_count: issues.filter((issue) => issue.code === "orphaned_collection").length,
     redirectedCount: pages.filter((page) => page.redirected).length,
     retryCounters: telemetry.retries,
     loadTimeMs: summarizeLoadTimes(pages),
@@ -127,7 +146,12 @@ export function buildCrawlStatsCsvRows(report: CrawlStatsReport): CrawlStatsCsvR
     api_seeded_products: report.api_seeded_products,
     api_seeded_collections: report.api_seeded_collections,
     probe_discovered_products: report.probe_discovered_products,
+    probe_collections_attempted: report.probe_collections_attempted,
+    probe_collections_exhausted: report.probe_collections_exhausted,
+    probe_collections_failed: report.probe_collections_failed,
+    probe_total_pages_fetched: report.probe_total_pages_fetched,
     sitemap_only_products: report.sitemap_only_products,
+    orphaned_collection_count: report.orphaned_collection_count,
     redirectedCount: report.redirectedCount,
     totalRetries: report.retryCounters.totalRetries,
     statusRetries: report.retryCounters.statusRetries,
@@ -145,7 +169,9 @@ export function buildCrawlStatsCsvRows(report: CrawlStatsReport): CrawlStatsCsvR
     avg_inbound_links: report.network.avg_inbound_links,
     max_inbound_url: report.network.max_inbound_url,
     avg_depth_from_home: report.network.avg_depth_from_home,
-    top_pagerank_url: report.network.top_pagerank_url
+    top_pagerank_url: report.network.top_pagerank_url,
+    top_seo_pagerank_url: report.network.top_seo_pagerank_url,
+    top_seo_pagerank_score: report.network.top_seo_pagerank_score
   }];
 }
 
@@ -218,7 +244,9 @@ function summarizeNetwork(rows: LinkGraphSummaryRow[]): NetworkSummary {
       avg_inbound_links: null,
       max_inbound_url: "",
       avg_depth_from_home: null,
-      top_pagerank_url: ""
+      top_pagerank_url: "",
+      top_seo_pagerank_url: "",
+      top_seo_pagerank_score: 0
     };
   }
 
@@ -228,6 +256,10 @@ function summarizeNetwork(rows: LinkGraphSummaryRow[]): NetworkSummary {
     .filter((depth): depth is number => typeof depth === "number" && Number.isFinite(depth));
   const maxInboundRow = rows.reduce((best, row) => row.inbound_count > best.inbound_count ? row : best, rows[0]);
   const topPageRankRow = rows.reduce((best, row) => row.pagerank_score > best.pagerank_score ? row : best, rows[0]);
+  const seoRows = rows.filter((row) => !row.is_utility);
+  const topSeoPageRankRow = seoRows.length > 0
+    ? seoRows.reduce((best, row) => row.seo_pagerank_score > best.seo_pagerank_score ? row : best, seoRows[0])
+    : undefined;
 
   return {
     total_nodes: rows.length,
@@ -240,7 +272,9 @@ function summarizeNetwork(rows: LinkGraphSummaryRow[]): NetworkSummary {
     avg_depth_from_home: depthValues.length > 0
       ? round(depthValues.reduce((sum, depth) => sum + depth, 0) / depthValues.length)
       : null,
-    top_pagerank_url: topPageRankRow.url
+    top_pagerank_url: topPageRankRow.url,
+    top_seo_pagerank_url: topSeoPageRankRow?.url ?? "",
+    top_seo_pagerank_score: topSeoPageRankRow?.seo_pagerank_score ?? 0
   };
 }
 

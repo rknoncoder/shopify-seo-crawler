@@ -36,7 +36,9 @@ export interface LinkGraphSummaryRow {
   is_orphan: boolean;
   is_hub: boolean;
   is_sink: boolean;
+  is_utility: boolean;
   pagerank_score: number;
+  seo_pagerank_score: number;
 }
 
 export function buildLinkGraphReport(linkGraph: LinkGraph, pages: CrawledPage[]): LinkGraphReport {
@@ -73,6 +75,7 @@ export function buildLinkGraphSummaryReport(linkGraph: LinkGraph, pages: Crawled
   const outboundCounts = buildOutboundCounts(linkGraph, nodeIds);
   const hubThreshold = calculateHubThreshold([...outboundCounts.values()]);
   const pageRankScores = calculatePageRankScores(linkGraph, nodeIds, inboundSources, outboundCounts);
+  const seoPageRankScores = calculateSeoPageRankScores(linkGraph, nodeIds);
 
   return [...nodeIds]
     .sort()
@@ -81,6 +84,7 @@ export function buildLinkGraphSummaryReport(linkGraph: LinkGraph, pages: Crawled
       const inbound = [...(inboundSources.get(url) ?? new Set<string>())].sort();
       const outboundCount = outboundCounts.get(url) ?? 0;
       const discoverySource = discoverySources.get(url);
+      const isUtility = isUtilityUrl(url);
 
       return {
         url,
@@ -92,7 +96,9 @@ export function buildLinkGraphSummaryReport(linkGraph: LinkGraph, pages: Crawled
         is_orphan: type !== "home" && inbound.length === 0 && !isApiSeedDiscovery(discoverySource),
         is_hub: outboundCount > 0 && outboundCount >= hubThreshold,
         is_sink: outboundCount === 0,
-        pagerank_score: pageRankScores.get(url) ?? 0
+        is_utility: isUtility,
+        pagerank_score: pageRankScores.get(url) ?? 0,
+        seo_pagerank_score: isUtility ? 0 : seoPageRankScores.get(url) ?? 0
       };
     });
 }
@@ -145,6 +151,7 @@ function buildEdges(linkGraph: LinkGraph): LinkGraphEdge[] {
 
   for (const [source, targets] of linkGraph) {
     for (const target of targets) {
+      if (source === target) continue;
       edges.push({ source, target });
     }
   }
@@ -155,7 +162,11 @@ function buildEdges(linkGraph: LinkGraph): LinkGraphEdge[] {
   });
 }
 
-function buildInboundSources(linkGraph: LinkGraph, nodeIds: Set<string>): Map<string, Set<string>> {
+function buildInboundSources(
+  linkGraph: LinkGraph,
+  nodeIds: Set<string>,
+  includeEdge: (source: string, target: string) => boolean = (source, target) => source !== target
+): Map<string, Set<string>> {
   const inboundSources = new Map<string, Set<string>>();
   for (const nodeId of nodeIds) {
     inboundSources.set(nodeId, new Set());
@@ -163,6 +174,8 @@ function buildInboundSources(linkGraph: LinkGraph, nodeIds: Set<string>): Map<st
 
   for (const [source, targets] of linkGraph) {
     for (const target of targets) {
+      if (!includeEdge(source, target)) continue;
+      if (!nodeIds.has(target)) continue;
       if (!inboundSources.has(target)) {
         inboundSources.set(target, new Set());
       }
@@ -173,14 +186,33 @@ function buildInboundSources(linkGraph: LinkGraph, nodeIds: Set<string>): Map<st
   return inboundSources;
 }
 
-function buildOutboundCounts(linkGraph: LinkGraph, nodeIds: Set<string>): Map<string, number> {
+function buildOutboundCounts(
+  linkGraph: LinkGraph,
+  nodeIds: Set<string>,
+  includeEdge: (source: string, target: string) => boolean = (source, target) => source !== target
+): Map<string, number> {
   const outboundCounts = new Map<string, number>();
 
   for (const nodeId of nodeIds) {
-    outboundCounts.set(nodeId, linkGraph.get(nodeId)?.size ?? 0);
+    outboundCounts.set(nodeId, countIncludedTargets(nodeId, linkGraph.get(nodeId), includeEdge));
   }
 
   return outboundCounts;
+}
+
+function countIncludedTargets(
+  source: string,
+  targets: Set<string> | undefined,
+  includeEdge: (source: string, target: string) => boolean
+): number {
+  if (!targets) return 0;
+  let count = 0;
+
+  for (const target of targets) {
+    if (includeEdge(source, target)) count += 1;
+  }
+
+  return count;
 }
 
 function calculateHubThreshold(outboundCounts: number[]): number {
@@ -226,6 +258,13 @@ function calculatePageRankScores(
   return normalizePageRankScores(scores);
 }
 
+function calculateSeoPageRankScores(linkGraph: LinkGraph, nodeIds: Set<string>): Map<string, number> {
+  const seoNodeIds = new Set([...nodeIds].filter((nodeId) => !isUtilityUrl(nodeId)));
+  const seoInboundSources = buildInboundSources(linkGraph, seoNodeIds, isSeoPageRankEdge);
+  const seoOutboundCounts = buildOutboundCounts(linkGraph, seoNodeIds, isSeoPageRankEdge);
+  return calculatePageRankScores(linkGraph, seoNodeIds, seoInboundSources, seoOutboundCounts);
+}
+
 function normalizePageRankScores(scores: Map<string, number>): Map<string, number> {
   const values = [...scores.values()];
   const min = Math.min(...values);
@@ -240,7 +279,10 @@ function normalizePageRankScores(scores: Map<string, number>): Map<string, numbe
 }
 
 function isApiSeedDiscovery(discoverySource: string | undefined): boolean {
-  return discoverySource === "api_seed" || discoverySource === "api_probe";
+  return discoverySource === "api_seed"
+    || discoverySource === "api_probe"
+    || discoverySource === "pagination_probe"
+    || discoverySource === "sitemap_unlisted";
 }
 
 function computeDepthsFromHome(linkGraph: LinkGraph, nodeIds: Set<string>): Map<string, number> {
@@ -260,6 +302,7 @@ function computeDepthsFromHome(linkGraph: LinkGraph, nodeIds: Set<string>): Map<
 
     const nextDepth = (depths.get(current) ?? 0) + 1;
     for (const target of linkGraph.get(current) ?? []) {
+      if (target === current) continue;
       if (depths.has(target)) continue;
       depths.set(target, nextDepth);
       queue.push(target);
@@ -267,6 +310,28 @@ function computeDepthsFromHome(linkGraph: LinkGraph, nodeIds: Set<string>): Map<
   }
 
   return depths;
+}
+
+function isSeoPageRankEdge(source: string, target: string): boolean {
+  return source !== target && !isUtilityUrl(source) && !isUtilityUrl(target);
+}
+
+export function isUtilityUrl(url: string): boolean {
+  try {
+    const pathname = new URL(url).pathname.toLowerCase();
+    return pathname === "/account"
+      || pathname.startsWith("/account/")
+      || pathname === "/cart"
+      || pathname.startsWith("/cart/")
+      || pathname === "/search"
+      || pathname.startsWith("/search/")
+      || pathname === "/checkout"
+      || pathname.startsWith("/checkout/")
+      || pathname === "/password"
+      || pathname.startsWith("/password/");
+  } catch {
+    return false;
+  }
 }
 
 function normalizeGraphUrl(url: string): string {

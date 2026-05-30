@@ -48,7 +48,7 @@ Crawl telemetry reporting writes request/crawl totals, status-code buckets, fetc
 
 Discover telemetry also reports `api_seeded_products`, `api_seeded_collections`, `probe_discovered_products`, and `sitemap_only_products` so large crawls can explain where product URLs came from. Crawl stats also include network counters such as total nodes/edges, orphan/sink/hub counts, average inbound links, average home-depth, max-inbound URL, and top PageRank URL.
 
-Link graph reporting exports the crawl's internal HTML link network as a JSON adjacency list, a flat CSV edge list for Excel/Gephi/Cytoscape, and a per-node summary with inbound count, outbound count, inbound sources, home-depth, orphan status, hub/sink flags, and a normalized PageRank score.
+Link graph reporting exports the crawl's internal HTML link network as a JSON adjacency list, a flat CSV edge list for Excel/Gephi/Cytoscape, and a per-node summary with inbound count, outbound count, inbound sources, home-depth, orphan status, hub/sink flags, utility URL status, raw PageRank, and SEO PageRank with account/cart/search/checkout/password URLs removed.
 
 Schema and rich-result crawling are intentionally out of scope for this project and should be handled by the separate schema crawler.
 
@@ -82,6 +82,7 @@ Useful flags:
 - `--max-stored-links` maximum links stored per page in `data/raw/output.json`.
 - `--max-stored-images` maximum images stored per page in `data/raw/output.json`.
 - `--max-stored-text` maximum visible-text sample characters stored per page.
+- `--probe-only` temporary Shopify collection pagination debug mode. It seeds `/collections.json`, probes each collection, skips normal crawling, and writes `data/reports/probe-debug.json`.
 
 The crawler identifies itself with this user agent:
 
@@ -106,17 +107,25 @@ Use `discover` mode when you want to ignore sitemaps and crawl from the target U
 npm run crawl -- --url https://example.com --mode discover --max-pages 3000 --max-depth 8 --memory-safe --no-excel
 ```
 
-In `discover` mode, Shopify collection URLs are also probed with pagination parameters:
+In `discover` mode, Shopify collection URLs are also probed with the theme-independent Shopify product JSON endpoint first:
 
 ```text
-/collections/example?limit=250&page=1
-/collections/example?limit=250&page=2
-/collections/example?limit=250&page=3
+/collections/example/products.json?limit=250&page=1
+/collections/example/products.json?limit=250&page=2
+/collections/example/products.json?limit=250&page=3
 ```
 
-The crawler extracts product links from those responses, normalizes collection-product URLs such as `/collections/summer/products/cool-shirt` to `/products/cool-shirt`, and queues the canonical product URL. The probe loop stops when a pagination page returns an error, has no product links, or adds no new product URLs.
+If that endpoint is disabled, it falls back to HTML pagination URLs such as `/collections/example?limit=250&page=1`. The crawler extracts product handles from those responses, normalizes collection-product URLs such as `/collections/summer/products/cool-shirt` to `/products/cool-shirt`, and queues the canonical product URL. The probe loop stops when a pagination page returns an error, has an empty/unparseable response, reaches the hard probe page cap, or adds no new product URLs.
 
 This is designed to catch products that are hidden behind Shopify infinite scroll or JavaScript "load more" behavior without using a heavy browser renderer. It is much faster and lighter than Playwright/Puppeteer. A future optional JavaScript rendering fallback can be added for themes or apps that do not expose product links through normal Shopify pagination.
+
+To debug Shopify collection probing without running a full crawl:
+
+```bash
+npm run crawl -- --url https://triprindia.com --probe-only
+```
+
+Probe-only mode fetches `/collections.json`, runs the collection pagination probe for each collection, skips BFS/product crawling, prints probe logs, and writes `data/reports/probe-debug.json`.
 
 Important: pagination probe and sitemap seed requests are not stored as normal crawled pages. URLs discovered only through Shopify JSON/API/sitemap sources are tagged with `discoverySource` values such as `api_probe`, `pagination_probe`, or `sitemap_unlisted`. If they have no crawlable HTML inbound links, they are reported as `no_html_inbound_link` instead of being mixed into true `orphan_page` issues.
 
@@ -189,8 +198,12 @@ Reports are written to:
 - `data/reports/link-graph.json`
 - `data/reports/link-graph.csv`
 - `data/reports/link-graph-summary.json`
+- `data/reports/unreachable-products-report.csv`
+- `data/reports/probe-debug.json` when `--probe-only` is used
 - `data/reports/issues.json`
 - `data/reports/issues.csv`
 - `data/reports/action-plan.json`
 - `data/reports/action-plan.csv`
 - `data/reports/shopify-seo-report.xlsx`
+
+`unreachable-products-report.csv` focuses on products discovered through Shopify data sources but not linked by crawlable HTML. It includes product handle, discovery source, inbound count, PageRank score, collection memberships when exposed by Shopify product JSON, whether each membership collection was crawled, and collection count.

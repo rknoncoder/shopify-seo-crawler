@@ -18,6 +18,9 @@ describe("internal link analyzer", () => {
     assert.equal(codesByUrl.get("https://example.com/products/paginated-only"), "no_html_inbound_link");
     assert.equal(codesByUrl.get("https://example.com/products/sitemap-only"), "no_html_inbound_link");
     assert.equal(codesByUrl.get("https://example.com/products/true-orphan"), "orphan_page");
+    assert.equal(issues.find((issue) => issue.url === "https://example.com/products/api-only")?.reachable_via, "api_seed");
+    assert.equal(issues.find((issue) => issue.url === "https://example.com/products/paginated-only")?.reachable_via, "pagination_probe");
+    assert.equal(issues.find((issue) => issue.url === "https://example.com/products/sitemap-only")?.reachable_via, "sitemap_only");
   });
 
   it("does not report no_html_inbound_link when a probe-discovered page has an HTML inbound link", () => {

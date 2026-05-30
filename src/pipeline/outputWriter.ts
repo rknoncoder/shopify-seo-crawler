@@ -1,6 +1,7 @@
 import { rm } from "node:fs/promises";
 import { buildCrawlStatsCsvRows } from "../reports/crawlStatsReport.js";
 import { buildImageSeoSummaryCsvRows } from "../reports/imageSeoSummaryReport.js";
+import type { UnreachableProductReportRow } from "../reports/unreachableProductsReport.js";
 import { exportExcel } from "../storage/exportExcel.js";
 import { saveCsv } from "../storage/saveCsv.js";
 import { saveIssuesCsv } from "../storage/saveIssuesCsv.js";
@@ -44,6 +45,7 @@ export async function writeCrawlOutputs(
   await saveJson("data/reports/link-graph.json", reports.linkGraphReport);
   await saveCsv("data/reports/link-graph.csv", reports.linkGraphCsvRows);
   await saveJson("data/reports/link-graph-summary.json", reports.linkGraphSummaryReport);
+  await saveCsv("data/reports/unreachable-products-report.csv", reports.unreachableProductsReport, unreachableProductsHeaders);
   await deleteDisabledSchemaReports();
   await saveIssuesJson(reports.issues);
   await saveIssuesCsv(reports.issues);
@@ -67,6 +69,17 @@ export async function writeCrawlOutputs(
       )
     : "";
 }
+
+const unreachableProductsHeaders: Array<keyof UnreachableProductReportRow> = [
+  "url",
+  "handle",
+  "discovery_source",
+  "inbound_count",
+  "pagerank_score",
+  "collection_memberships",
+  "collection_is_crawled",
+  "collections_count"
+];
 
 function flattenPage(page: CrawledPage): Record<string, unknown> {
   const indexability = summarizeIndexability(page);

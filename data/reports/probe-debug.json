@@ -1,0 +1,728 @@
+{
+  "collections": [
+    {
+      "handle": "loose-fit-cargo-trousers",
+      "url": "/collections/loose-fit-cargo-trousers",
+      "probe_pages_fetched": 2,
+      "products_found": 25,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 25,
+          "new": 25
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "baniyan-for-men",
+      "url": "/collections/baniyan-for-men",
+      "probe_pages_fetched": 2,
+      "products_found": 49,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 49,
+          "new": 49
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "best-seller",
+      "url": "/collections/best-seller",
+      "probe_pages_fetched": 3,
+      "products_found": 331,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 250,
+          "new": 250
+        },
+        {
+          "page": 2,
+          "products_found": 81,
+          "new": 81
+        },
+        {
+          "page": 3,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "bottom-wear",
+      "url": "/collections/bottom-wear",
+      "probe_pages_fetched": 2,
+      "products_found": 181,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 181,
+          "new": 181
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "cargo-pants-for-men",
+      "url": "/collections/cargo-pants-for-men",
+      "probe_pages_fetched": 2,
+      "products_found": 60,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 60,
+          "new": 60
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "combos",
+      "url": "/collections/combos",
+      "probe_pages_fetched": 2,
+      "products_found": 92,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 92,
+          "new": 92
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "drop-shoulder-t-shirts",
+      "url": "/collections/drop-shoulder-t-shirts",
+      "probe_pages_fetched": 2,
+      "products_found": 25,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 25,
+          "new": 25
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "full-sleeve-t-shirt-for-men",
+      "url": "/collections/full-sleeve-t-shirt-for-men",
+      "probe_pages_fetched": 2,
+      "products_found": 111,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 111,
+          "new": 111
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "half-sleeve-t-shirt",
+      "url": "/collections/half-sleeve-t-shirt",
+      "probe_pages_fetched": 2,
+      "products_found": 106,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 106,
+          "new": 106
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "high-neck-t-shirts",
+      "url": "/collections/high-neck-t-shirts",
+      "probe_pages_fetched": 2,
+      "products_found": 35,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 35,
+          "new": 35
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "hooded-t-shirt",
+      "url": "/collections/hooded-t-shirt",
+      "probe_pages_fetched": 2,
+      "products_found": 25,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 25,
+          "new": 25
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "winter-jackets-and-sweatshirts-for-men",
+      "url": "/collections/winter-jackets-and-sweatshirts-for-men",
+      "probe_pages_fetched": 2,
+      "products_found": 42,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 42,
+          "new": 42
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "jacket",
+      "url": "/collections/jacket",
+      "probe_pages_fetched": 2,
+      "products_found": 8,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 8,
+          "new": 8
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "kids-tshirt",
+      "url": "/collections/kids-tshirt",
+      "probe_pages_fetched": 2,
+      "products_found": 1,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 1,
+          "new": 1
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "all-tshirt",
+      "url": "/collections/all-tshirt",
+      "probe_pages_fetched": 2,
+      "products_found": 151,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 151,
+          "new": 151
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "mandarin-collar-t-shirts",
+      "url": "/collections/mandarin-collar-t-shirts",
+      "probe_pages_fetched": 2,
+      "products_found": 22,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 22,
+          "new": 22
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "innerwear",
+      "url": "/collections/innerwear",
+      "probe_pages_fetched": 2,
+      "products_found": 26,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 26,
+          "new": 26
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "new-collections",
+      "url": "/collections/new-collections",
+      "probe_pages_fetched": 2,
+      "products_found": 140,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 140,
+          "new": 140
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "oversized-tshirt",
+      "url": "/collections/oversized-tshirt",
+      "probe_pages_fetched": 2,
+      "products_found": 51,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 51,
+          "new": 51
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "plain-tshirt",
+      "url": "/collections/plain-tshirt",
+      "probe_pages_fetched": 2,
+      "products_found": 59,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 59,
+          "new": 59
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "polos",
+      "url": "/collections/polos",
+      "probe_pages_fetched": 2,
+      "products_found": 35,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 35,
+          "new": 35
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "printed-tshirt",
+      "url": "/collections/printed-tshirt",
+      "probe_pages_fetched": 2,
+      "products_found": 153,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 153,
+          "new": 153
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "shirts",
+      "url": "/collections/shirts",
+      "probe_pages_fetched": 2,
+      "products_found": 18,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 18,
+          "new": 18
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "shorts",
+      "url": "/collections/shorts",
+      "probe_pages_fetched": 2,
+      "products_found": 46,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 46,
+          "new": 46
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "sweatshirt-for-mens",
+      "url": "/collections/sweatshirt-for-mens",
+      "probe_pages_fetched": 2,
+      "products_found": 40,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 40,
+          "new": 40
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "t-shirt-combo",
+      "url": "/collections/t-shirt-combo",
+      "probe_pages_fetched": 2,
+      "products_found": 30,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 30,
+          "new": 30
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "t-shirt",
+      "url": "/collections/t-shirt",
+      "probe_pages_fetched": 3,
+      "products_found": 271,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 250,
+          "new": 250
+        },
+        {
+          "page": 2,
+          "products_found": 21,
+          "new": 21
+        },
+        {
+          "page": 3,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "textured-tshirts-for-men",
+      "url": "/collections/textured-tshirts-for-men",
+      "probe_pages_fetched": 1,
+      "products_found": 0,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "top-pick-travel-jacket",
+      "url": "/collections/top-pick-travel-jacket",
+      "probe_pages_fetched": 2,
+      "products_found": 6,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 6,
+          "new": 6
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "top-sellers",
+      "url": "/collections/top-sellers",
+      "probe_pages_fetched": 2,
+      "products_found": 151,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 151,
+          "new": 151
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "top-wear-collections",
+      "url": "/collections/top-wear-collections",
+      "probe_pages_fetched": 3,
+      "products_found": 280,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 250,
+          "new": 250
+        },
+        {
+          "page": 2,
+          "products_found": 30,
+          "new": 30
+        },
+        {
+          "page": 3,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "track-pants-for-men",
+      "url": "/collections/track-pants-for-men",
+      "probe_pages_fetched": 2,
+      "products_found": 83,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 83,
+          "new": 83
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "track-suite",
+      "url": "/collections/track-suite",
+      "probe_pages_fetched": 2,
+      "products_found": 100,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 100,
+          "new": 100
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "travel-jacket",
+      "url": "/collections/travel-jacket",
+      "probe_pages_fetched": 2,
+      "products_found": 5,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 5,
+          "new": 5
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "all",
+      "url": "/collections/all",
+      "probe_pages_fetched": 0,
+      "products_found": 0,
+      "stop_reason": "not_attempted",
+      "pages": []
+    },
+    {
+      "handle": "men-innerwear-trunks",
+      "url": "/collections/men-innerwear-trunks",
+      "probe_pages_fetched": 2,
+      "products_found": 20,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 20,
+          "new": 20
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "printed-vest",
+      "url": "/collections/printed-vest",
+      "probe_pages_fetched": 2,
+      "products_found": 71,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 71,
+          "new": 71
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    },
+    {
+      "handle": "winter-tracksuits",
+      "url": "/collections/winter-tracksuits",
+      "probe_pages_fetched": 2,
+      "products_found": 7,
+      "stop_reason": "zero_new_products",
+      "pages": [
+        {
+          "page": 1,
+          "products_found": 7,
+          "new": 7
+        },
+        {
+          "page": 2,
+          "products_found": 0,
+          "new": 0
+        }
+      ]
+    }
+  ],
+  "total_collections_probed": 37,
+  "total_products_discovered": 752,
+  "probe_only_mode": true
+}

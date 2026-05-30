@@ -1,5 +1,6 @@
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
+import { toReachableVia } from "../utils/discoverySource.js";
 import { truncate } from "../utils/textUtils.js";
 
 interface LinkGraphNode {
@@ -17,14 +18,18 @@ export function detectInternalLinkIssues(pages: CrawledPage[]): SeoIssue[] {
 
     if (node.inboundLinks.size === 0) {
       if (isNonHtmlDiscovered(node.page)) {
-        issues.push(issue(
-          node.page,
-          "medium",
-          "no_html_inbound_link",
-          "Page was discovered by a Shopify API, sitemap, or pagination probe but has no HTML inbound links from crawled pages.",
-          "Add crawlable HTML links from collections, navigation, related products, or content pages so search engines can discover this URL through normal links.",
-          `inboundInternalLinks=0; inboundSourceType=non_html_discovered; discoverySource=${node.page.discoverySource}`
-        ));
+        const reachableVia = toReachableVia(node.page.discoverySource);
+        issues.push({
+          ...issue(
+            node.page,
+            "medium",
+            "no_html_inbound_link",
+            "Page was discovered by a Shopify API, sitemap, or pagination probe but has no HTML inbound links from crawled pages.",
+            "Add crawlable HTML links from collections, navigation, related products, or content pages so search engines can discover this URL through normal links.",
+            `inboundInternalLinks=0; inboundSourceType=non_html_discovered; discoverySource=${node.page.discoverySource}; reachableVia=${reachableVia ?? ""}`
+          ),
+          reachable_via: reachableVia
+        });
         continue;
       }
 

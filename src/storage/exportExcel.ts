@@ -39,6 +39,7 @@ export async function exportExcel(
   if (imageSeoSummaryReport) {
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet([flattenImageSeoSummary(imageSeoSummaryReport)]), "Image SEO Summary");
     XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(imageSeoSummaryReport.topMissingAltPages), "Missing Alt Samples");
+    XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(imageSeoSummaryReport.alt_text_pattern_analysis), "Alt Pattern Analysis");
   }
   XLSX.writeFile(workbook, path);
   return path;
@@ -124,6 +125,9 @@ function flattenImageSeoSummary(report: ImageSeoSummaryReport): Record<string, u
     largeImageUrlCount: report.largeImageUrlCount,
     pagesWithLargeImageUrls: report.pagesWithLargeImageUrls,
     imageIssueCounts: Object.entries(report.imageIssueCounts).map(([code, count]) => `${code}:${count}`).join("|"),
+    altTextPatternAnalysis: report.alt_text_pattern_analysis
+      .map((group) => `${group.pattern}:${group.missing_alt_count}`)
+      .join("|"),
     note: report.note
   };
 }

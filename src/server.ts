@@ -1000,6 +1000,7 @@ function networkHtml(): string {
           <option value="hubs">Hubs only</option>
           <option value="orphans">Orphans only</option>
           <option value="catalog">Collections + Products only</option>
+          <option value="seo">SEO view</option>
         </select>
       </label>
       <div>
@@ -1099,9 +1100,11 @@ function networkHtml(): string {
             inbound_count: toNumber(summary.inbound_count),
             outbound_count: toNumber(summary.outbound_count),
             pagerank_score: toNumber(summary.pagerank_score),
+            seo_pagerank_score: toNumber(summary.seo_pagerank_score),
             is_orphan: Boolean(summary.is_orphan),
             is_hub: Boolean(summary.is_hub),
             is_sink: Boolean(summary.is_sink),
+            is_utility: Boolean(summary.is_utility),
             depth_from_home: summary.depth_from_home === null || summary.depth_from_home === undefined ? "" : summary.depth_from_home
           };
         })
@@ -1132,9 +1135,11 @@ function networkHtml(): string {
         inbound_count: 0,
         outbound_count: 0,
         pagerank_score: 0,
+        seo_pagerank_score: 0,
         is_orphan: false,
         is_hub: false,
         is_sink: false,
+        is_utility: isUtilityUrl(url),
         depth_from_home: ""
       };
     }
@@ -1161,8 +1166,10 @@ function networkHtml(): string {
 
       const width = Math.max(640, chart.clientWidth || 900);
       const height = Math.max(420, chart.clientHeight || 620);
-      const maxInbound = Math.max(1, ...nodes.map((node) => node.inbound_count));
-      const radius = d3.scaleSqrt().domain([0, maxInbound]).range([4, 20]);
+      const sizeMetric = filter === "seo" ? "seo_pagerank_score" : "inbound_count";
+      const maxSizeValue = Math.max(1, ...nodes.map((node) => toNumber(node[sizeMetric])));
+      const radius = d3.scaleSqrt().domain([0, maxSizeValue]).range([4, 20]);
+      const nodeRadius = (node) => radius(toNumber(node[sizeMetric]));
 
       svg.attr("viewBox", "0 0 " + width + " " + height);
 
@@ -1208,7 +1215,7 @@ function networkHtml(): string {
           .on("end", dragEnded));
 
       nodeSelection.append("circle")
-        .attr("r", (node) => radius(node.inbound_count))
+        .attr("r", nodeRadius)
         .attr("fill", (node) => colorByType[node.type] || colorByType.other);
 
       nodeSelection.append("title").text((node) => node.id);
@@ -1217,7 +1224,7 @@ function networkHtml(): string {
         .force("link", d3.forceLink(edges).id((node) => node.id).distance(72).strength(0.45))
         .force("charge", d3.forceManyBody().strength(-45))
         .force("center", d3.forceCenter(width / 2, height / 2))
-        .force("collision", d3.forceCollide().radius((node) => radius(node.inbound_count) + 5))
+        .force("collision", d3.forceCollide().radius((node) => nodeRadius(node) + 5))
         .on("tick", () => {
           linkSelection
             .attr("x1", (edge) => endpoint(edge.source).x)
@@ -1285,6 +1292,8 @@ function networkHtml(): string {
         detailRow("Inbound count", String(node.inbound_count)) +
         detailRow("Outbound count", String(node.outbound_count)) +
         detailRow("PageRank score", formatScore(node.pagerank_score)) +
+        detailRow("SEO PageRank score", formatScore(node.seo_pagerank_score)) +
+        detailRow("Utility URL", node.is_utility ? "Yes" : "No") +
         detailRow("Orphan", node.is_orphan ? "Yes" : "No") +
         detailRow("Hub", node.is_hub ? "Yes" : "No") +
         detailRow("Depth from home", node.depth_from_home === "" ? "Not reachable from home" : String(node.depth_from_home)) +
@@ -1299,6 +1308,7 @@ function networkHtml(): string {
       if (filter === "hubs") return node.is_hub === true;
       if (filter === "orphans") return node.is_orphan === true;
       if (filter === "catalog") return node.type === "collection" || node.type === "product";
+      if (filter === "seo") return node.is_utility !== true;
       return true;
     }
 
@@ -1353,6 +1363,19 @@ function networkHtml(): string {
         return "other";
       }
       return "other";
+    }
+
+    function isUtilityUrl(url) {
+      try {
+        const pathname = new URL(url).pathname.toLowerCase();
+        return pathname === "/account" || pathname.startsWith("/account/") ||
+          pathname === "/cart" || pathname.startsWith("/cart/") ||
+          pathname === "/search" || pathname.startsWith("/search/") ||
+          pathname === "/checkout" || pathname.startsWith("/checkout/") ||
+          pathname === "/password" || pathname.startsWith("/password/");
+      } catch {
+        return false;
+      }
     }
 
     function toNumber(value) {

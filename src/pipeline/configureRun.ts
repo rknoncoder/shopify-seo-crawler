@@ -9,6 +9,7 @@ export interface RunConfiguration {
   source: string;
   manualSitemapUrls: string[];
   pageSpeedOptions: PageSpeedInsightsOptions;
+  probeOnly: boolean;
 }
 
 export interface ExcelExportOptions {
@@ -28,7 +29,8 @@ export function configureRun(): RunConfiguration {
     targetUrl,
     source,
     manualSitemapUrls: getSitemapUrls(),
-    pageSpeedOptions: getPageSpeedInsightsOptions()
+    pageSpeedOptions: getPageSpeedInsightsOptions(),
+    probeOnly: getBooleanOverride("--probe-only", "SHOPIFY_CRAWLER_PROBE_ONLY")
   };
 }
 

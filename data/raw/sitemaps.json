@@ -3,7 +3,7 @@
   "status": "skipped",
   "detectedSitemapUrls": [],
   "attempts": [],
-  "unavailableReason": "Discover crawl requested; sitemap detection skipped.",
+  "unavailableReason": "Single URL crawl requested.",
   "totalSitemapsFound": 0,
   "totalUrlsFound": 0,
   "selectedSitemapsForCrawl": 0,
