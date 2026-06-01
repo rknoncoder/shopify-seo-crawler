@@ -57,10 +57,17 @@ export async function buildReportBundle(options: BuildReportBundleOptions): Prom
     imageInventoryReport,
     result.imageInventoryUsages
   );
-  const crawlStatsReport = buildCrawlStatsReport(result.pages, issues, result.telemetry, linkGraphSummaryReport);
   const unreachableProductsReport = await buildUnreachableProductsReport(result.pages, issues, linkGraphSummaryReport, {
-    baseUrl: targetUrl
+    baseUrl: targetUrl,
+    probeDiscoveryMap: result.probeDiscoveryMap
   });
+  const crawlStatsReport = buildCrawlStatsReport(
+    result.pages,
+    issues,
+    result.telemetry,
+    linkGraphSummaryReport,
+    unreachableProductsReport
+  );
   const pageSpeedUrls = result.pages.filter((page) => page.status === 200).map((page) => page.finalUrl);
   const pageSpeedReport = await buildPageSpeedInsightsReport(pageSpeedUrls, pageSpeedOptions);
 

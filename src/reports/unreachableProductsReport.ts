@@ -1,8 +1,13 @@
 import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
-import { delay, fetchPage } from "../crawler/fetcher.js";
+import type { ProbeDiscoveryMap } from "../types/crawl.js";
 import { toReachableVia } from "../utils/discoverySource.js";
 import type { LinkGraphSummaryRow } from "./linkGraphReport.js";
+
+export type UnreachableProductBucket =
+  | "A_no_collection"
+  | "B_collection_crawled_not_linked"
+  | "C_collection_not_crawled";
 
 export interface UnreachableProductReportRow {
   url: string;
@@ -12,16 +17,20 @@ export interface UnreachableProductReportRow {
   pagerank_score: number;
   collection_memberships: string;
   collection_is_crawled: string;
+  bucket: UnreachableProductBucket;
   collections_count: number;
 }
 
-export type ProductCollectionMembershipFetcher = (handle: string, productJsonUrl: string) => Promise<string[] | undefined>;
+export interface UnreachableProductBucketSummary {
+  total: number;
+  A_no_collection: number;
+  B_collection_crawled_not_linked: number;
+  C_collection_not_crawled: number;
+}
 
 export interface UnreachableProductsReportOptions {
   baseUrl?: string;
-  concurrency?: number;
-  requestDelayMs?: number;
-  fetchCollectionMemberships?: ProductCollectionMembershipFetcher;
+  probeDiscoveryMap?: ProbeDiscoveryMap;
 }
 
 export async function buildUnreachableProductsReport(
@@ -32,7 +41,7 @@ export async function buildUnreachableProductsReport(
 ): Promise<UnreachableProductReportRow[]> {
   const pagesByUrl = new Map(pages.map((page) => [normalizeUrl(page.finalUrl), page]));
   const summaryByUrl = new Map(linkGraphSummary.map((row) => [normalizeUrl(row.url), row]));
-  const crawledCollectionHandles = buildCrawledCollectionHandleSet(pages);
+  const crawledCollectionUrls = buildCrawledCollectionUrlSet(pages);
   const noHtmlIssueUrls = new Set(
     issues
       .filter((issue) => issue.code === "no_html_inbound_link")
@@ -56,70 +65,59 @@ export async function buildUnreachableProductsReport(
         pagerank_score: summary?.pagerank_score ?? 0,
         collection_memberships: "",
         collection_is_crawled: "",
-        collections_count: countCollectionInboundSources(summary)
+        bucket: "A_no_collection" as UnreachableProductBucket,
+        collections_count: 0
       };
     })
     .filter((row): row is UnreachableProductReportRow => Boolean(row))
     .sort((left, right) => left.discovery_source.localeCompare(right.discovery_source) || left.url.localeCompare(right.url));
 
-  await enrichCollectionMemberships(rows, crawledCollectionHandles, options);
+  applyProbeCollectionMemberships(rows, crawledCollectionUrls, options);
   return rows;
 }
 
-async function enrichCollectionMemberships(
+export function buildUnreachableProductBucketSummary(
   rows: UnreachableProductReportRow[],
-  crawledCollectionHandles: Set<string>,
-  options: UnreachableProductsReportOptions
-): Promise<void> {
-  const fetchMemberships = options.fetchCollectionMemberships ?? defaultCollectionMembershipFetcher(options.baseUrl);
-  if (!fetchMemberships) return;
-
-  const membershipFetcher: ProductCollectionMembershipFetcher = fetchMemberships;
-  const concurrency = Math.max(1, Math.min(8, Math.floor(options.concurrency ?? 2)));
-  const requestDelayMs = Math.max(0, options.requestDelayMs ?? 250);
-  let nextIndex = 0;
-
-  async function worker(): Promise<void> {
-    while (nextIndex < rows.length) {
-      const row = rows[nextIndex];
-      nextIndex += 1;
-      await enrichRow(row, crawledCollectionHandles, membershipFetcher, requestDelayMs);
-    }
-  }
-
-  await Promise.all(Array.from({ length: Math.min(concurrency, rows.length) }, () => worker()));
+): UnreachableProductBucketSummary {
+  return rows.reduce<UnreachableProductBucketSummary>((summary, row) => {
+    summary.total += 1;
+    summary[row.bucket] += 1;
+    return summary;
+  }, {
+    total: 0,
+    A_no_collection: 0,
+    B_collection_crawled_not_linked: 0,
+    C_collection_not_crawled: 0
+  });
 }
 
-async function enrichRow(
-  row: UnreachableProductReportRow,
-  crawledCollectionHandles: Set<string>,
-  fetchMemberships: ProductCollectionMembershipFetcher,
-  requestDelayMs: number
-): Promise<void> {
-  try {
-    const productJsonUrl = buildProductJsonUrl(row.url);
-    const handles = await fetchMemberships(row.handle, productJsonUrl);
-    if (handles === undefined) {
-      row.collection_memberships = "not_exposed";
-      row.collection_is_crawled = "not_exposed";
+function applyProbeCollectionMemberships(
+  rows: UnreachableProductReportRow[],
+  crawledCollectionUrls: Set<string>,
+  options: UnreachableProductsReportOptions
+): void {
+  for (const row of rows) {
+    const collectionHandles = [...(options.probeDiscoveryMap?.get(row.handle) ?? new Set<string>())]
+      .map((handle) => handle.trim())
+      .filter(Boolean)
+      .sort();
+
+    if (collectionHandles.length === 0) {
+      row.collection_memberships = "no_collection";
+      row.collection_is_crawled = "";
       row.collections_count = 0;
-      return;
+      row.bucket = "A_no_collection";
+      continue;
     }
 
-    const uniqueHandles = [...new Set(handles.map((handle) => handle.trim()).filter(Boolean))].sort();
-    row.collection_memberships = uniqueHandles.join("|");
-    row.collection_is_crawled = uniqueHandles
-      .map((handle) => `${handle}:${crawledCollectionHandles.has(handle) ? "true" : "false"}`)
+    row.collection_memberships = collectionHandles.join("|");
+    row.collections_count = collectionHandles.length;
+    row.collection_is_crawled = collectionHandles
+      .map((handle) => `${handle}:${crawledCollectionUrls.has(buildCollectionUrl(row.url, handle, options.baseUrl)) ? "true" : "false"}`)
       .join("|");
-    row.collections_count = uniqueHandles.length;
-  } catch {
-    row.collection_memberships = "lookup_failed";
-    row.collection_is_crawled = "lookup_failed";
-    row.collections_count = 0;
-  }
-
-  if (requestDelayMs > 0) {
-    await delay(requestDelayMs);
+    row.bucket = collectionHandles.some((handle) => crawledCollectionUrls.has(buildCollectionUrl(row.url, handle, options.baseUrl)))
+      ? "B_collection_crawled_not_linked"
+      : "C_collection_not_crawled";
   }
 }
 
@@ -146,21 +144,16 @@ function extractProductHandle(url: string): string {
   }
 }
 
-function countCollectionInboundSources(summary: LinkGraphSummaryRow | undefined): number {
-  if (!summary) return 0;
-  return summary.inbound_sources.filter(isCollectionUrl).length;
-}
-
-function buildCrawledCollectionHandleSet(pages: CrawledPage[]): Set<string> {
-  const handles = new Set<string>();
+function buildCrawledCollectionUrlSet(pages: CrawledPage[]): Set<string> {
+  const urls = new Set<string>();
 
   for (const page of pages) {
     if (page.status >= 400 || page.pageType !== "collection") continue;
-    const handle = extractCollectionHandle(page.finalUrl);
-    if (handle) handles.add(handle);
+    const collectionUrl = normalizeBaseCollectionUrl(page.finalUrl);
+    if (collectionUrl) urls.add(collectionUrl);
   }
 
-  return handles;
+  return urls;
 }
 
 function extractCollectionHandle(url: string): string {
@@ -172,11 +165,11 @@ function extractCollectionHandle(url: string): string {
   }
 }
 
-function isCollectionUrl(url: string): boolean {
+function buildCollectionUrl(productUrl: string, collectionHandle: string, baseUrl: string | undefined): string {
   try {
-    return new URL(url).pathname.startsWith("/collections/");
+    return normalizeUrl(new URL(`/collections/${collectionHandle}`, baseUrl ? new URL(baseUrl).origin : new URL(productUrl).origin).toString());
   } catch {
-    return false;
+    return "";
   }
 }
 
@@ -191,48 +184,8 @@ function normalizeUrl(url: string): string {
   }
 }
 
-function defaultCollectionMembershipFetcher(baseUrl: string | undefined): ProductCollectionMembershipFetcher | undefined {
-  if (!baseUrl) return undefined;
-
-  return async (handle: string) => {
-    const productJsonUrl = buildProductJsonUrl(new URL(`/products/${handle}`, new URL(baseUrl).origin).toString());
-    const response = await fetchPage(productJsonUrl);
-    if (response.status < 200 || response.status >= 300) return [];
-    return extractCollectionHandlesFromProductJson(response.html);
-  };
-}
-
-function buildProductJsonUrl(productUrl: string): string {
-  const parsed = new URL(productUrl);
-  const pathname = parsed.pathname.endsWith(".json") ? parsed.pathname : `${parsed.pathname}.json`;
-  parsed.pathname = pathname;
-  parsed.hash = "";
-  parsed.search = "";
-  return parsed.toString();
-}
-
-function extractCollectionHandlesFromProductJson(rawJson: string): string[] | undefined {
-  const parsed = JSON.parse(rawJson) as unknown;
-  const product = getObjectProperty(parsed, "product") ?? parsed;
-  const collections = getObjectProperty(product, "collections");
-
-  if (collections === undefined) return undefined;
-  if (!Array.isArray(collections)) return [];
-
-  return collections.map(extractHandleFromCollectionValue).filter(Boolean);
-}
-
-function extractHandleFromCollectionValue(value: unknown): string {
-  if (typeof value === "string") return value;
-  if (!value || typeof value !== "object") return "";
-
-  const record = value as Record<string, unknown>;
-  if (typeof record.handle === "string") return record.handle;
-  if (typeof record.url === "string") return extractCollectionHandle(record.url);
-  if (typeof record.href === "string") return extractCollectionHandle(record.href);
-  return "";
-}
-
-function getObjectProperty(value: unknown, property: string): unknown {
-  return value && typeof value === "object" ? (value as Record<string, unknown>)[property] : undefined;
+function normalizeBaseCollectionUrl(url: string): string {
+  const handle = extractCollectionHandle(url);
+  if (!handle) return "";
+  return buildCollectionUrl(url, handle, undefined);
 }

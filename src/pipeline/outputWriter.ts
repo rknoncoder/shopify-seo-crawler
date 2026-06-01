@@ -78,6 +78,7 @@ const unreachableProductsHeaders: Array<keyof UnreachableProductReportRow> = [
   "pagerank_score",
   "collection_memberships",
   "collection_is_crawled",
+  "bucket",
   "collections_count"
 ];
 

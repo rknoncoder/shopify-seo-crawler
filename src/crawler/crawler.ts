@@ -7,7 +7,7 @@ import { delay, fetchPage, getFetchTelemetry, resetFetchTelemetry, sleepBetweenR
 import { discoverShopifyCollectionPagination } from "./shopifyCollectionPagination.js";
 import { UrlManager } from "./urlManager.js";
 import { parseHtml } from "../parser/htmlParser.js";
-import type { CrawlResult, LinkGraph } from "../types/crawl.js";
+import type { CrawlResult, LinkGraph, ProbeDiscoveryMap } from "../types/crawl.js";
 import type { ImageInventoryUsage } from "../types/image.js";
 import type { CrawledPage } from "../types/page.js";
 import type { SeoIssue } from "../types/issue.js";
@@ -29,6 +29,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   const pageIssues: SeoIssue[] = [];
   const imageInventoryUsages: ImageInventoryUsage[] = [];
   const linkGraph: LinkGraph = new Map();
+  const probeDiscoveryMap: ProbeDiscoveryMap = new Map();
   let totalRequested = 0;
   let skippedNonHtmlCount = 0;
   let apiSeededProducts = 0;
@@ -93,6 +94,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
             depth: next.depth,
             status: page.status,
             manager,
+            probeDiscoveryMap,
             onRequest: () => {
               totalRequested += 1;
             }
@@ -136,6 +138,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
     issues: analyzeSite(analysisPages, pageIssues, linkGraph),
     imageInventoryUsages,
     linkGraph,
+    probeDiscoveryMap,
     telemetry: {
       totalRequested,
       skippedNonHtmlCount,

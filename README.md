@@ -206,4 +206,4 @@ Reports are written to:
 - `data/reports/action-plan.csv`
 - `data/reports/shopify-seo-report.xlsx`
 
-`unreachable-products-report.csv` focuses on products discovered through Shopify data sources but not linked by crawlable HTML. It includes product handle, discovery source, inbound count, PageRank score, collection memberships when exposed by Shopify product JSON, whether each membership collection was crawled, and collection count.
+`unreachable-products-report.csv` focuses on products discovered through Shopify data sources but not linked by crawlable HTML. It includes product handle, discovery source, inbound count, PageRank score, collection memberships derived from Shopify collection pagination probes, whether each membership collection was crawled, a bucket, and collection count. Buckets are `A_no_collection`, `B_collection_crawled_not_linked`, and `C_collection_not_crawled`.

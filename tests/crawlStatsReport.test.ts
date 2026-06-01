@@ -23,7 +23,8 @@ describe("crawl stats report", () => {
         issue("orphaned_collection")
       ],
       telemetry(),
-      linkGraphSummary()
+      linkGraphSummary(),
+      unreachableProducts()
     );
 
     assert.match(report.generatedAt, /^\d{4}-\d{2}-\d{2}T/);
@@ -55,6 +56,12 @@ describe("crawl stats report", () => {
     assert.equal(report.probe_total_pages_fetched, 9);
     assert.equal(report.sitemap_only_products, 2);
     assert.equal(report.orphaned_collection_count, 1);
+    assert.deepEqual(report.unreachable_product_buckets, {
+      total: 3,
+      A_no_collection: 1,
+      B_collection_crawled_not_linked: 1,
+      C_collection_not_crawled: 1
+    });
     assert.equal(report.redirectedCount, 1);
     assert.deepEqual(report.retryCounters, telemetry().retries);
     assert.deepEqual(report.loadTimeMs, {
@@ -79,7 +86,7 @@ describe("crawl stats report", () => {
   });
 
   it("flattens crawl stats into one CSV row", () => {
-    const report = buildCrawlStatsReport([page(200, 25), page(503, 75)], [issue("fetch_server_error")], telemetry(), linkGraphSummary());
+    const report = buildCrawlStatsReport([page(200, 25), page(503, 75)], [issue("fetch_server_error")], telemetry(), linkGraphSummary(), unreachableProducts());
     const [row] = buildCrawlStatsCsvRows(report);
 
     assert.equal(row.totalRequested, 8);
@@ -97,6 +104,12 @@ describe("crawl stats report", () => {
     assert.equal(row.probe_total_pages_fetched, 9);
     assert.equal(row.sitemap_only_products, 2);
     assert.equal(row.orphaned_collection_count, 0);
+    assert.equal(row.unreachable_product_buckets, JSON.stringify({
+      total: 3,
+      A_no_collection: 1,
+      B_collection_crawled_not_linked: 1,
+      C_collection_not_crawled: 1
+    }));
     assert.equal(row.retryStatusCounts, JSON.stringify({ "503": 2 }));
     assert.equal(row.avgLoadTimeMs, 50);
     assert.equal(row.p50LoadTimeMs, 25);
@@ -203,4 +216,12 @@ function telemetry(): CrawlTelemetry {
       }
     }
   };
+}
+
+function unreachableProducts() {
+  return [
+    { bucket: "A_no_collection" as const },
+    { bucket: "B_collection_crawled_not_linked" as const },
+    { bucket: "C_collection_not_crawled" as const }
+  ] as any;
 }

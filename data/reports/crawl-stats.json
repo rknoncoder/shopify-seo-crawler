@@ -1,53 +1,60 @@
 {
-  "generatedAt": "2026-05-30T12:36:44.854Z",
-  "totalRequested": 1,
-  "totalCrawled": 1,
+  "generatedAt": "2026-06-01T13:24:32.324Z",
+  "totalRequested": 1107,
+  "totalCrawled": 969,
   "statusCodeCounts": {
     "families": {
-      "2xx": 1,
+      "2xx": 965,
       "3xx": 0,
-      "4xx": 0,
+      "4xx": 4,
       "5xx": 0,
       "other": 0
     },
     "exact": {
-      "200": 1
+      "200": 965,
+      "404": 4
     }
   },
-  "fetchFailedCount": 0,
+  "fetchFailedCount": 5,
   "skippedNonHtmlCount": 0,
-  "api_seeded_products": 0,
-  "api_seeded_collections": 0,
+  "api_seeded_products": 754,
+  "api_seeded_collections": 38,
   "probe_discovered_products": 0,
-  "probe_collections_attempted": 0,
-  "probe_collections_exhausted": 0,
+  "probe_collections_attempted": 64,
+  "probe_collections_exhausted": 64,
   "probe_collections_failed": 0,
-  "probe_total_pages_fetched": 0,
+  "probe_total_pages_fetched": 130,
   "sitemap_only_products": 0,
-  "orphaned_collection_count": 1,
-  "redirectedCount": 0,
+  "orphaned_collection_count": 3,
+  "unreachable_product_buckets": {
+    "total": 380,
+    "A_no_collection": 2,
+    "B_collection_crawled_not_linked": 378,
+    "C_collection_not_crawled": 0
+  },
+  "redirectedCount": 10,
   "retryCounters": {
-    "totalRetries": 0,
+    "totalRetries": 4,
     "statusRetries": 0,
-    "errorRetries": 0,
+    "errorRetries": 4,
     "retryStatusCounts": {}
   },
   "loadTimeMs": {
-    "avg": 398,
-    "p50": 398,
-    "p95": 398,
-    "max": 398
+    "avg": 363,
+    "p50": 302,
+    "p95": 631,
+    "max": 6843
   },
   "network": {
-    "total_nodes": 49,
-    "total_edges": 48,
+    "total_nodes": 998,
+    "total_edges": 34924,
     "orphan_count": 1,
-    "sink_count": 48,
-    "hub_count": 1,
-    "avg_inbound_links": 0.98,
-    "max_inbound_url": "https://triprindia.com/",
-    "avg_depth_from_home": 0,
-    "top_pagerank_url": "https://triprindia.com/",
+    "sink_count": 43,
+    "hub_count": 106,
+    "avg_inbound_links": 34.99,
+    "max_inbound_url": "https://triprindia.com/account/login",
+    "avg_depth_from_home": 3.42,
+    "top_pagerank_url": "https://triprindia.com/account/login",
     "top_seo_pagerank_url": "https://triprindia.com/",
     "top_seo_pagerank_score": 1
   }

@@ -76,6 +76,7 @@ export interface CrawlResult {
   issues: SeoIssue[];
   imageInventoryUsages: ImageInventoryUsage[];
   linkGraph: LinkGraph;
+  probeDiscoveryMap: ProbeDiscoveryMap;
   telemetry: CrawlTelemetry;
 }
 
@@ -94,3 +95,4 @@ export interface QueuedUrl {
 }
 
 export type LinkGraph = Map<string, Set<string>>;
+export type ProbeDiscoveryMap = Map<string, Set<string>>;

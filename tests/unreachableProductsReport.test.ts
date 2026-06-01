@@ -23,12 +23,10 @@ describe("unreachable products report", () => {
         summary("https://example.com/products/sitemap-only", 1, 0.04, ["https://example.com/collections/rugs"])
       ],
       {
-        requestDelayMs: 0,
-        fetchCollectionMemberships: async (handle) => {
-          if (handle === "api-only") return ["rugs", "hidden-collection"];
-          if (handle === "sitemap-only") return [];
-          return undefined;
-        }
+        baseUrl: "https://example.com",
+        probeDiscoveryMap: new Map([
+          ["api-only", new Set(["rugs", "hidden-collection"])]
+        ])
       }
     );
 
@@ -41,6 +39,7 @@ describe("unreachable products report", () => {
         pagerank_score: 0.12,
         collection_memberships: "hidden-collection|rugs",
         collection_is_crawled: "hidden-collection:false|rugs:true",
+        bucket: "B_collection_crawled_not_linked",
         collections_count: 2
       },
       {
@@ -49,27 +48,31 @@ describe("unreachable products report", () => {
         discovery_source: "sitemap_only",
         inbound_count: 1,
         pagerank_score: 0.04,
-        collection_memberships: "",
+        collection_memberships: "no_collection",
         collection_is_crawled: "",
+        bucket: "A_no_collection",
         collections_count: 0
       }
     ]);
   });
 
-  it("marks membership as not_exposed when product JSON has no collections array", async () => {
+  it("marks products found only in uncrawled collection probes separately", async () => {
     const [row] = await buildUnreachableProductsReport(
       [page("https://example.com/products/api-only", "api_probe")],
       [issue("https://example.com/products/api-only", "api_seed")],
       [summary("https://example.com/products/api-only", 0, 0.12, [])],
       {
-        requestDelayMs: 0,
-        fetchCollectionMemberships: async () => undefined
+        baseUrl: "https://example.com",
+        probeDiscoveryMap: new Map([
+          ["api-only", new Set(["hidden-collection"])]
+        ])
       }
     );
 
-    assert.equal(row.collection_memberships, "not_exposed");
-    assert.equal(row.collection_is_crawled, "not_exposed");
-    assert.equal(row.collections_count, 0);
+    assert.equal(row.collection_memberships, "hidden-collection");
+    assert.equal(row.collection_is_crawled, "hidden-collection:false");
+    assert.equal(row.bucket, "C_collection_not_crawled");
+    assert.equal(row.collections_count, 1);
   });
 });
 

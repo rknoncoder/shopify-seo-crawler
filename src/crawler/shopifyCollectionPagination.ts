@@ -3,6 +3,7 @@ import config from "../config/config.js";
 import { fetchPage, sleepBetweenRequests } from "./fetcher.js";
 import { shouldSkipUrl } from "../utils/urlUtils.js";
 import { UrlManager } from "./urlManager.js";
+import type { ProbeDiscoveryMap } from "../types/crawl.js";
 
 const SHOPIFY_COLLECTION_PAGE_LIMIT = 250;
 const MAX_PROBE_PAGES = 20;
@@ -14,6 +15,7 @@ interface DiscoverCollectionPaginationOptions {
   status: number;
   manager: UrlManager;
   onRequest: () => void;
+  probeDiscoveryMap?: ProbeDiscoveryMap;
 }
 
 export interface CollectionProbeResult {
@@ -113,6 +115,7 @@ export async function discoverShopifyCollectionPagination(options: DiscoverColle
       break;
     }
 
+    recordProbeDiscoveries(products, options.collectionUrl, options.probeDiscoveryMap);
     const probeResult = addProductHandles(products, seenProductUrls, options.manager, productDepth, options.baseUrl);
     totalProductHandles += probeResult.newProductHandles;
     result.productsFound = totalProductHandles;
@@ -137,6 +140,26 @@ export async function discoverShopifyCollectionPagination(options: DiscoverColle
 
   logProbeEnd(options.collectionUrl, totalProductHandles, result.pagesFetched);
   return result;
+}
+
+function recordProbeDiscoveries(
+  products: Array<{ handle?: unknown }>,
+  collectionUrl: string,
+  probeDiscoveryMap: ProbeDiscoveryMap | undefined
+): void {
+  if (!probeDiscoveryMap) return;
+
+  const collectionHandle = extractCollectionHandle(collectionUrl);
+  if (!collectionHandle) return;
+
+  for (const product of products) {
+    if (typeof product.handle !== "string" || product.handle.trim() === "") continue;
+
+    const productHandle = product.handle.trim();
+    const collectionHandles = probeDiscoveryMap.get(productHandle) ?? new Set<string>();
+    collectionHandles.add(collectionHandle);
+    probeDiscoveryMap.set(productHandle, collectionHandles);
+  }
 }
 
 export function shouldBreakProbeForStatus(status: number): boolean {
@@ -303,5 +326,14 @@ function collectionPath(collectionUrl: string): string {
     return new URL(collectionUrl).pathname;
   } catch {
     return collectionUrl;
+  }
+}
+
+function extractCollectionHandle(collectionUrl: string): string {
+  try {
+    const parts = new URL(collectionUrl).pathname.split("/").filter(Boolean);
+    return parts[0] === "collections" ? parts[1] ?? "" : "";
+  } catch {
+    return "";
   }
 }

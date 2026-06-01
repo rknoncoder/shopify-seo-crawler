@@ -3,6 +3,7 @@ import type { SeoIssue } from "../types/issue.js";
 import type { CrawledPage } from "../types/page.js";
 import type { LinkGraphSummaryRow } from "./linkGraphReport.js";
 import { isFetchFailureCode } from "../utils/fetchFailureClassifier.js";
+import { buildUnreachableProductBucketSummary, type UnreachableProductBucketSummary, type UnreachableProductReportRow } from "./unreachableProductsReport.js";
 
 interface LoadTimeSummary {
   avg: number | null;
@@ -52,6 +53,7 @@ export interface CrawlStatsReport {
   probe_total_pages_fetched: number;
   sitemap_only_products: number;
   orphaned_collection_count: number;
+  unreachable_product_buckets: UnreachableProductBucketSummary;
   redirectedCount: number;
   retryCounters: CrawlTelemetry["retries"];
   loadTimeMs: LoadTimeSummary;
@@ -79,6 +81,7 @@ export interface CrawlStatsCsvRow {
   probe_total_pages_fetched: number;
   sitemap_only_products: number;
   orphaned_collection_count: number;
+  unreachable_product_buckets: string;
   redirectedCount: number;
   totalRetries: number;
   statusRetries: number;
@@ -105,7 +108,8 @@ export function buildCrawlStatsReport(
   pages: CrawledPage[],
   issues: SeoIssue[],
   telemetry: CrawlTelemetry,
-  linkGraphSummary: LinkGraphSummaryRow[] = []
+  linkGraphSummary: LinkGraphSummaryRow[] = [],
+  unreachableProductsReport: UnreachableProductReportRow[] = []
 ): CrawlStatsReport {
   return {
     generatedAt: new Date().toISOString(),
@@ -123,6 +127,7 @@ export function buildCrawlStatsReport(
     probe_total_pages_fetched: telemetry.probeTotalPagesFetched,
     sitemap_only_products: telemetry.sitemapOnlyProducts,
     orphaned_collection_count: issues.filter((issue) => issue.code === "orphaned_collection").length,
+    unreachable_product_buckets: buildUnreachableProductBucketSummary(unreachableProductsReport),
     redirectedCount: pages.filter((page) => page.redirected).length,
     retryCounters: telemetry.retries,
     loadTimeMs: summarizeLoadTimes(pages),
@@ -152,6 +157,7 @@ export function buildCrawlStatsCsvRows(report: CrawlStatsReport): CrawlStatsCsvR
     probe_total_pages_fetched: report.probe_total_pages_fetched,
     sitemap_only_products: report.sitemap_only_products,
     orphaned_collection_count: report.orphaned_collection_count,
+    unreachable_product_buckets: JSON.stringify(report.unreachable_product_buckets),
     redirectedCount: report.redirectedCount,
     totalRetries: report.retryCounters.totalRetries,
     statusRetries: report.retryCounters.statusRetries,
