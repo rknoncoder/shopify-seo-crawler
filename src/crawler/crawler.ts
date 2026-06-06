@@ -7,7 +7,7 @@ import { delay, fetchPage, getFetchTelemetry, resetFetchTelemetry, sleepBetweenR
 import { discoverShopifyCollectionPagination } from "./shopifyCollectionPagination.js";
 import { UrlManager } from "./urlManager.js";
 import { parseHtml } from "../parser/htmlParser.js";
-import type { CrawlResult, LinkGraph, ProbeDiscoveryMap } from "../types/crawl.js";
+import type { CollectionProbeSummary, CrawlResult, LinkGraph, ProbeDiscoveryMap } from "../types/crawl.js";
 import type { ImageInventoryUsage } from "../types/image.js";
 import type { CrawledPage } from "../types/page.js";
 import type { SeoIssue } from "../types/issue.js";
@@ -30,6 +30,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   const imageInventoryUsages: ImageInventoryUsage[] = [];
   const linkGraph: LinkGraph = new Map();
   const probeDiscoveryMap: ProbeDiscoveryMap = new Map();
+  const collectionProbeSummaries: CollectionProbeSummary[] = [];
   let totalRequested = 0;
   let skippedNonHtmlCount = 0;
   let apiSeededProducts = 0;
@@ -104,6 +105,9 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
           probeCollectionsExhausted += probeResult.exhausted;
           probeCollectionsFailed += probeResult.failed;
           probeTotalPagesFetched += probeResult.pagesFetched;
+          if (probeResult.attempted === 1) {
+            collectionProbeSummaries.push(buildCollectionProbeSummary(page.finalUrl, probeResult));
+          }
         }
 
         analysisPages.push(compactPageForAnalysis(page));
@@ -139,6 +143,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
     imageInventoryUsages,
     linkGraph,
     probeDiscoveryMap,
+    collectionProbeSummaries,
     telemetry: {
       totalRequested,
       skippedNonHtmlCount,
@@ -153,6 +158,33 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
       retries: getFetchTelemetry()
     }
   };
+}
+
+function buildCollectionProbeSummary(
+  collectionUrl: string,
+  probeResult: Awaited<ReturnType<typeof discoverShopifyCollectionPagination>>
+): CollectionProbeSummary {
+  return {
+    handle: extractCollectionHandle(collectionUrl),
+    url: collectionUrl,
+    attempted: probeResult.attempted,
+    exhausted: probeResult.exhausted,
+    failed: probeResult.failed,
+    probe_pages_fetched: probeResult.pagesFetched,
+    products_found: probeResult.productsFound,
+    discovered_products: probeResult.discoveredProducts,
+    stop_reason: probeResult.stopReason,
+    pages: probeResult.pages
+  };
+}
+
+function extractCollectionHandle(collectionUrl: string): string {
+  try {
+    const parts = new URL(collectionUrl).pathname.split("/").filter(Boolean);
+    return parts[0] === "collections" ? parts[1] ?? "" : "";
+  } catch {
+    return "";
+  }
 }
 
 function recordLinkGraphEdges(linkGraph: LinkGraph, page: CrawledPage, baseUrl: string): void {

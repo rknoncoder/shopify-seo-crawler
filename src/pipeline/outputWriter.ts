@@ -65,7 +65,9 @@ export async function writeCrawlOutputs(
         reports.redirectReport,
         reports.contentCannibalizationReport,
         reports.imageInventoryReport,
-        reports.imageSeoSummaryReport
+        reports.imageSeoSummaryReport,
+        reports.crawlStatsReport,
+        result.collectionProbeSummaries
       )
     : "";
 }

@@ -77,6 +77,7 @@ export interface CrawlResult {
   imageInventoryUsages: ImageInventoryUsage[];
   linkGraph: LinkGraph;
   probeDiscoveryMap: ProbeDiscoveryMap;
+  collectionProbeSummaries: CollectionProbeSummary[];
   telemetry: CrawlTelemetry;
 }
 
@@ -96,3 +97,20 @@ export interface QueuedUrl {
 
 export type LinkGraph = Map<string, Set<string>>;
 export type ProbeDiscoveryMap = Map<string, Set<string>>;
+
+export interface CollectionProbeSummary {
+  handle: string;
+  url: string;
+  attempted: number;
+  exhausted: number;
+  failed: number;
+  probe_pages_fetched: number;
+  products_found: number;
+  discovered_products: number;
+  stop_reason: string;
+  pages: Array<{
+    page: number;
+    products_found: number;
+    new: number;
+  }>;
+}
