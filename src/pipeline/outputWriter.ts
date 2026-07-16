@@ -84,7 +84,7 @@ const unreachableProductsHeaders: Array<keyof UnreachableProductReportRow> = [
   "collections_count"
 ];
 
-function flattenPage(page: CrawledPage): Record<string, unknown> {
+export function flattenPage(page: CrawledPage): Record<string, unknown> {
   const indexability = summarizeIndexability(page);
 
   return {

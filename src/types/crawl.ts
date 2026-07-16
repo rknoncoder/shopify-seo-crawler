@@ -16,6 +16,11 @@ export interface CrawlConfig {
   userAgent: string;
   retries: number;
   retryDelayMs: number;
+  collectionPaginationProbe: boolean;
+  checkpoint: {
+    enabled: boolean;
+    intervalPages: number;
+  };
   storage: {
     maxStoredLinksPerPage: number;
     maxStoredImagesPerPage: number;

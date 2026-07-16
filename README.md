@@ -82,6 +82,9 @@ Useful flags:
 - `--max-stored-links` maximum links stored per page in `data/raw/output.json`.
 - `--max-stored-images` maximum images stored per page in `data/raw/output.json`.
 - `--max-stored-text` maximum visible-text sample characters stored per page.
+- `--checkpoint-interval` save partial crawl progress every N crawled pages. Default is `50`.
+- `--no-checkpoint` disable partial progress checkpoint files.
+- `--no-probe` skip Shopify collection pagination probing in `discover` mode. Useful for very large stores when you want core crawl reports first.
 - `--probe-only` temporary Shopify collection pagination debug mode. It seeds `/collections.json`, probes each collection, skips normal crawling, and writes `data/reports/probe-debug.json`.
 
 The crawler identifies itself with this user agent:
@@ -106,6 +109,22 @@ Use `discover` mode when you want to ignore sitemaps and crawl from the target U
 ```bash
 npm run crawl -- --url https://example.com --mode discover --max-pages 3000 --max-depth 8 --memory-safe --no-excel
 ```
+
+For very large stores where collection probing is too slow or memory-heavy, skip the probe pass and write core reports first:
+
+```bash
+npm run crawl -- --url https://example.com --mode discover --max-pages 3000 --max-depth 8 --memory-safe --no-excel --no-probe
+```
+
+Partial progress is saved during long crawls to:
+
+- `data/checkpoints/latest/progress.json`
+- `data/checkpoints/latest/pages.json`
+- `data/checkpoints/latest/pages.csv`
+- `data/checkpoints/latest/issues.json`
+- `data/checkpoints/latest/issues.csv`
+
+These checkpoint files are intentionally separate from final reports. If a crawl is interrupted or runs out of memory, inspect `data/checkpoints/latest` for the last saved partial crawl data.
 
 In `discover` mode, Shopify collection URLs are also probed with the theme-independent Shopify product JSON endpoint first:
 
@@ -205,5 +224,6 @@ Reports are written to:
 - `data/reports/action-plan.json`
 - `data/reports/action-plan.csv`
 - `data/reports/shopify-seo-report.xlsx`
+- `data/checkpoints/latest/*` partial progress files during long crawls
 
 `unreachable-products-report.csv` focuses on products discovered through Shopify data sources but not linked by crawlable HTML. It includes product handle, discovery source, inbound count, PageRank score, collection memberships derived from Shopify collection pagination probes, whether each membership collection was crawled, a bucket, and collection count. Buckets are `A_no_collection`, `B_collection_crawled_not_linked`, and `C_collection_not_crawled`.

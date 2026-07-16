@@ -70,6 +70,9 @@ function applyCrawlMode(crawlMode: CrawlMode): void {
 function applyNumericOverrides(): void {
   config.maxPages = getNumericOverride("--max-pages", "SHOPIFY_CRAWLER_MAX_PAGES") ?? config.maxPages;
   config.maxDepth = getNumericOverride("--max-depth", "SHOPIFY_CRAWLER_MAX_DEPTH") ?? config.maxDepth;
+  config.collectionPaginationProbe = !getBooleanOverride("--no-probe", "SHOPIFY_CRAWLER_NO_PROBE");
+  config.checkpoint.enabled = !getBooleanOverride("--no-checkpoint", "SHOPIFY_CRAWLER_NO_CHECKPOINT");
+  config.checkpoint.intervalPages = getNumericOverride("--checkpoint-interval", "SHOPIFY_CRAWLER_CHECKPOINT_INTERVAL") ?? config.checkpoint.intervalPages;
 
   if (getBooleanOverride("--memory-safe", "SHOPIFY_CRAWLER_MEMORY_SAFE")) {
     config.storage.maxStoredLinksPerPage = 60;

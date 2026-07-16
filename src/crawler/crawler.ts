@@ -4,10 +4,11 @@ import config from "../config/config.js";
 import { runAudits } from "../audits/runAudits.js";
 import { analyzeSite } from "../analyzer/seoAnalyzer.js";
 import { delay, fetchPage, getFetchTelemetry, resetFetchTelemetry, sleepBetweenRequests } from "./fetcher.js";
+import { writeCrawlCheckpoint } from "./progressCheckpoint.js";
 import { discoverShopifyCollectionPagination } from "./shopifyCollectionPagination.js";
 import { UrlManager } from "./urlManager.js";
 import { parseHtml } from "../parser/htmlParser.js";
-import type { CollectionProbeSummary, CrawlResult, LinkGraph, ProbeDiscoveryMap } from "../types/crawl.js";
+import type { CollectionProbeSummary, CrawlResult, CrawlTelemetry, LinkGraph, ProbeDiscoveryMap } from "../types/crawl.js";
 import type { ImageInventoryUsage } from "../types/image.js";
 import type { CrawledPage } from "../types/page.js";
 import type { SeoIssue } from "../types/issue.js";
@@ -31,6 +32,7 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   const linkGraph: LinkGraph = new Map();
   const probeDiscoveryMap: ProbeDiscoveryMap = new Map();
   const collectionProbeSummaries: CollectionProbeSummary[] = [];
+  let lastCheckpointPageCount = 0;
   let totalRequested = 0;
   let skippedNonHtmlCount = 0;
   let apiSeededProducts = 0;
@@ -89,29 +91,32 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
               .forEach((link) => manager.add(link.href, next.depth + 1));
           }
 
-          const probeResult = await discoverShopifyCollectionPagination({
-            collectionUrl: page.finalUrl,
-            baseUrl,
-            depth: next.depth,
-            status: page.status,
-            manager,
-            probeDiscoveryMap,
-            onRequest: () => {
-              totalRequested += 1;
+          if (config.collectionPaginationProbe) {
+            const probeResult = await discoverShopifyCollectionPagination({
+              collectionUrl: page.finalUrl,
+              baseUrl,
+              depth: next.depth,
+              status: page.status,
+              manager,
+              probeDiscoveryMap,
+              onRequest: () => {
+                totalRequested += 1;
+              }
+            });
+            probeDiscoveredProducts += probeResult.discoveredProducts;
+            probeCollectionsAttempted += probeResult.attempted;
+            probeCollectionsExhausted += probeResult.exhausted;
+            probeCollectionsFailed += probeResult.failed;
+            probeTotalPagesFetched += probeResult.pagesFetched;
+            if (probeResult.attempted === 1) {
+              collectionProbeSummaries.push(buildCollectionProbeSummary(page.finalUrl, probeResult));
             }
-          });
-          probeDiscoveredProducts += probeResult.discoveredProducts;
-          probeCollectionsAttempted += probeResult.attempted;
-          probeCollectionsExhausted += probeResult.exhausted;
-          probeCollectionsFailed += probeResult.failed;
-          probeTotalPagesFetched += probeResult.pagesFetched;
-          if (probeResult.attempted === 1) {
-            collectionProbeSummaries.push(buildCollectionProbeSummary(page.finalUrl, probeResult));
           }
         }
 
         analysisPages.push(compactPageForAnalysis(page));
         pages.push(compactPageForStorage(page));
+        await writeCheckpointIfNeeded();
       } catch (error) {
         const fetchIssue = classifyFetchError(error);
         pageIssues.push({
@@ -137,14 +142,22 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
   }
 
   await queue.onIdle();
+  const issues = analyzeSite(analysisPages, pageIssues, linkGraph);
+  const telemetry = buildCurrentTelemetry();
+  await writeCheckpointIfNeeded(true, issues, telemetry);
+
   return {
     pages,
-    issues: analyzeSite(analysisPages, pageIssues, linkGraph),
+    issues,
     imageInventoryUsages,
     linkGraph,
     probeDiscoveryMap,
     collectionProbeSummaries,
-    telemetry: {
+    telemetry
+  };
+
+  function buildCurrentTelemetry(): CrawlTelemetry {
+    return {
       totalRequested,
       skippedNonHtmlCount,
       apiSeededProducts,
@@ -156,8 +169,21 @@ export async function startCrawler(seedUrls: string[], options: StartCrawlerOpti
       probeTotalPagesFetched,
       sitemapOnlyProducts,
       retries: getFetchTelemetry()
-    }
-  };
+    };
+  }
+
+  async function writeCheckpointIfNeeded(
+    force = false,
+    issues: SeoIssue[] = pageIssues,
+    telemetry: CrawlTelemetry = buildCurrentTelemetry()
+  ): Promise<void> {
+    if (!config.checkpoint.enabled || pages.length === 0) return;
+    if (!force && pages.length - lastCheckpointPageCount < config.checkpoint.intervalPages) return;
+
+    lastCheckpointPageCount = pages.length;
+    await writeCrawlCheckpoint(baseUrl, pages, issues, telemetry);
+    console.log(`[CHECKPOINT] saved ${pages.length} pages and ${issues.length} issues to data/checkpoints/latest`);
+  }
 }
 
 function buildCollectionProbeSummary(
