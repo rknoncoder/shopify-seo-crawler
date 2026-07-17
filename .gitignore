@@ -4,3 +4,4 @@ dist/
 .env.local
 npm-debug.log*
 data/server.*.log
+data/checkpoints/
