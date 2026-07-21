@@ -5,3 +5,4 @@ dist/
 npm-debug.log*
 data/server.*.log
 data/checkpoints/
+~$*.xlsx

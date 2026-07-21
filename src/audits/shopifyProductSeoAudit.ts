@@ -129,7 +129,8 @@ export function auditShopifyProductSeo(page: CrawledPage): SeoIssue[] {
     ));
   }
 
-  if (hasSoldOutSignal(searchableText) && summarizeIndexability(page).indexable) {
+  const availability = getAvailabilitySignals(page, searchableText);
+  if (availability.soldOut && !availability.inStock && summarizeIndexability(page).indexable) {
     issues.push(issue(
       page,
       "medium",
@@ -137,7 +138,7 @@ export function auditShopifyProductSeo(page: CrawledPage): SeoIssue[] {
       "product_sold_out_indexable",
       "Product appears sold out or unavailable while still indexable.",
       "If the product is permanently unavailable, redirect or noindex it. If temporary, keep it indexable and add alternatives/restock messaging.",
-      title
+      availability.evidence || title
     ));
   }
 
@@ -184,8 +185,18 @@ function matchesAny(value: string, patterns: RegExp[]): boolean {
   return patterns.some((pattern) => pattern.test(value));
 }
 
-function hasSoldOutSignal(text: string): boolean {
-  return /\b(?:sold out|out of stock|unavailable|notify me when available)\b/i.test(text);
+function getAvailabilitySignals(page: CrawledPage, text: string): { soldOut: boolean; inStock: boolean; evidence: string } {
+  const soldOutMatch = text.match(/\b(?:sold out|out of stock|notify me when (?:it'?s )?available)\b/i);
+  const inStockMatch = [
+    page.meta.ogAvailability,
+    text.match(/\b(?:in stock|items? left in stock|available now|hurry,\s*only\s+\d+\s+items?\s+left)\b/i)?.[0] || ""
+  ].find((value) => /\bin\s*stock\b|available now|items? left/i.test(value));
+
+  return {
+    soldOut: Boolean(soldOutMatch),
+    inStock: Boolean(inStockMatch),
+    evidence: [soldOutMatch?.[0], inStockMatch ? `inStockSignal=${inStockMatch}` : ""].filter(Boolean).join("; ")
+  };
 }
 
 function issue(
